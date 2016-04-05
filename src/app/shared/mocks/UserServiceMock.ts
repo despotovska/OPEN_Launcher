@@ -2,6 +2,7 @@ import {Observable} from 'rxjs/Rx';
 
 import {User} from '../../shared/models/User';
 import {IUserService} from '../services/UserService';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
 export class UserServiceMock implements IUserService {
   static getTestUser(name: string) {
@@ -17,6 +18,17 @@ export class UserServiceMock implements IUserService {
     allUsers[1] = UserServiceMock.getTestUser('user2');
     allUsers[2] = user;
     return allUsers;
+  }
+
+  static getValidUserWithSettings(username: string): User {
+    var user: User = new User();
+    user.name = username;
+    user.profileImg = './assets/images/avatars/devojce.jpg';
+    user.userSettings.backgroundColor = BackgroundColor.InColor;
+    user.userSettings.pointerType = PointerType.Hand;
+    user.userSettings.pointerSize = PointerSize.Small;
+    user.userSettings.pointerColor = PointerColor.White;
+    return user;
   }
 
   addUser(user: User) {

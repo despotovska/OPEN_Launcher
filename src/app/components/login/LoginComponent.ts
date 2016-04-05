@@ -29,7 +29,8 @@ export class LoginComponent {
 
   setAllUsers(): void {
     this.userService.getAllUsers()
-      .subscribe(data => this.allUsers = data, err => this.alertingService.addDanger(err.toString()));
+      .subscribe(data => this.allUsers = data,
+      err => this.alertingService.addDanger('Грешка при вчитување на корисниците.'));
   }
 
   deleteUser(): void {
@@ -39,7 +40,6 @@ export class LoginComponent {
         this.selectedUser = new User();
         this.alertingService.addSuccess('Профилот е успешно избришан.');
       }, err => {
-        this.alertingService.addDanger(err.toString());
         this.alertingService.addDanger('Грешка при бришење на профилот.');
       });
   }

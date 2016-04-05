@@ -40,6 +40,20 @@ describe('LoginComponentTests', () => {
       expect(instance.allUsers).toEqual(localUsers);
     }));
 
+  it('setAllUsers_givenUnavailableUserService_shouldThrowAlertForDanger',
+    inject([LoginComponent], (instance) => {
+      // Arrange
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+      spyOn(instance.userService, 'getAllUsers').and.callFake(() => { return Observable.throw(new Error()); });
+
+      // Act
+      instance.setAllUsers();
+
+      // Assert
+      expect(instance.userService.getAllUsers).toHaveBeenCalled();
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на корисниците.');
+    }));
+
   it('login_givenInvalidUser_shouldSetUnsuccessfulLoginAlertMessage',
     inject([LoginComponent], (instance) => {
       // Arrange
@@ -90,6 +104,22 @@ describe('LoginComponentTests', () => {
       expect(instance.allUsers.length).toEqual(1);
       expect(instance.selectedUser).not.toEqual(user);
       expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('Профилот е успешно избришан.');
+    }));
+
+  it('deleteUser_givenUnavailableUserService_shouldThrowAlertForDanger',
+    inject([LoginComponent], (instance) => {
+      // Arrange
+      var user = UserServiceMock.getValidUserWithSettings('user1');
+      instance.selectedUser = user;
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+      spyOn(instance.userService, 'deleteUser').and.callFake(() => { return Observable.throw(new Error()); });
+
+      // Act
+      instance.deleteUser();
+
+      // Assert
+      expect(instance.userService.deleteUser).toHaveBeenCalledWith(user.name);
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при бришење на профилот.');
     }));
 
   it('deleteCancelled_givenCancelDeletingIsChosen_shouldSetInfoAlertMessage',

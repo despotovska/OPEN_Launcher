@@ -30,15 +30,14 @@ export class UserSettingsComponent implements OnChanges {
     private pointerColorService: UserSettingsColorsService,
     private imagesService: ImagesService) {
 
-    this.setAvailableImages();
+    this.setAvailablePointerImages();
   }
 
-  setAvailableImages(): void {
+  setAvailablePointerImages(): void {
     this.imagesService.getPointerImages()
       .subscribe(
       data => this.allPointerImages = data,
-      err => this.alertingService.addDanger(err.toString()));
-  }
+      err => this.alertingService.addDanger('Грешка при вчитување на покажувачите.')); }
 
   setBackgroundColorAndPointerColors(backgroundColor: BackgroundColor): void {
     this.userSettings.backgroundColor = Number(backgroundColor);

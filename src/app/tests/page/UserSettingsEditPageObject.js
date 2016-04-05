@@ -11,13 +11,15 @@ var UserSettingsEditPage = function() {
   var radioBtn = element.all(by.css('input[type="radio"]'));
   var someProfile = element.all(by.className("img-circle")).get(0);
   var signBtn = element(by.id("btn-login"));
-  var saveSettings = element(by.id("saveUserSettings"))
+  var saveSettings = element(by.id("saveUserSettings"));
+  var loggedUser = element(by.id("loggedUser"));
 
   this.get = function(value) {
     browser.get(value);
   };
 
   this.openUserSettings = function() {
+    loggedUser.click();
     userSettings.click();
   }
 

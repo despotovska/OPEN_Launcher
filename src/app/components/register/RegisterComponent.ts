@@ -45,7 +45,7 @@ export class RegisterComponent {
     this.imagesService.getProfileImages()
       .subscribe(
       data => this.allImages = data,
-      err => this.alertingService.addDanger(err.toString()));
+      err => this.alertingService.addDanger('Грешка при вчитување на корисничките слики.'));
   }
 
   onSelect(img: string): void {
@@ -62,7 +62,7 @@ export class RegisterComponent {
             .subscribe(data => {
               this.alertingService.addSuccess('Успешно внесен корисник.');
               this.router.navigate(['/Login']);
-            }, err => this.alertingService.addDanger(err.toString()));
+            }, err => this.alertingService.addDanger('Грешка при внесување на корисник.'));
         }
       }
       );

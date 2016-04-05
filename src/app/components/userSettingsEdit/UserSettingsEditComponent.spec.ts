@@ -45,4 +45,20 @@ describe('UserSettingsEditComponentTests', () => {
       expect(instance.userSettingsService.saveUserSettingsForUser).toHaveBeenCalled();
       expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('Корисничките подесувања се успешно зачувани.');
     }));
+
+  it('saveUserSettings_givenUnavailableUserSettingsService_shouldThrowAlertForDanger',
+    inject([UserSettingsEditComponent], (instance) => {
+      // Arrange
+      instance.userSettings = new UserSettings();
+      UserSettingsServiceMock.setUserSetting(instance.userSettings);
+      spyOn(instance.userSettingsService, 'saveUserSettingsForUser').and.callFake(() => { return Observable.throw(new Error()); });
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+
+      // Act
+      instance.saveUserSettings();
+
+      // Assert
+      expect(instance.userSettingsService.saveUserSettingsForUser).toHaveBeenCalled();
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Корисничките подесувања не се успешно зачувани.');
+    }));
 });

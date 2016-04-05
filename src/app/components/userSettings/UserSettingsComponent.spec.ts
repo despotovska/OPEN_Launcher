@@ -26,18 +26,32 @@ describe('UserSettingsComponentTests', () => {
     UserSettingsComponent
   ]);
 
-  it('setAvailableImages_givenAvailableImageService_shouldSetAllPointerImages',
+  it('setAvailablePointerImages_givenAvailableImageService_shouldSetAllPointerImages',
     inject([UserSettingsComponent], (instance) => {
       // Arrange
       var allPointerImagesLocal = ['./app/assets/images/pointer/small.png', './app/assets/images/pointer/big.png'];
       spyOn(instance.imagesService, 'getPointerImages').and.callThrough();
 
       // Act
-      instance.setAvailableImages();
+      instance.setAvailablePointerImages();
 
       // Assert
       expect(instance.allPointerImages).toEqual(allPointerImagesLocal);
       expect(instance.imagesService.getPointerImages).toHaveBeenCalled();
+    }));
+
+  it('setAvailablePointerImages_givenUnavailableImageService_shouldThrowAlertForDanger',
+    inject([UserSettingsComponent], (instance) => {
+      // Arrange
+      spyOn(instance.imagesService, 'getPointerImages').and.callFake(() => { return Observable.throw(new Error()); });
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+
+      // Act
+      instance.setAvailablePointerImages();
+
+      // Assert
+      expect(instance.imagesService.getPointerImages).toHaveBeenCalled();
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на покажувачите.');
     }));
 
   it('setBackgroundColorAndPointerColors_givenBlackAndWhiteBgColor_shouldSetBgColorAndLoadPointerColors',

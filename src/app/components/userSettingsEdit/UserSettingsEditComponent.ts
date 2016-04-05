@@ -31,7 +31,7 @@ export class UserSettingsEditComponent {
       .subscribe(data => {
         this.alertingService.addSuccess('Корисничките подесувања се успешно зачувани.');
       }, err => {
-        this.alertingService.addDanger('Неуспешна операција.');
+        this.alertingService.addDanger('Корисничките подесувања не се успешно зачувани.');
       });
   }
 }

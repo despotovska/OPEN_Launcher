@@ -2,7 +2,7 @@ var UploadPage = function() {
 
   var path = require("path");
   var elm = element(by.css('input[type="file"]'));
-  var fileToUpload = "U:/krava.jpg";
+  var fileToUpload = "E:/OpenMenu/OPEN_Launcher/src/assets/images/avatars/krava.png";
   var absolutePath = path.resolve(__dirname, fileToUpload);
   var signBtn = element(by.id("btn-login"));
   var navigateToUpload = element(by.id("navBarUpload"));

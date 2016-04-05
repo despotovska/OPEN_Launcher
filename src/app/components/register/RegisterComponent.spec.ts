@@ -52,6 +52,19 @@ describe('RegisterComponentTests', () => {
       expect(instance.allImages).toEqual(allImagesLocal);
     }));
 
+  it('setAvailableImages_givenImagesServiceIsUnavailable_shouldThrowAlertForDanger',
+    inject([RegisterComponent], (instance) => {
+      // Arrange
+      spyOn(instance.imagesService, 'getProfileImages').and.callFake(() => { return Observable.throw(new Error()); });
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+      // Act
+      instance.setAvailableImages();
+
+      // Assert
+      expect(instance.imagesService.getProfileImages).toHaveBeenCalled();
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на корисничките слики.');
+    }));
+
   it('onSelect_givenSelectedImagePath_shouldSetProfileImg',
     inject([RegisterComponent], (instance) => {
       // Act
@@ -128,5 +141,26 @@ describe('RegisterComponentTests', () => {
       expect(instance.userService.addUser).not.toHaveBeenCalledWith(user);
       expect(instance.router.navigate).not.toHaveBeenCalledWith(['/Login']);
       expect(instance.alertingService.addDanger).toHaveBeenCalledWith('За да креирате профил, ве молам изберете слика.');
+    }));
+
+  it('onSubmit_givenUserServiceIsUnavailable_shouldNotAddAndShouldThrowAlertForDanger',
+    inject([RegisterComponent], (instance) => {
+      // Arrange
+
+      let user: User = UserServiceMock.getValidUserWithSettings('user');
+      instance.user = user;
+      spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
+        var response: ValidationResponse = new ValidationResponse(true);
+        return Observable.of(response);
+      });
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+      spyOn(instance.userService, 'addUser').and.callFake(() => { return Observable.throw(new Error()); });
+
+      // Act
+      instance.onSubmit();
+
+      // Assert
+      expect(instance.userService.addUser).toHaveBeenCalled();
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при внесување на корисник.');
     }));
 });

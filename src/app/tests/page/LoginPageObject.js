@@ -7,12 +7,13 @@ var LogInPage = function() {
   var logOutbtn = element(by.id("logout"));
   var name = element(by.id("usernamefield"));
   var filtered_names = element.all(by.css("body > app > div > login > div > div > div:nth-child(2) > div")).get(0);
-  var loggedUser = element(by.css("body > app > div > home > div > div > b"));
+  //var loggedUser = element(by.css("body > app > div > home > div > div > b"));
   var profileNumber;
   var randomNo;
   var profileNames;
   var selectedName;
   var loggedUsername;
+  var loggedUserMenu = element(by.id("loggedUser"));
 
 
   this.get = function(value) {
@@ -39,6 +40,7 @@ var LogInPage = function() {
 
 
   this.logOut = function() {
+    loggedUserMenu.click();
     logOutbtn.click();
   };
 
@@ -72,7 +74,7 @@ var LogInPage = function() {
   }
 
   this.getLoggedUser = function() {
-    loggedUser.getAttribute("innerHTML").then(function(text) {
+    loggedUserMenu.getText().then(function(text) {
       loggedUsername = text;
       console.log("User logged in: " + loggedUsername);
       return loggedUsername;

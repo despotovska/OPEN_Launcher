@@ -19,17 +19,15 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: { 'spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
+    preprocessors: { 'spec-bundle.js': ['webpack', 'sourcemap'] },
 
     // Webpack Config at ./webpack.test.config.js
     webpack: testWebpackConfig,
 
     coverageReporter: {
-      dir: 'coverage/',
       reporters: [
-        { type: 'text-summary' },
-        { type: 'json' },
-        { type: 'html' }
+        { type: 'json', subdir: '.', file: 'coverage-js.json' },
+        { type: 'text-summary' }
       ]
     },
 

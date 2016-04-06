@@ -10,12 +10,12 @@ export interface IAuthService {
 @Injectable()
 export class AuthService implements IAuthService {
   login(user: string): boolean {
-    if (user.length > 0) {
+    var isValid = user.length > 0;
+    if (isValid) {
       localStorage.setItem('username', user);
-      return true;
-    } else {
-      return false;
     }
+
+    return isValid;
   }
 
   logout(): void {

@@ -4,8 +4,6 @@ import {
   inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
-import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
-import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {UploadPictureComponent} from './UploadPictureComponent';
 import {UploadPictureService} from './UploadPictureService';
@@ -14,14 +12,7 @@ import {AlertingService} from '../alerting/AlertingService';
 
 describe('UploadPictureComponentTests', () => {
   beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    provide(Http, {
-      useFactory: (backend, defaultOptions) => {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    }),
+
     GlobalService,
     AlertingService,
     UploadPictureService,

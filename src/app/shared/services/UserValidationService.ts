@@ -27,20 +27,20 @@ export class UserValidationService implements IUserValidationService {
   }
 
   isUserPictureSet(user: User): boolean {
-    return user.profileImg !== './assets/images/avatars/default.jpg';
+    var isValid = user.profileImg
+      && user.profileImg !== './assets/images/avatars/default.jpg';
+    return isValid;
   }
 
   isValidUserData(user: User): boolean {
-    var result: boolean;
-    result = user.name
+    var isValid = user.name
       && user.profileImg
       && user.userSettings
       && user.userSettings.backgroundColor >= 0
       && user.userSettings.pointerColor >= 0
       && user.userSettings.pointerSize >= 0
       && user.userSettings.pointerType >= 0;
-
-    return result;
+    return isValid;
   }
 
   getInvalidUserPictureValidationResponse(): Observable<ValidationResponse> {

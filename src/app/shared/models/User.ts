@@ -14,9 +14,9 @@ export class User {
 export class Users {
   public users: User[] = new Array<User>();
 
-  constructor(objets) {
-    for (var key in objets) {
-      var obj = objets[key];
+  constructor(objects) {
+    for (var key in objects) {
+      var obj = objects[key];
       var user = new User();
 
       for (var prop in obj) {

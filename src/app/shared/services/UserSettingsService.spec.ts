@@ -63,8 +63,7 @@ describe('UserSettingsServiceTests', () => {
           connection.mockRespond(new Response(
             new ResponseOptions({
               body: JSON.stringify(userSettingsObject)
-            }
-            )));
+            })));
         });
 
       // Act
@@ -92,8 +91,7 @@ describe('UserSettingsServiceTests', () => {
           connection.mockRespond(new Response(
             new ResponseOptions({
               body: JSON.stringify(userSettingsObject)
-            }
-            )));
+            })));
         });
 
       // Act

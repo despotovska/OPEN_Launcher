@@ -2,11 +2,17 @@ import {Injectable, bind} from 'angular2/core';
 
 import {Alert} from './Alert';
 
-@Injectable()
-export class AlertingService {
-  public currentAlerts: Array<Alert> = new Array<Alert>();
+export interface IAlertingService {
+  addSuccess(message: string): void;
+  addInfo(message: string): void;
+  addWarning(message: string): void;
+  addDanger(message: string): void;
+  removeAlert(alert: Alert): void;
+}
 
-  constructor() { }
+@Injectable()
+export class AlertingService implements IAlertingService {
+  public currentAlerts: Array<Alert> = new Array<Alert>();
 
   addAlert(type: string, message: string): void {
     var alert = new Alert(type, message);

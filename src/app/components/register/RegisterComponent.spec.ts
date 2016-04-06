@@ -25,7 +25,6 @@ import {ImagesServiceMock} from '../../shared/mocks/ImagesServiceMock';
 import {ValidationResponse} from '../../shared/models/ValidationResponse';
 
 describe('RegisterComponentTests', () => {
-
   beforeEachProviders(() => [
     AlertingService,
     UserValidationService,
@@ -128,8 +127,8 @@ describe('RegisterComponentTests', () => {
     inject([RegisterComponent], (instance) => {
       // Arrange
       let user: User = UserServiceMock.getTestUser('user');
+      user.profileImg = './assets/images/avatars/default.jpg';
       instance.user = user;
-      instance.user.profileImg = './assets/images/avatars/default.jpg';
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.router, 'navigate').and.callThrough();
       spyOn(instance.userService, 'addUser').and.callFake(() => { });

@@ -44,7 +44,7 @@ describe('AlertingServiceTests', () => {
     expect(instance.currentAlerts[0].type).toEqual('warning');
   });
 
-  it('addDanger_givenAlertAndCurrentAlertsArrayIsEmpty_TypeOfTheAddedAlertShouldBeDanger', () => {
+  it('addDanger_givenAlertAndCurrentAlertsArrayIsEmpty_typeOfTheAddedAlertShouldBeDanger', () => {
     // Act
     instance.addDanger('message');
 

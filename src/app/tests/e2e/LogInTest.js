@@ -20,14 +20,6 @@ describe("Game menu log in page", function() {
     console.log("sign in button should not be visible if profile is not selected");
   });
 
-  it("User can log in when selecting existing profile ", function() {
-    LogInPage.logIn();
-    expect(LogInPage.getLoggedUser()).toEqual(LogInPage.getSelectedUser());
-    expect(LogInPage.getCurrentURL()).toEqual("http://localhost:3000/#/home");
-    LogInPage.logOut();
-    console.log("Finishing : User loged in");
-  });
-
   it("User can log out from home page ", function() {
     LogInPage.logIn();
     LogInPage.logOut();

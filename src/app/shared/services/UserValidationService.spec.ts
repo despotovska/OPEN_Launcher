@@ -17,13 +17,15 @@ import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../enums/
 import {ValidationResponse} from '../../shared/models/ValidationResponse';
 
 describe('UserValidationServiceTests', () => {
-  var instance: UserValidationService = null;
-
   function getValidUser() {
-    var result = new User();
-    result.name = 'testName';
-    result.profileImg = 'someProfileImage';
-    return result;
+    var user = new User();
+    user.name = 'testName';
+    user.profileImg = 'someProfileImage';
+    user.userSettings.backgroundColor = 1;
+    user.userSettings.pointerColor = 1;
+    user.userSettings.pointerSize = 0;
+    user.userSettings.pointerType = 1;
+    return user;
   }
 
   beforeEachProviders(() => [
@@ -43,14 +45,12 @@ describe('UserValidationServiceTests', () => {
     expect(!!instance.http).toEqual(true);
   }));
 
-  it('isValid_givenDefaultProfilePicture_shouldReturnObservableOfValidationResponseWithInvalidUser',
+  it('isValid_givenDefaultProfilePicture_shouldReturnInvalidUserPictureValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
       let user: User = getValidUser();
       user.profileImg = './assets/images/avatars/default.jpg';
-      spyOn(instance, 'isUserPictureSet').and.callFake(() => {
-        return false;
-      });
+      spyOn(instance, 'isUserPictureSet').and.callFake(() => { return false; });
       spyOn(instance, 'getInvalidUserPictureValidationResponse').and.callFake(() => { });
 
       // Act
@@ -60,16 +60,12 @@ describe('UserValidationServiceTests', () => {
       expect(instance.getInvalidUserPictureValidationResponse).toHaveBeenCalled();
     }));
 
-  it('isValid_givenInvalidUserData_shouldReturnValidationResponseForInvalidUserData',
+  it('isValid_givenInvalidUserData_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
       let user: User = getValidUser();
-      spyOn(instance, 'isUserPictureSet').and.callFake(() => {
-        return true;
-      });
-      spyOn(instance, 'isValidUserData').and.callFake(() => {
-        return false;
-      });
+      spyOn(instance, 'isUserPictureSet').and.callFake(() => { return true; });
+      spyOn(instance, 'isValidUserData').and.callFake(() => { return false; });
       spyOn(instance, 'getInvalidUserDataValidationResponse').and.callFake(() => { });
 
       // Act
@@ -79,11 +75,10 @@ describe('UserValidationServiceTests', () => {
       expect(instance.getInvalidUserDataValidationResponse).toHaveBeenCalled();
     }));
 
-  it('isValid_givenValidUserData_shouldReturnValidationResponseForInvalidUserData',
+  it('isValid_givenValidUserData_shouldCheckIfUserAlreadyExists',
     inject([UserValidationService], (instance) => {
       // Arrange
       let user: User = getValidUser();
-      user.profileImg = './assets/images/avatars/devojce.jpg';
       spyOn(instance, 'isUserPictureSet').and.callFake(() => { return true; });
       spyOn(instance, 'isValidUserData').and.callFake(() => { return true; });
       spyOn(instance, 'getExistingUserValidationResponse').and.callFake(() => { });
@@ -92,23 +87,16 @@ describe('UserValidationServiceTests', () => {
       var result = instance.isValid(user);
 
       // Assert
-      expect(instance.getExistingUserValidationResponse).toHaveBeenCalled();
+      expect(instance.getExistingUserValidationResponse).toHaveBeenCalledWith(user.name);
     }));
 
   it('isValidUserData_givenValidUserData_shouldBeTruthy',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var result: boolean;
-      var localUser: User = new User();
-      localUser.profileImg = 'somePath';
-      localUser.name = 'someName';
-      localUser.userSettings.backgroundColor = 1;
-      localUser.userSettings.pointerColor = 1;
-      localUser.userSettings.pointerSize = 0;
-      localUser.userSettings.pointerType = 1;
+      var user: User = getValidUser();
 
       // Act
-      result = instance.isValidUserData(localUser);
+      var result = instance.isValidUserData(user);
 
       // Assert
       expect(result).toBeTruthy();
@@ -117,59 +105,53 @@ describe('UserValidationServiceTests', () => {
   it('isValidUserData_givenInvalidUserData_shouldBeFalsy',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var result: boolean;
-      var localUser: User = new User();
-      localUser.name = 'someName';
-      localUser.userSettings.backgroundColor = 1;
-      localUser.userSettings.pointerColor = 1;
-      localUser.userSettings.pointerSize = 0;
-      localUser.userSettings.pointerType = 1;
+      var user: User = getValidUser();
+      user.profileImg = null;
 
       // Act
-      result = instance.isValidUserData(localUser);
+      var result = instance.isValidUserData(user);
 
       // Assert
       expect(result).toBeFalsy();
     }));
 
-  it('getInvalidUserPictureValidationResponse_givenInvalidUserPicture_shouldReturnValidationResponseForInvalidUserData',
+  it('getInvalidUserPictureValidationResponse_givenInvalidUserPicture_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var response = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
+      var expectedResponse = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
       var result: ValidationResponse;
 
       // Act
       instance.getInvalidUserPictureValidationResponse().subscribe(data => { result = data; });
 
       // Assert
-      expect(result).toEqual(response);
+      expect(result).toEqual(expectedResponse);
     }));
 
-  it('getInvalidUserDataValidationResponse_givenInvalidUserData_shouldReturnValidationResponseForInvalidUserData',
+  it('getInvalidUserDataValidationResponse_givenInvalidUserData_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var response = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+      var expectedResponse = new ValidationResponse(false, 'Не се сите полиња пополнети.');
       var result: ValidationResponse;
       // Act
 
       instance.getInvalidUserDataValidationResponse().subscribe(data => { result = data; });
 
       // Assert
-      expect(result).toEqual(response);
+      expect(result).toEqual(expectedResponse);
     }));
 
-  it('getExistingUserValidationResponse_givenValidUser_shouldReturnResponseForNotExistingUser',
+  it('getExistingUserValidationResponse_givenValidUser_shouldReturnNotExistingUserValidationResponse',
     inject([UserValidationService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var existingUser = false;
-      var responseExpected = new ValidationResponse(!existingUser);
+      var userAlreadyExists = false;
+      var responseExpected = new ValidationResponse(!userAlreadyExists);
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
             new ResponseOptions({
-              body: JSON.stringify(existingUser)
-            }
-            )));
+              body: JSON.stringify(userAlreadyExists)
+            })));
         });
 
       // Act
@@ -180,18 +162,17 @@ describe('UserValidationServiceTests', () => {
         });
     }));
 
-  it('getExistingUserValidationResponse_givenInvalidUser_shouldReturnResponseForExistingUser',
+  it('getExistingUserValidationResponse_givenInvalidUser_shouldReturnExistingUserValidationResponse',
     inject([UserValidationService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var existingUser = true;
-      var responseExpected = new ValidationResponse(!existingUser, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+      var userAlreadyExists = true;
+      var responseExpected = new ValidationResponse(!userAlreadyExists, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
             new ResponseOptions({
-              body: JSON.stringify(existingUser)
-            }
-            )));
+              body: JSON.stringify(userAlreadyExists)
+            })));
         });
 
       // Act

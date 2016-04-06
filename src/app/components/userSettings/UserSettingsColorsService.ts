@@ -4,10 +4,12 @@ import {GlobalService} from '../../shared/services/GlobalService';
 import {PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 import {EnumEx} from '../../shared/enums/EnumEx';
 
-@Injectable()
-export class UserSettingsColorsService {
-  constructor() { }
+export interface IUserSettingsColorsService {
+  getPointerColors(backgroundColor: BackgroundColor): PointerColor[];
+}
 
+@Injectable()
+export class UserSettingsColorsService implements IUserSettingsColorsService {
   getPointerColors(backgroundColor: BackgroundColor): PointerColor[] {
     var inColorAvailablePointerColors = [
       PointerColor.White,

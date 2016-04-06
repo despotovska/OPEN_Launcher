@@ -6,20 +6,21 @@ import {AlertingService} from '../alerting/AlertingService';
 import {MultipartItem} from '../../shared/plugins/multipart-upload/multipart-item';
 import {MultipartUploader} from '../../shared/plugins/multipart-upload/multipart-uploader';
 
-@Injectable()
-export class UploadPictureService {
-  private uploader: MultipartUploader = new MultipartUploader({ url: this.globalService.URL_UPLOAD_PICTURE });
-  private multipartItem: MultipartItem = new MultipartItem(this.uploader);
+export interface IUploadPictureService {
+  upload(file: File): void;
+}
 
-  constructor(private http: Http,
-    private globalService: GlobalService,
-    private alertingService: AlertingService) { }
+@Injectable()
+export class UploadPictureService implements IUploadPictureService {
+  private uploader: MultipartUploader;
+  private multipartItem: MultipartItem;
+
+  constructor(private globalService: GlobalService, private alertingService: AlertingService) {
+    this.uploader = new MultipartUploader({ url: this.globalService.URL_UPLOAD_PICTURE });
+    this.multipartItem = new MultipartItem(this.uploader);
+  }
 
   upload(file: File): void {
-    if (this.multipartItem == null) {
-      this.multipartItem = new MultipartItem(this.uploader);
-    }
-
     if (this.multipartItem.formData == null) {
       this.multipartItem.formData = new FormData();
     }

@@ -1,20 +1,17 @@
 import {
-  beforeEach,
-  describe,
-  expect,
-  it
+  beforeEachProviders,
+  it,
+  inject
 } from 'angular2/testing';
 
 import {AuthService} from './AuthService';
 
 describe('AuthServiceTests', () => {
-  var instance: AuthService = null;
+  beforeEachProviders(() => [
+    AuthService
+  ]);
 
-  beforeEach(() => {
-    instance = new AuthService();
-  });
-
-  it('login_givenValidUsername_shouldBeTruthy', () => {
+  it('login_givenValidUsername_shouldBeTruthy', inject([AuthService], (instance) => {
     // Arrange
     var usernameKey = 'username';
     var usernameValue = 'dragica';
@@ -26,9 +23,9 @@ describe('AuthServiceTests', () => {
     // Assert
     expect(result).toBeTruthy();
     expect(localStorage.setItem).toHaveBeenCalledWith(usernameKey, usernameValue);
-  });
+  }));
 
-  it('login_givenInvalidUsername_shouldBeFalsy', () => {
+  it('login_givenInvalidUsername_shouldBeFalsy', inject([AuthService], (instance) => {
     //Arrange
     var username = '';
 
@@ -37,9 +34,9 @@ describe('AuthServiceTests', () => {
 
     //Assert
     expect(result).toBeFalsy();
-  });
+  }));
 
-  it('logout_givenItemInLocalStorage_shouldRemoveItem', () => {
+  it('logout_givenItemInLocalStorage_shouldRemoveItem', inject([AuthService], (instance) => {
     //Arrange
     spyOn(localStorage, 'removeItem').and.callFake(() => { });
 
@@ -48,9 +45,9 @@ describe('AuthServiceTests', () => {
 
     //Assert
     expect(localStorage.removeItem).toHaveBeenCalledWith('username');
-  });
+  }));
 
-  it('getUser_givenItemInLocalStorage_shouldGetItem', () => {
+  it('getUser_givenItemInLocalStorage_shouldGetItem', inject([AuthService], (instance) => {
     //Arrange
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return 'dragica';
@@ -63,9 +60,9 @@ describe('AuthServiceTests', () => {
     expect(localStorage.getItem).toHaveBeenCalledWith('username');
     expect(result).toBe('dragica');
 
-  });
+  }));
 
-  it('isLogged_givenItemInLocalStorage_shouldBeTruthy', () => {
+  it('isLogged_givenItemInLocalStorage_shouldBeTruthy', inject([AuthService], (instance) => {
     //Arrange
     spyOn(localStorage, 'getItem').and.callFake(() => { });
 
@@ -74,9 +71,9 @@ describe('AuthServiceTests', () => {
 
     //Assert
     expect(result).toBeTruthy();
-  });
+  }));
 
-  it('isLogged_givenNoItemInLocalStorage_shouldBeFalsy', () => {
+  it('isLogged_givenNoItemInLocalStorage_shouldBeFalsy', inject([AuthService], (instance) => {
     //Arrange
     spyOn(localStorage, 'getItem').and.callFake(() => { return null; });
 
@@ -85,5 +82,5 @@ describe('AuthServiceTests', () => {
 
     //Assert
     expect(result).toBeFalsy();
-  });
+  }));
 });

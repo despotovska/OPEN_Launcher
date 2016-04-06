@@ -1,8 +1,7 @@
 import {
+  beforeEachProviders,
   it,
-  inject,
-  describe,
-  beforeEachProviders
+  inject
 } from 'angular2/testing';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {provide} from 'angular2/core';

@@ -18,13 +18,16 @@ describe("Game menu log in user", function() {
   });
 
   it("User can create new user ", function() {
-    CreateUserPage.createAutoGenerateUserName();
+    CreateUserPage.createUserName("Josif");
+    CreateUserPage.clickCreateBtnAfter();
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can not create new user with same name ", function() {
@@ -80,7 +83,6 @@ describe("Game menu log in user", function() {
 
   it("User can not be created without entering name ", function() {
     CreateUserPage.selectPicture();
-    CreateUserPage.clickCreateBtnAfter();
     expect(CreateUserPage.isCreateBtnEnabled()).toBe(false);
     console.log("Finishing : User can not be created");
 
@@ -115,7 +117,7 @@ describe("Game menu log in user", function() {
   });
 
   it("User can create new user in color version with pointer size m and pointer color red", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectRedColor();
@@ -126,10 +128,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color white", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectWhiteColor();
@@ -140,10 +144,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color blue", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectBlueColor();
@@ -154,10 +160,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color green", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectGreenColor();
@@ -168,10 +176,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color yellow", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectYellowColor();
@@ -182,11 +192,13 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
 
   it("User can create new user in color version with pointer size s and pointer color red", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectRedColor();
@@ -197,10 +209,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size s and pointer color white", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectWhiteColor();
@@ -211,10 +225,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size s and pointer color blue", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectBlueColor();
@@ -225,10 +241,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size s and pointer color green", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectGreenColor();
@@ -239,10 +257,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size s and pointer color yellow", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("0");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectYellowColor();
@@ -253,10 +273,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color white", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("1");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectWhiteColor();
@@ -267,10 +289,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size m and pointer color yellow", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("1");
     CreateUserPage.selectMediumPointer();
     CreateUserPage.selectYellowColor();
@@ -281,10 +305,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in color version with pointer size s and pointer color white", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("1");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectWhiteColor();
@@ -295,10 +321,12 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user in BW version with pointer size s and pointer color yellow", function() {
-    CreateUserPage.createUserSettingsRandom();
+    CreateUserPage.createUserName("Josif");
     CreateUserPage.selectRadioButton("1");
     CreateUserPage.selectSmallPointer();
     CreateUserPage.selectYellowColor();
@@ -309,6 +337,8 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
+    LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
   });
 
 

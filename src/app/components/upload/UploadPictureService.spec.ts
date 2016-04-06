@@ -16,14 +16,15 @@ describe('UploadPictureServiceTests', () => {
     UploadPictureService
   ]);
 
-  it('upload_givenFile_shouldCallUploadFromMultipartUploaderPlugin', inject([UploadPictureService], (instance) => {
-    // Arrange
-    spyOn(instance.multipartItem, 'upload').and.callFake(() => { });
+  it('upload_givenFile_shouldCallUploadFromMultipartUploaderPlugin',
+    inject([UploadPictureService], (instance) => {
+      // Arrange
+      spyOn(instance.multipartItem, 'upload').and.callFake(() => { });
 
-    // Act
-    instance.upload(new Array<File>()[0]);
+      // Act
+      instance.upload(new Array<File>()[0]);
 
-    // Assert
-    expect(instance.multipartItem.upload).toHaveBeenCalled();
-  }));
+      // Assert
+      expect(instance.multipartItem.upload).toHaveBeenCalled();
+    }));
 });

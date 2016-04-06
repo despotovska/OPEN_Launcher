@@ -1,65 +1,76 @@
-import {it, describe, expect, beforeEach} from 'angular2/testing';
+import {
+  beforeEachProviders,
+  it,
+  inject
+} from 'angular2/testing';
+
 import {UsersFilter} from './UsersFilter';
 import {User} from '../models/User';
 
 describe('UsersFilterTests', () => {
-  let pipe: UsersFilter;
+  function getUser() {
+    var user = new User();
+    user.name = 'dragica';
+    return user;
+  }
 
-  beforeEach(() => {
-    pipe = new UsersFilter();
-  });
+  beforeEachProviders(() => [
+    UsersFilter
+  ]);
 
-  it('transform_givenFilter_shouldFilterWithOneUser', () => {
-    // Arrange
-    let user = new User();
-    user.name = 'Dragica';
+  it('transform_givenFilter_shouldFilterWithOneUser',
+    inject([UsersFilter], (instance) => {
+      // Arrange
+      let user = getUser();
 
-    // Act
-    var result = pipe.transform([user], ['dr']);
+      // Act
+      var result = instance.transform([user], ['dr']);
 
-    // Assert
-    expect(result).toEqual([user]);
-  });
+      // Assert
+      expect(result).toEqual([user]);
+    }));
 
-  it('transform_givenNoFilter_shouldReturnAllUsers', () => {
-    // Arrange
-    let user = new User();
-    user.name = 'Dragica';
-    let users: User[] = new Array<User>();
-    users[0] = user;
+  it('transform_givenNoFilter_shouldReturnAllUsers',
+    inject([UsersFilter], (instance) => {
+      // Arrange
+      let user = getUser();
+      let users: User[] = new Array<User>();
+      users[0] = user;
 
-    // Act
-    var result = pipe.transform(users, ['']);
+      // Act
+      var result = instance.transform(users, ['']);
 
-    // Assert
-    expect(result).toEqual(users);
-  });
+      // Assert
+      expect(result).toEqual(users);
+    }));
 
-  it('transform_givenNoUsers_shouldReturnNoUsers', () => {
-    // Arrange
-    let users: User[] = new Array<User>();
+  it('transform_givenNoUsers_shouldReturnNoUsers',
+    inject([UsersFilter], (instance) => {
+      // Arrange
+      let users: User[] = new Array<User>();
 
-    // Act
-    var result = pipe.transform(users, ['']);
+      // Act
+      var result = instance.transform(users, ['']);
 
-    // Assert
-    expect(result).toEqual(users);
-  });
+      // Assert
+      expect(result).toEqual(users);
+    }));
 
-  it('transform_givenFilter_shouldFilterWithMultipleUsers', () => {
-    // Arrange
-    let user1 = new User();
-    user1.name = 'Daniela';
-    let user2 = new User();
-    user2.name = 'Dragica';
-    let users: User[] = new Array<User>();
-    users[0] = user1;
-    users[1] = user2;
+  it('transform_givenFilter_shouldFilterWithMultipleUsers',
+    inject([UsersFilter], (instance) => {
+      // Arrange
+      let user1 = new User();
+      user1.name = 'Daniela';
+      let user2 = new User();
+      user2.name = 'Dragica';
+      let users: User[] = new Array<User>();
+      users[0] = user1;
+      users[1] = user2;
 
-    // Act
-    var result = pipe.transform(users, ['d']);
+      // Act
+      var result = instance.transform(users, ['d']);
 
-    // Assert
-    expect(result).toEqual(users);
-  });
+      // Assert
+      expect(result).toEqual(users);
+    }));
 });

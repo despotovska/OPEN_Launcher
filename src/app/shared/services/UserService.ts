@@ -8,10 +8,7 @@ import {GlobalService} from './GlobalService';
 export interface IUserService {
   getAllUsers(): Observable<User[]>;
   getUserByName(name: string): Observable<User[]>;
-  addUser(user: User): Observable<{
-    users: User[];
-    message: any;
-  }>;
+  addUser(user: User): Observable<User[]>;
   deleteUser(name): Observable<User[]>;
 }
 
@@ -38,10 +35,7 @@ export class UserService implements IUserService {
   }
 
   //Add new user to db
-  addUser(user: User): Observable<{
-    users: User[];
-    message: any;
-  }> {
+  addUser(user: User): Observable<User[]> {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -49,9 +43,8 @@ export class UserService implements IUserService {
       JSON.stringify(user),
       { headers: headers })
       .map(res => {
-        var result = res.json();
-        var response = new Users(result.data);
-        return { users: response.users, message: result.message };
+        var response = new Users(res.json());
+        return response.users;
       });
   }
 

@@ -12,36 +12,37 @@ import {AlertingService} from '../alerting/AlertingService';
 
 describe('UploadPictureComponentTests', () => {
   beforeEachProviders(() => [
-
     GlobalService,
     AlertingService,
     UploadPictureService,
     UploadPictureComponent
   ]);
 
-  it('uploadFile_givenAvailableUploadPictureService_shouldResetSelectedImageAndFile', inject([UploadPictureComponent], (instance) => {
-    // Arrange
-    instance.selectedFiles = new Array<File>();
-    spyOn(instance.uploadPictureService, 'upload').and.callFake(() => { });
-    spyOn(instance, 'resetSelected').and.callFake(() => { });
+  it('uploadFile_givenAvailableUploadPictureService_shouldResetSelectedImageAndFile',
+    inject([UploadPictureComponent], (instance) => {
+      // Arrange
+      instance.selectedFiles = new Array<File>();
+      spyOn(instance.uploadPictureService, 'upload').and.callFake(() => { });
+      spyOn(instance, 'resetSelected').and.callFake(() => { });
 
-    // Act
-    instance.uploadFile();
+      // Act
+      instance.uploadFile();
 
-    // Assert
-    expect(instance.uploadPictureService.upload).toHaveBeenCalledWith(instance.selectedFiles[0]);
-    expect(instance.resetSelected).toHaveBeenCalled();
-  }));
+      // Assert
+      expect(instance.uploadPictureService.upload).toHaveBeenCalledWith(instance.selectedFiles[0]);
+      expect(instance.resetSelected).toHaveBeenCalled();
+    }));
 
-  it('resetSelected_givenSelectedImage_shouldResetSelectedImageAndFile', inject([UploadPictureComponent], (instance) => {
-    // Arrange
-    instance.selectedFiles = new Array<File>();
-    instance.selectedImage = 'image';
+  it('resetSelected_givenSelectedImage_shouldResetSelectedImageAndFile',
+    inject([UploadPictureComponent], (instance) => {
+      // Arrange
+      instance.selectedFiles = new Array<File>();
+      instance.selectedImage = 'image';
 
-    // Act
-    instance.resetSelected();
+      // Act
+      instance.resetSelected();
 
-    // Assert
-    expect(instance.selectedImage).toEqual('');
-  }));
+      // Assert
+      expect(instance.selectedImage).toEqual('');
+    }));
 });

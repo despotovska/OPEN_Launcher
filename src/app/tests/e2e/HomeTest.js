@@ -16,40 +16,47 @@ describe("Game menu edit user settings", function() {
   it("When user signs in there should be section with name get to know with PC", function() {
     expect(HomePage.isGetToKnowWithPCPresent()).toBe(true);
     console.log("get to know with PC section is present");
+    LogInPage.logOut();
   });
 
   it("When user signs in there should be section with name learn with PC", function() {
     expect(HomePage.isLearnWithPCPresent()).toBe(true);
     console.log("Learn with PC section is present");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name get to know with PC should be game to select called Cause and Effect", function() {
     expect(HomePage.isCauseAndEffectVisible()).toBe(true);
     console.log("Game Cause and Effect is visible");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name learn with PC there should be game to select called Sets", function() {
     HomePage.clickLearnWithPC();
     expect(HomePage.isSetsVisible()).toBe(true);
     console.log("Game Sets is visible");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name learn with PC there should be game to select called Who is hiding", function() {
     HomePage.clickLearnWithPC();
     expect(HomePage.iswhoIsHidingVisible()).toBe(true);
     console.log("Game Who is hiding is visible");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name learn with PC there should be game to select called Puzzle/Halves", function() {
     HomePage.clickLearnWithPC();
     expect(HomePage.isPuzzleHalvesVisible()).toBe(true);
     console.log("Puzzle/Halves game is visible");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name learn with PC there should be game to select called Me and my home", function() {
     HomePage.clickLearnWithPC();
     expect(HomePage.isMeAndMyHomeVisible()).toBe(true);
     console.log("Me and my home game is visible");
+    LogInPage.logOut();
   });
 
   it("When user signs in section with name learn with PC there should be game to select called Story", function() {

@@ -100,6 +100,12 @@ var CreateUserPage = function() {
     createBtnSecondPage.click();
   };
 
+   this.createUserName = function(name) {
+    browser.sleep(2000);
+    selectRandomPicture();
+    enterName.sendKeys(name);
+  };
+
   this.createPredefinedUserNameWithUserSettings = function(name) {
     browser.sleep(2000);
     selectRandomPicture();

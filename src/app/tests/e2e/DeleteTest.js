@@ -2,8 +2,8 @@ describe("Game menu delete user", function() {
 
 
   var DeleteUser = require("../page/DeletePageObject.js");
-
-
+  var CreateUserPage = require("../page/CreateUserPageObject.js");
+  var LoginPage = require("../page/LoginPageObject.js")
 
   beforeEach(function() {
     console.log(" Method started");
@@ -15,7 +15,12 @@ describe("Game menu delete user", function() {
 
 
   it("should delete profile and remove it from the profile page and alert to be displayed", function() {
-    DeleteUser.deleteProfile();
+    CreateUserPage.clickCreateBtn();
+    CreateUserPage.createUserName("Josif");
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(1000);
+    LoginPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(DeleteUser.returnMessage()).toEqual("Профилот е успешно избришан.");

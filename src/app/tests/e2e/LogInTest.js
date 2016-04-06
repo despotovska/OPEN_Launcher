@@ -29,8 +29,8 @@ describe("Game menu log in page", function() {
 
 
   it("should filter profiles by entering username", function() {
-    LogInPage.filterUsername("Auto");
-    expect(LogInPage.getTextFromFilter()).toContain("Auto");
+    LogInPage.filterUsername("Aleksandra");
+    expect(LogInPage.getTextFromFilter()).toContain("Aleksandra");
     LogInPage.filterUsernameClear();
     console.log("Finishing : Filter username");
 

@@ -22,8 +22,8 @@ export class UserServiceMock implements IUserService {
 
   static getValidUserWithSettings(username: string): User {
     var user: User = new User();
-    user.name = username;
     user.profileImg = './assets/images/avatars/devojce.jpg';
+    user.name = username;
     user.userSettings.backgroundColor = BackgroundColor.InColor;
     user.userSettings.pointerType = PointerType.Hand;
     user.userSettings.pointerSize = PointerSize.Small;

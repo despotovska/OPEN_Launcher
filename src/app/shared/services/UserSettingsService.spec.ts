@@ -1,7 +1,7 @@
 import {
+  beforeEachProviders,
   it,
-  inject,
-  beforeEachProviders
+  inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';

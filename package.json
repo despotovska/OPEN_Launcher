@@ -41,7 +41,7 @@
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "electron": "electron src"
+    "electron": "electron ."
   },
   "dependencies": {
     "angular2": "2.0.0-beta.13",

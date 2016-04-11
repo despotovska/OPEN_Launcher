@@ -30,9 +30,9 @@ module.exports = {
 
   // our angular app
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/app.ts',
+    'polyfills': helpers.root('./src/polyfills.ts'),
+    'vendor': helpers.root('./src/vendor.ts'),
+    'app': helpers.root('./src/app.ts'),
     'main-scripts': [
       './node_modules/jquery/dist/jquery.min.js',
       './src/assets/js/jqueryelectron.js',
@@ -85,7 +85,7 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
+    new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),
     // Environment helpers (when adding more properties make sure you include them in custom-typings.d.ts)
     new webpack.DefinePlugin({
       'ENV': JSON.stringify(metadata.ENV),

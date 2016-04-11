@@ -1,4 +1,5 @@
 import {MultipartItem} from './multipart-item';
+
 export class MultipartUploader {
   public url: string;
   public authToken: string;

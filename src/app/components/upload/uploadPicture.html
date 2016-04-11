@@ -7,7 +7,7 @@
         <div class="fileUpload btn btn-primary">
           <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
           <span class="glyphicon-class">Одбери слика</span>
-          <input type="file" class="upload" (change)="onChange($event)"/>
+          <input type="file" class="upload" (change)="onChange($event)" />
         </div>
         <input type="button" class="btn btn-success" value="Прикачи" (click)="uploadFile()" [disabled]="!selectedFiles" />
       </div>

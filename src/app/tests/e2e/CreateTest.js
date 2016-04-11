@@ -52,19 +52,16 @@ describe("Game menu log in user", function() {
   });
 
   it("When color game is selected there should be 5 colors to select", function() {
-    CreateUserPage.createUserSettingsRandom();
     CreateUserPage.selectRadioButton(0);
     expect(CreateUserPage.numberOfColors()).toEqual(5);
   });
 
   it("When black and white game is selected there should be 2 colors to select", function() {
-    CreateUserPage.createUserSettingsRandom();
     CreateUserPage.selectRadioButton(1);
     expect(CreateUserPage.numberOfColors()).toEqual(2);
   });
 
   it("When color game is selected there should be red color to select", function() {
-    CreateUserPage.createUserSettingsRandom();
     expect(CreateUserPage.isRedPresent()).toBe(true);
   });
 

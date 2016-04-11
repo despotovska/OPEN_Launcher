@@ -1,8 +1,8 @@
 import {Injectable, bind} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Http, Headers, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
-import {Users, User} from '../models/User';
+import {User} from '../models/User';
 import {GlobalService} from './GlobalService';
 
 export interface IUserService {
@@ -19,19 +19,13 @@ export class UserService implements IUserService {
   //Get all users from db
   getAllUsers(): Observable<User[]> {
     return this.http.get(this.globalService.URL_GETALLUSERS)
-      .map(res => {
-        var response = new Users(res.json());
-        return response.users;
-      });
+      .map((res: Response) => <User[]>res.json());
   }
 
   //Get user filtered by name from db
   getUserByName(name: string): Observable<User[]> {
     return this.http.get(this.globalService.URL_GETUSER(name))
-      .map(res => {
-        var response = new Users(res.json());
-        return response.users;
-      });
+      .map((res: Response) => <User[]>res.json());
   }
 
   //Add new user to db
@@ -42,19 +36,13 @@ export class UserService implements IUserService {
     return this.http.post(this.globalService.URL_ADDUSER,
       JSON.stringify(user),
       { headers: headers })
-      .map(res => {
-        var response = new Users(res.json());
-        return response.users;
-      });
+      .map((res: Response) => <User[]>res.json());
   }
 
   //Delete user by name from db
   deleteUser(name): Observable<User[]> {
     return this.http.get(this.globalService.URL_DELETEUSER(name))
-      .map(res => {
-        var response = new Users(res.json());
-        return response.users;
-      });
+      .map((res: Response) => <User[]>res.json());
   }
 }
 

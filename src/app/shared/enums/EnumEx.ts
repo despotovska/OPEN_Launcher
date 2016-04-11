@@ -16,8 +16,4 @@ export class EnumEx {
   static getNamesAndValues(e: any) {
     return EnumEx.getValues(e).map(v => { return { name: e[v] as string, value: v }; });
   }
-
-  // static getValueForKey(e: any, key: string){
-  //   return EnumEx.getNamesAndValues(e).filter(pair => pair.name == key).map(p => p.value)[0];
-  // }
 }

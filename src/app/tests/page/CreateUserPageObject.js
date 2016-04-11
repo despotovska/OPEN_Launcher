@@ -46,7 +46,7 @@ var CreateUserPage = function() {
     console.log("Kliknata slikicka");
   };
 
-  autoGenerateUserName = function() {
+  /*autoGenerateUserName = function() {
     autoGenerateUserName = "Auto-UserName-";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     for (var i = 0; i < 3; i++) {
@@ -74,7 +74,7 @@ var CreateUserPage = function() {
     autoGenerateUserName();
     createBtnSecondPage.click();
   };
-
+*/
   this.selectRadioButton = function(option) {
     var radioselect = radiobtn.get(option);
     radioselect.getAttribute("innerHTML").then(function(text) {
@@ -129,7 +129,6 @@ var CreateUserPage = function() {
     createBtnFirstPage.click();
   };
 
-
   this.writeName = function(name) {
     enterName.sendKeys(name);
   };
@@ -138,18 +137,12 @@ var CreateUserPage = function() {
     selectRandomPicture();
   };
 
-  this.checkText = function() {
-    return createdProfilMsg.getText();
-  };
-
-
   this.clickBack = function() {
     backBtn.click();
   };
 
   this.returnMessage = function() {
     return alertmessage.getText();
-
   };
 
   this.isCreateBtnEnabled = function() {
@@ -158,7 +151,6 @@ var CreateUserPage = function() {
 
   this.filterUsername = function(filter) {
     enterName.sendKeys(filter);
-
   };
 
   this.clearFilter = function() {
@@ -177,16 +169,7 @@ var CreateUserPage = function() {
     return browser.getCurrentUrl();
   };
 
-  this.getEnteredName = function() {
-    return enterName.getText();
-  };
-
-  this.getProfileName = function() {
-    return profileName.getText()
-  };
-
   this.isRedPresent = function() {
-
     return colorRed.isPresent();
   };
 

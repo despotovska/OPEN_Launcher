@@ -4,24 +4,24 @@ import {
   inject
 } from 'angular2/testing';
 
-import {UsersFilter} from './UsersFilter';
+import {UsersPipe} from './UsersPipe';
 import {User} from '../models/User';
 
-describe('UsersFilterTests', () => {
-  function getUser() {
+describe('UsersPipeTests', () => {
+  function getUser(name: string): User {
     var user = new User();
-    user.name = 'dragica';
+    user.name = name;
     return user;
   }
 
   beforeEachProviders(() => [
-    UsersFilter
+    UsersPipe
   ]);
 
-  it('transform_givenFilter_shouldFilterWithOneUser',
-    inject([UsersFilter], (instance) => {
+  it('transform_givenPipeArgument_shouldReturnOneUser',
+    inject([UsersPipe], (instance) => {
       // Arrange
-      let user = getUser();
+      let user = getUser('Dragica');
 
       // Act
       var result = instance.transform([user], ['dr']);
@@ -30,12 +30,11 @@ describe('UsersFilterTests', () => {
       expect(result).toEqual([user]);
     }));
 
-  it('transform_givenNoFilter_shouldReturnAllUsers',
-    inject([UsersFilter], (instance) => {
+  it('transform_givenNoPipeArgument_shouldReturnAllUsers',
+    inject([UsersPipe], (instance) => {
       // Arrange
-      let user = getUser();
       let users: User[] = new Array<User>();
-      users[0] = user;
+      users[0] = getUser('Dragica');
 
       // Act
       var result = instance.transform(users, ['']);
@@ -45,7 +44,7 @@ describe('UsersFilterTests', () => {
     }));
 
   it('transform_givenNoUsers_shouldReturnNoUsers',
-    inject([UsersFilter], (instance) => {
+    inject([UsersPipe], (instance) => {
       // Arrange
       let users: User[] = new Array<User>();
 
@@ -56,16 +55,12 @@ describe('UsersFilterTests', () => {
       expect(result).toEqual(users);
     }));
 
-  it('transform_givenFilter_shouldFilterWithMultipleUsers',
-    inject([UsersFilter], (instance) => {
+  it('transform_givenPipeArgument_shouldReturnMultipleUsers',
+    inject([UsersPipe], (instance) => {
       // Arrange
-      let user1 = new User();
-      user1.name = 'Daniela';
-      let user2 = new User();
-      user2.name = 'Dragica';
       let users: User[] = new Array<User>();
-      users[0] = user1;
-      users[1] = user2;
+      users[0] = getUser('Dragica');
+      users[1] = getUser('Daniela');
 
       // Act
       var result = instance.transform(users, ['d']);

@@ -1,6 +1,6 @@
 import {Injectable, bind} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
 import {UserSettings} from '../models/UserSettings';

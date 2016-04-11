@@ -9,7 +9,7 @@ import {FormBuilder} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {Observable} from 'rxjs/Rx';
 
-import {User, Users} from '../../shared/models/User';
+import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {GlobalService} from '../../shared/services/GlobalService';
 import {UserService} from '../../shared/services/UserService';
@@ -82,8 +82,7 @@ describe('RegisterComponentTests', () => {
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
-        var response: Users = new Users(UserServiceMock.getAllUsers(user));
-        return Observable.of({ users: response.users });
+        return Observable.of({ users: UserServiceMock.getAllUsers(user) });
       });
       spyOn(instance.router, 'navigate').and.callThrough();
       spyOn(instance.alertingService, 'addSuccess').and.callFake(() => { });
@@ -107,8 +106,7 @@ describe('RegisterComponentTests', () => {
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
-        var response: Users = new Users(UserServiceMock.getAllUsers(user));
-        return Observable.of({ users: response.users });
+        return Observable.of({ users: UserServiceMock.getAllUsers(user) });
       });
       spyOn(instance.router, 'navigate').and.callThrough();
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });

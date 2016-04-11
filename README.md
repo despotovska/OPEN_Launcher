@@ -33,7 +33,7 @@ angular2-webpack-starter/
  │   │   │
  │   │   ├──shared                      * folder that holds shared components
  │   │   │  ├──enums                    * a folder where enumerations are stored
- │   │   │  ├──filters                  * a folder for pipes (filters)
+ │   │   │  ├──pipes                    * a folder for pipes
  │   │   │  ├──models                   * a folder where models are stored
  │   │   │  ├──plugins                  * a folder for third party components (not written by us)
  │   │   │  └──services                 * a folder for services used wide across the application

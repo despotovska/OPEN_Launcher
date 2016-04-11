@@ -46,10 +46,7 @@ export class App {
   constructor(private authService: AuthService) { }
 
   isUserLogged(): boolean {
-    if (this.authService.isLogged()) {
-      return true;
-    }
-    return false;
+    return this.authService.isLogged();
   }
 
   logout() {

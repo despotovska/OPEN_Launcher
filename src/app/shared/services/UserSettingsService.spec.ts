@@ -81,6 +81,32 @@ describe('UserSettingsServiceTests', () => {
       );
     }));
 
+  it('getUserSettingsForJar_givenValidUsername_shouldReturnMappedUserSettings',
+    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+      // Arrange
+      var userSettingsObject = getDefaultUserSettingsObject();
+      var userSettingsForJar: string = ' -bw false -ps s -pc white';
+
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+              body: JSON.stringify(userSettingsObject)
+            })));
+        });
+
+      // Act
+      userSettingsService.getUserSettingsForJar('username').subscribe(
+        (data) => {
+          // Assert
+          expect(data).toBe(userSettingsForJar);
+        },
+        (error) => {
+          fail(error);
+        }
+      );
+    }));
+
   it('saveUserSettingsForUser_givenValidUsernameAndUserSettings_shouldRetrievedDataFromTheHttpResponse',
     inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       // Arrange

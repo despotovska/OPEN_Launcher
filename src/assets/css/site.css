@@ -103,3 +103,21 @@ figure {
 .body{
   padding-top: 70px;
 }
+
+.panel .btn-block:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+}
+.panel .btn-block.collapsed:after {
+    content:"\e080";
+}
+
+#section1{
+  background-color: forestgreen;
+}
+
+#section2{
+  background-color: navy;
+  /*background-color: red;*/
+}

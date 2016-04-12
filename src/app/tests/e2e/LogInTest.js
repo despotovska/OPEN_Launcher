@@ -29,7 +29,7 @@ describe("Game menu log in page", function() {
 
 
   it("should filter profiles by entering username", function() {
-    LogInPage.filterUsername("Aleksandra");
+    LogInPage.filterUsername();
     expect(LogInPage.getTextFromFilter()).toContain("Aleksandra");
     LogInPage.filterUsernameClear();
     console.log("Finishing : Filter username");

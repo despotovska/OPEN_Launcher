@@ -85,6 +85,14 @@ describe("Game menu log in user", function() {
 
   });
 
+   it("User can not be created with special character in the username ", function() {
+    CreateUserPage.writeName("Dani#")
+    CreateUserPage.selectPicture();
+    expect(CreateUserPage.isCreateBtnEnabled()).toBe(false);
+    console.log("Finishing : User can not be created");
+
+  });
+
   it("Button back is clickable", function() {
     CreateUserPage.clickBack();
     expect(CreateUserPage.getCurrentURL()).toEqual("http://localhost:3000/#/login");

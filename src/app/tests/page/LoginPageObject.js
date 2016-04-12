@@ -48,8 +48,12 @@ var LogInPage = function() {
     return browser.getCurrentUrl();
   };
 
-  this.filterUsername = function(filter) {
-    name.sendKeys(filter);
+  this.filterUsername = function() {
+    name.sendKeys("A");
+    name.sendKeys("l");
+    name.sendKeys("e");
+    name.sendKeys("k");
+    name.sendKeys("s");
 
   };
 

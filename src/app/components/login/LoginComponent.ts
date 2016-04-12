@@ -5,18 +5,18 @@ import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../alerting/AlertingService';
 import {User} from '../../shared/models/User';
-import {UsersFilter} from '../../shared/filters/UsersFilter';
+import {UsersPipe} from '../../shared/pipes/UsersPipe';
 
 @Component({
   selector: 'login',
   directives: [RouterLink],
-  pipes: [UsersFilter],
+  pipes: [UsersPipe],
   templateUrl: `./app/components/login/login.html`
 })
 export class LoginComponent {
   public allUsers: User[] = new Array<User>();
   public selectedUser: User = new User();
-  public usernameFilter = '';
+  public query = '';
 
   constructor(
     private alertingService: AlertingService,

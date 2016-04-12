@@ -137,17 +137,12 @@ var CreateUserPage = function() {
     selectRandomPicture();
   };
 
-  this.checkText = function() {
-    return createdProfilMsg.getText();
-  };
-
   this.clickBack = function() {
     backBtn.click();
   };
 
   this.returnMessage = function() {
     return alertmessage.getText();
-
   };
 
   this.isCreateBtnEnabled = function() {
@@ -172,14 +167,6 @@ var CreateUserPage = function() {
 
   this.getCurrentURL = function() {
     return browser.getCurrentUrl();
-  };
-
-  this.getEnteredName = function() {
-    return enterName.getText();
-  };
-
-  this.getProfileName = function() {
-    return profileName.getText()
   };
 
   this.isRedPresent = function() {

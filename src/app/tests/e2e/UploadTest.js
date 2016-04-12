@@ -20,7 +20,6 @@ describe("Upload picture page", function() {
     expect(UploadPage.returnMessage()).toEqual("Сликата е успешно додадена!");
     browser.sleep(500);
     browser.ignoreSynchronization = false;
-    UploadPage.navigateToHomePage();
     LogInPage.logOut();
     console.log("Finishing: Logged user can upload picture");
   });

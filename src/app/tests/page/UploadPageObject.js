@@ -9,7 +9,6 @@ var UploadPage = function() {
   var uploadBtn = element(by.css("body > app > div > upload-picture > div > div > div > div > input.btn.btn-success"));
   var alertmessage = element(by.id("messagelabel"));
   var navigateToHome = element(by.css("#bs-example-navbar-collapse-1 > ul > li:nth-child(1) > a"));
-  var navigateHome = element(by.css("body > app > nav > div > div.navbar-header > a"));
   var uploadBtn = element(by.css("body > app > div > upload-picture > div > div > div > div > input.btn.btn-success"));
   var choosePicture = element(by.css("body > app > div > upload-picture > div > div > div > div > div > input"));
   var pathFiled = element(by.css("body > app > div > upload-picture > div > div > div > div > input.form-control"));
@@ -27,10 +26,6 @@ var UploadPage = function() {
 
   this.returnMessage = function() {
     return alertmessage.getText();
-  };
-
-  this.navigateToHomePage = function() {
-    navigateToHome.click();
   };
 
   this.navigateToUploadPage = function() {

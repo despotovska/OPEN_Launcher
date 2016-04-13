@@ -4,9 +4,11 @@ import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
 import {UserSettings} from '../models/UserSettings';
+import {PointerType, PointerSize, PointerColor, BackgroundColor } from '../enums/UserSettingsEnums'
 
 export interface IUserSettingsService {
   getUserSettingsFor(username: string): Observable<UserSettings>;
+  getUserSettingsForJar(username: string): Observable<string>;
   saveUserSettingsForUser(username: string, userSettings: UserSettings): Observable<UserSettings>;
 }
 
@@ -19,6 +21,27 @@ export class UserSettingsService implements IUserSettingsService {
       .map(res => {
         var userSettings: UserSettings = res.json();
         return userSettings;
+      });
+  }
+
+  getUserSettingsForJar(username: string): Observable<string> {
+    var mapUserSettings: string = '';
+    var userSettingsData: UserSettings;
+
+    this.getUserSettingsFor(username).subscribe(data => { userSettingsData = data; });
+    return this.http.get(this.globalService.URL_GET_USERSETTINGS(username))
+      .map(res => {
+        var userSettings: UserSettings = res.json();
+
+        (userSettings.backgroundColor === BackgroundColor.InColor) ? mapUserSettings = ' -bw false' : mapUserSettings = ' -bw true';
+        (userSettings.pointerSize === PointerSize.Small) ? mapUserSettings += ' -ps s' : mapUserSettings += ' -ps m';
+        (userSettings.pointerColor === PointerColor.White) ? mapUserSettings += ' -pc white'
+          : (userSettings.pointerColor === PointerColor.Yellow) ? mapUserSettings += ' -pc yellow'
+            : (userSettings.pointerColor === PointerColor.Green) ? mapUserSettings += ' -pc green'
+              : (userSettings.pointerColor === PointerColor.Blue) ? mapUserSettings += ' -pc blue'
+                : (userSettings.pointerColor === PointerColor.Red) ? mapUserSettings += ' -pc red'
+                  : mapUserSettings += ' -pc white';
+        return mapUserSettings;
       });
   }
 

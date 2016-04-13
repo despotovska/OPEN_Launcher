@@ -83,7 +83,11 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' },
+      { from: 'src/app', to: 'app' },
+      { from: 'src/app.html', to: 'app.html' }
+    ]),
     // generating html
     new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),
     // Environment helpers (when adding more properties make sure you include them in custom-typings.d.ts)

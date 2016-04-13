@@ -35,13 +35,14 @@
     "test": "karma start",
     "ci": "npm run e2e && npm run test",
     "docs": "typedoc --options typedoc.json --exclude **/*.spec.ts ./src/",
-    "start": "node Server.js",
+    "start": "node ./backend/api.js",
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
-    "electron": "electron ."
+    "electron": "electron .",
+    "pack":"electron-packager . OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.13",

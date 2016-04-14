@@ -18,8 +18,9 @@ export class AuthService implements IAuthService {
     return isValid;
   }
 
-  logout(): void {
+  logout() {
     localStorage.removeItem('username');
+    return false; // for the click handler not to reload whole page
   }
 
   getUser(): any {

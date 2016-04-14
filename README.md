@@ -15,7 +15,9 @@ This is the new standard for developing Angular apps and a great way to ensure m
 A component is basically a self contained app usually in a single file or a folder with each concern as a file: style, template, specs, e2e, and component class. 
 Here's how it looks:
 ```
-angular2-webpack-starter/
+OPEN_Launcher/
+ ├──backend/                            * nodejs backend (`api.js` is the entry point)
+ |
  ├──src/                                * our source files that will be compiled to javascript
  |   ├──app.ts                          * our entry file for our browser environment
  │   │        
@@ -69,7 +71,7 @@ Once you have those, you should install these globals with `npm install --global
 * `typescript` (`npm install --global typescript`)
 * `electron-packager` (`npm install --global electron-packager`)
 
-## Instalation
+## Installation
 * `fork` this repo
 * `clone` your fork
 * `npm install` to install all dependencies
@@ -83,9 +85,16 @@ After you have installed all dependencies you can now run the app. Run `npm star
 Electron can be used with any framework, so once Electron is set in place, we simply create the Angular 2 app as we would for the web.
 The Electron configuration is contained in `./main.js`.
 
-To build application exe file for win32 x64 run the following command:
+### Important 
+Set the environment variable to 'prod' in `./backend/env.js`.
+
+To build application exe file for win32 x64 run the following commands:
 ```bash
-electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
+# first create the dist folder 
+npm run build
+
+# than create the .exe
+npm run pack
 ```
 
 ## Other commands

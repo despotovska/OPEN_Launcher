@@ -1,5 +1,5 @@
 var app = require('app');
-var expressServer = require('./Server');
+var expressServer = require('./backend/api.js');
 
 // browser-window creates a native window
 var BrowserWindow = require('browser-window');
@@ -20,7 +20,7 @@ app.on('ready', function() {
   //mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
-  mainWindow.loadURL('http://localhost:3000/');
+  mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
 
   // Clear out the main window when the app is closed
   mainWindow.on('closed', function() {

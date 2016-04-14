@@ -1,5 +1,3 @@
-// @AngularClass
-
 var helpers = require('./helpers');
 // Webpack Plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');

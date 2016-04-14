@@ -30,13 +30,13 @@ module.exports = {
 
   // our angular app
   entry: {
-    'polyfills': helpers.root('./src/polyfills.ts'),
-    'vendor': helpers.root('./src/vendor.ts'),
-    'app': helpers.root('./src/app.ts'),
+    'polyfills': helpers.root('src/polyfills.ts'),
+    'vendor': helpers.root('src/vendor.ts'),
+    'app': helpers.root('src/app.ts'),
     'main-scripts': [
-      './node_modules/jquery/dist/jquery.min.js',
-      './src/assets/js/jqueryelectron.js',
-      './node_modules/bootstrap/dist/js/bootstrap.min.js']
+       helpers.root('node_modules/jquery/dist/jquery.min.js'),
+       helpers.root('src/assets/js/jqueryelectron.js'),
+       helpers.root('node_modules/bootstrap/dist/js/bootstrap.min.js')]
   },
 
   resolve: {

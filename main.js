@@ -1,8 +1,8 @@
-var app = require('app');
-var expressServer = require('./backend/api.js');
+require('./backend/api.js');
 
-// browser-window creates a native window
-var BrowserWindow = require('browser-window');
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 
 app.on('window-all-closed', function() {
@@ -12,20 +12,17 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-
   // Initialize the window to our specified dimensions
-  mainWindow = new BrowserWindow({ width: 1200, height: 900 });
+  mainWindow = new BrowserWindow({ width: 1200, height: 900, icon: __dirname + '/favicon.png' });
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
   mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
 
   // Clear out the main window when the app is closed
   mainWindow.on('closed', function() {
-
     mainWindow = null;
   });
-
 });

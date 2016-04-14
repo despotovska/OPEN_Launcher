@@ -1,6 +1,8 @@
 var path = require('path');
 
-var _rootPath = path.join(__dirname, '../src/');
+var env = require('./env.js');
+
+var _rootPath = path.join(__dirname, (env === 'dev') ? '../src/' : '../dist/');
 var _imagesPath = path.join(_rootPath, '/assets/images/');
 
 module.exports = {

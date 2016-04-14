@@ -15,6 +15,6 @@ import {AuthService} from '../../shared/services/AuthService';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp = 'Причина и последица';
-  public ucimeSoKomp = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
+  public zapoznajSeSoKomp: string = 'Причина и последица';
+  public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
 }

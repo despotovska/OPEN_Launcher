@@ -30,13 +30,13 @@ module.exports = {
 
   // our angular app
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/app.ts',
+    'polyfills': helpers.root('src/polyfills.ts'),
+    'vendor': helpers.root('src/vendor.ts'),
+    'app': helpers.root('src/app.ts'),
     'main-scripts': [
-      './node_modules/jquery/dist/jquery.min.js',
-      './src/assets/js/jqueryelectron.js',
-      './node_modules/bootstrap/dist/js/bootstrap.min.js']
+       helpers.root('node_modules/jquery/dist/jquery.min.js'),
+       helpers.root('src/assets/js/jqueryelectron.js'),
+       helpers.root('node_modules/bootstrap/dist/js/bootstrap.min.js')]
   },
 
   resolve: {
@@ -83,9 +83,13 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: 'assets' },
+      { from: 'src/app', to: 'app' },
+      { from: 'src/app.html', to: 'app.html' }
+    ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
+    new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),
     // Environment helpers (when adding more properties make sure you include them in custom-typings.d.ts)
     new webpack.DefinePlugin({
       'ENV': JSON.stringify(metadata.ENV),

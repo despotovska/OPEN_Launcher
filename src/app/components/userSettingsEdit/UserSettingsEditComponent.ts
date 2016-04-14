@@ -15,6 +15,7 @@ import {AlertingService} from '../alerting/AlertingService';
 export class UserSettingsEditComponent {
   public userName: string;
   public userSettings: UserSettings;
+  public userSettingsForJar: string;
 
   constructor(
     private alertingService: AlertingService,
@@ -24,6 +25,8 @@ export class UserSettingsEditComponent {
     this.userName = authService.getUser();
     this.userSettingsService.getUserSettingsFor(this.userName)
       .subscribe(data => this.userSettings = data);
+    this.userSettingsService.getUserSettingsForJar(this.userName)
+      .subscribe(data => this.userSettingsForJar = data);
   }
 
   saveUserSettings(): void {

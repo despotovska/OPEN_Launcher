@@ -1,28 +1,31 @@
-require('./backend/api.js');
-
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const env = require('./backend/env.js');
 var mainWindow = null;
 
 app.on('window-all-closed', function() {
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
+    if (process.platform != 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('ready', function() {
-  // Initialize the window to our specified dimensions
-  mainWindow = new BrowserWindow({ width: 1200, height: 900, icon: __dirname + '/favicon.png' });
+    // Initialize the window to our specified dimensions
+    mainWindow = new BrowserWindow({ width: 1200, height: 900, icon: __dirname + '/favicon.png' });
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools();
 
-  // Tell Electron where to load the entry point from
-  mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
+    // Tell Electron where to load the entry point from
+    if (env === 'dev') {
+        mainWindow.loadURL('http://localhost:3000');
+    } else {
+        mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
+    }
 
-  // Clear out the main window when the app is closed
-  mainWindow.on('closed', function() {
-    mainWindow = null;
-  });
+    // Clear out the main window when the app is closed
+    mainWindow.on('closed', function() {
+        mainWindow = null;
+    });
 });

@@ -1,5 +1,5 @@
 var app = require('app');
-var expressServer = require('./Server');
+var expressServer = require('./backend/api.js');
 
 // browser-window creates a native window
 var BrowserWindow = require('browser-window');

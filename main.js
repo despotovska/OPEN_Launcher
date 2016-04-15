@@ -1,16 +1,18 @@
+require('./backend/api.js');
+const env = require('./backend/env.js');
+
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const env = require('./backend/env.js');
 var mainWindow = null;
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   if (process.platform != 'darwin') {
     app.quit();
   }
 });
 
-app.on('ready', function() {
+app.on('ready', function () {
   // Initialize the window to our specified dimensions
   mainWindow = new BrowserWindow({ width: 1200, height: 900, icon: __dirname + '/favicon.png' });
 
@@ -25,7 +27,7 @@ app.on('ready', function() {
   }
 
   // Clear out the main window when the app is closed
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     mainWindow = null;
   });
 });

@@ -14,7 +14,13 @@ app.on('window-all-closed', function () {
 
 app.on('ready', function () {
   // Initialize the window to our specified dimensions
-  mainWindow = new BrowserWindow({ width: 1200, height: 900, icon: __dirname + '/favicon.png' });
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 1000,
+    minWidth: 900,
+    minHeight: 900,
+    icon: __dirname + '/favicon.png'
+  });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

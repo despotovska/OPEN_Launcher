@@ -130,3 +130,15 @@ body {
   background-color: #F2784B;
   border-color: #bf3d0d;
 }
+
+.shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fixed-top{
+  position: fixed;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  z-index: 1030;
+}

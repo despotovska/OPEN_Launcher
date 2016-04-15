@@ -16,10 +16,10 @@ app.on('ready', function () {
   // Initialize the window to our specified dimensions
   mainWindow = new BrowserWindow({
     width: 1200,
-    height: 1000,
+    height: 900,
     minWidth: 900,
     minHeight: 900,
-    icon: __dirname + '/favicon.png'
+    icon: __dirname + '/otw.png'
   });
 
   // Open the DevTools.

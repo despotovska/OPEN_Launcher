@@ -16,7 +16,7 @@ export * from './AlertingService';
 export * from '../../components/upload/UploadPictureService';
 export * from '../../components/userSettings/UserSettingsColorsService';
 
-export var servicesInjectables: Array<any> = [
+export let servicesInjectables: Array<any> = [
   globalServiceInjectables,
   uploadPictureServiceInjectables,
   userServiceInjectables,

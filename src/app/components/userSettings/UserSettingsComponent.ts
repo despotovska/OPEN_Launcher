@@ -17,7 +17,7 @@ export class UserSettingsComponent implements OnChanges {
 
   @Input() userSettings: UserSettings;
   ngOnChanges(changes) {
-    var changedUserSettings = changes.userSettings.currentValue;
+    let changedUserSettings = changes.userSettings.currentValue;
     if (changedUserSettings) {
       this.setBackgroundColorAndPointerColors(this.userSettings.backgroundColor);
       this.selectPointerSize(this.userSettings.pointerSize);
@@ -37,7 +37,8 @@ export class UserSettingsComponent implements OnChanges {
     this.imagesService.getPointerImages()
       .subscribe(
       data => this.allPointerImages = data,
-      err => this.alertingService.addDanger('Грешка при вчитување на покажувачите.')); }
+      err => this.alertingService.addDanger('Грешка при вчитување на покажувачите.'));
+  }
 
   setBackgroundColorAndPointerColors(backgroundColor: BackgroundColor): void {
     this.userSettings.backgroundColor = Number(backgroundColor);

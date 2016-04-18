@@ -12,13 +12,11 @@ import {GlobalService} from './GlobalService';
 import * as UserSettingsEnums from '../enums/UserSettingsEnums';
 import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 import {UserSettings} from '../models/UserSettings';
-import {Users, User} from '../models/User';
+import {User} from '../models/User';
 
 describe('UserServiceTests', () => {
-  var instance: UserService = null;
-
   function getDefaultUserObject(): User[] {
-    var result: User[] = new Array<User>();
+    let result: User[] = new Array<User>();
     result[0] = UserServiceMock.getValidUserWithSettings('user1');
     return result;
   }
@@ -27,7 +25,7 @@ describe('UserServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function(backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]
@@ -43,7 +41,7 @@ describe('UserServiceTests', () => {
   it('getAllUsers_givenResponsiveHTTP_shouldRetrieveDataFromTheHttpResponse',
     inject([UserService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userObject: User[] = new Array<User>();
+      let userObject: User[] = new Array<User>();
       userObject = getDefaultUserObject();
 
       mockBackend.connections.subscribe(
@@ -75,7 +73,7 @@ describe('UserServiceTests', () => {
   it('getUserByName_givenValidUsername_shouldRetrieveDataFromTheHttpResponse',
     inject([UserService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userObject: User[] = new Array<User>();
+      let userObject: User[] = new Array<User>();
       userObject = getDefaultUserObject();
 
       mockBackend.connections.subscribe(
@@ -107,10 +105,10 @@ describe('UserServiceTests', () => {
   it('addUser_givenValidUsername_shouldRetrieveDataFromTheHttpResponse',
     inject([UserService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userObject: User[] = new Array<User>();
+      let userObject: User[] = new Array<User>();
       userObject = getDefaultUserObject();
 
-      var user: User = new User();
+      let user: User = new User();
       user = UserServiceMock.getValidUserWithSettings('user1');
 
       mockBackend.connections.subscribe(
@@ -142,7 +140,7 @@ describe('UserServiceTests', () => {
   it('deleteUser_givenValidUsername_shouldRetrieveDataFromTheHttpResponse',
     inject([UserService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userObject: User[] = new Array<User>();
+      let userObject: User[] = new Array<User>();
       userObject = getDefaultUserObject();
 
       mockBackend.connections.subscribe(

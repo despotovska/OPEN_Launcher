@@ -69,7 +69,7 @@ export class RegisterComponent {
   }
 
   private getInitialUser(): User {
-    var result = new User();
+    let result = new User();
     result.profileImg = './assets/images/avatars/default.jpg';
     result.userSettings.backgroundColor = BackgroundColor.InColor;
     result.userSettings.pointerType = PointerType.Hand;

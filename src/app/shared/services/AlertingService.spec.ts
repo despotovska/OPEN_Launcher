@@ -1,7 +1,7 @@
 import {
   beforeEachProviders,
   it,
-  inject,
+  inject
 } from 'angular2/testing';
 
 import {AlertingService} from './AlertingService';
@@ -60,7 +60,7 @@ describe('AlertingServiceTests', () => {
     inject([AlertingService], (instance) => {
       // Arrange
       instance.addDanger('message');
-      var noAlerts = instance.currentAlerts.length;
+      let noAlerts = instance.currentAlerts.length;
 
       // Act
       instance.removeAlert(instance.currentAlerts[0]);

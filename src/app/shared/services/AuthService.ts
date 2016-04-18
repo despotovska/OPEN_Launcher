@@ -10,7 +10,7 @@ export interface IAuthService {
 @Injectable()
 export class AuthService implements IAuthService {
   login(user: string): boolean {
-    var isValid = user.length > 0;
+    let isValid = user.length > 0;
     if (isValid) {
       localStorage.setItem('username', user);
     }
@@ -28,10 +28,10 @@ export class AuthService implements IAuthService {
   }
 
   isLogged(): boolean {
-    return this.getUser() !== null;
+    return !!this.getUser();
   }
 }
 
-export var AUTH_PROVIDERS: Array<any> = [
+export let AUTH_PROVIDERS: Array<any> = [
   provide(AuthService, { useClass: AuthService })
 ];

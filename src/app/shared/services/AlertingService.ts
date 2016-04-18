@@ -15,7 +15,7 @@ export class AlertingService implements IAlertingService {
   public currentAlerts: Array<Alert> = new Array<Alert>();
 
   addAlert(type: string, message: string): void {
-    var alert = new Alert(type, message);
+    let alert = new Alert(type, message);
     this.currentAlerts.push(alert);
     setTimeout(() => this.removeAlert(alert), 3500);
   };
@@ -37,7 +37,7 @@ export class AlertingService implements IAlertingService {
   }
 
   removeAlert(alert: Alert): void {
-    for (var index = 0; index < this.currentAlerts.length; index++) {
+    for (let index = 0; index < this.currentAlerts.length; index++) {
       if (this.currentAlerts[index] === alert) {
         this.currentAlerts.splice(index, 1);
         break;
@@ -46,6 +46,6 @@ export class AlertingService implements IAlertingService {
   }
 }
 
-export var alertingServiceInjectables: Array<any> = [
+export let alertingServiceInjectables: Array<any> = [
   bind(AlertingService).toClass(AlertingService)
 ];

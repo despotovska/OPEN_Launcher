@@ -9,7 +9,7 @@ import {User} from '../models/User';
 
 describe('UsersPipeTests', () => {
   function getUser(name: string): User {
-    var user = new User();
+    let user = new User();
     user.name = name;
     return user;
   }
@@ -24,7 +24,7 @@ describe('UsersPipeTests', () => {
       let user = getUser('Dragica');
 
       // Act
-      var result = instance.transform([user], ['dr']);
+      let result = instance.transform([user], ['dr']);
 
       // Assert
       expect(result).toEqual([user]);
@@ -37,7 +37,7 @@ describe('UsersPipeTests', () => {
       users[0] = getUser('Dragica');
 
       // Act
-      var result = instance.transform(users, ['']);
+      let result = instance.transform(users, ['']);
 
       // Assert
       expect(result).toEqual(users);
@@ -49,7 +49,7 @@ describe('UsersPipeTests', () => {
       let users: User[] = new Array<User>();
 
       // Act
-      var result = instance.transform(users, ['']);
+      let result = instance.transform(users, ['']);
 
       // Assert
       expect(result).toEqual(users);
@@ -63,7 +63,7 @@ describe('UsersPipeTests', () => {
       users[1] = getUser('Daniela');
 
       // Act
-      var result = instance.transform(users, ['d']);
+      let result = instance.transform(users, ['d']);
 
       // Assert
       expect(result).toEqual(users);

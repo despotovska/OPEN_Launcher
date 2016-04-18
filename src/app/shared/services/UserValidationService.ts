@@ -27,13 +27,13 @@ export class UserValidationService implements IUserValidationService {
   }
 
   isUserPictureSet(user: User): boolean {
-    var isValid = user.profileImg
+    let isValid = user.profileImg
       && user.profileImg !== './assets/images/avatars/default.jpg';
     return isValid;
   }
 
   isValidUserData(user: User): boolean {
-    var isValid = user.name
+    let isValid = user.name
       && user.profileImg
       && user.userSettings
       && user.userSettings.backgroundColor >= 0
@@ -44,20 +44,20 @@ export class UserValidationService implements IUserValidationService {
   }
 
   getInvalidUserPictureValidationResponse(): Observable<ValidationResponse> {
-    var response = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
+    let response = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
     return Observable.of(response);
   }
 
   getInvalidUserDataValidationResponse(): Observable<ValidationResponse> {
-    var response = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+    let response = new ValidationResponse(false, 'Не се сите полиња пополнети.');
     return Observable.of(response);
   }
 
   getExistingUserValidationResponse(username: string): Observable<ValidationResponse> {
     return this.http.get(this.globalService.URL_IS_EXISTINGUSER(username))
       .map(res => {
-        var isExisting: boolean = JSON.parse(res.json());
-        var response = new ValidationResponse(!isExisting);
+        let isExisting: boolean = JSON.parse(res.json());
+        let response = new ValidationResponse(!isExisting);
 
         if (isExisting) {
           response.message = 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.';
@@ -67,6 +67,6 @@ export class UserValidationService implements IUserValidationService {
   }
 }
 
-export var userValidationServiceInjectables: Array<any> = [
+export let userValidationServiceInjectables: Array<any> = [
   bind(UserValidationService).toClass(UserValidationService)
 ];

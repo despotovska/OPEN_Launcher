@@ -6,7 +6,7 @@ export class MultipartItem {
   public method: string = 'POST';
   public headers: any = [];
   public withCredentials: boolean = true;
-  public formData: FormData = null;
+  public formData: FormData = undefined;
   public isReady: boolean = false;
   public isUploading: boolean = false;
   public isUploaded: boolean = false;
@@ -14,17 +14,15 @@ export class MultipartItem {
   public isCancel: boolean = false;
   public isError: boolean = false;
   public progress: number = 0;
-  public index: number = null;
-  public callback: Function = null;
+  public index: number = undefined;
+  public callback: Function = undefined;
 
-  constructor(private uploader: MultipartUploader) {
-  }
+  constructor(private uploader: MultipartUploader) { }
 
   public upload() {
     try {
       this.uploader.uploadItem(this);
-    } catch (e) {
-    }
+    } catch (e) { }
   }
 
   public init() {
@@ -35,24 +33,19 @@ export class MultipartItem {
     this.isCancel = false;
     this.isError = false;
     this.progress = 0;
-    this.formData = null;
-    this.callback = null;
+    this.formData = undefined;
+    this.callback = undefined;
   }
 
-  public onBeforeUpload() {
-  }
+  public onBeforeUpload() { }
 
-  public onProgress(progress: number) {
-  }
+  public onProgress(progress: number) { }
 
-  public onSuccess(response: any, status: any, headers: any) {
-  }
+  public onSuccess(response: any, status: any, headers: any) { }
 
-  public onError(response: any, status: any, headers: any) {
-  }
+  public onError(response: any, status: any, headers: any) { }
 
-  public onCancel(response: any, status: any, headers: any) {
-  }
+  public onCancel(response: any, status: any, headers: any) { }
 
   public onComplete(response: any, status: any, headers: any) {
     this.callback(response);
@@ -83,7 +76,7 @@ export class MultipartItem {
     this.isCancel = false;
     this.isError = false;
     this.progress = 100;
-    this.index = null;
+    this.index = undefined;
     this.onSuccess(response, status, headers);
   }
 
@@ -95,7 +88,7 @@ export class MultipartItem {
     this.isCancel = false;
     this.isError = true;
     this.progress = 0;
-    this.index = null;
+    this.index = undefined;
     this.onError(response, status, headers);
     this.callback(response);
   }
@@ -108,7 +101,7 @@ export class MultipartItem {
     this.isCancel = true;
     this.isError = false;
     this.progress = 0;
-    this.index = null;
+    this.index = undefined;
     this.onCancel(response, status, headers);
   }
 

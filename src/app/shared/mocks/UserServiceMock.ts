@@ -6,14 +6,14 @@ import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../sha
 
 export class UserServiceMock implements IUserService {
   static getTestUser(name: string) {
-    var user = new User();
+    let user = new User();
     user.name = name;
     user.profileImg = 'profileImg';
     return user;
   }
 
   static getAllUsers(user: User): User[] {
-    var allUsers: User[] = new Array<User>();
+    let allUsers: User[] = new Array<User>();
     allUsers[0] = UserServiceMock.getTestUser('user1');
     allUsers[1] = UserServiceMock.getTestUser('user2');
     allUsers[2] = user;
@@ -21,7 +21,7 @@ export class UserServiceMock implements IUserService {
   }
 
   static getValidUserWithSettings(username: string): User {
-    var user: User = new User();
+    let user: User = new User();
     user.profileImg = './assets/images/avatars/devojce.jpg';
     user.name = username;
     user.userSettings.backgroundColor = BackgroundColor.InColor;
@@ -36,15 +36,15 @@ export class UserServiceMock implements IUserService {
   }
 
   deleteUser(name) {
-    var allUsers: User[] = new Array<User>();
+    let allUsers: User[] = new Array<User>();
     allUsers[0] = UserServiceMock.getTestUser('user1');
     return Observable.of(allUsers);
   }
 
   getAllUsers(): Observable<User[]> {
-    var allUsers: User[] = new Array<User>();
-    var users = '[{"name": "user1"}, {"name": "user2"}]';
-    var obj = JSON.parse(users);
+    let allUsers: User[] = new Array<User>();
+    let users = '[{"name": "user1"}, {"name": "user2"}]';
+    let obj = JSON.parse(users);
     return Observable.of(obj);
   }
 

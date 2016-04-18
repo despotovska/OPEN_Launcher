@@ -21,7 +21,7 @@ export class UploadPictureService implements IUploadPictureService {
   }
 
   upload(file: File): void {
-    if (this.multipartItem.formData == null) {
+    if (this.multipartItem.formData === undefined) {
       this.multipartItem.formData = new FormData();
     }
 
@@ -40,6 +40,6 @@ export class UploadPictureService implements IUploadPictureService {
   }
 }
 
-export var uploadPictureServiceInjectables: Array<any> = [
+export let uploadPictureServiceInjectables: Array<any> = [
   bind(UploadPictureService).toClass(UploadPictureService)
 ];

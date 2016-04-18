@@ -5,6 +5,7 @@ import {
 } from 'angular2/testing';
 
 import {AuthService} from './AuthService';
+import {User} from '../models/User';
 
 describe('AuthServiceTests', () => {
   beforeEachProviders(() => [
@@ -13,12 +14,12 @@ describe('AuthServiceTests', () => {
 
   it('login_givenValidUsername_shouldBeTruthy', inject([AuthService], (instance) => {
     // Arrange
-    var usernameKey = 'username';
-    var usernameValue = 'dragica';
+    let usernameKey = 'username';
+    let usernameValue = 'dragica';
     spyOn(localStorage, 'setItem').and.callFake(() => { });
 
     // Act
-    var result = instance.login(usernameValue);
+    let result = instance.login(usernameValue);
 
     // Assert
     expect(result).toBeTruthy();
@@ -26,61 +27,61 @@ describe('AuthServiceTests', () => {
   }));
 
   it('login_givenInvalidUsername_shouldBeFalsy', inject([AuthService], (instance) => {
-    //Arrange
-    var username = '';
+    // Arrange
+    let username = '';
 
-    //Act
-    var result = instance.login(username);
+    // Act
+    let result = instance.login(username);
 
-    //Assert
+    // Assert
     expect(result).toBeFalsy();
   }));
 
   it('logout_givenItemInLocalStorage_shouldRemoveItem', inject([AuthService], (instance) => {
-    //Arrange
+    // Arrange
     spyOn(localStorage, 'removeItem').and.callFake(() => { });
 
-    //Act
+    // Act
     instance.logout();
 
-    //Assert
+    // Assert
     expect(localStorage.removeItem).toHaveBeenCalledWith('username');
   }));
 
   it('getUser_givenItemInLocalStorage_shouldGetItem', inject([AuthService], (instance) => {
-    //Arrange
+    // Arrange
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return 'dragica';
     });
 
-    //Act
-    var result = instance.getUser();
+    // Act
+    let result = instance.getUser();
 
-    //Assert
+    // Assert
     expect(localStorage.getItem).toHaveBeenCalledWith('username');
     expect(result).toBe('dragica');
 
   }));
 
   it('isLogged_givenItemInLocalStorage_shouldBeTruthy', inject([AuthService], (instance) => {
-    //Arrange
-    spyOn(localStorage, 'getItem').and.callFake(() => { });
+    // Arrange
+    spyOn(instance, 'getUser').and.callFake(() => { return new User(); });
 
-    //Act
-    var result = instance.isLogged();
+    // Act
+    let result = instance.isLogged();
 
-    //Assert
+    // Assert
     expect(result).toBeTruthy();
   }));
 
   it('isLogged_givenNoItemInLocalStorage_shouldBeFalsy', inject([AuthService], (instance) => {
-    //Arrange
-    spyOn(localStorage, 'getItem').and.callFake(() => { return null; });
+    // Arrange
+    spyOn(localStorage, 'getItem').and.callFake(() => { return undefined; });
 
-    //Act
-    var result = instance.isLogged();
+    // Act
+    let result = instance.isLogged();
 
-    //Assert
+    // Assert
     expect(result).toBeFalsy();
   }));
 });

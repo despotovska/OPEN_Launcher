@@ -39,7 +39,7 @@ describe('RegisterComponentTests', () => {
   it('setAvailableImages_givenImagesServiceIsAvailable_shouldReturnJSONOfImageFiles',
     inject([RegisterComponent], (instance) => {
       // Arrange
-      var allImagesLocal = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
+      let allImagesLocal = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
       spyOn(instance.imagesService, 'getProfileImages').and.callThrough();
 
       // Act
@@ -75,10 +75,9 @@ describe('RegisterComponentTests', () => {
   it('onSubmit_givenAValidNewUser_shouldValidateAddUserThrowAlertForSuccessAndRedirectToLogin',
     inject([RegisterComponent], (instance) => {
       // Arrange
-      let user: User = UserServiceMock.getTestUser('user');
-      instance.user = user;
+      instance.user = UserServiceMock.getTestUser('user');
       spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
-        var response: ValidationResponse = new ValidationResponse(true, 'Успешно внесен корисник.');
+        let response: ValidationResponse = new ValidationResponse(true, 'Успешно внесен корисник.');
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
@@ -99,10 +98,9 @@ describe('RegisterComponentTests', () => {
   it('onSubmit_givenInvalidUser_shouldValidateAddUserThrowAlertForDanger',
     inject([RegisterComponent], (instance) => {
       // Arrange
-      let user: User = UserServiceMock.getTestUser('user');
-      instance.user = user;
+      instance.user = UserServiceMock.getTestUser('user');
       spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
-        var response: ValidationResponse = new ValidationResponse(false, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+        let response: ValidationResponse = new ValidationResponse(false, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
@@ -146,7 +144,7 @@ describe('RegisterComponentTests', () => {
       let user: User = UserServiceMock.getValidUserWithSettings('user');
       instance.user = user;
       spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
-        var response: ValidationResponse = new ValidationResponse(true);
+        let response: ValidationResponse = new ValidationResponse(true);
         return Observable.of(response);
       });
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });

@@ -27,7 +27,7 @@ export class MultipartUploader {
     xhr.upload.onprogress = (event) => { };
 
     xhr.onload = () => {
-      console.debug('multipart-uploader.ts & _xhrTransport.onload() ==>');
+      console.log('multipart-uploader.ts & _xhrTransport.onload() ==>');
       let headers = this._parseHeaders(xhr.getAllResponseHeaders());
       let response = this._transformResponse(xhr.response, headers);
       let gist = this._isSuccessCode(xhr.status) ? 'Success' : 'Error';
@@ -37,18 +37,18 @@ export class MultipartUploader {
     };
 
     xhr.onerror = () => {
-      console.debug('multipart-uploader.ts & _xhrTransport.onerror() ==>');
+      console.log('multipart-uploader.ts & _xhrTransport.onerror() ==>');
       let headers = this._parseHeaders(xhr.getAllResponseHeaders());
       let response = this._transformResponse(xhr.response, headers);
       this._onErrorItem(item, response, xhr.status, headers);
-      //this._onCompleteItem(item, response, xhr.status, headers);
+      // this._onCompleteItem(item, response, xhr.status, headers);
     };
 
     xhr.onabort = () => {
-      console.debug('multipart-uploader.ts & _xhrTransport.onabort() ==>');
+      console.log('multipart-uploader.ts & _xhrTransport.onabort() ==>');
       let headers = this._parseHeaders(xhr.getAllResponseHeaders());
       let response = this._transformResponse(xhr.response, headers);
-      //this._onCancelItem(item, response, xhr.status, headers);
+      // this._onCancelItem(item, response, xhr.status, headers);
       this._onCompleteItem(item, response, xhr.status, headers);
     };
 
@@ -58,26 +58,23 @@ export class MultipartUploader {
     if (this.authToken) {
       xhr.setRequestHeader('Authorization', this.authToken);
     }
-    console.debug('multipart-uploader.ts & _xhrTransport() send...');
+    console.log('multipart-uploader.ts & _xhrTransport() send...');
     xhr.send(item.formData);
     this._render();
   }
 
-  public onSuccessItem(item: any, response: any, status: any, headers: any) {
-  }
+  public onSuccessItem(item: any, response: any, status: any, headers: any) { }
 
   public onErrorItem(item: any, response: any, status: any, headers: any) {
     this.isUploading = false;
   }
 
-  public onCancelItem(item: any, response: any, status: any, headers: any) {
-  }
+  public onCancelItem(item: any, response: any, status: any, headers: any) { }
 
-  public onCompleteItem(item: any, response: any, status: any, headers: any) {
-  }
+  public onCompleteItem(item: any, response: any, status: any, headers: any) { }
 
   public _onErrorItem(item: any, response: any, status: any, headers: any) {
-    console.debug('multipart-uploader.ts & _onErrorItem() ==>' + ' Error status:' + status);
+    console.log('multipart-uploader.ts & _onErrorItem() ==>' + ' Error status:' + status);
     item._onError(response, status, headers);
     this.onErrorItem(item, response, status, headers);
   }
@@ -88,7 +85,7 @@ export class MultipartUploader {
 
     this.isUploading = false;
 
-    //this.progress = this._getTotalProgress();
+    // this.progress = this._getTotalProgress();
     this._render();
   }
 

@@ -9,8 +9,7 @@ export class AuthServiceMock implements IAuthService {
   logout() { }
 
   getUser() {
-    var userName = 'userName';
-    return userName;
+    return 'userName';
   }
 
   isLogged() {

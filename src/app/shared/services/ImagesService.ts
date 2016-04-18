@@ -29,4 +29,4 @@ export class ImagesService implements IImagesService {
   }
 }
 
-export var imagesServiceInjectables: Array<any> = [bind(ImagesService).toClass(ImagesService)];
+export let imagesServiceInjectables: Array<any> = [bind(ImagesService).toClass(ImagesService)];

@@ -17,7 +17,7 @@ Error.stackTraceLimit = Infinity;
 // Prefer CoreJS over the polyfills above
 require('core-js');
 
-require('zone.js/dist/zone.js');
+require('zone.js/dist/zone');
 require('zone.js/dist/long-stack-trace-zone.js');
 require('zone.js/dist/jasmine-patch.js');
 

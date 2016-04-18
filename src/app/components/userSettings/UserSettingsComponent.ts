@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from 'angular2/core';
 
 import {UserSettingsColorsService} from './UserSettingsColorsService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 import {EnumEx} from '../../shared/enums/EnumEx';
 import {UserSettings} from '../../shared/models/UserSettings';

@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 
-import {AlertingService} from './AlertingService';
-import {Alert} from './Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
+import {Alert} from '../../shared/models/Alert';
 
 @Component({
   selector: 'alerts',
@@ -13,7 +13,8 @@ import {Alert} from './Alert';
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
             </div>
-        </div>`
+        </div>
+        `
 })
 export class AlertingComponent {
   constructor(private alertingService: AlertingService) { }

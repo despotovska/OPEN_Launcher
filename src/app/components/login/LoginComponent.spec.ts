@@ -7,12 +7,12 @@ import {provide} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 import {Router} from 'angular2/router';
 
+import {LoginComponent} from './LoginComponent';
 import {User} from '../../shared/models/User';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';
-import {AlertingService} from '../alerting/AlertingService';
-import {LoginComponent} from './LoginComponent';
-import {Alert} from '../alerting/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
+import {Alert} from '../../shared/models/Alert';
 
 import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 import {RouterMock} from '../../shared/mocks/RouterMock';

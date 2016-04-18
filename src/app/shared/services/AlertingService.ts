@@ -1,6 +1,6 @@
 import {Injectable, bind} from 'angular2/core';
 
-import {Alert} from './Alert';
+import {Alert} from '../models/Alert';
 
 export interface IAlertingService {
   addSuccess(message: string): void;

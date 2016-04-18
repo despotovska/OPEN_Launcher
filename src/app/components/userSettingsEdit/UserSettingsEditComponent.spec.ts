@@ -7,15 +7,15 @@ import {provide} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Observable} from 'rxjs/Rx';
 
-import {User, Users} from '../../shared/models/User';
+import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsEditComponent} from './UserSettingsEditComponent';
 import {AuthService} from '../../shared/services/AuthService';
-import {Alert} from '../alerting/Alert';
+import {Alert} from '../../shared/models/Alert';
 import {UserSettings} from '../../shared/models/UserSettings';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 

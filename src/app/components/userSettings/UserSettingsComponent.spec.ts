@@ -11,8 +11,8 @@ import {Observable} from 'rxjs/Rx';
 import {UserSettingsComponent} from './UserSettingsComponent';
 import {UserSettingsColorsService} from './UserSettingsColorsService';
 import {PointerColor, PointerSize, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
-import {Alert} from '../alerting/Alert';
-import {AlertingService} from '../alerting/AlertingService';
+import {Alert} from '../../shared/models/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserSettings} from '../../shared/models/UserSettings';
 

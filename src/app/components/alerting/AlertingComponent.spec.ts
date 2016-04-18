@@ -5,9 +5,9 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import {Alert} from './Alert';
 import {AlertingComponent} from './AlertingComponent';
-import {AlertingService} from './AlertingService';
+import {Alert} from '../../shared/models/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
 
 describe('AlertingComponentTests', () => {
   beforeEachProviders(() => [

@@ -7,7 +7,7 @@ import {provide} from 'angular2/core';
 
 import {UploadPictureService} from './UploadPictureService';
 import {GlobalService} from '../../shared/services/GlobalService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 
 describe('UploadPictureServiceTests', () => {
   beforeEachProviders(() => [

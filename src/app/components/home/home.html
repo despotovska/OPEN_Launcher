@@ -2,7 +2,7 @@
   <h2>Изберете игра:</h2>
   <div class="panel-group" id="accordion">
 
-    <div class="panel panel-default">
+    <div class="panel panel-default top-buffer-10">
       <button id="section1" type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapse1" data-parent="#accordion">Запознај се со компјутерот</button>
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
@@ -18,8 +18,9 @@
       </div>
     </div>
 
-    <div class="panel panel-default">
-      <button id="section2" type="button" class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" href="#collapse2" data-parent="#accordion">Учиме со компјутерот</button>
+    <div class="panel panel-default top-buffer-10">
+      <button id="section2" type="button" class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" href="#collapse2"
+      data-parent="#accordion">Учиме со компјутерот</button>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of ucimeSoKomp">

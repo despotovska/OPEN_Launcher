@@ -35,6 +35,10 @@ a.link{
   margin-top:20px;
 }
 
+.top-buffer-10 {
+  margin-top:10px !important;
+}
+
 .left-buffer{
   margin-left:20px;
 }
@@ -100,8 +104,12 @@ figure {
     border: 0;
 }
 
-.body{
+.main-content {
   padding-top: 70px;
+}
+
+body {
+  background-color: #F2F1EF;
 }
 
 .panel .btn-block:after {
@@ -113,11 +121,24 @@ figure {
     content:"\e080";
 }
 
-#section1{
-  background-color: forestgreen;
+#section1 { /* same for btn on upload picture page */
+  background-color: #339966;
+  border-color: #26734d;
 }
 
-#section2{
-  background-color: navy;
-  /*background-color: red;*/
+#navbar {
+  background-color: #F2784B;
+  border-color: #bf3d0d;
+}
+
+.shadow{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fixed-top{
+  position: fixed;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  z-index: 1030;
 }

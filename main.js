@@ -1,24 +1,29 @@
-var app = require('app');
-var expressServer = require('./backend/api.js');
-var env = require('./backend/env.js');
+require('./backend/api.js');
+const env = require('./backend/env.js');
 
-// browser-window creates a native window
-var BrowserWindow = require('browser-window');
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   if (process.platform != 'darwin') {
     app.quit();
   }
 });
 
-app.on('ready', function() {
-
+app.on('ready', function () {
   // Initialize the window to our specified dimensions
-  mainWindow = new BrowserWindow({ width: 1200, height: 900 });
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 900,
+    minWidth: 900,
+    minHeight: 900,
+    icon: __dirname + '/otw.png'
+  });
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
   if (env === 'dev') {
@@ -28,9 +33,7 @@ app.on('ready', function() {
   }
 
   // Clear out the main window when the app is closed
-  mainWindow.on('closed', function() {
-
+  mainWindow.on('closed', function () {
     mainWindow = null;
   });
-
 });

@@ -34,9 +34,9 @@ module.exports = {
     'vendor': helpers.root('src/vendor.ts'),
     'app': helpers.root('src/app.ts'),
     'main-scripts': [
-       helpers.root('node_modules/jquery/dist/jquery.min.js'),
-       helpers.root('src/assets/js/jqueryelectron.js'),
-       helpers.root('node_modules/bootstrap/dist/js/bootstrap.min.js')]
+      helpers.root('node_modules/jquery/dist/jquery.min.js'),
+      helpers.root('src/assets/js/jqueryelectron.js'),
+      helpers.root('node_modules/bootstrap/dist/js/bootstrap.min.js')]
   },
 
   resolve: {

@@ -10,6 +10,8 @@ describe("Game menu edit user settings", function() {
   beforeEach(function() {
     console.log(" Before Method : Before Each Function");
     UserSettingsEditPage.get("http://localhost:3000/#/login");
+    browser.sleep(1000);
+    browser.ignoreSynchronization = true;
     CreateUserPage.waitforCreateBtn();
     CreateUserPage.clickCreateBtn();
     browser.sleep(500);
@@ -28,6 +30,8 @@ describe("Game menu edit user settings", function() {
     expect(UserSettingsEditPage.isWhiteColorSelected()).toBe(true);
     expect(UserSettingsEditPage.isSmallPointerSelected()).toBe(true);
     browser.get("http://localhost:3000/#/login");
+    browser.sleep(2000);
+    browser.ignoreSynchronization = true;
     LogInPage.filterUsernameJosif();
     DeleteUser.deleteFilteredUser();
 
@@ -46,13 +50,15 @@ describe("Game menu edit user settings", function() {
     expect(UserSettingsEditPage.isRedColorSelected()).toBe(true);
     expect(UserSettingsEditPage.isMediumPointerSelected()).toBe(true);
     browser.get("http://localhost:3000/#/login");
+    browser.sleep(2000);
+    browser.ignoreSynchronization = true;
     LogInPage.filterUsernameJosif();
     DeleteUser.deleteFilteredUser();
   });
 
   it("User can create new user with default settings and change them", function() {
     CreateUserPage.createPredefinedUserName("Josif");
-    browser.sleep(1000);
+    browser.sleep(2000);
     LogInPage.filterUsernameJosif();
     UserSettingsEditPage.logInFilteredUser();
     console.log("user name filtered");
@@ -64,10 +70,13 @@ describe("Game menu edit user settings", function() {
     UserSettingsEditPage.userSettingsSave();
     browser.get("http://localhost:3000/#/login");
     UserSettingsEditPage.openUserSettings();
+    browser.sleep(2000);
     expect(UserSettingsEditPage.isBWThemeSelected()).toBe(true);
     expect(UserSettingsEditPage.isYellowColorSelected()).toBe(true);
     expect(UserSettingsEditPage.isMediumPointerSelected()).toBe(true);
     browser.get("http://localhost:3000/#/login");
+    browser.sleep(2000);
+    browser.ignoreSynchronization = true;
     LogInPage.filterUsernameJosif();
     DeleteUser.deleteFilteredUser();
   });

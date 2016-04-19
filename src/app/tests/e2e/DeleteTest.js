@@ -8,7 +8,7 @@ describe("Game menu delete user", function() {
   beforeEach(function() {
     console.log(" Method started");
     browser.get("http://localhost:3000/#/login");
-    browser.sleep(500);
+    browser.sleep(1000);
     browser.ignoreSynchronization = true;
   });
 
@@ -18,7 +18,7 @@ describe("Game menu delete user", function() {
     CreateUserPage.clickCreateBtn();
     CreateUserPage.createUserName("Josif");
     CreateUserPage.clickCreateBtnAfter();
-    browser.sleep(1000);
+    browser.sleep(2000);
     LoginPage.filterUsernameJosif();
     DeleteUser.deleteFilteredUser();
     browser.sleep(500);

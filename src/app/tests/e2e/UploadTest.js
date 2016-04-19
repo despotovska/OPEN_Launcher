@@ -9,6 +9,8 @@ describe("Upload picture page", function() {
   beforeEach(function() {
     console.log(" Method started");
     browser.get("http://localhost:3000/#/login");
+    browser.sleep(1000);
+    browser.ignoreSynchronization = true;
   });
 
   it("Logged user can upload picture ", function() {
@@ -18,7 +20,7 @@ describe("Upload picture page", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(UploadPage.returnMessage()).toEqual("Сликата е успешно додадена!");
-    browser.sleep(500);
+    browser.sleep(1000);
     browser.ignoreSynchronization = false;
     LogInPage.logOut();
     console.log("Finishing: Logged user can upload picture");

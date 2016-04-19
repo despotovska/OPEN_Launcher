@@ -11,6 +11,8 @@ describe("Game menu log in user", function() {
   beforeEach(function() {
     console.log(" Before Method : Before Each Function");
     CreateUserPage.get("http://localhost:3000/#/login");
+    browser.sleep(1000);
+    browser.ignoreSynchronization = true;
     CreateUserPage.waitforCreateBtn();
     CreateUserPage.clickCreateBtn();
     browser.sleep(1000);
@@ -23,10 +25,23 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
+    DeleteUser.deleteFilteredUser();
+  });
+
+  it("User can create new user with Macedonian letters ", function() {
+    CreateUserPage.createUserName("Јосиф");
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(2000);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+    LogInPage.filterUsernameЈосиф();
     DeleteUser.deleteFilteredUser();
   });
 
@@ -39,7 +54,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Корисничкото име веќе постои, обидете се да се регистрирате со друго име.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     CreateUserPage.clickBack();
     LogInPage.filterUsernameJosif();
@@ -130,7 +145,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -146,7 +161,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -162,7 +177,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -178,7 +193,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -194,7 +209,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -211,7 +226,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -227,7 +242,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -243,7 +258,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -259,7 +274,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -275,7 +290,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -291,7 +306,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -307,7 +322,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -323,7 +338,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();
@@ -339,7 +354,7 @@ describe("Game menu log in user", function() {
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(CreateUserPage.returnMessage()).toEqual("Успешно внесен корисник.");
-    browser.sleep(500);
+    browser.sleep(2000);
     browser.ignoreSynchronization = false;
     console.log("Finishing : User created");
     LogInPage.filterUsernameJosif();

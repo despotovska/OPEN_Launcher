@@ -8,6 +8,8 @@ describe("Game menu edit user settings", function() {
   beforeEach(function() {
     console.log(" Before Method : Before Each Function");
     UserSettingsEditPage.get("http://localhost:3000/#/login");
+    browser.sleep(1000);
+    browser.ignoreSynchronization = true;
     LogInPage.logIn();
     browser.sleep(500);
 

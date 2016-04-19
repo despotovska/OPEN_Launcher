@@ -149,7 +149,5 @@ body {
 }
 
 .navbar-nav > li > a:hover {
-  color:black !important;
-  background-color: white !important;
-  border-radius: 10px;
+  text-decoration: underline;
 }

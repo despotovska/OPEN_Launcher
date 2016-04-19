@@ -7,6 +7,8 @@ describe("Game menu log in page", function() {
   beforeEach(function() {
     console.log(" Method started");
     browser.get("http://localhost:3000/#/login");
+    browser.sleep(1000);
+    browser.ignoreSynchronization = true;
   });
 
 

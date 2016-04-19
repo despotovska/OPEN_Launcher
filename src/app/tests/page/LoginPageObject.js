@@ -65,6 +65,14 @@ var LogInPage = function() {
     name.sendKeys("f");
   };
 
+   this.filterUsernameЈосиф = function() {
+    name.sendKeys("Ј");
+    name.sendKeys("о");
+    name.sendKeys("с");
+    name.sendKeys("и");
+    name.sendKeys("ф");
+  };
+
   this.filterUsernameClear = function(filter) {
     name.clear();
 

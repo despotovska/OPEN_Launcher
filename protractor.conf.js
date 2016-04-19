@@ -1,10 +1,6 @@
 require('ts-node/register');
 var HtmlReporter = require('protractor-html-screenshot-reporter');
-var reporter=new HtmlReporter({
-    baseDirectory: 'src/app/tests/protractor-result', // a location to store screen shots.
-    docTitle: 'Protractor Demo Reporter',
-    docName:    'protractor-demo-tests-report.html'
-});
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 
 exports.config = {
   baseUrl: 'http://localhost:3000/',
@@ -35,11 +31,15 @@ exports.config = {
     }
   },
 
-  onPrepare: function() {
+  onPrepare: function () {
     global.EC = protractor.ExpectedConditions;
     browser.driver.manage().window().maximize();
     browser.get('http://localhost:3000/');
-    jasmine.getEnv().addReporter(reporter);
+    jasmine.getEnv().addReporter(
+      new Jasmine2HtmlReporter({
+        savePath: 'src/app/tests/protractorReport/'
+      })
+    );
     var SpecReporter = require('jasmine-spec-reporter');
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
   },

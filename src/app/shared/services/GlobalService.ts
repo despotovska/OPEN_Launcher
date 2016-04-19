@@ -33,6 +33,6 @@ export class GlobalService {
   }
 }
 
-export var globalServiceInjectables: Array<any> = [
+export let globalServiceInjectables: Array<any> = [
   bind(GlobalService).toClass(GlobalService)
 ];

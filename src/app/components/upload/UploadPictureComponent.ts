@@ -33,6 +33,6 @@ export class UploadPictureComponent {
 
   resetSelected(): void {
     this.selectedImage = '';
-    this.selectedFiles = null;
+    this.selectedFiles = undefined;
   }
 }

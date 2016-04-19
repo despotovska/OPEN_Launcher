@@ -4,14 +4,14 @@ import {IImagesService} from '../services/ImagesService';
 
 export class ImagesServiceMock implements IImagesService {
   getProfileImages() {
-    var profileImages = '["./app/assets/images/avatars/default.jpg", "./app/assets/images/avatars/devojce.png"]';
-    var obj = JSON.parse(profileImages);
+    let profileImages = '["./app/assets/images/avatars/default.jpg", "./app/assets/images/avatars/devojce.png"]';
+    let obj = JSON.parse(profileImages);
     return Observable.of(obj);
   }
 
   getPointerImages() {
-    var pointerImages = '["./app/assets/images/pointer/small.png", "./app/assets/images/pointer/big.png"]';
-    var obj = JSON.parse(pointerImages);
+    let pointerImages = '["./app/assets/images/pointer/small.png", "./app/assets/images/pointer/big.png"]';
+    let obj = JSON.parse(pointerImages);
     return Observable.of(obj);
   }
 }

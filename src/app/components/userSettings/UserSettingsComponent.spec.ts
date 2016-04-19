@@ -11,8 +11,8 @@ import {Observable} from 'rxjs/Rx';
 import {UserSettingsComponent} from './UserSettingsComponent';
 import {UserSettingsColorsService} from './UserSettingsColorsService';
 import {PointerColor, PointerSize, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
-import {Alert} from '../alerting/Alert';
-import {AlertingService} from '../alerting/AlertingService';
+import {Alert} from '../../shared/models/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserSettings} from '../../shared/models/UserSettings';
 
@@ -29,7 +29,7 @@ describe('UserSettingsComponentTests', () => {
   it('setAvailablePointerImages_givenAvailableImageService_shouldSetAllPointerImages',
     inject([UserSettingsComponent], (instance) => {
       // Arrange
-      var allPointerImagesLocal = ['./app/assets/images/pointer/small.png', './app/assets/images/pointer/big.png'];
+      let allPointerImagesLocal = ['./app/assets/images/pointer/small.png', './app/assets/images/pointer/big.png'];
       spyOn(instance.imagesService, 'getPointerImages').and.callThrough();
 
       // Act
@@ -58,8 +58,8 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var bgColor: BackgroundColor = BackgroundColor.BlackAndWhite;
-        var instance = fixture.componentInstance;
+        let bgColor: BackgroundColor = BackgroundColor.BlackAndWhite;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.backgroundColor = BackgroundColor.InColor;
         fixture.detectChanges();
@@ -78,10 +78,10 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var nonDefaultPointerColor: PointerColor = PointerColor.Blue;
-        var defaultPointerColor: PointerColor = PointerColor.White;
-        var bgColor: BackgroundColor = BackgroundColor.BlackAndWhite;
-        var instance = fixture.componentInstance;
+        let nonDefaultPointerColor: PointerColor = PointerColor.Blue;
+        let defaultPointerColor: PointerColor = PointerColor.White;
+        let bgColor: BackgroundColor = BackgroundColor.BlackAndWhite;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.backgroundColor = BackgroundColor.InColor;
         instance.userSettings.pointerColor = nonDefaultPointerColor;
@@ -102,9 +102,9 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var defaultPointerColor: PointerColor = PointerColor.White;
-        var newPointerColor: PointerColor = PointerColor.Blue;
-        var instance = fixture.componentInstance;
+        let defaultPointerColor: PointerColor = PointerColor.White;
+        let newPointerColor: PointerColor = PointerColor.Blue;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.pointerColor = defaultPointerColor;
         fixture.detectChanges();
@@ -121,9 +121,9 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var defaultPointerSize: PointerSize = PointerSize.Small;
-        var newPointerSize: PointerSize = PointerSize.Medium;
-        var instance = fixture.componentInstance;
+        let defaultPointerSize: PointerSize = PointerSize.Small;
+        let newPointerSize: PointerSize = PointerSize.Medium;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.pointerSize = defaultPointerSize;
         fixture.detectChanges();
@@ -140,14 +140,14 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var selectedBgColor: BackgroundColor = BackgroundColor.InColor;
-        var instance = fixture.componentInstance;
+        let selectedBgColor: BackgroundColor = BackgroundColor.InColor;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.backgroundColor = selectedBgColor;
         fixture.detectChanges();
 
         // Act
-        var checked = instance.shouldBeChecked(selectedBgColor);
+        let checked = instance.shouldBeChecked(selectedBgColor);
 
         // Assert
         expect(checked).toBeTruthy();
@@ -158,14 +158,14 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var selectedPointerColor: PointerColor = PointerColor.White;
-        var instance = fixture.componentInstance;
+        let selectedPointerColor: PointerColor = PointerColor.White;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.pointerColor = selectedPointerColor;
         fixture.detectChanges();
 
         // Act
-        var shouldApplyCss = instance.shouldApplySelectedPointerColorCss(selectedPointerColor);
+        let shouldApplyCss = instance.shouldApplySelectedPointerColorCss(selectedPointerColor);
 
         // Assert
         expect(shouldApplyCss).toBeTruthy();
@@ -176,15 +176,15 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        var selectedPointerSize: PointerSize = PointerSize.Small;
-        var otherPointerSize: PointerSize = PointerSize.Medium;
-        var instance = fixture.componentInstance;
+        let selectedPointerSize: PointerSize = PointerSize.Small;
+        let otherPointerSize: PointerSize = PointerSize.Medium;
+        let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.pointerSize = selectedPointerSize;
         fixture.detectChanges();
 
         // Act
-        var shouldApplyCss = instance.shouldApplySelectedPointerSizeCss(otherPointerSize);
+        let shouldApplyCss = instance.shouldApplySelectedPointerSizeCss(otherPointerSize);
 
         // Assert
         expect(shouldApplyCss).toBeFalsy();

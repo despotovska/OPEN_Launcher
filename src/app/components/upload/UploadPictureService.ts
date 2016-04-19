@@ -2,7 +2,7 @@ import {Injectable, bind} from 'angular2/core';
 import {Http} from 'angular2/http';
 
 import {GlobalService} from '../../shared/services/GlobalService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {MultipartItem} from '../../shared/plugins/multipart-upload/multipart-item';
 import {MultipartUploader} from '../../shared/plugins/multipart-upload/multipart-uploader';
 
@@ -21,7 +21,7 @@ export class UploadPictureService implements IUploadPictureService {
   }
 
   upload(file: File): void {
-    if (this.multipartItem.formData == null) {
+    if (this.multipartItem.formData === undefined) {
       this.multipartItem.formData = new FormData();
     }
 
@@ -40,6 +40,6 @@ export class UploadPictureService implements IUploadPictureService {
   }
 }
 
-export var uploadPictureServiceInjectables: Array<any> = [
+export let uploadPictureServiceInjectables: Array<any> = [
   bind(UploadPictureService).toClass(UploadPictureService)
 ];

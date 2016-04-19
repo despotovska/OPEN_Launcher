@@ -17,7 +17,7 @@ import {ValidationResponse} from '../../shared/models/ValidationResponse';
 
 describe('UserValidationServiceTests', () => {
   function getValidUser() {
-    var user = new User();
+    let user = new User();
     user.name = 'testName';
     user.profileImg = 'someProfileImage';
     user.userSettings.backgroundColor = 1;
@@ -31,7 +31,7 @@ describe('UserValidationServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function(backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]
@@ -53,7 +53,7 @@ describe('UserValidationServiceTests', () => {
       spyOn(instance, 'getInvalidUserPictureValidationResponse').and.callFake(() => { });
 
       // Act
-      var result = instance.isValid(user);
+      let result = instance.isValid(user);
 
       // Assert
       expect(instance.getInvalidUserPictureValidationResponse).toHaveBeenCalled();
@@ -68,7 +68,7 @@ describe('UserValidationServiceTests', () => {
       spyOn(instance, 'getInvalidUserDataValidationResponse').and.callFake(() => { });
 
       // Act
-      var result = instance.isValid(user);
+      let result = instance.isValid(user);
 
       // Assert
       expect(instance.getInvalidUserDataValidationResponse).toHaveBeenCalled();
@@ -83,7 +83,7 @@ describe('UserValidationServiceTests', () => {
       spyOn(instance, 'getExistingUserValidationResponse').and.callFake(() => { });
 
       // Act
-      var result = instance.isValid(user);
+      let result = instance.isValid(user);
 
       // Assert
       expect(instance.getExistingUserValidationResponse).toHaveBeenCalledWith(user.name);
@@ -92,10 +92,10 @@ describe('UserValidationServiceTests', () => {
   it('isValidUserData_givenValidUserData_shouldBeTruthy',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var user: User = getValidUser();
+      let user: User = getValidUser();
 
       // Act
-      var result = instance.isValidUserData(user);
+      let result = instance.isValidUserData(user);
 
       // Assert
       expect(result).toBeTruthy();
@@ -104,11 +104,11 @@ describe('UserValidationServiceTests', () => {
   it('isValidUserData_givenInvalidUserData_shouldBeFalsy',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var user: User = getValidUser();
-      user.profileImg = null;
+      let user: User = getValidUser();
+      user.profileImg = undefined;
 
       // Act
-      var result = instance.isValidUserData(user);
+      let result = instance.isValidUserData(user);
 
       // Assert
       expect(result).toBeFalsy();
@@ -117,8 +117,8 @@ describe('UserValidationServiceTests', () => {
   it('getInvalidUserPictureValidationResponse_givenInvalidUserPicture_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var expectedResponse = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
-      var result: ValidationResponse;
+      let expectedResponse = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
+      let result: ValidationResponse;
 
       // Act
       instance.getInvalidUserPictureValidationResponse().subscribe(data => { result = data; });
@@ -130,8 +130,8 @@ describe('UserValidationServiceTests', () => {
   it('getInvalidUserDataValidationResponse_givenInvalidUserData_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      var expectedResponse = new ValidationResponse(false, 'Не се сите полиња пополнети.');
-      var result: ValidationResponse;
+      let expectedResponse = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+      let result: ValidationResponse;
       // Act
 
       instance.getInvalidUserDataValidationResponse().subscribe(data => { result = data; });
@@ -143,8 +143,8 @@ describe('UserValidationServiceTests', () => {
   it('getExistingUserValidationResponse_givenValidUser_shouldReturnNotExistingUserValidationResponse',
     inject([UserValidationService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userAlreadyExists = false;
-      var responseExpected = new ValidationResponse(!userAlreadyExists);
+      let userAlreadyExists = false;
+      let responseExpected = new ValidationResponse(!userAlreadyExists);
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
@@ -164,8 +164,8 @@ describe('UserValidationServiceTests', () => {
   it('getExistingUserValidationResponse_givenInvalidUser_shouldReturnExistingUserValidationResponse',
     inject([UserValidationService, MockBackend], (instance, mockBackend) => {
       // Arrange
-      var userAlreadyExists = true;
-      var responseExpected = new ValidationResponse(!userAlreadyExists, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+      let userAlreadyExists = true;
+      let responseExpected = new ValidationResponse(!userAlreadyExists, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(

@@ -3,7 +3,7 @@ import {RouterLink, Router} from 'angular2/router';
 
 import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {User} from '../../shared/models/User';
 import {UsersPipe} from '../../shared/pipes/UsersPipe';
 

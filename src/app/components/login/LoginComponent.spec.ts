@@ -7,12 +7,12 @@ import {provide} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 import {Router} from 'angular2/router';
 
+import {LoginComponent} from './LoginComponent';
 import {User} from '../../shared/models/User';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';
-import {AlertingService} from '../alerting/AlertingService';
-import {LoginComponent} from './LoginComponent';
-import {Alert} from '../alerting/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
+import {Alert} from '../../shared/models/Alert';
 
 import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 import {RouterMock} from '../../shared/mocks/RouterMock';
@@ -29,7 +29,7 @@ describe('LoginComponentTests', () => {
   it('setAllUsers_givenAvailableUserService_shouldReturnAllUsers',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var localUsers = [{ 'name': 'user1' }, { 'name': 'user2' }];
+      let localUsers = [{ 'name': 'user1' }, { 'name': 'user2' }];
       spyOn(instance.userService, 'getAllUsers').and.callThrough();
 
       // Act
@@ -57,7 +57,7 @@ describe('LoginComponentTests', () => {
   it('login_givenInvalidUser_shouldSetUnsuccessfulLoginAlertMessage',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user1');
       spyOn(instance.authService, 'login').and.callFake(() => { return false; });
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
@@ -75,7 +75,7 @@ describe('LoginComponentTests', () => {
   it('login_givenValidUser_shouldRedirectToHome',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user1');
       spyOn(instance.authService, 'login').and.callFake(() => { return true; });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
       instance.selectedUser = user;
@@ -91,7 +91,7 @@ describe('LoginComponentTests', () => {
   it('deleteUser_givenSelectedUser_shouldDeleteUserResetTheSelectedUserAndSetSuccessAlertMessage',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user1');
       instance.selectedUser = user;
       spyOn(instance.alertingService, 'addSuccess').and.callFake(() => { });
       spyOn(instance.userService, 'deleteUser').and.callThrough();
@@ -109,7 +109,7 @@ describe('LoginComponentTests', () => {
   it('deleteUser_givenUnavailableUserService_shouldThrowAlertForDanger',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getValidUserWithSettings('user1');
+      let user = UserServiceMock.getValidUserWithSettings('user1');
       instance.selectedUser = user;
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.userService, 'deleteUser').and.callFake(() => { return Observable.throw(new Error()); });
@@ -137,7 +137,7 @@ describe('LoginComponentTests', () => {
   it('selectUser_givenValidUser_shouldSetTheSelectedUser',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user1');
 
       // Act
       instance.selectUser(user);
@@ -149,11 +149,11 @@ describe('LoginComponentTests', () => {
   it('shouldApplySelectedUserLayout_givenSelectedUser_shouldReturnTrue',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var user = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user1');
       instance.selectedUser = user;
 
       // Act
-      var flag = instance.shouldApplySelectedUserLayout(user);
+      let flag = instance.shouldApplySelectedUserLayout(user);
 
       // Assert
       expect(flag).toBeTruthy();
@@ -162,12 +162,12 @@ describe('LoginComponentTests', () => {
   it('shouldApplySelectedUserLayout_givenDifferentUser_shouldReturnFalse',
     inject([LoginComponent], (instance) => {
       // Arrange
-      var selectedUser = UserServiceMock.getTestUser('user1');
-      var user = UserServiceMock.getTestUser('user2');
+      let selectedUser = UserServiceMock.getTestUser('user1');
+      let user = UserServiceMock.getTestUser('user2');
       instance.selectedUser = selectedUser;
 
       // Act
-      var flag = instance.shouldApplySelectedUserLayout(user);
+      let flag = instance.shouldApplySelectedUserLayout(user);
 
       // Assert
       expect(flag).toBeFalsy();

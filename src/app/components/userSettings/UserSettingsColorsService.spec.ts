@@ -15,7 +15,7 @@ describe('UserSettingsColorsServiceTests', () => {
   it('getPointerColors_givenBlackAndWhiteBgColor_getsWhiteAndYellowPointer',
     inject([UserSettingsColorsService], (instance) => {
       // Act
-      var pointerColors = instance.getPointerColors(BackgroundColor.BlackAndWhite);
+      let pointerColors = instance.getPointerColors(BackgroundColor.BlackAndWhite);
 
       // Assert
       expect(pointerColors.length).toEqual(2);
@@ -24,7 +24,7 @@ describe('UserSettingsColorsServiceTests', () => {
   it('getPointerColors_givenInColorBgColor_getsAllColorsAvailableFromEnums',
     inject([UserSettingsColorsService], (instance) => {
       // Act
-      var inColorAvailablePointerColor = instance.getPointerColors(BackgroundColor.InColor);
+      let inColorAvailablePointerColor = instance.getPointerColors(BackgroundColor.InColor);
 
       // Assert
       expect(inColorAvailablePointerColor.length).toEqual(5);

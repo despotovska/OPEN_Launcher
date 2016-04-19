@@ -3,7 +3,13 @@ require('./assets/css/site.css');
 
 import {provide, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterOutlet, LocationStrategy, HashLocationStrategy, APP_BASE_HREF} from 'angular2/router';
+import {
+  RouteConfig,
+  ROUTER_DIRECTIVES,
+  ROUTER_PROVIDERS,
+  LocationStrategy,
+  HashLocationStrategy,
+  APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 /*
@@ -40,7 +46,7 @@ import { AUTH_PROVIDERS } from './app/shared/services/AuthService';
   { path: '/uploadpicture', component: UploadPictureComponent, name: 'UploadPicture' },
   { path: '/register', component: RegisterComponent, name: 'Register' },
   { path: '/login', component: LoginComponent, name: 'Login' },
-  { path: '/userSettingsEdit', component: UserSettingsEditComponent, name: 'UserSettingsEdit' },
+  { path: '/userSettingsEdit', component: UserSettingsEditComponent, name: 'UserSettingsEdit' }
 ])
 export class App {
   constructor(private authService: AuthService) { }

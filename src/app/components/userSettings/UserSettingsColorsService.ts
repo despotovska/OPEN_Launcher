@@ -11,14 +11,14 @@ export interface IUserSettingsColorsService {
 @Injectable()
 export class UserSettingsColorsService implements IUserSettingsColorsService {
   getPointerColors(backgroundColor: BackgroundColor): PointerColor[] {
-    var inColorAvailablePointerColors = [
+    let inColorAvailablePointerColors = [
       PointerColor.White,
       PointerColor.Yellow,
       PointerColor.Green,
       PointerColor.Blue,
       PointerColor.Red
     ];
-    var blackAndWhiteAvailablePointerColors = [
+    let blackAndWhiteAvailablePointerColors = [
       PointerColor.White,
       PointerColor.Yellow
     ];
@@ -29,6 +29,6 @@ export class UserSettingsColorsService implements IUserSettingsColorsService {
   }
 }
 
-export var userSettingsColorsServiceInjectables: Array<any> = [
+export let userSettingsColorsServiceInjectables: Array<any> = [
   bind(UserSettingsColorsService).toClass(UserSettingsColorsService)
 ];

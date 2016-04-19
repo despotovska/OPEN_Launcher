@@ -1,12 +1,12 @@
-var webpack = require('webpack');
-var helpers = require('./helpers');
+const webpack = require('webpack');
+const helpers = require('./helpers');
 
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
-var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-var HMR = helpers.hasProcessFlag('hot');
+const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const HMR = helpers.hasProcessFlag('hot');
 
 var metadata = {
   title: 'OPEN',
@@ -81,7 +81,7 @@ module.exports = {
   plugins: [
     new ForkCheckerPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['vendor', 'polyfills'], minChunks: Infinity }),
     // static assets
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' },

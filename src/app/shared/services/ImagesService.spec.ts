@@ -15,7 +15,7 @@ describe('ImagesServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function(backend, defaultOptions) {
+      useFactory: function (backend, defaultOptions) {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]
@@ -31,7 +31,7 @@ describe('ImagesServiceTests', () => {
   it('getProfileImages_givenAvailableHTTP_shouldReturnJSONProfileImages',
     inject([ImagesService, MockBackend], (instance: ImagesService, mockBackend) => {
       // Arrange
-      var profileImages = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
+      let profileImages = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
@@ -55,7 +55,7 @@ describe('ImagesServiceTests', () => {
   it('getPointerImages_givenAvailableHTTP_shouldReturnJSONPointerImages',
     inject([ImagesService, MockBackend], (instance: ImagesService, mockBackend) => {
       // Arrange
-      var pointerImages = ['./app/assets/images/pointer/small.png', './app/assets/images/pointer/big.png'];
+      let pointerImages = ['./app/assets/images/pointer/small.png', './app/assets/images/pointer/big.png'];
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(

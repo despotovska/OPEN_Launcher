@@ -11,7 +11,7 @@ import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
@@ -69,7 +69,7 @@ export class RegisterComponent {
   }
 
   private getInitialUser(): User {
-    var result = new User();
+    let result = new User();
     result.profileImg = './assets/images/avatars/default.jpg';
     result.userSettings.backgroundColor = BackgroundColor.InColor;
     result.userSettings.pointerType = PointerType.Hand;

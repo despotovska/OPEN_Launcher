@@ -28,7 +28,7 @@ describe('UserSettingsServiceTests', () => {
     pointerColor: UserSettingsEnums.PointerColor,
     backgroundColor: UserSettingsEnums.BackgroundColor
   ): UserSettings {
-    var result = new UserSettings();
+    let result = new UserSettings();
     result.pointerSize = pointerSize;
     result.pointerType = pointerType;
     result.pointerColor = pointerColor;
@@ -40,7 +40,7 @@ describe('UserSettingsServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function(backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]
@@ -56,7 +56,7 @@ describe('UserSettingsServiceTests', () => {
   it('getUserSettingsFor_givenValidUsername_shouldRetrievedDataFromTheHttpResponse',
     inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       // Arrange
-      var userSettingsObject = getDefaultUserSettingsObject();
+      let userSettingsObject = getDefaultUserSettingsObject();
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
@@ -84,8 +84,8 @@ describe('UserSettingsServiceTests', () => {
   it('getUserSettingsForJar_givenValidUsername_shouldReturnMappedUserSettings',
     inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       // Arrange
-      var userSettingsObject = getDefaultUserSettingsObject();
-      var userSettingsForJar: string = ' -bw false -ps s -pc white';
+      let userSettingsObject = getDefaultUserSettingsObject();
+      let userSettingsForJar: string = ' -bw false -ps s -pc white';
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
@@ -110,7 +110,7 @@ describe('UserSettingsServiceTests', () => {
   it('saveUserSettingsForUser_givenValidUsernameAndUserSettings_shouldRetrievedDataFromTheHttpResponse',
     inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       // Arrange
-      var userSettingsObject = getDefaultUserSettingsObject();
+      let userSettingsObject = getDefaultUserSettingsObject();
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {

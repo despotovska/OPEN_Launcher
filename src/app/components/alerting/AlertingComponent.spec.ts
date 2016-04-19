@@ -5,9 +5,9 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import {Alert} from './Alert';
 import {AlertingComponent} from './AlertingComponent';
-import {AlertingService} from './AlertingService';
+import {Alert} from '../../shared/models/Alert';
+import {AlertingService} from '../../shared/services/AlertingService';
 
 describe('AlertingComponentTests', () => {
   beforeEachProviders(() => [
@@ -18,10 +18,10 @@ describe('AlertingComponentTests', () => {
   it('getCurrentAlerts_shouldBeEqualToAlertingServiceCurrentAlerts',
     inject([AlertingComponent], (instance) => {
       // Arrange
-      var expectedResult = instance.alertingService.currentAlerts;
+      let expectedResult = instance.alertingService.currentAlerts;
 
       // Act
-      var result = instance.getCurrentAlerts();
+      let result = instance.getCurrentAlerts();
 
       // Assert
       expect(result).toEqual(expectedResult);
@@ -33,7 +33,7 @@ describe('AlertingComponentTests', () => {
       instance.alertingService.addAlert('info', 'message');
 
       // Act
-      var result = instance.hasAlerts();
+      let result = instance.hasAlerts();
 
       // Assert
       expect(result).toBeTruthy();
@@ -42,7 +42,7 @@ describe('AlertingComponentTests', () => {
   it('hasAlerts_givenAlertingServiceDoesntHaveAlerts_shouldReturnFalse',
     inject([AlertingComponent], (instance) => {
       // Act
-      var result = instance.hasAlerts();
+      let result = instance.hasAlerts();
 
       // Assert
       expect(result).toBeFalsy();
@@ -51,7 +51,7 @@ describe('AlertingComponentTests', () => {
   it('removeAlert_givenServiceAlertsHasOneCurrentAlert_shouldRemoveAndCurrentAlertsArrayShouldBeEmpty',
     inject([AlertingComponent], (instance) => {
       // Arrange
-      var alert: Alert = new Alert('info', 'message');
+      let alert: Alert = new Alert('info', 'message');
       instance.alertingService.currentAlerts = [alert];
 
       // Act

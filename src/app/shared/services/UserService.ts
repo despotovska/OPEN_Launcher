@@ -16,21 +16,21 @@ export interface IUserService {
 export class UserService implements IUserService {
   constructor(private http: Http, private globalService: GlobalService) { }
 
-  //Get all users from db
+  // Get all users from db
   getAllUsers(): Observable<User[]> {
     return this.http.get(this.globalService.URL_GETALLUSERS)
       .map((res: Response) => <User[]>res.json());
   }
 
-  //Get user filtered by name from db
+  // Get user filtered by name from db
   getUserByName(name: string): Observable<User[]> {
     return this.http.get(this.globalService.URL_GETUSER(name))
       .map((res: Response) => <User[]>res.json());
   }
 
-  //Add new user to db
+  // Add new user to db
   addUser(user: User): Observable<User[]> {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(this.globalService.URL_ADDUSER,
@@ -39,13 +39,13 @@ export class UserService implements IUserService {
       .map((res: Response) => <User[]>res.json());
   }
 
-  //Delete user by name from db
+  // Delete user by name from db
   deleteUser(name): Observable<User[]> {
     return this.http.get(this.globalService.URL_DELETEUSER(name))
       .map((res: Response) => <User[]>res.json());
   }
 }
 
-export var userServiceInjectables: Array<any> = [
+export let userServiceInjectables: Array<any> = [
   bind(UserService).toClass(UserService)
 ];

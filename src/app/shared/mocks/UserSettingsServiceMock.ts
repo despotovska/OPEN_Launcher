@@ -13,15 +13,15 @@ export class UserSettingsServiceMock implements IUserSettingsService {
   }
 
   getUserSettingsFor(userName: string) {
-    var userSettings: UserSettings = new UserSettings();
+    let userSettings: UserSettings = new UserSettings();
     UserSettingsServiceMock.setUserSetting(userSettings);
     return Observable.of(userSettings);
   }
 
   getUserSettingsForJar(userName: string) {
-    var userSettings: UserSettings = new UserSettings();
+    let userSettings: UserSettings = new UserSettings();
     UserSettingsServiceMock.setUserSetting(userSettings);
-    var userSettingsForJar: string = '-bw false -ps s -pc white';
+    let userSettingsForJar: string = '-bw false -ps s -pc white';
     return Observable.of(userSettingsForJar);
   }
 

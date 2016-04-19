@@ -1,6 +1,6 @@
 import {UserSettings} from './UserSettings';
 
-//Class that represents the user entity from db
+// Class that represents the user entity from db
 export class User {
   public name: string;
   public profileImg: string;

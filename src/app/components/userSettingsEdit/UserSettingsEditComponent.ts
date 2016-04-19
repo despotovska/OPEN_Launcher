@@ -6,7 +6,7 @@ import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 import {UserSettings} from '../../shared/models/UserSettings';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
-import {AlertingService} from '../alerting/AlertingService';
+import {AlertingService} from '../../shared/services/AlertingService';
 
 @Component({
   directives: [RouterLink, UserSettingsComponent],

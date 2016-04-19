@@ -85,6 +85,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "protractor": "^3.2.2",
     "protractor-html-screenshot-reporter": "0.0.21",
+    "protractor-jasmine2-html-reporter": "0.0.6",
     "raw-loader": "0.5.1",
     "remap-istanbul": "^0.5.1",
     "rimraf": "^2.5.2",

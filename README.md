@@ -1,4 +1,4 @@
-# OPEN [![Build Status](https://travis-ci.org/OpenTheWindows/OPEN_Launcher.svg?branch=master)](https://travis-ci.org/OpenTheWindows/OPEN_Launcher)
+# OPEN_Launcher [![Build Status](https://travis-ci.org/OpenTheWindows/OPEN_Launcher.svg?branch=master)](https://travis-ci.org/OpenTheWindows/OPEN_Launcher)
 
 OpenTheWindow games project.
 
@@ -28,19 +28,20 @@ OPEN_Launcher/
  |   ├──vendor.ts                       * our vendor file
  │   │        
  │   ├──app/                            * WebApp: folder
- │   │   ├──components                  * folder that holds specific components
- │   │   │  └──component                * specific component business group
+ │   │   ├──components/                 * folder that holds specific components
+ │   │   │  └──component/               * specific component business group
  │   │   │      ├──component.ts         * a specific component typescript
  │   │   │      └──component.spec.ts    * a simple test of the component
  │   │   │
- │   │   ├──shared                      * folder that holds shared components
- │   │   │  ├──enums                    * a folder where enumerations are stored
- │   │   │  ├──pipes                    * a folder for pipes
- │   │   │  ├──models                   * a folder where models are stored
- │   │   │  ├──plugins                  * a folder for third party components (not written by us)
- │   │   │  └──services                 * a folder for services used wide across the application
+ │   │   ├──shared/                     * folder that holds shared components
+ │   │   │  ├──enums/                   * our enumerations are here
+ │   │   │  ├──mocks/                   * our mocks are here
+ │   │   │  ├──models/                  * our models are here
+ │   │   │  ├──pipes/                   * our pipes are here
+ │   │   │  ├──plugins/                 * folder for third party components (not written by us)
+ │   │   │  └──services/                * folder for services used across the application
  │   │   │
- │   │   └──tests                       * folder that holds e2e tests and page objects for the components
+ │   │   └──tests/                      * folder that holds e2e tests and page objects for the components
  │   │        
  │   └──assets/                         * static assets are served here
  │       ├──css/                        * our stylesheets are here
@@ -75,7 +76,6 @@ Once you have those, you should install these globals with `npm install --global
 * `fork` this repo
 * `clone` your fork
 * `npm install` to install all dependencies
-* `typings install` to install necessary typings
 * `npm start` to start the app on [localhost:3000](localhost:3000)
 
 ## Running the app

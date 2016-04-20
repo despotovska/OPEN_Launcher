@@ -37,7 +37,9 @@ exports.config = {
     browser.get('http://localhost:3000/');
     jasmine.getEnv().addReporter(
       new Jasmine2HtmlReporter({
-        savePath: 'src/app/tests/protractorReport/'
+        savePath: 'src/app/tests/protractorReport/',
+        takeScreenshots: true,
+        takeScreenshotsOnlyOnFailures: true
       })
     );
     var SpecReporter = require('jasmine-spec-reporter');

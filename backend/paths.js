@@ -12,5 +12,6 @@ module.exports = {
   avatarsPath: path.join(_imagesPath, '/avatars/'),
   relativeAvatarPath: './assets/images/avatars/',
   pointersPath: path.join(_imagesPath, '/pointer/'),
-  relativePointersPath: './assets/images/pointer/'
+  relativePointersPath: './assets/images/pointer/',
+  gamesPath: path.join(_rootPath, '/assets/games/')
 };

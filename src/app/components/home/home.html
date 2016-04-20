@@ -8,9 +8,9 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
             <figure>
-              <a href="#">
-                <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp}}">
-                <figcaption>{{zapoznajSeSoKomp}}</figcaption>
+              <a (click)="loadGame(zapoznajSeSoKomp.gameFileName)">
+                <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp.name}}">
+                <figcaption>{{zapoznajSeSoKomp.name}}</figcaption>
               </a>
             </figure>
           </div>

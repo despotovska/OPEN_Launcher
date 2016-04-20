@@ -1,4 +1,4 @@
-# OPEN
+# OPEN [![Build Status](https://travis-ci.org/OpenTheWindows/OPEN_Launcher.svg?branch=master)](https://travis-ci.org/OpenTheWindows/OPEN_Launcher)
 
 OpenTheWindow games project.
 

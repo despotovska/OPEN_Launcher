@@ -9,6 +9,7 @@ export class GlobalService {
   URL_ADDUSER: string = URL + '/api/addUser';
   URL_GETPROFILE_IMAGES: string = URL + '/api/GetProfileImages/';
   URL_GETPOINTER_IMAGES: string = URL + '/api/GetPointerImages/';
+  URL_IS_GAMESTARTED: string = URL + '/api/isGameStarted';
 
   constructor() { }
 
@@ -30,6 +31,10 @@ export class GlobalService {
 
   URL_IS_EXISTINGUSER(username: string): string {
     return URL + '/api/isExistingUser/' + username;
+  }
+
+  URL_STARTGAME(selectedGame: string, userSettings: string): string {
+    return URL + '/api/startGame?selectedGame=' + selectedGame + '&userSettings=' + userSettings;
   }
 }
 

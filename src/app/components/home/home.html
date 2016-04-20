@@ -8,9 +8,9 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
             <figure>
-              <a href="#">
-                <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp}}">
-                <figcaption>{{zapoznajSeSoKomp}}</figcaption>
+              <a (click)="loadGame(zapoznajSeSoKomp.gameFileName)">
+                <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp.name}}">
+                <figcaption>{{zapoznajSeSoKomp.name}}</figcaption>
               </a>
             </figure>
           </div>
@@ -20,7 +20,7 @@
 
     <div class="panel panel-default top-buffer-10">
       <button id="section2" type="button" class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" href="#collapse2"
-      data-parent="#accordion">Учиме со компјутерот</button>
+        data-parent="#accordion">Учиме со компјутерот</button>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of ucimeSoKomp">

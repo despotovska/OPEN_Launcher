@@ -103,10 +103,6 @@ server.post('/api/saveUserSettings/:username?', function (req, res) {
   }
 });
 
-var getFormattedPathString = function (unescapedString) {
-  return unescapedString.replace(/\\/g, "\\\\");
-}
-
 server.get('/api/startGame', function (req, res) {
 
   var selectedGame = req.param('selectedGame');

@@ -8,7 +8,7 @@ var server = express();
 
 server.use(bodyParser.json());                         // to support JSON-encoded bodies
 server.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
-server.use(function(req, res, next) {
+server.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();

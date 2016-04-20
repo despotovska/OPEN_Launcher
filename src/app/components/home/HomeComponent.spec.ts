@@ -1,7 +1,7 @@
 import {
-    it,
-    inject,
-    beforeEachProviders
+  it,
+  inject,
+  beforeEachProviders
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
@@ -17,52 +17,52 @@ import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {Observable} from 'rxjs/Rx';
 
 describe('HomeComponentTests', () => {
-    beforeEachProviders(() => [
-        provide(AuthService, { useClass: AuthServiceMock }),
-        provide(GameLauncherService, { useClass: GameLauncherServiceMock }),        
-        provide(UserSettingsService, { useClass: UserSettingsServiceMock }),
-        HomeComponent
-    ]);
+  beforeEachProviders(() => [
+    provide(AuthService, { useClass: AuthServiceMock }),
+    provide(GameLauncherService, { useClass: GameLauncherServiceMock }),
+    provide(UserSettingsService, { useClass: UserSettingsServiceMock }),
+    HomeComponent
+  ]);
 
-    it('loadGame_givenSelectedGame_shouldCallLoadGameApi_WhenGameIsNotStartted',
-        inject([HomeComponent], (instance) => {
-            // Arrange
-            GameLauncherServiceMock.gameStarted = false;
-            
-            spyOn(instance.authService, 'getUser').and.callThrough();
-            spyOn(instance.gameLauncherService, 'isGameStarted').and.callThrough();
-            spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
-            spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
-                     
-            var testGameFileName = 'test.jar';
+  it('loadGame_givenSelectedGame_shouldCallLoadGameApi_WhenGameIsNotStartted',
+    inject([HomeComponent], (instance) => {
+      // Arrange
+      GameLauncherServiceMock.gameStarted = false;
 
-            // Act                    
-            instance.loadGame(testGameFileName);
+      spyOn(instance.authService, 'getUser').and.callThrough();
+      spyOn(instance.gameLauncherService, 'isGameStarted').and.callThrough();
+      spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
+      spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
-            // Assert
-            expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();
-            expect(instance.userSettingsService.getUserSettingsForJar).toHaveBeenCalled();
-            expect(instance.gameLauncherService.loadGame).toHaveBeenCalled();
-        }));
-        
-        it('loadGame_givenSelectedGame_shouldNotCallLoadGameApi_WhenGameIsAlreadyStartted',
-        inject([HomeComponent], (instance) => {
-            // Arrange
-            GameLauncherServiceMock.gameStarted = true;
-            
-            spyOn(instance.authService, 'getUser').and.callThrough();
-            spyOn(instance.gameLauncherService, 'isGameStarted').and.callThrough();
-            spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
-            spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
-                     
-            var testGameFileName = 'test.jar';
+      var testGameFileName = 'test.jar';
 
-            // Act                    
-            instance.loadGame(testGameFileName);
+      // Act
+      instance.loadGame(testGameFileName);
 
-            // Assert
-            expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();
-            expect(instance.userSettingsService.getUserSettingsForJar).not.toHaveBeenCalled();
-            expect(instance.gameLauncherService.loadGame).not.toHaveBeenCalled();
-        }));
+      // Assert
+      expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();
+      expect(instance.userSettingsService.getUserSettingsForJar).toHaveBeenCalled();
+      expect(instance.gameLauncherService.loadGame).toHaveBeenCalled();
+    }));
+
+  it('loadGame_givenSelectedGame_shouldNotCallLoadGameApi_WhenGameIsAlreadyStartted',
+    inject([HomeComponent], (instance) => {
+      // Arrange
+      GameLauncherServiceMock.gameStarted = true;
+
+      spyOn(instance.authService, 'getUser').and.callThrough();
+      spyOn(instance.gameLauncherService, 'isGameStarted').and.callThrough();
+      spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
+      spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
+
+      var testGameFileName = 'test.jar';
+
+      // Act
+      instance.loadGame(testGameFileName);
+
+      // Assert
+      expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();
+      expect(instance.userSettingsService.getUserSettingsForJar).not.toHaveBeenCalled();
+      expect(instance.gameLauncherService.loadGame).not.toHaveBeenCalled();
+    }));
 })

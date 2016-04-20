@@ -6,42 +6,42 @@ import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
 
 @Component({
-    selector: 'home',
-    templateUrl: `./app/components/home/home.html`
+  selector: 'home',
+  templateUrl: `./app/components/home/home.html`
 })
 @CanActivate(
-    (nextInstr: any, currInstr: any) => {
-        let injector: any = Injector.resolveAndCreate([AuthService]);
-        let authService: AuthService = injector.get(AuthService);
-        return authService.isLogged();
-    }
+  (nextInstr: any, currInstr: any) => {
+    let injector: any = Injector.resolveAndCreate([AuthService]);
+    let authService: AuthService = injector.get(AuthService);
+    return authService.isLogged();
+  }
 )
 export class HomeComponent {
-    public zapoznajSeSoKomp = {
-        name: 'Причина и последица',
-        gameFileName: 'desktop-1.0.jar'
-    };
+  public zapoznajSeSoKomp = {
+    name: 'Причина и последица',
+    gameFileName: 'desktop-1.0.jar'
+  };
 
-    public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
+  public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
 
-    public currentUserName: string;
+  public currentUserName: string;
 
-    constructor(private authService: AuthService, private userSettingsService: UserSettingsService, private gameLauncherService: GameLauncherService) {
-        this.currentUserName = this.authService.getUser();
-    }
+  constructor(private authService: AuthService, private userSettingsService: UserSettingsService, private gameLauncherService: GameLauncherService) {
+    this.currentUserName = this.authService.getUser();
+  }
 
-    loadGame(selectedGame) {
+  loadGame(selectedGame) {
 
-        this.gameLauncherService.isGameStarted().subscribe(data => {
-            var isGameStarted: boolean = data;
+    this.gameLauncherService.isGameStarted().subscribe(data => {
+      var isGameStarted: boolean = data;
 
-            if (!isGameStarted) {
-                this.userSettingsService.getUserSettingsForJar(this.currentUserName)
-                    .subscribe(data => {
-                        this.gameLauncherService.loadGame(selectedGame, data)
-                            .subscribe(res => { });
-                    });
-            }
-        })
-    }
+      if (!isGameStarted) {
+        this.userSettingsService.getUserSettingsForJar(this.currentUserName)
+          .subscribe(data => {
+            this.gameLauncherService.loadGame(selectedGame, data)
+              .subscribe(res => { });
+          });
+      }
+    })
+  }
 }

@@ -28,6 +28,7 @@ describe('GlobalServiceTests', () => {
   }));
 
   it('URL_STARTGAME_givenSelectedGame_and_userSettings_shouldGetApiLoadGamePath', inject([GlobalService], (instance) => {
-    expect(instance.URL_STARTGAME('test.jar', '-bw false -ps s -pc white')).toEqual('http://localhost:3000/api/startGame?selectedGame=test.jar&userSettings=-bw false -ps s -pc white');
+    expect(instance.URL_STARTGAME('test.jar', '-bw false -ps s -pc white'))
+      .toEqual('http://localhost:3000/api/startGame?selectedGame=test.jar&userSettings=-bw false -ps s -pc white');
   }));
 });

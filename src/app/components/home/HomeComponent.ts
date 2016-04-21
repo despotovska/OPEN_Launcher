@@ -21,27 +21,27 @@ export class HomeComponent {
     name: 'Причина и последица',
     gameFileName: 'desktop-1.0.jar'
   };
-
   public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
-
   public currentUserName: string;
 
-  constructor(private authService: AuthService, private userSettingsService: UserSettingsService, private gameLauncherService: GameLauncherService) {
+  constructor(
+    private authService: AuthService,
+    private userSettingsService: UserSettingsService,
+    private gameLauncherService: GameLauncherService) {
     this.currentUserName = this.authService.getUser();
   }
 
   loadGame(selectedGame) {
-
     this.gameLauncherService.isGameStarted().subscribe(data => {
-      var isGameStarted: boolean = data;
+      let isGameStarted: boolean = data;
 
       if (!isGameStarted) {
         this.userSettingsService.getUserSettingsForJar(this.currentUserName)
-          .subscribe(data => {
-            this.gameLauncherService.loadGame(selectedGame, data)
+          .subscribe(userSettings => {
+            this.gameLauncherService.loadGame(selectedGame, userSettings)
               .subscribe(res => { });
           });
       }
-    })
+    });
   }
 }

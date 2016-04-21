@@ -34,7 +34,7 @@ describe('HomeComponentTests', () => {
       spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
-      var testGameFileName = 'test.jar';
+      let testGameFileName = 'test.jar';
 
       // Act
       instance.loadGame(testGameFileName);
@@ -55,7 +55,7 @@ describe('HomeComponentTests', () => {
       spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
-      var testGameFileName = 'test.jar';
+      let testGameFileName = 'test.jar';
 
       // Act
       instance.loadGame(testGameFileName);
@@ -65,4 +65,4 @@ describe('HomeComponentTests', () => {
       expect(instance.userSettingsService.getUserSettingsForJar).not.toHaveBeenCalled();
       expect(instance.gameLauncherService.loadGame).not.toHaveBeenCalled();
     }));
-})
+});

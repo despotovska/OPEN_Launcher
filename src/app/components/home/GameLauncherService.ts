@@ -19,10 +19,10 @@ export class GameLauncherService implements IGameLauncherService {
 
   isGameStarted() {
     return this.http.get(this.globalService.URL_IS_GAMESTARTED).map(res => {
-      var isGameStarted: boolean = JSON.parse(res.json());
+      let isGameStarted: boolean = JSON.parse(res.json());
       return isGameStarted;
     });
   }
 }
 
-export var gameLauncherServiceInjectables: Array<any> = [bind(GameLauncherService).toClass(GameLauncherService)];
+export let gameLauncherServiceInjectables: Array<any> = [bind(GameLauncherService).toClass(GameLauncherService)];

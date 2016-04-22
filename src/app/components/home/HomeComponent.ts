@@ -19,7 +19,7 @@ import {GameLauncherService} from './GameLauncherService';
 export class HomeComponent {
   public zapoznajSeSoKomp = {
     name: 'Причина и последица',
-    gameFileName: 'desktop-1.0.jar'
+    gameFileName: 'desktop_1.0.jar'
   };
   public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
   public currentUserName: string;

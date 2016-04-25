@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
 
 import {UserService} from '../../shared/services/UserService';
@@ -13,7 +13,7 @@ import {UsersPipe} from '../../shared/pipes/UsersPipe';
   pipes: [UsersPipe],
   templateUrl: `./app/components/login/login.html`
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public allUsers: User[] = new Array<User>();
   public selectedUser: User = new User();
   public query = '';
@@ -25,6 +25,12 @@ export class LoginComponent {
     private router: Router) {
 
     this.setAllUsers();
+  }
+
+  ngOnInit() {
+    if (this.authService.isLogged()) {
+      this.router.navigate(['Home']);
+    }
   }
 
   setAllUsers(): void {

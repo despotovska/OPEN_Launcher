@@ -12,7 +12,7 @@ var UploadPage = function() {
   var uploadBtn = element(by.css("body > app > div > upload-picture > div > div > div > div > input.btn.btn-success"));
   var choosePicture = element(by.css("body > app > div > upload-picture > div > div > div > div > div > input"));
   var pathFiled = element(by.css("body > app > div > upload-picture > div > div > div > div > input.form-control"));
-
+  //var isPictureShown = element(by.("body > app > div > upload-picture > div > div > div > img"));
   this.uploadPicture = function() {
     navigateToUpload.click();
     console.log("Navigated to upload page");
@@ -28,6 +28,10 @@ var UploadPage = function() {
     return alertmessage.getText();
   };
 
+//   this.isUploadPictureShown = function() {
+//     return isPictureShown.isPresent();
+//   };
+  
   this.navigateToUploadPage = function() {
     navigateToUpload.click();
   };

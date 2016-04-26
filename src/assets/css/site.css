@@ -1,14 +1,14 @@
-img{
+img {
     height: 128px;
     width: 128px;
 }
 
-a.link{
+a.link {
     cursor: pointer;
 }
 
 .profileBox {
-    border: gold 2px solid;
+    border: #ffd699 2px solid;
     border-radius: 25px 25px 0px 0px;
     width: 132px;
 }
@@ -21,7 +21,7 @@ a.link{
 
 .selected {
     box-shadow:0px 12px 22px 1px #333;
-    border:solid 2px gold !important;
+    border:solid 2px #ffd699 !important;
 }
 
 .text-overflow {
@@ -39,7 +39,7 @@ a.link{
   margin-top:10px !important;
 }
 
-.left-buffer{
+.left-buffer {
   margin-left:20px;
 }
 
@@ -60,39 +60,39 @@ a.link{
     filter: alpha(opacity=0);
 }
 
-.color-box{
+.color-box {
   height: 128px;
   width: 128px;
   border: 1px #cccccc solid;
 }
 
-.pointer-color-0{
+.pointer-color-0 {
   background-color:white;
 }
 
-.pointer-color-1{
+.pointer-color-1 {
   background-color:yellow;
 }
 
-.pointer-color-2{
+.pointer-color-2 {
   background-color:green;
 }
 
-.pointer-color-3{
+.pointer-color-3 {
   background-color:blue;
 }
 
-.pointer-color-4{
+.pointer-color-4 {
   background-color:red;
 }
 
-.deleteBtn{
+.deleteBtn {
     position:absolute;
     top:0;
     right:0;
 }
 
-.btn-block{
+.btn-block {
     text-align: left;
 }
 
@@ -126,16 +126,11 @@ body {
   border-color: #26734d;
 }
 
-#navbar {
-  background-color: #F2784B;
-  border-color: #bf3d0d;
-}
-
 .shadow{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.fixed-top{
+.fixed-top {
   position: fixed;
   top: 60px;
   left: 60px;
@@ -143,11 +138,39 @@ body {
   z-index: 1030;
 }
 
-.navbar-nav > li > a {
-  color : white !important;
-  font-size:16px !important;
+.navbar-custom {
+  background-color: #F2784B;
+  border-color: #F2784B;
+  color:#ffffff;
+  border-radius:0;
 }
 
-.navbar-nav > li > a:hover {
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+    font-size:16px;
+}
+
+.navbar-custom .navbar-nav .open > a,
+.navbar-custom .navbar-nav > li > a,
+ .navbar-nav > li > a:hover,
+  .navbar-nav > li > a:focus {
+    color: #ffffff;
+    background-color:#F2784B;
+}
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-brand > a:hover {
   text-decoration: underline;
+}
+
+.navbar-custom .navbar-toggle {
+  border-color:#ffffff;
+}
+
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color:#ffffff;
 }

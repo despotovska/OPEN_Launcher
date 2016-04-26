@@ -30,17 +30,17 @@ export class UploadPictureComponent {
   onChange(event): void {
     this.selectedFile = event.srcElement.files[0];
     this.selectedImage = this.selectedFile.name;
-    
+
     this.selectedImagePath = '';
 
-    var reader = new FileReader();
-    
-    reader.addEventListener("load", (event)=>{
-                this.selectedImagePath = (<IDBOpenDBRequest>event.target).result;
-            }, false);
-            if (this.selectedFile) {
-                reader.readAsDataURL(this.selectedFile);
-            }
+    let reader = new FileReader();
+
+    reader.addEventListener('load', (eventListener) => {
+      this.selectedImagePath = (<IDBOpenDBRequest>eventListener.target).result;
+    }, false);
+    if (this.selectedFile) {
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   resetSelected(): void {

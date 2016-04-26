@@ -16,23 +16,35 @@ import {UploadPictureService} from './UploadPictureService';
   }
 )
 export class UploadPictureComponent {
-  public selectedFiles: File[];
+  public selectedFile: File;
   public selectedImage: string;
+  public selectedImagePath: string;
 
   constructor(private uploadPictureService: UploadPictureService) { }
 
   uploadFile(): void {
-    this.uploadPictureService.upload(this.selectedFiles[0]);
+    this.uploadPictureService.upload(this.selectedFile);
     this.resetSelected();
   }
 
   onChange(event): void {
-    this.selectedFiles = event.srcElement.files;
-    this.selectedImage = this.selectedFiles[0].name;
+    this.selectedFile = event.srcElement.files[0];
+    this.selectedImage = this.selectedFile.name;
+    
+    this.selectedImagePath = '';
+
+    var reader = new FileReader();
+    
+    reader.addEventListener("load", (event)=>{
+                this.selectedImagePath = (<IDBOpenDBRequest>event.target).result;
+            }, false);
+            if (this.selectedFile) {
+                reader.readAsDataURL(this.selectedFile);
+            }
   }
 
   resetSelected(): void {
     this.selectedImage = '';
-    this.selectedFiles = undefined;
+    this.selectedFile = undefined;
   }
 }

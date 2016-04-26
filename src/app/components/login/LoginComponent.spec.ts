@@ -172,4 +172,17 @@ describe('LoginComponentTests', () => {
       // Assert
       expect(flag).toBeFalsy();
     }));
+
+  it('ngOnInit_givenLoggedInUser_shouldRouterNavigateToHome',
+    inject([LoginComponent], (instance) => {
+      // Arrange
+      spyOn(instance.authService, 'isLogged').and.callFake(() => { return true; });
+      spyOn(instance.router, 'navigate').and.callFake(() => { });
+
+      // Act
+      instance.ngOnInit();
+
+      // Assert
+      expect(instance.router.navigate).toHaveBeenCalledWith(['Home']);
+    }));
 });

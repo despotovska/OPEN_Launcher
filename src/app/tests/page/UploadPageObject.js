@@ -12,7 +12,9 @@ var UploadPage = function() {
   var uploadBtn = element(by.css("body > app > div > upload-picture > div > div > div > div > input.btn.btn-success"));
   var choosePicture = element(by.css("body > app > div > upload-picture > div > div > div > div > div > input"));
   var pathFiled = element(by.css("body > app > div > upload-picture > div > div > div > div > input.form-control"));
-  //var isPictureShown = element(by.("body > app > div > upload-picture > div > div > div > img"));
+  var isPictureShown = element(by.css("body > app > div > upload-picture > div > div > div > div.col-sm-3 > img"));
+
+
   this.uploadPicture = function() {
     navigateToUpload.click();
     console.log("Navigated to upload page");
@@ -24,14 +26,24 @@ var UploadPage = function() {
     console.log("Picture uploaded");
   };
 
+   this.preUploadPicture = function() {
+    navigateToUpload.click();
+    console.log("Navigated to upload page");
+    //make it visible
+    browser.executeScript('arguments[0].style.visibility = "visible"; arguments[0].style.overflow = "visible"; arguments[0].style.height = "1px"; arguments[0].style.width = "1px";  arguments[0].style.opacity = 1', elm.getWebElement());
+    elm.sendKeys(absolutePath);
+    console.log("Path sent");
+    console.log("Picture uploaded");
+  };
+
   this.returnMessage = function() {
     return alertmessage.getText();
   };
 
-//   this.isUploadPictureShown = function() {
-//     return isPictureShown.isPresent();
-//   };
-  
+  this.isUploadPictureShown = function() {
+  return isPictureShown.isPresent();
+  };
+
   this.navigateToUploadPage = function() {
     navigateToUpload.click();
   };

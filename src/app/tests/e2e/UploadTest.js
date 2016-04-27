@@ -17,7 +17,6 @@ describe("Upload picture page", function() {
 
     LogInPage.logIn();
     UploadPage.uploadPicture();
-    
     browser.sleep(500);
     browser.ignoreSynchronization = true;
     expect(UploadPage.returnMessage()).toEqual("Сликата е успешно додадена!");
@@ -26,15 +25,14 @@ describe("Upload picture page", function() {
     LogInPage.logOut();
     console.log("Finishing: Logged user can upload picture");
   });
-  
-//   it("Logged user can upload picture ", function() {
 
-//     LogInPage.logIn();
-//     UploadPage.uploadPicture();
-//     expect(UploadPage.isUploadPictureShown()).toBe(true);
-//     LogInPage.logOut();
-//     console.log("Finishing: Logged user can upload picture");
-//   });
+  it("Picture is shown ", function() {
+    LogInPage.logIn();
+    UploadPage.preUploadPicture();
+    expect(UploadPage.isUploadPictureShown()).toBe(true);
+    LogInPage.logOut();
+    console.log("Finishing: Logged user can upload picture");
+  });
 
   it("Upload picture page not available if user is not logged in ", function() {
     expect(UploadPage.isNavigateToUploadPageVisible()).toBe(false);

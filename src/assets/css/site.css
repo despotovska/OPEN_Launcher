@@ -121,7 +121,7 @@ body {
     content:"\e080";
 }
 
-#section1 { /* same for btn on upload picture page */
+.green {
   background-color: #339966;
   border-color: #26734d;
 }

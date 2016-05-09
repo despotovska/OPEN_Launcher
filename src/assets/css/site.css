@@ -126,6 +126,11 @@ body {
   border-color: #26734d;
 }
 
+.green:hover {
+  background-color: #2d8659;
+  border-color: #26734d;
+}
+
 .shadow{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

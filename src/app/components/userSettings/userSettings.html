@@ -32,3 +32,33 @@
     </div>
   </div>
 </div>
+
+<div id="deviceType" class=" form-group top-buffer">
+  <label class="col-sm-2 control-label">Асистивни уреди:</label>
+  <div class="col-sm-10">
+    <div class="radio">
+      <label class="h4">
+        <input #mouse name="deviceTypesOption" type="radio" value="0" [checked]="shouldDeviceTypeBeChecked(mouse.value)" (click)="selectDeviceType(mouse.value)"
+        />Глувче
+      </label>
+    </div>
+    <div class="radio">
+      <label class="h4">
+        <input #touchscreen name="deviceTypesOption" type="radio" value="1" [checked]="shouldDeviceTypeBeChecked(touchscreen.value)" (click)="selectDeviceType(touchscreen.value)"
+        />Екран на допир
+      </label>
+    </div>
+     <div class="radio">
+      <label class="h4">
+        <input #trackball name="deviceTypesOption" type="radio" value="2" [checked]="shouldDeviceTypeBeChecked(trackball.value)" (click)="selectDeviceType(trackball.value)"
+        />Тракбол
+      </label>
+    </div>
+    <div class="radio">
+      <label class="h4">
+        <input #joystick name="deviceTypesOption" type="radio" value="3" [checked]="shouldDeviceTypeBeChecked(joystick.value)" (click)="selectDeviceType(joystick.value)"
+        />Џојстик
+      </label>
+    </div>
+  </div>
+</div>

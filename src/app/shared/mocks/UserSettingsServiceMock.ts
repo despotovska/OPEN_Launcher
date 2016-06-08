@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs/Rx';
 
 import {UserSettings} from '../models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
 import {IUserSettingsService} from '../services/UserSettingsService';
 
 export class UserSettingsServiceMock implements IUserSettingsService {
@@ -10,6 +10,7 @@ export class UserSettingsServiceMock implements IUserSettingsService {
     userSettings.pointerType = PointerType.Hand;
     userSettings.pointerSize = PointerSize.Small;
     userSettings.pointerColor = PointerColor.Blue;
+    userSettings.deviceType = DeviceTypes.Mouse;
   }
 
   getUserSettingsFor(userName: string) {
@@ -21,7 +22,7 @@ export class UserSettingsServiceMock implements IUserSettingsService {
   getUserSettingsForJar(userName: string) {
     let userSettings: UserSettings = new UserSettings();
     UserSettingsServiceMock.setUserSetting(userSettings);
-    let userSettingsForJar: string = '-bw false -ps s -pc white';
+    let userSettingsForJar: string = '-bw false -ps s -pc white -dt mouse';
     return Observable.of(userSettingsForJar);
   }
 

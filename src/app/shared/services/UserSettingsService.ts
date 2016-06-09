@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
 import {UserSettings} from '../models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes } from '../enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../enums/UserSettingsEnums';
 
 export interface IUserSettingsService {
   getUserSettingsFor(username: string): Observable<UserSettings>;
@@ -42,11 +42,6 @@ export class UserSettingsService implements IUserSettingsService {
                 : (userSettings.pointerColor === PointerColor.Red) ? mapUserSettings += ' -pc red'
                   : mapUserSettings += ' -pc white';
 
-        (userSettings.deviceType === DeviceTypes.Mouse) ? mapUserSettings += ' -dt mouse'
-          : (userSettings.deviceType === DeviceTypes.Touchscreen) ? mapUserSettings += ' -dt touchscreen'
-            : (userSettings.deviceType === DeviceTypes.Trackball) ? mapUserSettings += ' -dt trackball'
-              : (userSettings.deviceType === DeviceTypes.Joystick) ? mapUserSettings += ' -dt joystick'
-                : mapUserSettings += ' -dt mouse';
         return mapUserSettings;
       });
   }

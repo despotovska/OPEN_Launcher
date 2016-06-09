@@ -89,7 +89,7 @@ describe('UserSettingsServiceTests', () => {
     inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       // Arrange
       let userSettingsObject = getDefaultUserSettingsObject();
-      let userSettingsForJar: string = ' -bw false -ps s -pc white -dt mouse';
+      let userSettingsForJar: string = ' -bw false -ps s -pc white';
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {

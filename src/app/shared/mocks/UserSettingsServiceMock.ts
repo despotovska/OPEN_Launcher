@@ -22,7 +22,7 @@ export class UserSettingsServiceMock implements IUserSettingsService {
   getUserSettingsForJar(userName: string) {
     let userSettings: UserSettings = new UserSettings();
     UserSettingsServiceMock.setUserSetting(userSettings);
-    let userSettingsForJar: string = '-bw false -ps s -pc white -dt mouse';
+    let userSettingsForJar: string = '-bw false -ps s -pc white';
     return Observable.of(userSettingsForJar);
   }
 

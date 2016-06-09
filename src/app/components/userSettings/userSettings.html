@@ -38,25 +38,25 @@
   <div class="col-sm-10">
     <div class="radio">
       <label class="h4">
-        <input #mouse name="deviceTypesOption" type="radio" value="0" [checked]="shouldDeviceTypeBeChecked(mouse.value)" (click)="selectDeviceType(mouse.value)"
+        <input #mouse name="deviceTypesOption" type="radio" value="0" id="device-type-0" [checked]="shouldDeviceTypeBeChecked(mouse.value)" (click)="selectDeviceType(mouse.value)"
         />Глувче
       </label>
     </div>
     <div class="radio">
       <label class="h4">
-        <input #touchscreen name="deviceTypesOption" type="radio" value="1" [checked]="shouldDeviceTypeBeChecked(touchscreen.value)" (click)="selectDeviceType(touchscreen.value)"
+        <input #touchscreen name="deviceTypesOption" type="radio" value="1" id="device-type-1" [checked]="shouldDeviceTypeBeChecked(touchscreen.value)" (click)="selectDeviceType(touchscreen.value)"
         />Екран на допир
       </label>
     </div>
      <div class="radio">
       <label class="h4">
-        <input #trackball name="deviceTypesOption" type="radio" value="2" [checked]="shouldDeviceTypeBeChecked(trackball.value)" (click)="selectDeviceType(trackball.value)"
+        <input #trackball name="deviceTypesOption" type="radio" value="2" id="device-type-2" [checked]="shouldDeviceTypeBeChecked(trackball.value)" (click)="selectDeviceType(trackball.value)"
         />Тракбол
       </label>
     </div>
     <div class="radio">
       <label class="h4">
-        <input #joystick name="deviceTypesOption" type="radio" value="3" [checked]="shouldDeviceTypeBeChecked(joystick.value)" (click)="selectDeviceType(joystick.value)"
+        <input #joystick name="deviceTypesOption" type="radio" value="3" id="device-type-3" [checked]="shouldDeviceTypeBeChecked(joystick.value)" (click)="selectDeviceType(joystick.value)"
         />Џојстик
       </label>
     </div>

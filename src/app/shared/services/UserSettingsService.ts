@@ -24,6 +24,40 @@ export class UserSettingsService implements IUserSettingsService {
       });
   }
 
+    getUserSettingsForElectron(username: string): Observable<string> {
+      let mapUserSettings: string = '';
+
+      return this.http.get(this.globalService.URL_GET_USERSETTINGS(username))
+      .map(res => {
+        let userSettings: UserSettings = res.json();
+
+        (userSettings.pointerSize === PointerSize.Small) ? mapUserSettings += ' s' : mapUserSettings += ' b';
+
+        switch (userSettings.pointerColor) {
+          case PointerColor.White:
+            mapUserSettings += ' w';
+            break;
+          case PointerColor.Yellow:
+            mapUserSettings += ' y';
+            break;
+          case PointerColor.Green:
+           mapUserSettings += ' g';
+            break;
+          case PointerColor.Blue:
+            mapUserSettings += ' b';
+            break;
+          case PointerColor.Red:
+            mapUserSettings += ' r';
+            break;
+          default:
+            mapUserSettings += ' w';
+            break;
+        }
+
+        return mapUserSettings;
+      });
+  }
+
   getUserSettingsForJar(username: string): Observable<string> {
     let mapUserSettings: string = '';
     let userSettingsData: UserSettings;

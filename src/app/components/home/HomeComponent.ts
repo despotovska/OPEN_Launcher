@@ -18,10 +18,10 @@ import {GameModel} from './GameModel';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'java -jar {gamesPath}desktop_1.0.jar');
+  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'java -jar {gamesPath}cause_and_effect_1.0.jar');
 
   public ucimeSoKomp: Array<GameModel> = [
-    new GameModel('Парови', ''),
+    new GameModel('Парови', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
     new GameModel('Кој се крие', ''),
     new GameModel('Сложувалка', ''),
     new GameModel('Јас и мојот дом', ''),
@@ -46,6 +46,9 @@ export class HomeComponent {
         case this.zapoznajSeSoKomp.name:
           this.loadCauseAndEffectGame();
           break;
+        case this.ucimeSoKomp[0].name:
+          this.loadPairsGame();
+          break;
         default:
           break;
       }
@@ -55,7 +58,15 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + ' ' + userSettings)
+        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + userSettings)
+          .subscribe(res => { });
+      });
+  }
+
+  loadPairsGame() {
+    this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
+      .subscribe(userSettings => {
+        this.gameLauncherService.loadGame(this.ucimeSoKomp[0].startCommand + userSettings)
           .subscribe(res => { });
       });
   }

@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
 import {UserSettings} from '../models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor } from '../enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../enums/UserSettingsEnums';
 
 export interface IUserSettingsService {
   getUserSettingsFor(username: string): Observable<UserSettings>;
@@ -41,6 +41,7 @@ export class UserSettingsService implements IUserSettingsService {
               : (userSettings.pointerColor === PointerColor.Blue) ? mapUserSettings += ' -pc blue'
                 : (userSettings.pointerColor === PointerColor.Red) ? mapUserSettings += ' -pc red'
                   : mapUserSettings += ' -pc white';
+
         return mapUserSettings;
       });
   }

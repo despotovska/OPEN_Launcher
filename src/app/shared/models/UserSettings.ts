@@ -2,13 +2,15 @@ import {
   PointerColor,
   PointerSize,
   PointerType,
-  BackgroundColor} from '../enums/UserSettingsEnums';
+  BackgroundColor,
+  DeviceTypes} from '../enums/UserSettingsEnums';
 
 export interface IUserSettings {
   pointerType: PointerType;
   pointerSize: PointerSize;
   pointerColor: PointerColor;
   backgroundColor: BackgroundColor;
+  deviceType: DeviceTypes;
 }
 
 export class UserSettings implements IUserSettings {
@@ -16,4 +18,5 @@ export class UserSettings implements IUserSettings {
   pointerSize: PointerSize;
   pointerColor: PointerColor;
   backgroundColor: BackgroundColor;
+  deviceType: DeviceTypes;
 }

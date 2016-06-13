@@ -34,14 +34,23 @@ export class HomeComponent {
   loadGame(selectedGame) {
     this.gameLauncherService.isGameStarted().subscribe(data => {
       let isGameStarted: boolean = data;
+      if (isGameStarted) return;
 
-      if (!isGameStarted) {
-        this.userSettingsService.getUserSettingsForJar(this.currentUserName)
-          .subscribe(userSettings => {
-            this.gameLauncherService.loadGame(selectedGame, userSettings)
-              .subscribe(res => { });
-          });
+      switch (selectedGame) {
+        case this.zapoznajSeSoKomp.gameFileName:
+          this.loadCauseAndEffectGame();
+          break;
+        default:
+          break;
       }
     });
+  }
+
+  loadCauseAndEffectGame() {
+    this.userSettingsService.getUserSettingsForJar(this.currentUserName)
+      .subscribe(userSettings => {
+        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.gameFileName, userSettings)
+          .subscribe(res => { });
+      });
   }
 }

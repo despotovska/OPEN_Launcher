@@ -18,7 +18,8 @@ describe('UserSettingsServiceTests', () => {
       UserSettingsEnums.PointerSize.Small,
       UserSettingsEnums.PointerType.Hand,
       UserSettingsEnums.PointerColor.White,
-      UserSettingsEnums.BackgroundColor.InColor
+      UserSettingsEnums.BackgroundColor.InColor,
+      UserSettingsEnums.DeviceTypes.Mouse
     );
   }
 
@@ -26,13 +27,15 @@ describe('UserSettingsServiceTests', () => {
     pointerSize: UserSettingsEnums.PointerSize,
     pointerType: UserSettingsEnums.PointerType,
     pointerColor: UserSettingsEnums.PointerColor,
-    backgroundColor: UserSettingsEnums.BackgroundColor
+    backgroundColor: UserSettingsEnums.BackgroundColor,
+    deviceType: UserSettingsEnums.DeviceTypes
   ): UserSettings {
     let result = new UserSettings();
     result.pointerSize = pointerSize;
     result.pointerType = pointerType;
     result.pointerColor = pointerColor;
     result.backgroundColor = backgroundColor;
+    result.deviceType = deviceType;
     return result;
   }
 
@@ -74,6 +77,7 @@ describe('UserSettingsServiceTests', () => {
           expect(data.pointerType).toBe(UserSettingsEnums.PointerType.Hand);
           expect(data.pointerColor).toBe(UserSettingsEnums.PointerColor.White);
           expect(data.backgroundColor).toBe(UserSettingsEnums.BackgroundColor.InColor);
+          expect(data.deviceType).toBe(UserSettingsEnums.DeviceTypes.Mouse);
         },
         (error) => {
           fail(error);
@@ -128,6 +132,7 @@ describe('UserSettingsServiceTests', () => {
           expect(data.pointerType).toBe(UserSettingsEnums.PointerType.Hand);
           expect(data.pointerColor).toBe(UserSettingsEnums.PointerColor.White);
           expect(data.backgroundColor).toBe(UserSettingsEnums.BackgroundColor.InColor);
+          expect(data.deviceType).toBe(UserSettingsEnums.DeviceTypes.Mouse);
         },
         (error) => {
           fail(error);

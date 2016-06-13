@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/Rx';
 
 import {UserSettingsComponent} from './UserSettingsComponent';
 import {UserSettingsColorsService} from './UserSettingsColorsService';
-import {PointerColor, PointerSize, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
+import {PointerColor, PointerSize, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
 import {Alert} from '../../shared/models/Alert';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {ImagesService} from '../../shared/services/ImagesService';
@@ -74,6 +74,23 @@ describe('UserSettingsComponentTests', () => {
       });
     }));
 
+  it('setDeviceType_givenMouseDeviceType_shouldSetDeviceType',
+    injectAsync([TestComponentBuilder], (tcb) => {
+      return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
+        // Arrange
+        let deviceType: DeviceTypes = DeviceTypes.Mouse;
+        let instance = fixture.componentInstance;
+        instance.userSettings = new UserSettings();
+        instance.userSettings.deviceType = DeviceTypes.Mouse;
+
+        // Act
+        instance.setDeviceType(deviceType);
+
+        // Assert
+        expect(instance.userSettings.deviceType).toEqual(deviceType);
+      });
+    }));
+
   it('selectBackgroundColor_givenBlackAndWhiteBgColor_shouldCallSetBackgroundMethodAndSetPointerDefaults',
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
@@ -95,6 +112,24 @@ describe('UserSettingsComponentTests', () => {
         // Assert
         expect(instance.setBackgroundColorAndPointerColors).toHaveBeenCalledWith(bgColor);
         expect(instance.selectPointerColor).toHaveBeenCalledWith(defaultPointerColor);
+      });
+    }));
+
+  it('selectDeviceType_givenMouseDeviceType_shouldCallSetDeviceTypeMethod',
+    injectAsync([TestComponentBuilder], (tcb) => {
+      return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
+        // Arrange
+        let deviceType: DeviceTypes = DeviceTypes.Touchscreen;
+        let instance = fixture.componentInstance;
+        instance.userSettings = new UserSettings();
+        instance.userSettings.deviceType = DeviceTypes.Touchscreen;
+        spyOn(instance, 'setDeviceType').and.callThrough();
+
+        // Act
+        instance.selectDeviceType(deviceType);
+
+        // Assert
+        expect(instance.setDeviceType).toHaveBeenCalledWith(deviceType);
       });
     }));
 
@@ -188,6 +223,23 @@ describe('UserSettingsComponentTests', () => {
 
         // Assert
         expect(shouldApplyCss).toBeFalsy();
+      });
+    }));
+
+  it('shouldDeviceTypeBeChecked_givenSelectedDeviceType_shouldBeTruthy',
+    injectAsync([TestComponentBuilder], (tcb) => {
+      return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
+        // Arrange
+        let selectedDeviceType: DeviceTypes = DeviceTypes.Mouse;
+        let instance = fixture.componentInstance;
+        instance.userSettings = new UserSettings();
+        instance.userSettings.deviceType = selectedDeviceType;
+
+        // Act
+        let checked = instance.shouldDeviceTypeBeChecked(selectedDeviceType);
+
+        // Assert
+        expect(checked).toBeTruthy();
       });
     }));
 });

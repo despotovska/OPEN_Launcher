@@ -6,7 +6,7 @@ import {IGameLauncherService} from '../../components/home/GameLauncherService';
 export class GameLauncherServiceMock implements IGameLauncherService {
   public static gameStarted: boolean = false;
 
-  loadGame(selectedGame, userSettings) {
+  loadGame(startCommand) {
     return Observable.of(new Observable<Response>());
   }
 

@@ -104,17 +104,10 @@ server.post('/api/saveUserSettings/:username?', function (req, res) {
 });
 
 server.get('/api/startGame', function (req, res) {
+  var startCommand = req.param('startCommand');
+  startCommand = startCommand.replace('{gamesPath}', paths.gamesPath);
 
-  var selectedGame = req.param('selectedGame');
-  var userSettings = req.param('userSettings');
-
-  var fullPath = paths.gamesPath + selectedGame;
-  fullPath.replace(/\\/g, "\\\\");
-
-  const JAVA_EXE_COMMAND = "java -jar ";
-
-  console.log(JAVA_EXE_COMMAND + fullPath + userSettings);
-  var cp = childProcess.exec(JAVA_EXE_COMMAND + fullPath + userSettings, function (error, stdout, stderr) {
+  var cp = childProcess.exec(startCommand, function (error, stdout, stderr) {
     this.isGameStarted = false;
   });
 

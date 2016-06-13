@@ -24,7 +24,7 @@ describe('HomeComponentTests', () => {
     HomeComponent
   ]);
 
-  it('loadGame_givenSelectedGame_shouldCallLoadGameApi_WhenGameIsNotStartted',
+  it('loadGame_givenSelectedGame_shouldCallLoadGameApi_WhenGameIsNotStarted',
     inject([HomeComponent], (instance) => {
       // Arrange
       GameLauncherServiceMock.gameStarted = false;
@@ -34,10 +34,10 @@ describe('HomeComponentTests', () => {
       spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
-      let testGameFileName = 'test.jar';
+      let gameName = 'Причина и последица';
 
       // Act
-      instance.loadGame(testGameFileName);
+      instance.loadGame(gameName);
 
       // Assert
       expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();
@@ -55,10 +55,10 @@ describe('HomeComponentTests', () => {
       spyOn(instance.userSettingsService, 'getUserSettingsForJar').and.callThrough();
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
-      let testGameFileName = 'test.jar';
+      let gameName = 'Причина и последица';
 
       // Act
-      instance.loadGame(testGameFileName);
+      instance.loadGame(gameName);
 
       // Assert
       expect(instance.gameLauncherService.isGameStarted).toHaveBeenCalled();

@@ -18,7 +18,7 @@ import {GameModel} from './GameModel';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'desktop_1.0.jar');
+  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'java -jar {gamesPath}desktop_1.0.jar');
 
   public ucimeSoKomp: Array<GameModel> = [
     new GameModel('Парови', ''),
@@ -55,7 +55,7 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand, userSettings)
+        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + ' ' + userSettings)
           .subscribe(res => { });
       });
   }

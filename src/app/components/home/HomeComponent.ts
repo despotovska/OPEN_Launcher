@@ -4,6 +4,7 @@ import {CanActivate} from 'angular2/router';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
+import {GameModel} from './GameModel';
 
 @Component({
   selector: 'home',
@@ -17,11 +18,16 @@ import {GameLauncherService} from './GameLauncherService';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp = {
-    name: 'Причина и последица',
-    gameFileName: 'desktop_1.0.jar'
-  };
-  public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
+  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'desktop_1.0.jar');
+
+  public ucimeSoKomp: Array<GameModel> = [
+    new GameModel('Парови', ''),
+    new GameModel('Кој се крие', ''),
+    new GameModel('Сложувалка', ''),
+    new GameModel('Јас и мојот дом', ''),
+    new GameModel('Приказна', '')
+  ];
+
   public currentUserName: string;
 
   constructor(
@@ -37,7 +43,7 @@ export class HomeComponent {
       if (isGameStarted) return;
 
       switch (selectedGame) {
-        case this.zapoznajSeSoKomp.gameFileName:
+        case this.zapoznajSeSoKomp.name:
           this.loadCauseAndEffectGame();
           break;
         default:
@@ -49,7 +55,7 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.gameFileName, userSettings)
+        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand, userSettings)
           .subscribe(res => { });
       });
   }

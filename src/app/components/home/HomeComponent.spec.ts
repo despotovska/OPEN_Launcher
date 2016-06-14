@@ -12,12 +12,14 @@ import {GameLauncherService} from './GameLauncherService';
 import {GameLauncherServiceMock} from '../../shared/mocks/GameLauncherServiceMock';
 import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
 import {AuthService} from '../../shared/services/AuthService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsServiceMock} from '../../shared/mocks/UserSettingsServiceMock';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {Observable} from 'rxjs/Rx';
 
 describe('HomeComponentTests', () => {
   beforeEachProviders(() => [
+    AlertingService,
     provide(AuthService, { useClass: AuthServiceMock }),
     provide(GameLauncherService, { useClass: GameLauncherServiceMock }),
     provide(UserSettingsService, { useClass: UserSettingsServiceMock }),

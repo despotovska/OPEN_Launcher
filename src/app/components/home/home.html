@@ -9,9 +9,9 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
             <figure class="btn btn-default">
-              <a (click)="loadGame(zapoznajSeSoKomp.name)">
-                <img src="./assets/images/games/{{zapoznajSeSoKomp.image}}" alt="{{zapoznajSeSoKomp.name}}">
-                <figcaption>{{zapoznajSeSoKomp.name}}</figcaption>
+              <a (click)="loadGame(getToKnowTheComputer.name)">
+                <img src="./assets/images/games/{{getToKnowTheComputer.image}}" alt="{{getToKnowTheComputer.name}}">
+                <figcaption>{{getToKnowTheComputer.name}}</figcaption>
               </a>
             </figure>
           </div>
@@ -24,7 +24,7 @@
         data-parent="#accordion">Учиме со компјутерот</button>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of ucimeSoKomp">
+          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of learningWithTheComputer">
             <figure class="btn btn-default">
               <a (click)="loadGame(game.name)">
                 <img src="./assets/images/games/{{game.image}}" alt="{{game.name}}">

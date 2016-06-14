@@ -20,9 +20,12 @@ import {GameModel} from './GameModel';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'cause_and_effect.png', 'java -jar {gamesPath}cause_and_effect_1.0.jar');
+  public getToKnowTheComputer: GameModel = new GameModel(
+    'Причина и последица',
+    'cause_and_effect.png',
+    'java -jar {gamesPath}cause_and_effect_1.0.jar');
 
-  public ucimeSoKomp: Array<GameModel> = [
+  public learningWithTheComputer: Array<GameModel> = [
     new GameModel('Парови', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
     new GameModel('Кој се крие', 'computer.png', ''),
     new GameModel('Сложувалка', 'computer.png', ''),
@@ -49,10 +52,10 @@ export class HomeComponent {
       }
 
       switch (selectedGame) {
-        case this.zapoznajSeSoKomp.name:
+        case this.getToKnowTheComputer.name:
           this.loadCauseAndEffectGame();
           break;
-        case this.ucimeSoKomp[0].name:
+        case this.learningWithTheComputer[0].name:
           this.loadPairsGame();
           break;
         default:
@@ -64,7 +67,7 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.getToKnowTheComputer.startCommand + userSettings)
           .subscribe(res => { });
       });
   }
@@ -72,7 +75,7 @@ export class HomeComponent {
   loadPairsGame() {
     this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.ucimeSoKomp[0].startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.learningWithTheComputer[0].startCommand + userSettings)
           .subscribe(res => { });
       });
   }

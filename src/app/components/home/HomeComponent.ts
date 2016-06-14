@@ -4,6 +4,7 @@ import {CanActivate} from 'angular2/router';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
+import {GameModel} from './GameModel';
 
 @Component({
   selector: 'home',
@@ -17,11 +18,16 @@ import {GameLauncherService} from './GameLauncherService';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp = {
-    name: 'Причина и последица',
-    gameFileName: 'desktop_1.0.jar'
-  };
-  public ucimeSoKomp: Array<string> = ['Парови', 'Кој се крие', 'Сложувалка', 'Јас и мојот дом', 'Приказна'];
+  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'java -jar {gamesPath}cause_and_effect_1.0.jar');
+
+  public ucimeSoKomp: Array<GameModel> = [
+    new GameModel('Парови', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
+    new GameModel('Кој се крие', ''),
+    new GameModel('Сложувалка', ''),
+    new GameModel('Јас и мојот дом', ''),
+    new GameModel('Приказна', '')
+  ];
+
   public currentUserName: string;
 
   constructor(
@@ -34,14 +40,34 @@ export class HomeComponent {
   loadGame(selectedGame) {
     this.gameLauncherService.isGameStarted().subscribe(data => {
       let isGameStarted: boolean = data;
+      if (isGameStarted) return;
 
-      if (!isGameStarted) {
-        this.userSettingsService.getUserSettingsForJar(this.currentUserName)
-          .subscribe(userSettings => {
-            this.gameLauncherService.loadGame(selectedGame, userSettings)
-              .subscribe(res => { });
-          });
+      switch (selectedGame) {
+        case this.zapoznajSeSoKomp.name:
+          this.loadCauseAndEffectGame();
+          break;
+        case this.ucimeSoKomp[0].name:
+          this.loadPairsGame();
+          break;
+        default:
+          break;
       }
     });
+  }
+
+  loadCauseAndEffectGame() {
+    this.userSettingsService.getUserSettingsForJar(this.currentUserName)
+      .subscribe(userSettings => {
+        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + userSettings)
+          .subscribe(res => { });
+      });
+  }
+
+  loadPairsGame() {
+    this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
+      .subscribe(userSettings => {
+        this.gameLauncherService.loadGame(this.ucimeSoKomp[0].startCommand + userSettings)
+          .subscribe(res => { });
+      });
   }
 }

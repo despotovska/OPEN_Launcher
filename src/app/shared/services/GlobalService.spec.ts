@@ -27,8 +27,8 @@ describe('GlobalServiceTests', () => {
     expect(instance.URL_SAVE_USERSETTINGS('eljesa')).toEqual('http://localhost:3000/api/saveUserSettings/eljesa');
   }));
 
-  it('URL_STARTGAME_givenSelectedGame_and_userSettings_shouldGetApiLoadGamePath', inject([GlobalService], (instance) => {
-    expect(instance.URL_STARTGAME('test.jar', '-bw false -ps s -pc white'))
-      .toEqual('http://localhost:3000/api/startGame?selectedGame=test.jar&userSettings=-bw false -ps s -pc white');
+  it('URL_STARTGAME_givenSelectedGameStartCommand_shouldGetApiLoadGamePath', inject([GlobalService], (instance) => {
+    expect(instance.URL_STARTGAME('startCommand'))
+      .toEqual('http://localhost:3000/api/startGame?startCommand=startCommand');
   }));
 });

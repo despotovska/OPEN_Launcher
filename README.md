@@ -88,12 +88,8 @@ The Electron configuration is contained in `./main.js`.
 ### Important 
 Set the environment variable to 'prod' in `./backend/env.js`.
 
-To build application exe file for win32 x64 run the following commands:
+To build application exe file for win32 x64 run the following command:
 ```bash
-# first create the dist folder 
-npm run build
-
-# than create the .exe
 npm run pack
 ```
 

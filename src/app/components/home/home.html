@@ -9,7 +9,7 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
             <figure>
-              <a (click)="loadGame(zapoznajSeSoKomp.gameFileName)">
+              <a (click)="loadGame(zapoznajSeSoKomp.name)">
                 <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp.name}}">
                 <figcaption>{{zapoznajSeSoKomp.name}}</figcaption>
               </a>
@@ -26,9 +26,9 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of ucimeSoKomp">
             <figure>
-              <a href="#">
-                <img src="./assets/images/computer.png" alt="{{game}}">
-                <figcaption>{{game}}</figcaption>
+              <a (click)="loadGame(game.name)">
+                <img src="./assets/images/computer.png" alt="{{game.name}}">
+                <figcaption>{{game.name}}</figcaption>
               </a>
             </figure>
           </div>

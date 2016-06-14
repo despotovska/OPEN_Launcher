@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Rx';
 import {GlobalService} from '../../shared/services/GlobalService';
 
 export interface IGameLauncherService {
-  loadGame(userSettings, selectedGame): any;
+  loadGame(startCommand): any;
   isGameStarted();
 }
 
@@ -13,8 +13,8 @@ export interface IGameLauncherService {
 export class GameLauncherService implements IGameLauncherService {
   constructor(private http: Http, private globalService: GlobalService) { }
 
-  loadGame(selectedGame, userSettings) {
-    return this.http.get(this.globalService.URL_STARTGAME(selectedGame, userSettings));
+  loadGame(startCommand) {
+    return this.http.get(this.globalService.URL_STARTGAME(startCommand));
   }
 
   isGameStarted() {

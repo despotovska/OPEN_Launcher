@@ -33,8 +33,8 @@ export class GlobalService {
     return URL + '/api/isExistingUser/' + username;
   }
 
-  URL_STARTGAME(selectedGame: string, userSettings: string): string {
-    return URL + '/api/startGame?selectedGame=' + selectedGame + '&userSettings=' + userSettings;
+  URL_STARTGAME(startCommand: string): string {
+    return URL + '/api/startGame?startCommand=' + startCommand;
   }
 }
 

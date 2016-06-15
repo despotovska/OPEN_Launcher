@@ -5,6 +5,7 @@ import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
+import {LearnWithTheComputer} from '../../shared/enums/GamesEnum';
 
 import {GameModel} from './GameModel';
 
@@ -55,8 +56,16 @@ export class HomeComponent {
         case this.getToKnowTheComputer.name:
           this.loadCauseAndEffectGame();
           break;
-        case this.learningWithTheComputer[0].name:
+        case this.learningWithTheComputer[LearnWithTheComputer.Pairs].name:
           this.loadPairsGame();
+          break;
+        case this.learningWithTheComputer[LearnWithTheComputer.WhoIsHiding].name:
+          break;
+        case this.learningWithTheComputer[LearnWithTheComputer.Puzzle].name:
+          break;
+        case this.learningWithTheComputer[LearnWithTheComputer.MeAndMyHome].name:
+          break;
+        case this.learningWithTheComputer[LearnWithTheComputer.Story].name:
           break;
         default:
           break;

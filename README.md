@@ -83,7 +83,7 @@ After you have installed all dependencies you can now run the app. Run `npm star
 
 ## Building the exe file using electron
 Electron can be used with any framework, so once Electron is set in place, we simply create the Angular 2 app as we would for the web.
-The Electron configuration is contained in `./main.js`.
+The Electron configuration is contained in `./src/main.js`.
 
 ### Important 
 Set the environment variable to 'prod' in `./backend/env.js`.

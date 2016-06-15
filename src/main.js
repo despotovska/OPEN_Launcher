@@ -29,7 +29,7 @@ app.on('ready', function () {
   if (env === 'dev') {
     mainWindow.loadURL('http://localhost:3000');
   } else {
-    mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
   }
 
   // Clear out the main window when the app is closed

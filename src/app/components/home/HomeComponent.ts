@@ -5,7 +5,7 @@ import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {LearnWithTheComputer} from '../../shared/enums/GamesEnum';
+import {LearningWithTheComputer} from '../../shared/enums/GamesEnum';
 
 import {GameModel} from './GameModel';
 
@@ -56,16 +56,16 @@ export class HomeComponent {
         case this.getToKnowTheComputer.name:
           this.loadCauseAndEffectGame();
           break;
-        case this.learningWithTheComputer[LearnWithTheComputer.Pairs].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.Pairs].name:
           this.loadPairsGame();
           break;
-        case this.learningWithTheComputer[LearnWithTheComputer.WhoIsHiding].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
           break;
-        case this.learningWithTheComputer[LearnWithTheComputer.Puzzle].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.Puzzle].name:
           break;
-        case this.learningWithTheComputer[LearnWithTheComputer.MeAndMyHome].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.MeAndMyHome].name:
           break;
-        case this.learningWithTheComputer[LearnWithTheComputer.Story].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.Story].name:
           break;
         default:
           break;
@@ -84,7 +84,7 @@ export class HomeComponent {
   loadPairsGame() {
     this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.learningWithTheComputer[0].startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.learningWithTheComputer[LearningWithTheComputer.Pairs].startCommand + userSettings)
           .subscribe(res => { });
       });
   }

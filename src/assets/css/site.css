@@ -7,8 +7,8 @@ a.link {
   cursor: pointer;
 }
 
-a, a:hover {
-  color: #333;
+.game-tile, game-tile:hover {
+  color: #333 !important;
   text-decoration: none;
 }
 

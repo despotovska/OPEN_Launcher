@@ -9,7 +9,7 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
             <figure class="btn btn-default">
-              <a (click)="loadGame(getToKnowTheComputer.name)">
+              <a class="game-tile" (click)="loadGame(getToKnowTheComputer.name)">
                 <img src="./assets/images/games/{{getToKnowTheComputer.image}}" alt="{{getToKnowTheComputer.name}}">
                 <figcaption>{{getToKnowTheComputer.name}}</figcaption>
               </a>
@@ -26,7 +26,7 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of learningWithTheComputer">
             <figure class="btn btn-default">
-              <a (click)="loadGame(game.name)">
+              <a class="game-tile" (click)="loadGame(game.name)">
                 <img src="./assets/images/games/{{game.image}}" alt="{{game.name}}">
                 <figcaption>{{game.name}}</figcaption>
               </a>

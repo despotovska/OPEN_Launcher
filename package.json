@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "OpenTheWindows",
-  "main": "main.js",
+  "main": "",
   "license": "MIT",
   "scripts": {
     "clean": "npm cache clean && rimraf node_modules doc typings coverage dist",
@@ -34,9 +34,8 @@
     "start": "node ./backend/api.js",
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
-    "electron": "electron .",
     "prepack": "npm run build",
-    "pack": "electron-packager . OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built"
+    "pack": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.15",

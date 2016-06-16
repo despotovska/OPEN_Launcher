@@ -1,0 +1,22 @@
+{
+  "rounds": [
+    {
+      "SessionID": "21",
+      "Username": "eljesa",
+      "GameName": "sets",
+      "StartTime": "gh",
+      "EndTime": "hg",
+      "IterationsPassed": "rdgh",
+      "InvalidClicksCount": "sdgfh"
+    },
+    {
+      "SessionID": "",
+      "Username": "",
+      "GameName": "",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    }
+  ]
+}

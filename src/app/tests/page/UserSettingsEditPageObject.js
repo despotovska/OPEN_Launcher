@@ -1,4 +1,4 @@
-var UserSettingsEditPage = function() {
+var UserSettingsEditPage = function () {
 
 
 
@@ -9,53 +9,63 @@ var UserSettingsEditPage = function() {
   var mediumPointer = element(by.className("img-circle selected"));
   var colorRedSelected = element(by.className("pointer-color-4 color-box img-circle selected"));
   var radioBtn = element.all(by.css('input[type="radio"]'));
+  var mouseRadioBtn = element(by.id("device-type-0"));
+  var touchscreenRadioBtn = element(by.id("device-type-1"));
   var someProfile = element.all(by.className("img-circle")).get(0);
   var signBtn = element(by.id("btn-login"));
   var saveSettings = element(by.id("saveUserSettings"));
   var loggedUser = element(by.id("loggedUser"));
 
-  this.get = function(value) {
+  this.get = function (value) {
     browser.get(value);
   };
 
-  this.openUserSettings = function() {
+  this.openUserSettings = function () {
     userSettings.click();
   }
 
-  this.isRedColorSelected = function() {
+  this.isRedColorSelected = function () {
     return colorRedSelected.isPresent();
   };
 
-  this.isYellowColorSelected = function() {
+  this.isYellowColorSelected = function () {
     return yellowColor.isPresent();
   };
 
-  this.isWhiteColorSelected = function() {
+  this.isWhiteColorSelected = function () {
     return whiteColor.isPresent();
   };
 
-  this.isMediumPointerSelected = function() {
+  this.isMediumPointerSelected = function () {
     return mediumPointer.isPresent();
   };
 
-  this.isSmallPointerSelected = function() {
+  this.isSmallPointerSelected = function () {
     return smallPointer.isPresent();
   };
 
-  this.logInFilteredUser = function() {
+  this.isMouseSelected = function () {
+    return mouseRadioBtn.getAttribute().isSelected();
+  };
+
+  this.isTouchScreenSelected = function () {
+    return touchscreenRadioBtn.getAttribute().isSelected();
+  };
+
+  this.logInFilteredUser = function () {
     someProfile.click();
     signBtn.click();
   };
 
-  this.userSettingsSave = function() {
+  this.userSettingsSave = function () {
     saveSettings.click();
   };
 
-  this.isColorThemeSelected = function() {
+  this.isColorThemeSelected = function () {
     return radioBtn.get(0).getAttribute().isSelected();
   };
 
-  this.isBWThemeSelected = function() {
+  this.isBWThemeSelected = function () {
     return radioBtn.get(1).getAttribute().isSelected();
   };
 

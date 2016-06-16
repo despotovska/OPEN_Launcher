@@ -1,4 +1,4 @@
-var CreateUserPage = function() {
+var CreateUserPage = function () {
 
 
 
@@ -31,12 +31,16 @@ var CreateUserPage = function() {
   var yellowColor = element(by.id("pointer-color-1"));
   var smallPointer = element(by.id("pointer-size-0"));
   var mediumPointer = element(by.id("pointer-size-1"));
+  var mouse = element(by.id("device-type-0"));
+  var touchscreen = element(by.id("device-type-1"));
+  var trackball = element(by.id("device-type-2"));
+  var joystick = element(by.id("device-type-3"));
 
-  this.get = function(value) {
+  this.get = function (value) {
     browser.get(value);
   };
 
-  selectRandomPicture = function() {
+  selectRandomPicture = function () {
 
     randomNo = Math.floor(Math.random() * (12)) + 1;
     console.log("Random broj: " + randomNo);
@@ -75,38 +79,38 @@ var CreateUserPage = function() {
     createBtnSecondPage.click();
   };
 */
-  this.selectRadioButton = function(option) {
+  this.selectRadioButton = function (option) {
     var radioselect = radiobtn.get(option);
-    radioselect.getAttribute("innerHTML").then(function(text) {
+    radioselect.getAttribute("innerHTML").then(function (text) {
       var selectedOption = text;
       console.log("Selektirana opcija" + selectedOption);
       radioselect.click();
     });
   };
 
-  selectRadioButton = function(option) {
+  selectRadioButton = function (option) {
     var radioselect = radiobtn.get(option);
-    radioselect.getAttribute("innerHTML").then(function(text) {
+    radioselect.getAttribute("innerHTML").then(function (text) {
       var selectedOption = text;
       console.log("Selektirana opcija" + selectedOption);
       radioselect.click();
     });
   };
 
-  this.createPredefinedUserName = function(name) {
+  this.createPredefinedUserName = function (name) {
     browser.sleep(2000);
     selectRandomPicture();
     enterName.sendKeys(name);
     createBtnSecondPage.click();
   };
 
-   this.createUserName = function(name) {
+  this.createUserName = function (name) {
     browser.sleep(2000);
     selectRandomPicture();
     enterName.sendKeys(name);
   };
 
-  this.createPredefinedUserNameWithUserSettings = function(name) {
+  this.createPredefinedUserNameWithUserSettings = function (name) {
     browser.sleep(2000);
     selectRandomPicture();
     enterName.sendKeys(name);
@@ -114,102 +118,115 @@ var CreateUserPage = function() {
     selectRadioButton("0");
     mediumPointer.click();
     colorRed.click();
+    touchscreen.click();
     createBtnSecondPage.click();
   };
 
-  this.numberOfColors = function() {
+  this.numberOfColors = function () {
     return colors.count();
   };
 
-  this.clickCreateBtnAfter = function() {
+  this.clickCreateBtnAfter = function () {
     createBtnSecondPage.click();
   };
 
-  this.clickCreateBtn = function() {
+  this.clickCreateBtn = function () {
     createBtnFirstPage.click();
   };
 
-  this.writeName = function(name) {
+  this.writeName = function (name) {
     enterName.sendKeys(name);
   };
 
-  this.selectPicture = function() {
+  this.selectPicture = function () {
     selectRandomPicture();
   };
 
-  this.clickBack = function() {
+  this.clickBack = function () {
     backBtn.click();
   };
 
-  this.returnMessage = function() {
+  this.returnMessage = function () {
     return alertmessage.getText();
   };
 
-  this.isCreateBtnEnabled = function() {
+  this.isCreateBtnEnabled = function () {
     return createBtnSecondPage.isEnabled();
   };
 
-  this.filterUsername = function(filter) {
+  this.filterUsername = function (filter) {
     enterName.sendKeys(filter);
   };
 
-  this.clearFilter = function() {
+  this.clearFilter = function () {
     enterName.clear();
   };
 
-  this.getImageUrl = function() {
+  this.getImageUrl = function () {
     return imageurl;
   };
 
-  this.getProfileImageUrl = function() {
+  this.getProfileImageUrl = function () {
     return selectedProfileImg.getAttribute('src');
   };
 
-  this.getCurrentURL = function() {
+  this.getCurrentURL = function () {
     return browser.getCurrentUrl();
   };
 
-  this.isRedPresent = function() {
+  this.isRedPresent = function () {
     return colorRed.isPresent();
   };
 
 
-  this.waitforCreateBtn = function() {
+  this.waitforCreateBtn = function () {
     browser.wait(EC.visibilityOf(createBtnFirstPage), 5000);
   };
 
-  this.waitforCreateBtnSecondPage = function() {
+  this.waitforCreateBtnSecondPage = function () {
     browser.wait(EC.visibilityOf(createBtnSecondPage), 5000);
   };
 
-  this.selectMediumPointer = function() {
+  this.selectMediumPointer = function () {
     mediumPointer.click();
   };
 
-  this.selectSmallPointer = function() {
+  this.selectSmallPointer = function () {
     smallPointer.click();
   };
 
-  this.selectRedColor = function() {
+  this.selectRedColor = function () {
     colorRed.click();
   };
 
-  this.selectGreenColor = function() {
+  this.selectGreenColor = function () {
     greenColor.click();
   };
 
-  this.selectBlueColor = function() {
+  this.selectBlueColor = function () {
     blueColor.click();
   };
 
-  this.selectWhiteColor = function() {
+  this.selectWhiteColor = function () {
     whiteColor.click();
   };
 
-  this.selectYellowColor = function() {
+  this.selectYellowColor = function () {
     yellowColor.click();
   };
 
+  this.selectMouse = function () {
+    mouse.click();
+  };
+  this.selectTouchscreen = function () {
+    touchscreen.click();
+  };
+  this.selectTrackball = function () {
+    trackball.click();
+  };
+  this.selectJoystick = function () {
+    joystick.click();
+  };
 
 };
 

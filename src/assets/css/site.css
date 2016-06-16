@@ -1,63 +1,69 @@
 img {
-    height: 128px;
-    width: 128px;
+  height: 128px;
+  width: 128px;
 }
 
 a.link {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.game-tile, game-tile:hover {
+  color: #333 !important;
+  text-decoration: none;
 }
 
 .profileBox {
-    border: #ffd699 2px solid;
-    border-radius: 25px 25px 0px 0px;
-    width: 132px;
+  border: #ffd699 2px solid;
+  border-radius: 25px 25px 0px 0px;
+  width: 132px;
 }
 
 .profileBox > .title {
-    height: 30;
-    background-color: #ebebe0;
-    border-radius: 25px 25px 0px 0px;
+  height: 30;
+  background-color: #ebebe0;
+  border-radius: 25px 25px 0px 0px;
 }
 
 .selected {
-    box-shadow:0px 12px 22px 1px #333;
-    border:solid 2px #ffd699 !important;
+  box-shadow: 0px 12px 22px 1px #333;
+  border: solid 2px #b0a99b !important;
 }
 
 .text-overflow {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .top-buffer {
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .top-buffer-10 {
-  margin-top:10px !important;
+  margin-top: 10px !important;
 }
 
 .left-buffer {
-  margin-left:20px;
+  margin-left: 20px;
 }
 
 .fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+  margin: 10px 0;
 }
+
 .fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 
 .color-box {
@@ -67,41 +73,41 @@ a.link {
 }
 
 .pointer-color-0 {
-  background-color:white;
+  background-color: white;
 }
 
 .pointer-color-1 {
-  background-color:yellow;
+  background-color: #FFE600;
 }
 
 .pointer-color-2 {
-  background-color:green;
+  background-color: #90D8A0;
 }
 
 .pointer-color-3 {
-  background-color:blue;
+  background-color: #37C8FF;
 }
 
 .pointer-color-4 {
-  background-color:red;
+  background-color: #ED4337;
 }
 
 .deleteBtn {
-    position:absolute;
-    top:0;
-    right:0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .btn-block {
-    text-align: left;
+  text-align: left;
 }
 
 figure {
-    text-align: center;
+  text-align: center;
 }
 
 .panel {
-    border: 0;
+  border: 0;
 }
 
 .main-content {
@@ -113,25 +119,34 @@ body {
 }
 
 .panel .btn-block:after {
-    font-family:'Glyphicons Halflings';
-    content:"\e114";
-    float: right;
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  float: right;
 }
+
 .panel .btn-block.collapsed:after {
-    content:"\e080";
+  content: "\e080";
 }
 
 .green {
   background-color: #339966;
   border-color: #26734d;
+  color: #fff;
 }
 
-.green:hover {
+.green:hover, .green:focus {
   background-color: #2d8659;
   border-color: #26734d;
+  color: #fff;
 }
 
-.shadow{
+.green:active {
+  background-color: #206040;
+  border-color: #194d33;
+  color: #fff;
+}
+
+.shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -146,36 +161,32 @@ body {
 .navbar-custom {
   background-color: #F2784B;
   border-color: #F2784B;
-  color:#ffffff;
-  border-radius:0;
+  color: #ffffff;
+  border-radius: 0;
 }
 
 .navbar-custom .navbar-nav > li > a {
-    color:#fff;
-    font-size:16px;
+  color: #fff;
+  font-size: 16px;
 }
 
-.navbar-custom .navbar-nav .open > a,
-.navbar-custom .navbar-nav > li > a,
- .navbar-nav > li > a:hover,
-  .navbar-nav > li > a:focus {
-    color: #ffffff;
-    background-color:#F2784B;
+.navbar-custom .navbar-nav .open > a, .navbar-custom .navbar-nav > li > a, .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: #F2784B;
 }
 
 .navbar-custom .navbar-brand {
-    color:#eeeeee;
+  color: #eeeeee;
 }
 
-.navbar-custom .navbar-nav > li > a:hover,
-.navbar-custom .navbar-brand > a:hover {
+.navbar-custom .navbar-nav > li > a:hover, .navbar-custom .navbar-brand > a:hover {
   text-decoration: underline;
 }
 
 .navbar-custom .navbar-toggle {
-  border-color:#ffffff;
+  border-color: #ffffff;
 }
 
 .navbar-custom .navbar-toggle .icon-bar {
-  background-color:#ffffff;
+  background-color: #ffffff;
 }

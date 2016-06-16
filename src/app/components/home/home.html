@@ -8,10 +8,10 @@
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
-            <figure>
-              <a (click)="loadGame(zapoznajSeSoKomp.name)">
-                <img src="./assets/images/computer.png" alt="{{zapoznajSeSoKomp.name}}">
-                <figcaption>{{zapoznajSeSoKomp.name}}</figcaption>
+            <figure class="btn btn-default">
+              <a class="game-tile" (click)="loadGame(getToKnowTheComputer.name)">
+                <img src="./assets/images/games/{{getToKnowTheComputer.image}}" alt="{{getToKnowTheComputer.name}}">
+                <figcaption>{{getToKnowTheComputer.name}}</figcaption>
               </a>
             </figure>
           </div>
@@ -24,10 +24,10 @@
         data-parent="#accordion">Учиме со компјутерот</button>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of ucimeSoKomp">
-            <figure>
-              <a (click)="loadGame(game.name)">
-                <img src="./assets/images/computer.png" alt="{{game.name}}">
+          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of learningWithTheComputer">
+            <figure class="btn btn-default">
+              <a class="game-tile" (click)="loadGame(game.name)">
+                <img src="./assets/images/games/{{game.image}}" alt="{{game.name}}">
                 <figcaption>{{game.name}}</figcaption>
               </a>
             </figure>

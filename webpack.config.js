@@ -85,8 +85,25 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' },
-      { from: 'src/app', to: 'app' },
-      { from: 'src/app.html', to: 'app.html' }
+
+      { from: 'src/app/components', to: 'app/components' },
+      { from: 'src/app.html', to: 'app.html' },
+      { from: 'src/main.js', to: 'main.js' },
+      { from: 'src/package.json', to: 'package.json' },
+      { from: 'src/app/shared/enums', to: 'app/shared/enums' },
+      { from: 'src/app/shared/models', to: 'app/shared/models' },
+      { from: 'src/app/shared/pipes', to: 'app/shared/pipes' },
+      { from: 'src/app/shared/plugins', to: 'app/shared/plugins' },
+      { from: 'src/app/shared/services', to: 'app/shared/services' },
+
+      { from: 'backend', to: 'backend' },
+
+      { from: 'node_modules/body-parser', to: 'node_modules/body-parser' },
+      { from: 'node_modules/express', to: 'node_modules/express' },
+      { from: 'node_modules/lowdb', to: 'node_modules/lowdb' },
+      { from: 'node_modules/multer', to: 'node_modules/multer' },
+
+      { from: 'otw.png', to: 'otw.png' }
     ]),
     // generating html
     new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),

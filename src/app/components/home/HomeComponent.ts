@@ -4,6 +4,9 @@ import {CanActivate} from 'angular2/router';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
+import {AlertingService} from '../../shared/services/AlertingService';
+import {LearningWithTheComputer} from '../../shared/enums/GamesEnum';
+
 import {GameModel} from './GameModel';
 
 @Component({
@@ -18,19 +21,23 @@ import {GameModel} from './GameModel';
   }
 )
 export class HomeComponent {
-  public zapoznajSeSoKomp: GameModel = new GameModel('Причина и последица', 'java -jar {gamesPath}cause_and_effect_1.0.jar');
+  public getToKnowTheComputer: GameModel = new GameModel(
+    'Причина и последица',
+    'cause_and_effect.png',
+    'java -jar {gamesPath}cause_and_effect_1.0.jar');
 
-  public ucimeSoKomp: Array<GameModel> = [
-    new GameModel('Парови', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
-    new GameModel('Кој се крие', ''),
-    new GameModel('Сложувалка', ''),
-    new GameModel('Јас и мојот дом', ''),
-    new GameModel('Приказна', '')
+  public learningWithTheComputer: Array<GameModel> = [
+    new GameModel('Парови', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
+    new GameModel('Кој се крие', 'computer.png', ''),
+    new GameModel('Сложувалка', 'computer.png', ''),
+    new GameModel('Јас и мојот дом', 'computer.png', ''),
+    new GameModel('Приказна', 'computer.png', '')
   ];
 
   public currentUserName: string;
 
   constructor(
+    private alertingService: AlertingService,
     private authService: AuthService,
     private userSettingsService: UserSettingsService,
     private gameLauncherService: GameLauncherService) {
@@ -40,14 +47,25 @@ export class HomeComponent {
   loadGame(selectedGame) {
     this.gameLauncherService.isGameStarted().subscribe(data => {
       let isGameStarted: boolean = data;
-      if (isGameStarted) return;
+      if (isGameStarted) {
+        this.alertingService.addInfo('Моментално имате започнато игра. Затворете го прозорецот со активната игра за да започнете нова.');
+        return;
+      }
 
       switch (selectedGame) {
-        case this.zapoznajSeSoKomp.name:
+        case this.getToKnowTheComputer.name:
           this.loadCauseAndEffectGame();
           break;
-        case this.ucimeSoKomp[0].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.Pairs].name:
           this.loadPairsGame();
+          break;
+        case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
+          break;
+        case this.learningWithTheComputer[LearningWithTheComputer.Puzzle].name:
+          break;
+        case this.learningWithTheComputer[LearningWithTheComputer.MeAndMyHome].name:
+          break;
+        case this.learningWithTheComputer[LearningWithTheComputer.Story].name:
           break;
         default:
           break;
@@ -58,7 +76,7 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.zapoznajSeSoKomp.startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.getToKnowTheComputer.startCommand + userSettings)
           .subscribe(res => { });
       });
   }
@@ -66,7 +84,7 @@ export class HomeComponent {
   loadPairsGame() {
     this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.ucimeSoKomp[0].startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.learningWithTheComputer[LearningWithTheComputer.Pairs].startCommand + userSettings)
           .subscribe(res => { });
       });
   }

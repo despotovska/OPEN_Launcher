@@ -7,7 +7,7 @@ import {Alert} from '../../shared/models/Alert';
   selector: 'alerts',
   template: `
         <div *ngIf="hasAlerts()">
-            <div *ngFor="#alert of getCurrentAlerts()" class="alert alert-{{alert.type}} shadow">
+            <div *ngFor="#alert of getCurrentAlerts()" class="alert alert-{{alert.type}} shadow text-center">
                 <label id="messagelabel">{{ alert.message }}</label>
                 <div class="close" (click)="removeAlert(alert)">
                     <span class="glyphicon glyphicon-remove"></span>

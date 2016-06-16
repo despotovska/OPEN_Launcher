@@ -34,7 +34,6 @@
     "start": "node ./backend/api.js",
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
-    "electron": "electron ./dist",
     "prepack": "npm run build",
     "pack": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built"
   },

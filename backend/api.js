@@ -123,13 +123,12 @@ server.get('/api/isGameStarted', function (req, res) {
   res.send(isGameStarted);
 })
 
-server.get('/api/setsGameStarted/:gameName', function (req, res) {
+server.get('/api/GameStarted/:gameName', function (req, res) {
 
   var gameName = req.params.gameName;
-  console.log(gameName);
   var time = new Date().toLocaleString();
+  var guid = guidGenerator.create();
 
- // stats('sessions').push(body).then(post => res.send("error: dzsfsd"));
 
   stats('sessions').push({
     SessionID: guid,
@@ -139,19 +138,7 @@ server.get('/api/setsGameStarted/:gameName', function (req, res) {
     EndTime: '',
     IterationsPassed: '',
     InvalidClicksCount: ''
-  }).then(post => res.send());
-
-  // var statistic = stats('rounds').find({ Username: '' });
-  // statistic.SessionID = guid;
-  // statistic.StartTime = time;
-  // console.log(statistic.EndTime);
-  // if (statistic) {
-  //   stats('rounds').chain().assign({ rounds: statistic }).value();
-  //   res.send(guid);
-  // }
-  // else {
-  //   res.status(404);
-  // }
+  }).then(res.status(200), res.send(guid.value));
 
 });
 

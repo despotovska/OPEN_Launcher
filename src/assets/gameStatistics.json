@@ -1,22 +1,278 @@
 {
-  "rounds": [
+  "sessions": [
+    {
+      "SessionID": "21567-1234-65432-12345",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:04:36 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "21567-1234-65432-12345",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:06:36 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "21567",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:10:23 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "2",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:11:00 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "23456-1234567-12345678765432",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:14:29 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
     {
       "SessionID": "21",
       "Username": "eljesa",
-      "GameName": "sets",
-      "StartTime": "gh",
-      "EndTime": "hg",
-      "IterationsPassed": "rdgh",
-      "InvalidClicksCount": "sdgfh"
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:27:12 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
     },
     {
-      "SessionID": "",
-      "Username": "",
-      "GameName": "",
+      "SessionID": "8101010118109-1110118-41099-118118-81010101189991199",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:42:59 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "81010811898-101099-410810-118811-1181188119810101011",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "6/16/2016, 2:57:28 PM",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "this.guid1",
+      "Username": "eljes",
+      "GameName": "Sets",
+      "StartTime": "Sets",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "8109811111011-108810-41199-1181111-91010109108911111110",
+      "Username": "eljesa",
+      "GameName": "Sets",
       "StartTime": "",
       "EndTime": "",
       "IterationsPassed": "",
       "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "111181110898-1091010-410119-118108-10911881088991011",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "99119811810-911810-41098-1081011-1111109109910810119",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "8101091110108-9999-4999-1111810-101081110810881189",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "11111189101110-101199-4888-118910-1010881011811119911",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "1110899111111-11101010-491010-1111119-81191011101010881010",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "99118109119-118910-4888-8101110-91110118101010101199",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "101111889811-98119-41188-11101011-111081010109111191011",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "89881010810-81098-411810-88911-1181011108111188910",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "988111110108-91198-41099-81199-891010118119118910",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "811810881111-981011-410109-8898-111081011118101111119",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "91111999811-991110-410108-111199-91198109881081010",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "91198108108-88109-410119-811118-81110111010888998",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "this.guid1",
+      "Username": "eljes",
+      "GameName": "Sets",
+      "StartTime": "Sets",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "this.guid1",
+      "Username": "eljes",
+      "GameName": "Sets",
+      "StartTime": "Sets",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "989101110810-881111-410108-10999-9881091188911811",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "891010811811-81089-4988-10101010-999811811101081111",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "811881110811-118910-410108-8101010-810111010910111011810",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "1081188889-8101110-49910-118811-11998810111099811",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {
+      "SessionID": "118811118108-99119-41198-1111108-11108898991010119",
+      "Username": "eljesa",
+      "GameName": "Sets",
+      "StartTime": "",
+      "EndTime": "",
+      "IterationsPassed": "",
+      "InvalidClicksCount": ""
+    },
+    {},
+    {},
+    {},
+    {
+      "gameName": "Sets"
+    },
+    {
+      "gameName": "Sets"
+    },
+    {
+      "gameName": "Sets",
+      "endTime": ""
     }
   ]
 }

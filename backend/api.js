@@ -1,8 +1,10 @@
 var server = require('./server.js');
 var db = require('./db.js');
+var stats = require('./stats.js')
 var paths = require('./paths.js');
 var helpers = require('./helpers.js');
 var childProcess = require('child_process');
+var guidGenerator = require('guid');
 var isGameStarted = false;
 
 server.get('/', function (req, res) {
@@ -120,6 +122,38 @@ server.get('/api/isGameStarted', function (req, res) {
   var isGameStarted = this.isGameStarted ? this.isGameStarted : false;
   res.send(isGameStarted);
 })
+
+server.get('/api/setsGameStarted/:gameName', function (req, res) {
+
+  var gameName = req.params.gameName;
+  console.log(gameName);
+  var time = new Date().toLocaleString();
+
+ // stats('sessions').push(body).then(post => res.send("error: dzsfsd"));
+
+  stats('sessions').push({
+    SessionID: guid,
+    Username: '',
+    GameName: gameName,
+    StartTime: time,
+    EndTime: '',
+    IterationsPassed: '',
+    InvalidClicksCount: ''
+  }).then(post => res.send());
+
+  // var statistic = stats('rounds').find({ Username: '' });
+  // statistic.SessionID = guid;
+  // statistic.StartTime = time;
+  // console.log(statistic.EndTime);
+  // if (statistic) {
+  //   stats('rounds').chain().assign({ rounds: statistic }).value();
+  //   res.send(guid);
+  // }
+  // else {
+  //   res.status(404);
+  // }
+
+});
 
 server.listen(3000, function () {
   console.log("Working on port 3000");

@@ -35,7 +35,11 @@
     "typings-install": "typings install",
     "postinstall": "npm run typings-install",
     "prepack": "npm run build",
-    "pack": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built"
+    "pack": "npm run pack64",
+    "pack64": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=../open_built --icon=./Icon.ico --version-string.ProductName=OPEN",
+    "pack32": "electron-packager ./dist OPEN --platform=win32 --arch=ia32 --overwrite --out=../open_built --icon=./Icon.ico --version-string.ProductName=OPEN",
+    "preinstaller": "npm run pack",
+    "installer": "node installer.js"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.15",
@@ -53,6 +57,7 @@
     "css-loader": "^0.23.1",
     "electron-packager": "^6.0.2",
     "electron-prebuilt": "^0.37.2",
+    "electron-squirrel-startup": "^1.0.0",
     "es6-promise": "^3.1.2",
     "es6-promise-loader": "^1.0.1",
     "es6-shim": "^0.35.0",
@@ -78,6 +83,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "1.7.0",
     "lowdb": "^0.12.5",
+    "ms": "^0.7.1",
     "multer": "^1.1.0",
     "ng2lint": "0.0.10",
     "parse5": "^1.3.2",

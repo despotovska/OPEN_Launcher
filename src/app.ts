@@ -27,6 +27,7 @@ import {UserSettingsEditComponent} from './app/components/userSettingsEdit/UserS
  */
 import { servicesInjectables } from './app/shared/services/services';
 import { AuthService } from './app/shared/services/AuthService';
+//import { authServiceInjectables } from './app/shared/services/AuthService';
 
 
 /*

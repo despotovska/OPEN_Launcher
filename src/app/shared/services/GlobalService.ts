@@ -36,6 +36,10 @@ export class GlobalService {
   URL_STARTGAME(startCommand: string): string {
     return URL + '/api/startGame?startCommand=' + startCommand;
   }
+
+  URL_SAVE_LOGGEDUSER(username: string): string {
+    return URL + '/api/saveLoggedUser' + username;
+  }
 }
 
 export let globalServiceInjectables: Array<any> = [

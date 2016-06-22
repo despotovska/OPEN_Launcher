@@ -5,7 +5,8 @@
         "backgroundColor": 0,
         "pointerType": 0,
         "pointerSize": 0,
-        "pointerColor": 0
+        "pointerColor": 0,
+        "deviceType": 2
       },
       "profileImg": "./assets/images/avatars/devojce.png",
       "name": "Aleksandra"
@@ -15,11 +16,11 @@
         "backgroundColor": 0,
         "pointerType": 0,
         "pointerSize": 0,
-        "pointerColor": 0,
-        "deviceType": 0
+        "pointerColor": 4,
+        "deviceType": 1
       },
-      "profileImg": "./assets/images/avatars/devojce.png",
-      "name": "iuygikyg"
+      "profileImg": "./assets/images/avatars/srce.png",
+      "name": "Eljesa"
     }
   ]
 }

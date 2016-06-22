@@ -1,4 +1,6 @@
-import {Injectable, provide} from 'angular2/core';
+import {Injectable, provide, bind} from 'angular2/core';
+import {Http, Headers, Response } from 'angular2/http';
+import {GlobalService} from './GlobalService';
 
 export interface IAuthService {
   login(user: string): boolean;
@@ -9,12 +11,16 @@ export interface IAuthService {
 
 @Injectable()
 export class AuthService implements IAuthService {
+  constructor(private http: Http, private globalService: GlobalService) { }
   login(user: string): boolean {
     let isValid = user.length > 0;
     if (isValid) {
       localStorage.setItem('username', user);
+      this.http.get(this.globalService.URL_SAVE_LOGGEDUSER(user))
+        .map(res => {
+          return res.json;
+        });
     }
-
     return isValid;
   }
 
@@ -35,3 +41,7 @@ export class AuthService implements IAuthService {
 export let AUTH_PROVIDERS: Array<any> = [
   provide(AuthService, { useClass: AuthService })
 ];
+
+// export let authServiceInjectables: Array<any> = [
+//   bind(AuthService).toClass(AuthService)
+// ];

@@ -8,22 +8,29 @@
  * all here! Crazy huh. So we need to do some setup
 */
 Error.stackTraceLimit = Infinity;
-// require('phantomjs-polyfill');
-// require('es6-promise');
-// require('es6-shim');
-// require('es7-reflect-metadata');
+
+// import 'phantomjs-polyfill';
+// import 'es6-promise';
+// import 'es6-shim';
+// import 'es7-reflect-metadata';
 
 
 // Prefer CoreJS over the polyfills above
-require('core-js');
+import 'core-js/es6';
+import 'core-js/es7/reflect';
+import 'reflect-metadata';
+import 'zone.js/dist/zone';
 
-require('zone.js/dist/zone');
-require('zone.js/dist/long-stack-trace-zone');
-require('zone.js/dist/jasmine-patch');
+import 'ts-helpers';
+
+import 'zone.js/dist/sync-test';
+import 'zone.js/dist/jasmine-patch';
+// import 'zone.js/dist/async-test';
+// import 'zone.js/dist/fake-async-test';
 
 
-var testing = require('angular2/testing');
-var browser = require('angular2/platform/testing/browser');
+const testing = require('angular2/testing');
+const browser = require('angular2/platform/testing/browser');
 
 testing.setBaseTestProviders(
   browser.TEST_BROWSER_PLATFORM_PROVIDERS,
@@ -39,7 +46,7 @@ Object.assign(global, testing);
   any file that ends with spec.js and get its path. By passing in true
   we say do this recursively
 */
-var testContext = require.context('./src', true, /\.spec\.ts/);
+const testContext = require.context('./src', true, /\.spec\.ts/);
 
 // get all the files, for each file, call the context function
 // that will require the file and load it up here. Context will
@@ -48,5 +55,5 @@ function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
 }
 
-var modules = requireAll(testContext);
+const modules = requireAll(testContext);
 // requires and returns all modules that match

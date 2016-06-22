@@ -82,7 +82,7 @@ app.on('ready', function () {
     height: 900,
     minWidth: 900,
     minHeight: 900,
-    icon: __dirname + '/Icon.png'
+    icon: __dirname + '/assets/images/Icon.png'
   });
 
   // Open the DevTools.

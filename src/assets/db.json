@@ -9,6 +9,17 @@
       },
       "profileImg": "./assets/images/avatars/devojce.png",
       "name": "Aleksandra"
+    },
+    {
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0,
+        "deviceType": 0
+      },
+      "profileImg": "./assets/images/avatars/devojce.png",
+      "name": "iuygikyg"
     }
   ]
 }

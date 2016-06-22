@@ -5,6 +5,7 @@ var paths = require('./paths.js');
 var helpers = require('./helpers.js');
 var childProcess = require('child_process');
 var guidGenerator = require('guid');
+var localStorage = require('localStorage');
 var isGameStarted = false;
 
 server.get('/', function (req, res) {
@@ -128,17 +129,19 @@ server.get('/api/GameStarted/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   var time = new Date().toLocaleString();
   var guid = guidGenerator.create();
-
+  var username = localStorage.getItem('username');
+  console.log(username);
 
   stats('sessions').push({
     SessionID: guid,
-    Username: '',
+    Username: username,
     GameName: gameName,
+    DeviceType: '',
     StartTime: time,
     EndTime: '',
     IterationsPassed: '',
     InvalidClicksCount: ''
-  }).then(res.status(200), res.send(guid.value));
+  }).then(res.send(guid.value));
 
 });
 

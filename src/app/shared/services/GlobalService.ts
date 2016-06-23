@@ -11,8 +11,6 @@ export class GlobalService {
   URL_GETPOINTER_IMAGES: string = URL + '/api/GetPointerImages/';
   URL_IS_GAMESTARTED: string = URL + '/api/isGameStarted';
 
-  constructor() { }
-
   URL_GETUSER(username: string): string {
     return URL + '/api/getAllUsers/' + username;
   }

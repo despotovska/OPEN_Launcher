@@ -26,7 +26,7 @@ describe('HomeComponentTests', () => {
     HomeComponent
   ]);
 
-  it('loadGame_givenSelectedGame_shouldNotCallLoadGameApi_WhenGameIsAlreadyStartted',
+  it('loadGame_givenSelectedGame_shouldNotCallLoadGameApi_WhenGameIsAlreadyStarted',
     inject([HomeComponent], (instance) => {
       // Arrange
       GameLauncherServiceMock.gameStarted = true;
@@ -83,7 +83,7 @@ describe('HomeComponentTests', () => {
       expect(instance.gameLauncherService.loadGame).toHaveBeenCalled();
     }));
 
-      it('loadPairsGame_givenAvailableGameLauncherService_shouldCallLoadGame',
+  it('loadPairsGame_givenAvailableGameLauncherService_shouldCallLoadGame',
     inject([HomeComponent], (instance) => {
       // Arrange
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();

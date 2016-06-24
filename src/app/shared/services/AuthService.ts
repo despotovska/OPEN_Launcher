@@ -1,9 +1,9 @@
-import {Injectable, provide, bind} from 'angular2/core';
-import {Http, Headers, HTTP_PROVIDERS } from 'angular2/http';
+import {Injectable, provide} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
 import {GlobalService} from './GlobalService';
 
 export interface IAuthService {
-  login(user: string): boolean;
+  login(user: string): void;
   logout(): void;
   getUser(): any;
   isLogged(): boolean;
@@ -16,16 +16,15 @@ export class AuthService implements IAuthService {
   login(user: string): boolean {
     let isValid = user.length > 0;
     if (isValid) {
+      this.http.get(this.globalService.URL_LOGIN(user));
       localStorage.setItem('username', user);
-      this.http.get(this.globalService.URL_SAVE_LOGGEDUSER(user))
-        .map(res => { });
     }
     return isValid;
   }
 
-  logout() {
+  logout(): void {
+    this.http.get(this.globalService.URL_LOGOUT);
     localStorage.removeItem('username');
-    return false; // for the click handler not to reload whole page
   }
 
   getUser(): any {

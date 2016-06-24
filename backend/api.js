@@ -6,7 +6,7 @@ var helpers = require('./helpers.js');
 var childProcess = require('child_process');
 var guidGenerator = require('guid');
 var isGameStarted = false;
-var loggedUser = undefined;
+var loggedUser = '';
 
 server.get('/', function (req, res) {
   res.sendFile(paths.indexPath);
@@ -110,6 +110,16 @@ server.post('/api/saveUserSettings/:username?', function (req, res) {
     res.status(404);
     res.send({ error: 'Not found' });
   }
+});
+
+server.get('/api/login/:username', function (req, res) {
+  loggedUser = req.params.username;
+  res.send(true);
+});
+
+server.get('/api/logout/', function (req, res) {
+  loggedUser = undefined;
+  res.send(true);
 });
 
 server.get('/api/startGame', function (req, res) {

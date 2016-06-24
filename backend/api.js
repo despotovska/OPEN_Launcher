@@ -130,22 +130,22 @@ server.get('/api/isGameStarted', function (req, res) {
   res.send(isGameStarted);
 })
 
-server.get('/api/GameStarted/:gameName', function (req, res) {
+server.get('/api/gameStarted/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   var time = new Date().toLocaleString();
   var guid = guidGenerator.create();
-  var deviceType = getDeviceType(username);
+  var deviceType = getDeviceType('Aleksandra');
 
   if (guid) {
     stats('sessions').push({
       SessionID: guid,
-      Username: loggedUser,
+      Username: '',
       GameName: gameName,
       DeviceType: deviceType,
       StartTime: time,
       EndTime: '',
-      IterationsPassed: '',
-      InvalidClicksCount: ''
+      IterationsPassed: 0,
+      InvalidClicksCount: 0
     }).then(res.send(guid.value));
   }
   else {
@@ -171,6 +171,25 @@ server.get('/api/gameEnded/:guid', function (req, res) {
     res.status(404);
     res.send({ error: 'Not found' });
   }
+});
+
+server.get('/api/gameUpdate/:guid/:misses', function (req, res) {
+  var time = new Date().toLocaleString();
+  var guid = req.params.guid;
+  var session = stats('sessions').find({ SessionID: req.params.guid });
+  var misses = req.params.misses;
+  if (session) {
+    stats('sessions')
+      .chain()
+      .find({ SessionID: req.params.guid })
+      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
+      .value();
+    res.send(time);
+  } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+
 });
 
 function getDeviceType(username) {

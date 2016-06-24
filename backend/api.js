@@ -126,8 +126,7 @@ server.get('/api/startGame', function (req, res) {
 });
 
 server.get('/api/isGameStarted', function (req, res) {
-  var isGameStarted = this.isGameStarted ? this.isGameStarted : false;
-  res.send(isGameStarted);
+  res.send(!!this.isGameStarted);
 })
 
 server.get('/api/gameStarted/:gameName', function (req, res) {

@@ -59,14 +59,14 @@ export class HomeComponent {
         case this.learningWithTheComputer[LearningWithTheComputer.Pairs].name:
           this.loadPairsGame();
           break;
-        case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
-          break;
-        case this.learningWithTheComputer[LearningWithTheComputer.Puzzle].name:
-          break;
-        case this.learningWithTheComputer[LearningWithTheComputer.MeAndMyHome].name:
-          break;
-        case this.learningWithTheComputer[LearningWithTheComputer.Story].name:
-          break;
+        // case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
+        //   break;
+        // case this.learningWithTheComputer[LearningWithTheComputer.Puzzle].name:
+        //   break;
+        // case this.learningWithTheComputer[LearningWithTheComputer.MeAndMyHome].name:
+        //   break;
+        // case this.learningWithTheComputer[LearningWithTheComputer.Story].name:
+        //   break;
         default:
           break;
       }

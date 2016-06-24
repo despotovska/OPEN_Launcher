@@ -102,8 +102,8 @@ module.exports = {
       { from: 'node_modules/express', to: 'node_modules/express' },
       { from: 'node_modules/lowdb', to: 'node_modules/lowdb' },
       { from: 'node_modules/multer', to: 'node_modules/multer' },
-
-      { from: 'otw.png', to: 'otw.png' }
+      { from: 'node_modules/ms', to: 'node_modules/ms' },
+      { from: 'node_modules/electron-squirrel-startup', to: 'node_modules/electron-squirrel-startup' }
     ]),
     // generating html
     new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),

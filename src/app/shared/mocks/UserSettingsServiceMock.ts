@@ -26,6 +26,13 @@ export class UserSettingsServiceMock implements IUserSettingsService {
     return Observable.of(userSettingsForJar);
   }
 
+  getUserSettingsForElectron(username: string): Observable<string> {
+    let userSettings: UserSettings = new UserSettings();
+    UserSettingsServiceMock.setUserSetting(userSettings);
+    let userSettingsForElectron: string = 'b g';
+    return Observable.of(userSettingsForElectron);
+  }
+
   saveUserSettingsForUser(userName: string, userSettings: UserSettings) {
     userSettings = new UserSettings();
     UserSettingsServiceMock.setUserSetting(userSettings);

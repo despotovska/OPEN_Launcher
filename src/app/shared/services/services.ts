@@ -7,7 +7,6 @@ import {uploadPictureServiceInjectables} from '../../components/upload/UploadPic
 import {alertingServiceInjectables} from '../../shared/services/AlertingService';
 import {userSettingsColorsServiceInjectables} from '../../components/userSettings/UserSettingsColorsService';
 import {gameLauncherServiceInjectables} from '../../components/home/GameLauncherService';
-//import {authServiceInjectables} from '../../shared/services/AuthService';
 export * from './GlobalService';
 export * from './UserService';
 export * from './UserSettingsService';
@@ -17,7 +16,7 @@ export * from './AlertingService';
 export * from '../../components/upload/UploadPictureService';
 export * from '../../components/userSettings/UserSettingsColorsService';
 export * from '../../components/home/GameLauncherService';
-//export * from '../../shared/services/AuthService';
+export * from '../../shared/services/AuthService';
 
 export let servicesInjectables: Array<any> = [
   globalServiceInjectables,
@@ -28,6 +27,5 @@ export let servicesInjectables: Array<any> = [
   alertingServiceInjectables,
   userSettingsColorsServiceInjectables,
   userValidationServiceInjectables,
-  gameLauncherServiceInjectables,
-//  authServiceInjectables
+  gameLauncherServiceInjectables
 ];

@@ -38,7 +38,7 @@ export class GlobalService {
   }
 
   URL_SAVE_LOGGEDUSER(username: string): string {
-    return URL + '/api/saveLoggedUser' + username;
+    return URL + '/api/login/' + username;
   }
 }
 

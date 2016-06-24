@@ -10,17 +10,6 @@
       },
       "profileImg": "./assets/images/avatars/devojce.png",
       "name": "Aleksandra"
-    },
-    {
-      "userSettings": {
-        "backgroundColor": 0,
-        "pointerType": 0,
-        "pointerSize": 0,
-        "pointerColor": 4,
-        "deviceType": 1
-      },
-      "profileImg": "./assets/images/avatars/srce.png",
-      "name": "Eljesa"
     }
   ]
 }

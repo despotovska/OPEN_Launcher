@@ -7,8 +7,8 @@
       "DeviceType": 2,
       "StartTime": "6/22/2016, 11:27:39 AM",
       "EndTime": "6/22/2016, 3:06:37 PM",
-      "IterationsPassed": "",
-      "InvalidClicksCount": ""
+      "IterationsPassed": 8,
+      "InvalidClicksCount": 16
     }
   ]
 }

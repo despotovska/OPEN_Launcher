@@ -6,7 +6,7 @@ var helpers = require('./helpers.js');
 var childProcess = require('child_process');
 var guidGenerator = require('guid');
 var isGameStarted = false;
-var loggedUser = '';
+var loggedUser = undefined;
 
 server.get('/', function (req, res) {
   res.sendFile(paths.indexPath);
@@ -135,7 +135,7 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
   var guid = guidGenerator.create();
   var deviceType = getDeviceType('Aleksandra');
 
-  if (guid) {
+  if (guid || loggedUser ) {
     stats('sessions').push({
       SessionID: guid,
       Username: '',

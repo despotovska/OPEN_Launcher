@@ -27,7 +27,6 @@ import {UserSettingsEditComponent} from './app/components/userSettingsEdit/UserS
  */
 import { servicesInjectables } from './app/shared/services/services';
 import { AuthService } from './app/shared/services/AuthService';
-//import { authServiceInjectables } from './app/shared/services/AuthService';
 
 
 /*
@@ -61,7 +60,7 @@ export class App {
   }
 }
 
-bootstrap(App, [servicesInjectables,
-  AUTH_PROVIDERS, ROUTER_PROVIDERS, HTTP_PROVIDERS,
+bootstrap(App, [HTTP_PROVIDERS, servicesInjectables,
+  AUTH_PROVIDERS, ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, { useValue: '/' }),
   provide(LocationStrategy, { useClass: HashLocationStrategy })]);

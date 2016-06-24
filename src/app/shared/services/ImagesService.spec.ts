@@ -4,6 +4,7 @@ import {
   inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
+
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 

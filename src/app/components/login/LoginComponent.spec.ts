@@ -14,13 +14,14 @@ import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {Alert} from '../../shared/models/Alert';
 
+import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
 import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 import {RouterMock} from '../../shared/mocks/RouterMock';
 
 describe('LoginComponentTests', () => {
   beforeEachProviders(() => [
     AlertingService,
-    AuthService,
+    provide(AuthService, { useClass: AuthServiceMock }),
     provide(UserService, { useClass: UserServiceMock }),
     provide(Router, { useClass: RouterMock }),
     LoginComponent

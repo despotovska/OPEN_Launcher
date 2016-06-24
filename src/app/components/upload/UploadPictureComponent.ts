@@ -1,8 +1,10 @@
 import {Component, Injector} from 'angular2/core';
-import {CanActivate} from 'angular2/router';
+import {Router, CanActivate} from 'angular2/router';
 
 import {AuthService} from '../../shared/services/AuthService';
 import {UploadPictureService} from './UploadPictureService';
+
+import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'upload-picture',
@@ -10,9 +12,15 @@ import {UploadPictureService} from './UploadPictureService';
 })
 @CanActivate(
   (nextInstr: any, currInstr: any) => {
-    let injector: any = Injector.resolveAndCreate([AuthService]);
+    let injector: any = appInjector();
     let authService: AuthService = injector.get(AuthService);
-    return authService.isLogged();
+    let router: Router = injector.get(Router);
+    let isLogged = authService.isLogged();
+
+    if (!isLogged) {
+      router.navigate(['/Login']);
+    }
+    return isLogged;
   }
 )
 export class UploadPictureComponent {

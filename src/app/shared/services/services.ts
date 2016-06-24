@@ -4,7 +4,7 @@ import {userSettingsServiceInjectables} from './UserSettingsService';
 import {imagesServiceInjectables} from './ImagesService';
 import {userValidationServiceInjectables} from './UserValidationService';
 import {uploadPictureServiceInjectables} from '../../components/upload/UploadPictureService';
-import {alertingServiceInjectables} from '../../shared/services/AlertingService';
+import {alertingServiceInjectables} from './AlertingService';
 import {userSettingsColorsServiceInjectables} from '../../components/userSettings/UserSettingsColorsService';
 import {gameLauncherServiceInjectables} from '../../components/home/GameLauncherService';
 

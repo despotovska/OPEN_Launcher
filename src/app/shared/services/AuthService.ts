@@ -5,8 +5,8 @@ import {Observable} from 'rxjs/Rx';
 import {GlobalService} from './GlobalService';
 
 export interface IAuthService {
-  login(user: string): void;
-  logout(): void;
+  login(user: string): Observable<boolean>;
+  logout(): Observable<boolean>;
   getUser(): any;
   isLogged(): boolean;
 }
@@ -15,18 +15,18 @@ export interface IAuthService {
 export class AuthService implements IAuthService {
   constructor(private http: Http, private globalService: GlobalService) { }
 
-  login(user: string): boolean {
-    let isValid = user.length > 0;
-    if (isValid) {
-      this.http.get(this.globalService.URL_LOGIN(user));
-      localStorage.setItem('username', user);
+  login(user: string): Observable<boolean> {
+    if (user.length <= 0) {
+      return Observable.of(false);
     }
-    return isValid;
+
+    return this.http.get(this.globalService.URL_LOGIN(user))
+      .map((res: Response) => <boolean>res.json());
   }
 
-  logout(): void {
-    this.http.get(this.globalService.URL_LOGOUT);
-    localStorage.removeItem('username');
+  logout(): Observable<boolean> {
+    return this.http.get(this.globalService.URL_LOGOUT)
+      .map((res: Response) => <boolean>res.json());
   }
 
   getUser(): any {

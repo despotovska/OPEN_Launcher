@@ -55,11 +55,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    if (!this.authService.login(this.selectedUser.name)) {
-      this.alertingService.addDanger('Корисникот не е валиден.');
-    } else {
-      this.router.navigate(['/Home']);
-    }
+    this.authService.login(this.selectedUser.name).subscribe((success) => {
+      if (success) {
+        localStorage.setItem('username', this.selectedUser.name);
+        this.router.navigate(['/Home']);
+      } else {
+        this.alertingService.addDanger('Корисникот не е валиден.');
+      }
+    });
   }
 
   selectUser(user: User): void {

@@ -1,17 +1,38 @@
 import {Input, Component} from 'angular2/core';
-import {RouterLink} from 'angular2/router';
+import {Router, RouterLink, CanActivate} from 'angular2/router';
+
+import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {AuthService} from '../../shared/services/AuthService';
-import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
-import {UserSettings} from '../../shared/models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 import {AlertingService} from '../../shared/services/AlertingService';
+
+import {UserSettings} from '../../shared/models/UserSettings';
+import {
+  PointerType,
+  PointerSize,
+  PointerColor,
+  BackgroundColor} from '../../shared/enums/UserSettingsEnums';
+
+import {appInjector} from '../../../appInjector';
 
 @Component({
   directives: [RouterLink, UserSettingsComponent],
   templateUrl: './app/components/userSettingsEdit/userSettingsEdit.html'
 })
+@CanActivate(
+  (nextInstr: any, currInstr: any) => {
+    let injector: any = appInjector();
+    let authService: AuthService = injector.get(AuthService);
+    let router: Router = injector.get(Router);
+    let isLogged = authService.isLogged();
+
+    if (!isLogged) {
+      router.navigate(['/Login']);
+    }
+    return isLogged;
+  }
+)
 export class UserSettingsEditComponent {
   public userName: string;
   public userSettings: UserSettings;

@@ -43,7 +43,7 @@ export class UserSettingsEditComponent {
     private authService: AuthService,
     private userSettingsService: UserSettingsService) {
 
-    this.userName = authService.getUser();
+    this.userName = authService.getLoggedUser();
     this.userSettingsService.getUserSettingsFor(this.userName)
       .subscribe(data => this.userSettings = data);
     this.userSettingsService.getUserSettingsForJar(this.userName)

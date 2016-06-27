@@ -6,16 +6,17 @@ import {
 import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
+import {Observable} from 'rxjs/Rx';
 
 import {HomeComponent} from './HomeComponent';
 import {GameLauncherService} from './GameLauncherService';
-import {GameLauncherServiceMock} from '../../shared/mocks/GameLauncherServiceMock';
-import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {UserSettingsServiceMock} from '../../shared/mocks/UserSettingsServiceMock';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
-import {Observable} from 'rxjs/Rx';
+
+import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
+import {GameLauncherServiceMock} from '../../shared/mocks/GameLauncherServiceMock';
+import {UserSettingsServiceMock} from '../../shared/mocks/UserSettingsServiceMock';
 
 describe('HomeComponentTests', () => {
   beforeEachProviders(() => [

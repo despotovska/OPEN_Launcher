@@ -7,12 +7,14 @@ import {GlobalService} from './GlobalService';
 export interface IAuthService {
   login(user: string): Observable<boolean>;
   logout(): Observable<boolean>;
-  getUser(): any;
   isLogged(): boolean;
+  getLoggedUser(): string;
 }
 
 @Injectable()
 export class AuthService implements IAuthService {
+  private loggedUser: string;
+
   constructor(private http: Http, private globalService: GlobalService) { }
 
   login(user: string): Observable<boolean> {
@@ -22,9 +24,9 @@ export class AuthService implements IAuthService {
 
     return this.http.get(this.globalService.URL_LOGIN(user))
       .map((res: Response) => {
-        let success: boolean = res.json();
+        let success = <boolean>res.json();
         if (success) {
-          localStorage.setItem('username', user);
+          this.loggedUser = user;
         }
         return success;
       });
@@ -35,18 +37,18 @@ export class AuthService implements IAuthService {
       .map((res: Response) => {
         let success = <boolean>res.json();
         if (success) {
-          localStorage.removeItem('username');
+          this.loggedUser = undefined;
         }
         return success;
       });
   }
 
-  getUser(): any {
-    return localStorage.getItem('username');
+  getLoggedUser(): string {
+    return this.loggedUser;
   }
 
   isLogged(): boolean {
-    return !!this.getUser();
+    return !!this.loggedUser;
   }
 }
 

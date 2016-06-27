@@ -4,13 +4,11 @@ import {
   inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
-
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {AuthService} from './AuthService';
 import {GlobalService} from './GlobalService';
-import {User} from '../models/User';
 
 describe('AuthServiceTests', () => {
   beforeEachProviders(() => [
@@ -36,7 +34,6 @@ describe('AuthServiceTests', () => {
     inject([AuthService, MockBackend], (instance: AuthService, mockBackend) => {
       // Arrange
       let usernameValue = 'dragica';
-      spyOn(localStorage, 'setItem').and.callFake(() => { });
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
@@ -51,7 +48,6 @@ describe('AuthServiceTests', () => {
 
         // Assert
         expect(result).toBeTruthy();
-        expect(localStorage.setItem).toHaveBeenCalledWith(usernameKey, usernameValue);
       });
     }));
 
@@ -72,7 +68,6 @@ describe('AuthServiceTests', () => {
   it('logout_givenAvailableAuthService_shouldBeTruthy',
     inject([AuthService, MockBackend], (instance: AuthService, mockBackend) => {
       // Arrange
-      spyOn(localStorage, 'removeItem').and.callFake(() => { });
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(
@@ -88,44 +83,44 @@ describe('AuthServiceTests', () => {
 
           // Assert
           expect(result).toBeTruthy();
-          expect(localStorage.removeItem).toHaveBeenCalledWith(usernameKey);
         });
     }));
 
-  it('getUser_givenItemInLocalStorage_shouldGetItem', inject([AuthService], (instance) => {
-    // Arrange
-    spyOn(localStorage, 'getItem').and.callFake(() => {
-      return 'dragica';
-    });
+  it('getLoggedUser_givenItemInLocalStorage_shouldGetItem',
+    inject([AuthService], (instance) => {
+      // Arrange
+      let user = 'dragica';
+      instance.loggedUser = user;
 
-    // Act
-    let result = instance.getUser();
+      // Act
+      let result = instance.getLoggedUser();
 
-    // Assert
-    expect(localStorage.getItem).toHaveBeenCalledWith('username');
-    expect(result).toBe('dragica');
+      // Assert
+      expect(result).toBe(user);
 
-  }));
+    }));
 
-  it('isLogged_givenItemInLocalStorage_shouldBeTruthy', inject([AuthService], (instance) => {
-    // Arrange
-    spyOn(instance, 'getUser').and.callFake(() => { return new User(); });
+  it('isLogged_givenLoggedUser_shouldBeTruthy',
+    inject([AuthService], (instance) => {
+      // Arrange
+      instance.loggedUser = 'dragica';
 
-    // Act
-    let result = instance.isLogged();
+      // Act
+      let result = instance.isLogged();
 
-    // Assert
-    expect(result).toBeTruthy();
-  }));
+      // Assert
+      expect(result).toBeTruthy();
+    }));
 
-  it('isLogged_givenNoItemInLocalStorage_shouldBeFalsy', inject([AuthService], (instance) => {
-    // Arrange
-    spyOn(localStorage, 'getItem').and.callFake(() => { return undefined; });
+  it('isLogged_givenUnsetLoggedUser_shouldBeFalsy',
+    inject([AuthService], (instance) => {
+      // Arrange
+      instance.loggedUser = '';
 
-    // Act
-    let result = instance.isLogged();
+      // Act
+      let result = instance.isLogged();
 
-    // Assert
-    expect(result).toBeFalsy();
-  }));
+      // Assert
+      expect(result).toBeFalsy();
+    }));
 });

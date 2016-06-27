@@ -63,6 +63,10 @@ export class App {
     return this.authService.isLogged();
   }
 
+  getLoggedUser(): string {
+    return this.authService.getLoggedUser();
+  }
+
   logout(): void {
     this.authService.logout().subscribe((success) => {
       if (success) {

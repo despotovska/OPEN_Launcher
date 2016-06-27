@@ -33,10 +33,22 @@ describe('appComponentTests', () => {
       expect(instance.authService.isLogged).toHaveBeenCalled();
     }));
 
+  it('getLoggedUser_givenAvailableAuthService_shouldReturnLoggedUser',
+    inject([App], (instance) => {
+      // Arrange
+      let loggedUser = 'dragica';
+      spyOn(instance.authService, 'getLoggedUser').and.callFake(() => { return loggedUser; });
+
+      // Act
+      let result = instance.getLoggedUser();
+
+      // Assert
+      expect(result).toBe(loggedUser);
+    }));
+
   it('logout_givenAvailableAuthService_shouldRedirectToLogin',
     inject([App], (instance) => {
       // Arrange
-      let usernameKey = 'username';
       spyOn(instance.authService, 'logout').and.callFake(() => { return Observable.of(true); });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
 
@@ -44,7 +56,6 @@ describe('appComponentTests', () => {
       instance.logout();
 
       // Assert
-      expect(instance.authService.logout).toHaveBeenCalled();
       expect(instance.router.navigate).toHaveBeenCalledWith(['/Login']);
     }));
 });

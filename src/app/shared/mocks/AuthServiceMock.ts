@@ -12,11 +12,11 @@ export class AuthServiceMock implements IAuthService {
     return Observable.of(true);
   }
 
-  getUser() {
+  getLoggedUser(): string {
     return 'userName';
   }
 
-  isLogged() {
+  isLogged(): boolean {
     return true;
   }
 }

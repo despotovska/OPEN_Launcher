@@ -60,7 +60,7 @@ export class RegisterComponent {
         } else {
           this.userService.addUser(this.user)
             .subscribe(data => {
-              this.alertingService.addSuccess('Успешно внесен корисник');
+              this.alertingService.addSuccess('Успешно внесен корисник.');
               this.router.navigate(['/Login']);
             }, err => this.alertingService.addDanger('Грешка при внесување на корисник.'));
         }

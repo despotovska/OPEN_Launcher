@@ -59,10 +59,10 @@ describe('LoginComponentTests', () => {
     inject([LoginComponent], (instance) => {
       // Arrange
       let user = UserServiceMock.getTestUser('user1');
-      spyOn(instance.authService, 'login').and.callFake(() => { return false; });
+      spyOn(instance.authService, 'login').and.callFake(() => { return Observable.of(false); });
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
-      instance.selectedUser = user;
+       instance.selectedUser = user;
 
       // Act
       instance.login();
@@ -77,7 +77,7 @@ describe('LoginComponentTests', () => {
     inject([LoginComponent], (instance) => {
       // Arrange
       let user = UserServiceMock.getTestUser('user1');
-      spyOn(instance.authService, 'login').and.callFake(() => { return true; });
+      spyOn(instance.authService, 'login').and.callFake(() => { return Observable.of(true); });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
       instance.selectedUser = user;
 

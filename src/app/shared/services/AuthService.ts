@@ -3,36 +3,50 @@ import {Http, Response} from 'angular2/http';
 import {GlobalService} from './GlobalService';
 
 export interface IAuthService {
-  login(user: string): void;
-  logout(): void;
-  getUser(): any;
+  login(user: string): Observable<boolean>;
+  logout(): Observable<boolean>;
   isLogged(): boolean;
+  getLoggedUser(): string;
 }
 
 @Injectable()
 export class AuthService implements IAuthService {
+  private loggedUser: string;
+
   constructor(private http: Http, private globalService: GlobalService) { }
 
-  login(user: string): boolean {
-    let isValid = user.length > 0;
-    if (isValid) {
-      this.http.get(this.globalService.URL_LOGIN(user));
-      localStorage.setItem('username', user);
+  login(user: string): Observable<boolean> {
+    if (user.length <= 0) {
+      return Observable.of(false);
     }
-    return isValid;
+
+    return this.http.get(this.globalService.URL_LOGIN(user))
+      .map((res: Response) => {
+        let success = <boolean>res.json();
+        if (success) {
+          this.loggedUser = user;
+        }
+        return success;
+      });
   }
 
-  logout(): void {
-    this.http.get(this.globalService.URL_LOGOUT);
-    localStorage.removeItem('username');
+  logout(): Observable<boolean> {
+    return this.http.get(this.globalService.URL_LOGOUT)
+      .map((res: Response) => {
+        let success = <boolean>res.json();
+        if (success) {
+          this.loggedUser = undefined;
+        }
+        return success;
+      });
   }
 
-  getUser(): any {
-    return localStorage.getItem('username');
+  getLoggedUser(): string {
+    return this.loggedUser;
   }
 
   isLogged(): boolean {
-    return !!this.getUser();
+    return !!this.loggedUser;
   }
 }
 

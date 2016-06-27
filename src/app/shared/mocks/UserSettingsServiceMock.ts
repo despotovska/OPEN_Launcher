@@ -5,37 +5,30 @@ import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} fr
 import {IUserSettingsService} from '../services/UserSettingsService';
 
 export class UserSettingsServiceMock implements IUserSettingsService {
-  static setUserSetting(userSettings: UserSettings) {
-    userSettings.backgroundColor = BackgroundColor.InColor;
-    userSettings.pointerType = PointerType.Hand;
-    userSettings.pointerSize = PointerSize.Small;
-    userSettings.pointerColor = PointerColor.Blue;
-    userSettings.deviceType = DeviceTypes.Mouse;
+  static getUserSetting(): UserSettings {
+    return new UserSettings(
+      PointerType.Hand,
+      PointerSize.Small,
+      PointerColor.Blue,
+      BackgroundColor.InColor,
+      DeviceTypes.Mouse);
   }
 
   getUserSettingsFor(userName: string) {
-    let userSettings: UserSettings = new UserSettings();
-    UserSettingsServiceMock.setUserSetting(userSettings);
-    return Observable.of(userSettings);
+    return Observable.of(UserSettingsServiceMock.getUserSetting());
+  }
+
+  saveUserSettingsForUser(userName: string, userSettings: UserSettings) {
+    return Observable.of(UserSettingsServiceMock.getUserSetting());
   }
 
   getUserSettingsForJar(userName: string) {
-    let userSettings: UserSettings = new UserSettings();
-    UserSettingsServiceMock.setUserSetting(userSettings);
     let userSettingsForJar: string = '-bw false -ps s -pc white';
     return Observable.of(userSettingsForJar);
   }
 
   getUserSettingsForElectron(username: string): Observable<string> {
-    let userSettings: UserSettings = new UserSettings();
-    UserSettingsServiceMock.setUserSetting(userSettings);
     let userSettingsForElectron: string = 'b g';
     return Observable.of(userSettingsForElectron);
-  }
-
-  saveUserSettingsForUser(userName: string, userSettings: UserSettings) {
-    userSettings = new UserSettings();
-    UserSettingsServiceMock.setUserSetting(userSettings);
-    return Observable.of(userSettings);
   }
 }

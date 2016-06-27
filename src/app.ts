@@ -63,11 +63,10 @@ export class App {
     return this.authService.isLogged();
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout().subscribe((success) => {
       if (success) {
         this.router.navigate(['/Login']);
-        localStorage.removeItem('username');
       }
     });
   }

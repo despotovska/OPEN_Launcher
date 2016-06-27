@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.selectedUser.name).subscribe((success) => {
       if (success) {
-        localStorage.setItem('username', this.selectedUser.name);
         this.router.navigate(['/Home']);
       } else {
         this.alertingService.addDanger('Корисникот не е валиден.');

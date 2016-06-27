@@ -21,12 +21,24 @@ export class AuthService implements IAuthService {
     }
 
     return this.http.get(this.globalService.URL_LOGIN(user))
-      .map((res: Response) => <boolean>res.json());
+      .map((res: Response) => {
+        let success: boolean = res.json();
+        if (success) {
+          localStorage.setItem('username', user);
+        }
+        return success;
+      });
   }
 
   logout(): Observable<boolean> {
     return this.http.get(this.globalService.URL_LOGOUT)
-      .map((res: Response) => <boolean>res.json());
+      .map((res: Response) => {
+        let success = <boolean>res.json();
+        if (success) {
+          localStorage.removeItem('username');
+        }
+        return success;
+      });
   }
 
   getUser(): any {

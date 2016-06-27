@@ -26,6 +26,8 @@ describe('AuthServiceTests', () => {
     AuthService
   ]);
 
+  let usernameKey = 'username';
+
   it('should have http', inject([AuthService], (instance) => {
     expect(!!instance.http).toEqual(true);
   }));
@@ -33,39 +35,62 @@ describe('AuthServiceTests', () => {
   it('login_givenValidUsername_shouldBeTruthy',
     inject([AuthService, MockBackend], (instance: AuthService, mockBackend) => {
       // Arrange
-      let usernameKey = 'username';
       let usernameValue = 'dragica';
       spyOn(localStorage, 'setItem').and.callFake(() => { });
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+              body: JSON.stringify(true)
+            }
+            )));
+        });
 
       // Act
-      let result = instance.login(usernameValue);
+      instance.login(usernameValue).subscribe((result) => {
 
-      // Assert
-      expect(result).toBeTruthy();
-      expect(localStorage.setItem).toHaveBeenCalledWith(usernameKey, usernameValue);
+        // Assert
+        expect(result).toBeTruthy();
+        expect(localStorage.setItem).toHaveBeenCalledWith(usernameKey, usernameValue);
+      });
     }));
 
-  it('login_givenInvalidUsername_shouldBeFalsy', inject([AuthService], (instance) => {
-    // Arrange
-    let username = '';
+  it('login_givenInvalidUsername_shouldBeFalsy',
+    inject([AuthService], (instance) => {
+      // Arrange
+      let username = '';
 
-    // Act
-    let result = instance.login(username);
+      // Act
+      instance.login(username).subscribe(
+        (result) => {
 
-    // Assert
-    expect(result).toBeFalsy();
-  }));
+          // Assert
+          expect(result).toBeFalsy();
+        });
+    }));
 
-  it('logout_givenItemInLocalStorage_shouldRemoveItem', inject([AuthService], (instance) => {
-    // Arrange
-    spyOn(localStorage, 'removeItem').and.callFake(() => { });
+  it('logout_givenAvailableAuthService_shouldBeTruthy',
+    inject([AuthService, MockBackend], (instance: AuthService, mockBackend) => {
+      // Arrange
+      spyOn(localStorage, 'removeItem').and.callFake(() => { });
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+              body: JSON.stringify(true)
+            }
+            )));
+        });
 
-    // Act
-    instance.logout();
+      // Act
+      instance.logout()
+        .subscribe((result) => {
 
-    // Assert
-    expect(localStorage.removeItem).toHaveBeenCalledWith('username');
-  }));
+          // Assert
+          expect(result).toBeTruthy();
+          expect(localStorage.removeItem).toHaveBeenCalledWith(usernameKey);
+        });
+    }));
 
   it('getUser_givenItemInLocalStorage_shouldGetItem', inject([AuthService], (instance) => {
     // Arrange

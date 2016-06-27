@@ -33,8 +33,7 @@ describe('UserSettingsEditComponentTests', () => {
   it('saveUserSettings_givenAvailableUserSettingsService_shouldSaveUserSettingsAndAlertForSuccessIsCalled',
     inject([UserSettingsEditComponent], (instance) => {
       // Arrange
-      instance.userSettings = new UserSettings();
-      UserSettingsServiceMock.setUserSetting(instance.userSettings);
+      instance.userSettings = UserSettingsServiceMock.getUserSetting();
       spyOn(instance.userSettingsService, 'saveUserSettingsForUser').and.callThrough();
       spyOn(instance.alertingService, 'addSuccess').and.callFake(() => { });
 
@@ -49,8 +48,7 @@ describe('UserSettingsEditComponentTests', () => {
   it('saveUserSettings_givenUnavailableUserSettingsService_shouldThrowAlertForDanger',
     inject([UserSettingsEditComponent], (instance) => {
       // Arrange
-      instance.userSettings = new UserSettings();
-      UserSettingsServiceMock.setUserSetting(instance.userSettings);
+      instance.userSettings = UserSettingsServiceMock.getUserSetting();
       spyOn(instance.userSettingsService, 'saveUserSettingsForUser').and.callFake(() => { return Observable.throw(new Error()); });
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
 

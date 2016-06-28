@@ -8,7 +8,6 @@ import {alertingServiceInjectables} from './AlertingService';
 import {userSettingsColorsServiceInjectables} from '../../components/userSettings/UserSettingsColorsService';
 import {gameLauncherServiceInjectables} from '../../components/home/GameLauncherService';
 
-export * from './AuthService';
 export * from './GlobalService';
 export * from './UserService';
 export * from './UserSettingsService';

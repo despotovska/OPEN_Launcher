@@ -45,6 +45,7 @@ OPEN_Launcher/
  │   │        
  │   └──assets/                         * static assets are served here
  │       ├──css/                        * our stylesheets are here
+ │       ├──games/                      * games executables are here
  │       ├──images/                     * images are stored here
  │       ├──js/                         * only requiring jquery statement is stored here (this might be changed)
  │       ├──robots.txt                  * for search engines to crawl your website
@@ -81,16 +82,25 @@ Once you have those, you should install these globals with `npm install --global
 ## Running the app
 After you have installed all dependencies you can now run the app. Run `npm start` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3000/`).
 
-## Building the exe file using electron
+## Building the exe file using [Electron](https://github.com/electron/electron)
 Electron can be used with any framework, so once Electron is set in place, we simply create the Angular 2 app as we would for the web.
 The Electron configuration is contained in `./src/main.js`.
 
-### Important 
+## Building Windows installer using [Electron Installer](https://github.com/electron/windows-installer)
+Electron Installer is a NPM module that builds Windows installers for Electron apps using [Squirrel](https://github.com/Squirrel/Squirrel.Windows).
+The Electron Installer configuration is contained in `installer.js`.
+
+### IMPORTANT 
 Set the environment variable to 'prod' in `./backend/env.js`.
 
 To build application exe file for win32 x64 run the following command:
 ```bash
 npm run pack
+```
+
+To build Windows installer for the application run the following command:
+```bash
+npm run installer
 ```
 
 ## Other commands

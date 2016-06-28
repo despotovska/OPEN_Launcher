@@ -35,6 +35,7 @@ export class GlobalService {
   URL_STARTGAME(startCommand: string): string {
     return URL + '/api/startGame?startCommand=' + startCommand;
   }
+
   URL_LOGIN(username: string): string {
     return URL + '/api/login/' + username;
   }

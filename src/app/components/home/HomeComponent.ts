@@ -49,7 +49,7 @@ export class HomeComponent {
     private authService: AuthService,
     private userSettingsService: UserSettingsService,
     private gameLauncherService: GameLauncherService) {
-    this.currentUserName = this.authService.getUser();
+    this.currentUserName = this.authService.getLoggedUser();
   }
 
   loadGame(selectedGame) {

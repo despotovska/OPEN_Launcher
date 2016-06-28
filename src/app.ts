@@ -4,6 +4,7 @@ require('./assets/css/site.css');
 import {provide, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {
+  Router,
   RouteConfig,
   ROUTER_DIRECTIVES,
   ROUTER_PROVIDERS,
@@ -56,14 +57,22 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/*path', redirectTo: ['NotFound'] }
 ])
 export class App {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   isUserLogged(): boolean {
     return this.authService.isLogged();
   }
 
-  logout() {
-    this.authService.logout();
+  getLoggedUser(): string {
+    return this.authService.getLoggedUser();
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe((success) => {
+      if (success) {
+        this.router.navigate(['/Login']);
+      }
+    });
   }
 }
 

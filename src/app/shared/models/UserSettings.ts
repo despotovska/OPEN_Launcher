@@ -14,9 +14,11 @@ export interface IUserSettings {
 }
 
 export class UserSettings implements IUserSettings {
-  pointerType: PointerType;
-  pointerSize: PointerSize;
-  pointerColor: PointerColor;
-  backgroundColor: BackgroundColor;
-  deviceType: DeviceTypes;
+
+  constructor(
+    public pointerType?: PointerType,
+    public pointerSize?: PointerSize,
+    public pointerColor?: PointerColor,
+    public backgroundColor?: BackgroundColor,
+    public deviceType?: DeviceTypes) { }
 }

@@ -1,6 +1,7 @@
 import {Injectable, provide} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {GlobalService} from './GlobalService';
+import {Observable} from 'rxjs/Rx';
 
 export interface IAuthService {
   login(user: string): Observable<boolean>;

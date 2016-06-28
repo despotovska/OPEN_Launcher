@@ -5,4 +5,4 @@ var statsPath = require('./paths.js').statsPath;
 
 module.exports = low(statsPath, {
   storage: lowdbStorage
-})
+});

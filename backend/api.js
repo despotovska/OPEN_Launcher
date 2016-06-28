@@ -74,12 +74,6 @@ server.get('/api/deleteUser/:name', function (req, res) {
   res.send(db('users').value());
 });
 
-server.get('/api/login/:username', function (req, res) {
-  loggedUser = req.params.username;
-  console.log(loggedUser);
-  res.send(true);
-});
-
 server.get('/api/getUserSettings/:username?', function (req, res) {
   var username = req.params.username;
   if (username != undefined) {
@@ -143,21 +137,38 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   var time = new Date().toLocaleString();
   var guid = guidGenerator.create();
-  var deviceType = getDeviceType('Aleksandra');
-
-  if (guid || loggedUser ) {
+  var deviceType = getDeviceTypeForLoggedUser();
+  if (guid || loggedUser) {
     stats('sessions').push({
-      SessionID: guid,
-      Username: '',
+      SessionID: guid.value,
+      Username: loggedUser,
       GameName: gameName,
       DeviceType: deviceType,
       StartTime: time,
       EndTime: '',
       IterationsPassed: 0,
       InvalidClicksCount: 0
-    }).then(res.send(guid.value));
+    }).then(() => res.send(guid.value));
   }
   else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
+
+server.get('/api/gameUpdate/:guid/:misses', function (req, res) {
+  var guid = req.params.guid;
+
+  var session = stats('sessions').find({ SessionID: guid });
+  var misses = req.params.misses;
+  if (session) {
+    stats('sessions')
+      .chain()
+      .find({ SessionID: guid })
+      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
+      .value();
+    res.send(true);
+  } else {
     res.status(404);
     res.send({ error: 'Not found' });
   }
@@ -167,46 +178,24 @@ server.get('/api/gameEnded/:guid', function (req, res) {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
 
-  var session = stats('sessions').find({ SessionID: req.params.guid });
-
+  var session = stats('sessions').find({ SessionID: guid });
   if (session) {
     stats('sessions')
       .chain()
-      .find({ SessionID: req.params.guid })
+      .find({ SessionID: guid })
       .assign({ EndTime: time })
       .value();
-    res.send(time);
+    res.send(true);
   } else {
     res.status(404);
     res.send({ error: 'Not found' });
   }
 });
 
-server.get('/api/gameUpdate/:guid/:misses', function (req, res) {
-  var time = new Date().toLocaleString();
-  var guid = req.params.guid;
-  var session = stats('sessions').find({ SessionID: req.params.guid });
-  var misses = req.params.misses;
-  if (session) {
-    stats('sessions')
-      .chain()
-      .find({ SessionID: req.params.guid })
-      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
-      .value();
-    res.send(time);
-  } else {
-    res.status(404);
-    res.send({ error: 'Not found' });
-  }
-
-});
-
-function getDeviceType(username) {
-  var loggedUser = db('users').find({ name: username });
-  console.log(loggedUser);
-  if (loggedUser != undefined) {
-    var devicetype = loggedUser.userSettings.deviceType;
-    return devicetype;
+function getDeviceTypeForLoggedUser() {
+  var user = db('users').find({ name: loggedUser });
+  if (!!user) {
+    return user.userSettings.deviceType;
   }
 }
 

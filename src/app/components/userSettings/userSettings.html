@@ -66,5 +66,17 @@
         />Издвоен клик
       </label>
     </div>
+    <div class="radio">
+      <label class="h4">
+        <input #keyTrackball name="deviceTypesOption" type="radio" value="5" id="device-type-5" [checked]="shouldDeviceTypeBeChecked(keyTrackball.value)" (click)="selectDeviceType(keyTrackball.value)"
+        />Издвоен клик + тракбол
+      </label>
+    </div>
+    <div class="radio">
+      <label class="h4">
+        <input #keyJoystick name="deviceTypesOption" type="radio" value="6" id="device-type-6" [checked]="shouldDeviceTypeBeChecked(keyJoystick.value)" (click)="selectDeviceType(keyJoystick.value)"
+        />Издвоен клик + џојстик
+      </label>
+    </div>
   </div>
 </div>

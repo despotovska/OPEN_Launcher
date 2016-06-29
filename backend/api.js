@@ -156,11 +156,11 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
   }
 });
 
-server.get('/api/gameUpdate/:guid/:misses', function (req, res) {
-  var guid = req.params.guid;
+server.get('/api/gameUpdate', function (req, res) {
+  var guid = req.param('guid');
 
   var session = stats('sessions').find({ SessionID: guid });
-  var misses = req.params.misses;
+  var misses = req.param('misses');
   if (session) {
     stats('sessions')
       .chain()

@@ -5,7 +5,8 @@
         "backgroundColor": 0,
         "pointerType": 0,
         "pointerSize": 0,
-        "pointerColor": 0
+        "pointerColor": 0,
+        "deviceType": 2
       },
       "profileImg": "./assets/images/avatars/devojce.png",
       "name": "Aleksandra"

@@ -1,0 +1,14 @@
+{
+  "sessions": [
+    {
+      "SessionID": "337c1467-fc6c-0404-172a-71274f21254f",
+      "Username": "Aleksandra",
+      "GameName": "Sets",
+      "DeviceType": 2,
+      "StartTime": "6/22/2016, 11:27:39 AM",
+      "EndTime": "6/22/2016, 3:06:37 PM",
+      "IterationsPassed": 8,
+      "InvalidClicksCount": 16
+    }
+  ]
+}

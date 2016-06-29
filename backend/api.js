@@ -1,8 +1,10 @@
 var server = require('./server.js');
 var db = require('./db.js');
+var stats = require('./stats.js')
 var paths = require('./paths.js');
 var helpers = require('./helpers.js');
 var childProcess = require('child_process');
+var guidGenerator = require('guid');
 var isGameStarted = false;
 var loggedUser = '';
 
@@ -130,6 +132,72 @@ server.get('/api/startGame', function (req, res) {
 server.get('/api/isGameStarted', function (req, res) {
   res.send(!!this.isGameStarted);
 })
+
+server.get('/api/gameStarted/:gameName', function (req, res) {
+  var gameName = req.params.gameName;
+  var time = new Date().toLocaleString();
+  var guid = guidGenerator.create();
+  var deviceType = getDeviceTypeForLoggedUser();
+  if (guid || loggedUser) {
+    stats('sessions').push({
+      SessionID: guid.value,
+      Username: loggedUser,
+      GameName: gameName,
+      DeviceType: deviceType,
+      StartTime: time,
+      EndTime: '',
+      IterationsPassed: 0,
+      InvalidClicksCount: 0
+    }).then(() => res.send(guid.value));
+  }
+  else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
+
+server.get('/api/gameUpdate', function (req, res) {
+  var guid = req.param('guid');
+
+  var session = stats('sessions').find({ SessionID: guid });
+  var misses = req.param('misses');
+  if (session) {
+    stats('sessions')
+      .chain()
+      .find({ SessionID: guid })
+      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
+      .value();
+    res.send(true);
+  } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
+
+server.get('/api/gameEnded/:guid', function (req, res) {
+  var time = new Date().toLocaleString();
+  var guid = req.params.guid;
+
+  var session = stats('sessions').find({ SessionID: guid });
+  if (session) {
+    stats('sessions')
+      .chain()
+      .find({ SessionID: guid })
+      .assign({ EndTime: time })
+      .value();
+    res.send(true);
+  } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
+
+function getDeviceTypeForLoggedUser() {
+  var user = db('users').find({ name: loggedUser });
+  if (!!user) {
+    return user.userSettings.deviceType;
+  }
+}
 
 server.listen(3000, function () {
   console.log("Working on port 3000");

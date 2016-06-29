@@ -10,7 +10,7 @@ server.use(bodyParser.json());                         // to support JSON-encode
 server.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 server.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, cache-control, Accept");
   next();
 });
 

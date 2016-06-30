@@ -103,7 +103,8 @@ module.exports = {
       { from: 'node_modules/lowdb', to: 'node_modules/lowdb' },
       { from: 'node_modules/multer', to: 'node_modules/multer' },
       { from: 'node_modules/ms', to: 'node_modules/ms' },
-      { from: 'node_modules/electron-squirrel-startup', to: 'node_modules/electron-squirrel-startup' }
+      { from: 'node_modules/electron-squirrel-startup', to: 'node_modules/electron-squirrel-startup' },
+      { from: 'node_modules/guid', to: 'node_modules/guid' }
     ]),
     // generating html
     new HtmlWebpackPlugin({ template: helpers.root('src/index.html'), chunksSortMode: 'none' }),

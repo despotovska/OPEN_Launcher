@@ -203,6 +203,7 @@ server.get('/api/getLoggedUserStatistic/', function (req, res) {
 });
 
 function getDeviceTypeForLoggedUser() {
+  var user = db('users').find({ name: loggedUser });
   if (!!user) {
     return user.userSettings.deviceType;
   }

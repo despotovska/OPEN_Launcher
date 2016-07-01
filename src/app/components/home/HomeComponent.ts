@@ -7,6 +7,7 @@ import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
 import {LearningWithTheComputer} from '../../shared/enums/GamesEnum';
+import {CategoryModel} from './CategoryModel';
 import {GameModel} from './GameModel';
 
 import {appInjector} from '../../../appInjector';
@@ -42,7 +43,13 @@ export class HomeComponent {
     new GameModel('Приказна', 'computer.png', '')
   ];
 
+  public gamesCategories: Array<CategoryModel> = [
+    new CategoryModel('Запознај се со компјутерот', [this.getToKnowTheComputer]),
+    new CategoryModel('Учиме со компјутерот', this.learningWithTheComputer)];
+
   public currentUserName: string;
+  public title: string = 'Изберете игра:';
+  public gameAlreadyStartedMessage: string = 'Моментално имате започнато игра. Затворете го прозорецот со активната игра за да започнете нова.';
 
   constructor(
     private alertingService: AlertingService,
@@ -56,7 +63,7 @@ export class HomeComponent {
     this.gameLauncherService.isGameStarted().subscribe(data => {
       let isGameStarted: boolean = data;
       if (isGameStarted) {
-        this.alertingService.addInfo('Моментално имате започнато игра. Затворете го прозорецот со активната игра за да започнете нова.');
+        this.alertingService.addInfo(this.gameAlreadyStartedMessage);
         return;
       }
 

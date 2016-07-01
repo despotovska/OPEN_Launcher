@@ -1,30 +1,13 @@
 <div class="container">
-  <h2>Изберете игра:</h2>
+  <h2>{{title}}</h2>
   <div class="panel-group" id="accordion">
 
-    <div class="panel panel-default top-buffer-10">
-      <button id="section1" type="button" class="btn btn-primary btn-lg btn-block green" data-toggle="collapse" href="#collapse1"
-        data-parent="#accordion">Запознај се со компјутерот</button>
-      <div id="collapse1" class="panel-collapse collapse in">
+    <div class="panel panel-default top-buffer-10" *ngFor="#category of gamesCategories; #i=index">
+      <button id="section{{i}}" type="button" class="btn btn-primary btn-lg btn-block" [class.green]="i == 0" data-toggle="collapse"
+        [attr.href]="'#collapse'+i" data-parent="#accordion">{{category.name}}</button>
+      <div id="collapse{{i}}" class="panel-collapse collapse" [class.in]="i == 0">
         <div class="panel-body">
-          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
-            <figure class="btn btn-default">
-              <a class="game-tile" (click)="loadGame(getToKnowTheComputer.name)">
-                <img src="./assets/images/games/{{getToKnowTheComputer.image}}" alt="{{getToKnowTheComputer.name}}">
-                <figcaption>{{getToKnowTheComputer.name}}</figcaption>
-              </a>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-default top-buffer-10">
-      <button id="section2" type="button" class="btn btn-primary btn-lg btn-block collapsed" data-toggle="collapse" href="#collapse2"
-        data-parent="#accordion">Учиме со компјутерот</button>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
-          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of learningWithTheComputer">
+          <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of category.games">
             <figure class="btn btn-default">
               <a class="game-tile" (click)="loadGame(game.name)">
                 <img src="./assets/images/games/{{game.image}}" alt="{{game.name}}">
@@ -35,6 +18,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>

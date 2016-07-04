@@ -50,6 +50,8 @@ function handleSquirrelEvent() {
 require('./backend/api.js');
 const env = require('./backend/env.js');
 
+const http = require('http');
+
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -61,7 +63,6 @@ var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory)
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.focus();
   }
-  return true;
 });
 
 if (shouldQuit) {
@@ -75,6 +76,19 @@ app.on('window-all-closed', function () {
   }
 });
 
+app.on("before-quit", function (event) {
+  http.get({
+    hostname: 'localhost',
+    port: 3000,
+    path: '/api/terminateGameProcess',
+    agent: false  // create a new agent just for this one request
+  }, (res) => {
+    app.exit(0);
+  });
+
+  event.preventDefault();
+});
+
 app.on('ready', function () {
   // Initialize the window to our specified dimensions
   mainWindow = new BrowserWindow({
@@ -86,7 +100,7 @@ app.on('ready', function () {
   });
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
   if (env === 'dev') {

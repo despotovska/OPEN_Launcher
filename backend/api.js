@@ -7,6 +7,7 @@ var childProcess = require('child_process');
 var guidGenerator = require('guid');
 var isGameStarted = false;
 var loggedUser = '';
+var gameHandler = null;
 
 server.get('/', function (req, res) {
   res.sendFile(paths.indexPath);
@@ -120,8 +121,9 @@ server.get('/api/startGame', function (req, res) {
   var startCommand = req.param('startCommand');
   startCommand = startCommand.replace('{gamesPath}', paths.gamesPath);
 
-  var cp = childProcess.exec(startCommand, function (error, stdout, stderr) {
+  gameHandler = childProcess.exec(startCommand, function (error, stdout, stderr) {
     this.isGameStarted = false;
+    gameHandler = null;
   });
 
   this.isGameStarted = true;
@@ -131,7 +133,19 @@ server.get('/api/startGame', function (req, res) {
 
 server.get('/api/isGameStarted', function (req, res) {
   res.send(!!this.isGameStarted);
-})
+});
+
+server.get('/api/terminateGameProcess', function (req, res) {
+  if (gameHandler) {
+    childProcess.exec('taskkill /PID ' + gameHandler.pid + ' /T /F', function (error, stdout, stderr) {
+      res.status(200);
+      res.send({});
+    });
+  } else {
+    res.status(200);
+    res.send({});
+  }
+});
 
 server.get('/api/gameStarted/:gameName', function (req, res) {
   var gameName = req.params.gameName;

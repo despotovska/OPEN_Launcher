@@ -77,7 +77,7 @@ server.get('/api/deleteUser/:name', function (req, res) {
 
 server.get('/api/getUserSettings/:username?', function (req, res) {
   var username = req.params.username;
-  if (username != undefined) {
+  if (username) {
     var user = db('users').find({ name: username })
     if (user != undefined) {
       res.send(user.userSettings);
@@ -201,6 +201,16 @@ server.get('/api/gameEnded/:guid', function (req, res) {
       .value();
     res.send(true);
   } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
+
+server.get('/api/getLoggedUserStatistic/', function (req, res) {
+  if (loggedUser) {
+     res.send(stats('sessions').filter({ Username: loggedUser }));
+  }
+  else {
     res.status(404);
     res.send({ error: 'Not found' });
   }

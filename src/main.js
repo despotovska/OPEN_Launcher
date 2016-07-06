@@ -100,7 +100,7 @@ app.on('ready', function () {
   });
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
   if (env === 'dev') {

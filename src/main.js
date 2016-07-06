@@ -50,6 +50,8 @@ function handleSquirrelEvent() {
 require('./backend/api.js');
 const env = require('./backend/env.js');
 
+const http = require('http');
+
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -61,7 +63,6 @@ var shouldQuit = app.makeSingleInstance(function (commandLine, workingDirectory)
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.focus();
   }
-  return true;
 });
 
 if (shouldQuit) {
@@ -73,6 +74,19 @@ app.on('window-all-closed', function () {
   if (process.platform != 'darwin') {
     app.quit();
   }
+});
+
+app.on("before-quit", function (event) {
+  http.get({
+    hostname: 'localhost',
+    port: 3000,
+    path: '/api/terminateGameProcess',
+    agent: false  // create a new agent just for this one request
+  }, (res) => {
+    app.exit(0);
+  });
+
+  event.preventDefault();
 });
 
 app.on('ready', function () {

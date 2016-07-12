@@ -1,43 +1,47 @@
-describe("Game menu log in page", function() {
-
-
+describe("Login page", () => {
   var LogInPage = require("../page/LoginPageObject.js");
+  var RegisterPage = require("../page/RegisterPageObject.js");
 
+  var rootUrl = "http://localhost:3000/";
+  var loginUrl = rootUrl + "#/login";
+  var deletingCanceledMessage = "Бришењето е откажано.";
 
-  beforeEach(function() {
-    console.log(" Method started");
-    browser.get("http://localhost:3000/#/login");
+  beforeEach(() => {
+    browser.get(loginUrl);
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
   });
 
-
-  it("should display log in page", function() {
-    expect(LogInPage.getTitle()).toEqual("OPEN");
+  it("should redirect to login when / is accessed", () => {
+    browser.get(rootUrl);
+    expect(LogInPage.getCurrentURL()).toEqual(loginUrl);
   });
 
-
-  it("sign in button should not be visible if profile is not selected", function() {
-    expect(LogInPage.signBtnIsVisible()).toBe(false);
-    console.log("sign in button should not be visible if profile is not selected");
+  it("sign in button should not be visible if profile is not selected", () => {
+    expect(LogInPage.signBtnIsVisible()).toBeFalsy();
   });
 
-  it("User can log out from home page ", function() {
+  it("should log out user", () => {
     LogInPage.logIn();
     LogInPage.logOut();
-    expect(LogInPage.getCurrentURL()).toEqual("http://localhost:3000/#/login");
-    console.log("Finishing : User loged out");
+    expect(LogInPage.getCurrentURL()).toEqual(loginUrl);
   });
 
-
-  it("should filter profiles by entering username", function() {
+  it("should filter profiles by username", () => {
     LogInPage.filterUsername();
     expect(LogInPage.getTextFromFilter()).toContain("Aleksandra");
     LogInPage.filterUsernameClear();
-    console.log("Finishing : Filter username");
-
   });
 
+  it("should cancel profile deleting", () => {
+    LogInPage.cancelDelete();
+    expect(LogInPage.returnMessage()).toEqual(deletingCanceledMessage);
+    browser.sleep(1000);
+    browser.ignoreSynchronization = false;
+  });
 
+  it("should not display a delete button when profile is not selected", () => {
+    expect(LogInPage.isDeleteBtnIsVisible()).toBeFalsy();
+  });
 });
 

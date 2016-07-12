@@ -1,74 +1,80 @@
 var UserSettingsEditPage = function () {
 
-
-
   var userSettings = element(by.id("userSettingsEdit"));
-  var yellowColor = element(by.className("pointer-color-1 color-box img-circle selected"));
-  var whiteColor = element(by.className("pointer-color-0 color-box img-circle selected"));
-  var smallPointer = element(by.className("img-circle selected"));
-  var mediumPointer = element(by.className("img-circle selected"));
+
+  var whiteColor = element(by.id("pointer-color-0"));
+  var yellowColor = element(by.id("pointer-color-1"));
   var colorRedSelected = element(by.className("pointer-color-4 color-box img-circle selected"));
-  var radioBtn = element.all(by.css('input[type="radio"]'));
+
+  var smallPointer = element(by.id("pointer-size-0"));
+  var mediumPointer = element(by.id("pointer-size-1"));
+
+  var bgColors = element.all(by.name('bgColorOption'));
+
   var mouseRadioBtn = element(by.id("device-type-0"));
   var touchscreenRadioBtn = element(by.id("device-type-1"));
+  var trackballRadioBtn = element(by.id("device-type-2"));
+
   var someProfile = element.all(by.className("img-circle")).get(0);
-  var signBtn = element(by.id("btn-login"));
-  var saveSettings = element(by.id("saveUserSettings"));
-  var loggedUser = element(by.id("loggedUser"));
+  var loginBtn = element(by.id("btn-login"));
+  var saveSettingsBtn = element(by.id("saveUserSettings"));
 
   this.get = function (value) {
     browser.get(value);
   };
 
-  this.openUserSettings = function () {
+  this.navigateToEditUserSettingsPage = () => {
     userSettings.click();
   }
 
-  this.isRedColorSelected = function () {
+  this.isRedColorSelected = () => {
     return colorRedSelected.isPresent();
   };
 
-  this.isYellowColorSelected = function () {
+  this.isYellowColorSelected = () => {
     return yellowColor.isPresent();
   };
 
-  this.isWhiteColorSelected = function () {
+  this.isWhiteColorSelected = () => {
     return whiteColor.isPresent();
   };
 
-  this.isMediumPointerSelected = function () {
+  this.isMediumPointerSelected = () => {
     return mediumPointer.isPresent();
   };
 
-  this.isSmallPointerSelected = function () {
+  this.isSmallPointerSelected = () => {
     return smallPointer.isPresent();
   };
 
-  this.isMouseSelected = function () {
+  this.isMouseSelected = () => {
     return mouseRadioBtn.getAttribute().isSelected();
   };
 
-  this.isTouchScreenSelected = function () {
+  this.isTrackballSelected = () => {
+    return trackballRadioBtn.getAttribute().isSelected();
+  };
+
+  this.isTouchScreenSelected = () => {
     return touchscreenRadioBtn.getAttribute().isSelected();
   };
 
-  this.logInFilteredUser = function () {
+  this.logInFilteredUser = () => {
     someProfile.click();
-    signBtn.click();
+    loginBtn.click();
   };
 
-  this.userSettingsSave = function () {
-    saveSettings.click();
+  this.userSettingsSave = () => {
+    saveSettingsBtn.click();
   };
 
-  this.isColorThemeSelected = function () {
-    return radioBtn.get(0).getAttribute().isSelected();
+  this.isColorThemeSelected = () => {
+    return bgColors.get(0).getAttribute().isSelected();
   };
 
-  this.isBWThemeSelected = function () {
-    return radioBtn.get(1).getAttribute().isSelected();
+  this.isBWThemeSelected = () => {
+    return bgColors.get(1).getAttribute().isSelected();
   };
-
 };
 
 module.exports = new UserSettingsEditPage();

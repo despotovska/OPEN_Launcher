@@ -1,69 +1,57 @@
-describe("Upload picture page", function() {
-
-
+describe("Upload picture page", () => {
   var UploadPage = require("../page/UploadPageObject.js");
   var LogInPage = require("../page/LoginPageObject.js");
 
+  var successMessage = "Сликата е успешно прикачена.";
 
-
-  beforeEach(function() {
-    console.log(" Method started");
+  beforeEach(() => {
     browser.get("http://localhost:3000/#/login");
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
   });
 
-  it("Logged user can upload picture ", function() {
+  it("should not be possible to access the upload picture page when user is not logged in", () => {
+    expect(UploadPage.isNavigateToUploadPageVisible()).toBeFalsy();
+  });
 
+  it("should upload picture", () => {
     LogInPage.logIn();
     UploadPage.uploadPicture();
     browser.sleep(500);
     browser.ignoreSynchronization = true;
-    expect(UploadPage.returnMessage()).toEqual("Сликата е успешно додадена!");
+    expect(UploadPage.returnMessage()).toEqual(successMessage);
     browser.sleep(1000);
     browser.ignoreSynchronization = false;
     LogInPage.logOut();
-    console.log("Finishing: Logged user can upload picture");
   });
 
-  it("Picture is shown ", function() {
+  it("should display the uploaded picture", () => {
     LogInPage.logIn();
     UploadPage.preUploadPicture();
-    expect(UploadPage.isUploadPictureShown()).toBe(true);
+    expect(UploadPage.isUploadPictureShown()).toBeTruthy();
     LogInPage.logOut();
-    console.log("Finishing: Logged user can upload picture");
   });
 
-  it("Upload picture page not available if user is not logged in ", function() {
-    expect(UploadPage.isNavigateToUploadPageVisible()).toBe(false);
-    console.log("Upload picture page not available if user is not logged in");
-  });
-
-  it("Choose picture button should be enabled when user is navigated to Upload page", function() {
+  it("should display the choose picture button and it should be enabled", () => {
     LogInPage.logIn();
     UploadPage.navigateToUploadPage();
-    expect(UploadPage.isChooseBtnEnabled()).toBe(true);
-    console.log("Choose picture button should be enabled when user is navigated to Upload page");
+    expect(UploadPage.isChooseBtnEnabled()).toBeTruthy();
     LogInPage.logOut();
   });
 
-  it("Upload button should be disabled if file is not selected", function() {
+  it("should display the upload button and it should be disabled when file is not selected", () => {
     LogInPage.logIn();
     UploadPage.navigateToUploadPage();
-    expect(UploadPage.isUploadBtnEnabled()).toBe(false);
-    console.log("Upload button should be disabled if file is not selected");
+    expect(UploadPage.isUploadBtnEnabled()).toBeFalsy();
     LogInPage.logOut();
   });
 
-  it("Path field should be disabled when user is navigated to upload page", function() {
+  it("should display the image path field and it should be disabled when picture is not choosen", () => {
     LogInPage.logIn();
     UploadPage.navigateToUploadPage();
-    expect(UploadPage.isPathFieldEnabled()).toBe(false);
-    console.log("Path field should be disabled when user is navigated to upload page");
+    expect(UploadPage.isPathFieldEnabled()).toBeFalsy();
     LogInPage.logOut();
   });
-
-
 });
 
 

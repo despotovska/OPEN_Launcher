@@ -1,73 +1,54 @@
-describe("Game menu edit user settings", function() {
-
-
+describe("Home page", () => {
   var LogInPage = require("../page/LoginPageObject.js");
   var HomePage = require("../page/HomePageObject.js");
   var UserSettingsEditPage = require("../page/UserSettingsEditPageObject.js")
 
-  beforeEach(function() {
-    console.log(" Before Method : Before Each Function");
+  beforeEach(() => {
     UserSettingsEditPage.get("http://localhost:3000/#/login");
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
     LogInPage.logIn();
     browser.sleep(500);
-
   });
 
-  it("When user signs in there should be section with name get to know with PC", function() {
-    expect(HomePage.isGetToKnowWithPCPresent()).toBe(true);
-    console.log("get to know with PC section is present");
+  afterEach(() => {
     LogInPage.logOut();
   });
 
-  it("When user signs in there should be section with name learn with PC", function() {
-    expect(HomePage.isLearnWithPCPresent()).toBe(true);
-    console.log("Learn with PC section is present");
-    LogInPage.logOut();
+  it("should display the get-to-know-the-PC games section", () => {
+    expect(HomePage.isGetToKnowThePCPresent()).toBeTruthy();
   });
 
-  it("When user signs in section with name get to know with PC should be game to select called Cause and Effect", function() {
-    expect(HomePage.isCauseAndEffectVisible()).toBe(true);
-    console.log("Game Cause and Effect is visible");
-    LogInPage.logOut();
+  it("should display the learning-with-the-PC games section", () => {
+    expect(HomePage.isLearnWithPCPresent()).toBeTruthy();
   });
 
-  it("When user signs in section with name learn with PC there should be game to select called Sets", function() {
+  it("should display the Cause-and-Effect game in the get-to-know-the-PC section", () => {
+    expect(HomePage.isCauseAndEffectVisible()).toBeTruthy();
+  });
+
+  it("should display the Sets game in the learning-with-the-PC section", () => {
     HomePage.clickLearnWithPC();
-    expect(HomePage.isSetsVisible()).toBe(true);
-    console.log("Game Sets is visible");
-    LogInPage.logOut();
+    expect(HomePage.isSetsVisible()).toBeTruthy();
   });
 
-  it("When user signs in section with name learn with PC there should be game to select called Who is hiding", function() {
+  it("should display the Who-is-hiding game in the learning-with-the-PC section", () => {
     HomePage.clickLearnWithPC();
-    expect(HomePage.iswhoIsHidingVisible()).toBe(true);
-    console.log("Game Who is hiding is visible");
-    LogInPage.logOut();
+    expect(HomePage.iswhoIsHidingVisible()).toBeTruthy();
   });
 
-  it("When user signs in section with name learn with PC there should be game to select called Puzzle/Halves", function() {
+  it("should display the Puzzle/Halves game in the learning-with-the-PC section", () => {
     HomePage.clickLearnWithPC();
-    expect(HomePage.isPuzzleHalvesVisible()).toBe(true);
-    console.log("Puzzle/Halves game is visible");
-    LogInPage.logOut();
+    expect(HomePage.isPuzzleHalvesVisible()).toBeTruthy();
   });
 
-  it("When user signs in section with name learn with PC there should be game to select called Me and my home", function() {
+  it("should display the Me-and-my-home game in the learning-with-the-PC section", () => {
     HomePage.clickLearnWithPC();
-    expect(HomePage.isMeAndMyHomeVisible()).toBe(true);
-    console.log("Me and my home game is visible");
-    LogInPage.logOut();
+    expect(HomePage.isMeAndMyHomeVisible()).toBeTruthy();
   });
 
-  it("When user signs in section with name learn with PC there should be game to select called Story", function() {
+  it("should display the Story game in the learning-with-the-PC section", () => {
     HomePage.clickLearnWithPC();
-    expect(HomePage.isStoryVisible()).toBe(true);
-    console.log("Story game is visible");
-    LogInPage.logOut();
+    expect(HomePage.isStoryVisible()).toBeTruthy();
   });
-
-
-
 });

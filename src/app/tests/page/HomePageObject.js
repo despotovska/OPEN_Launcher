@@ -1,59 +1,55 @@
-var HomePage = function() {
+var HomePage = function () {
 
+  var getToKnowWithPC = element(by.id("collapse0"));
+  var causeAndEffect = element(by.css("#collapse0 > div > div:nth-child(1) > figure > a > img"));
 
-
-
-  var causeAndEffect = element(by.xpath("//*[@id='collapse1']/div/div/figure/a/img"));
-  var getToKnowWithPC = element(by.id("collapse1"));
   var learnWithPC = element(by.css("#accordion > div:nth-child(2) > button"));
-  var sets = element(by.css("#collapse2 > div > div:nth-child(1) > figure > a > img"));
-  var whoIsHiding = element(by.css("#collapse2 > div > div:nth-child(2) > figure > a > img"));
-  var puzzleHalves = element(by.css("#collapse2 > div > div:nth-child(3) > figure > a > img"));
-  var meAndMyHome = element(by.css("#collapse2 > div > div:nth-child(4) > figure > a > img"));
-  var story = element(by.css("#collapse2 > div > div:nth-child(5) > figure > a > img"));
+  var sets = element(by.css("#collapse1 > div > div:nth-child(1) > figure > a > img"));
+  var whoIsHiding = element(by.css("#collapse1 > div > div:nth-child(2) > figure > a > img"));
+  var puzzleHalves = element(by.css("#collapse1 > div > div:nth-child(3) > figure > a > img"));
+  var meAndMyHome = element(by.css("#collapse1 > div > div:nth-child(4) > figure > a > img"));
+  var story = element(by.css("#collapse1 > div > div:nth-child(5) > figure > a > img"));
 
-
-  this.get = function(value) {
+  this.get = function (value) {
     browser.get(value);
   };
 
-  this.clickLearnWithPC = function() {
+  this.clickLearnWithPC = () => {
     learnWithPC.click();
     browser.sleep(500);
   };
 
-  this.isGetToKnowWithPCPresent = function() {
+  this.isGetToKnowThePCPresent = () => {
     return getToKnowWithPC.isPresent();
   };
 
-  this.isLearnWithPCPresent = function() {
+  this.isLearnWithPCPresent = () => {
     return learnWithPC.isPresent();
   };
 
-  this.isCauseAndEffectVisible = function() {
+  this.isCauseAndEffectVisible = () => {
     return causeAndEffect.isDisplayed();
   };
 
-  this.isSetsVisible = function() {
+  this.isSetsVisible = () => {
     return sets.isDisplayed();
   };
 
-  this.iswhoIsHidingVisible = function() {
+  this.iswhoIsHidingVisible = () => {
     return whoIsHiding.isDisplayed();
   };
 
-  this.isPuzzleHalvesVisible = function() {
+  this.isPuzzleHalvesVisible = () => {
     return puzzleHalves.isDisplayed();
   };
 
-  this.isMeAndMyHomeVisible = function() {
+  this.isMeAndMyHomeVisible = () => {
     return meAndMyHome.isDisplayed();
   };
 
-  this.isStoryVisible = function() {
+  this.isStoryVisible = () => {
     return story.isDisplayed();
   };
-
 };
 
 module.exports = new HomePage();

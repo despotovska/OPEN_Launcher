@@ -1,63 +1,55 @@
-var LogInPage = function() {
+var LogInPage = function () {
 
-
-
-  var signBtn = element(by.id("btn-login"));
-  var profile = element.all(by.className("img-circle"));
+  var loginBtn = element(by.id("btn-login"));
+  var profiles = element.all(by.className("img-circle"));
   var logOutbtn = element(by.id("logout"));
   var name = element(by.id("usernamefield"));
   var filtered_names = element.all(by.css("body > app > div > login > div > div > div:nth-child(2) > div")).get(0);
-  //var loggedUser = element(by.css("body > app > div > home > div > div > b"));
-  var profileNumber;
-  var randomNo;
-  var profileNames;
   var selectedName;
-  var loggedUsername;
   var loggedUserMenu = element(by.id("loggedUser"));
 
+  var someProfile = element.all(by.className("img-circle")).get(0);
+  var deleteBtn = element(by.id("deleteBtn"));
+  var yesBtn = element(by.id("yesBtn"));
+  var noBtn = element(by.id("noBtn"));
+  var modal = element(by.id("myModal"));
+  var alertmessage = element(by.id("messagelabel"));
 
-  this.get = function(value) {
+  this.get = function (value) {
     browser.get(value);
   };
 
-  this.logIn = function() {
-    profile.count().then(function(counted) {
-      console.log(counted);
-      profileNumber = parseInt(counted);
-      console.log("Profilenumber: " + profileNumber);
-      randomNo = Math.floor(Math.random() * (profileNumber - 1));
-      profileNames = element.all(by.className("text-overflow")).get(randomNo);
-      profileNames.getAttribute("innerHTML").then(function(text) {
+  this.logIn = () => {
+    profiles.count().then(function (counted) {
+      var profileNumber = parseInt(counted);
+      var randomNo = Math.floor(Math.random() * (profileNumber - 1));
+      var profileNames = element.all(by.className("text-overflow")).get(randomNo);
+      profileNames.getAttribute("innerHTML").then(function (text) {
         selectedName = text;
-        console.log("Random number: " + randomNo);
-        console.log("Selected user:" + selectedName);
-        profile.get(randomNo).click();
-        signBtn.click();
+        profiles.get(randomNo).click();
+        loginBtn.click();
       });
     });
-
   };
 
-
-  this.logOut = function() {
+  this.logOut = () => {
     loggedUserMenu.click();
     logOutbtn.click();
   };
 
-  this.getCurrentURL = function() {
+  this.getCurrentURL = () => {
     return browser.getCurrentUrl();
   };
 
-  this.filterUsername = function() {
+  this.filterUsername = () => {
     name.sendKeys("A");
     name.sendKeys("l");
     name.sendKeys("e");
     name.sendKeys("k");
     name.sendKeys("s");
-
   };
 
-  this.filterUsernameJosif = function() {
+  this.filterUsernameJosif = () => {
     name.sendKeys("J");
     name.sendKeys("o");
     name.sendKeys("s");
@@ -65,7 +57,7 @@ var LogInPage = function() {
     name.sendKeys("f");
   };
 
-   this.filterUsernameЈосиф = function() {
+  this.filterUsernameЈосиф = () => {
     name.sendKeys("Ј");
     name.sendKeys("о");
     name.sendKeys("с");
@@ -73,36 +65,65 @@ var LogInPage = function() {
     name.sendKeys("ф");
   };
 
-  this.filterUsernameClear = function(filter) {
-    name.clear();
+  this.filterUsernameEma = () => {
+    name.sendKeys("E");
+    name.sendKeys("m");
+    name.sendKeys("a");
+  };
 
+  this.filterUsernameClear = function (filter) {
+    name.clear();
   }
-  this.getTextFromFilter = function() {
+
+  this.getTextFromFilter = () => {
     return filtered_names.getText();
   }
 
-  this.signBtnIsVisible = function() {
-    return signBtn.isPresent();
+  this.signBtnIsVisible = () => {
+    return loginBtn.isPresent();
   }
 
-  this.getLoggedUser = function() {
-    loggedUserMenu.getText().then(function(text) {
-      loggedUsername = text;
-      console.log("User logged in: " + loggedUsername);
-      return loggedUsername;
-    });
+  this.getLoggedUser = () => {
+    return loggedUserMenu.getText();
   };
 
-  this.getSelectedUser = function() {
+  this.getSelectedUser = () => {
     return selectedName;
   };
 
-  this.getTitle = function() {
-    return browser.getTitle();
+
+  this.deleteProfile = () => {
+    someProfile.click();
+    deleteBtn.click();
+    browser.wait(EC.visibilityOf(modal), 5000);
+    yesBtn.click();
   };
 
+  this.deleteFilteredUser = () => {
+    someProfile.click();
+    deleteBtn.click();
+    browser.wait(EC.visibilityOf(modal), 5000);
+    yesBtn.click();
+  };
 
+  this.deleteBtnIsVisible = () => {
+    return deleteBtn.isPresent();
+  };
 
+  this.cancelDelete = () => {
+    someProfile.click();
+    deleteBtn.click();
+    browser.wait(EC.visibilityOf(modal), 5000);
+    noBtn.click();
+  };
+
+  this.isDeleteBtnIsVisible = () => {
+    return deleteBtn.isPresent();
+  };
+
+  this.returnMessage = () => {
+    return alertmessage.getText();
+  };
 };
 
 module.exports = new LogInPage();

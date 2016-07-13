@@ -1,7 +1,7 @@
 describe("Edit user settings page", () => {
-  var RegisterPage = require("../page/RegisterPageObject.js");
-  var LogInPage = require("../page/LoginPageObject.js");
-  var UserSettingsEditPage = require("../page/UserSettingsEditPageObject.js");
+  var RegisterPage = require("./pages/RegisterPageObject.js");
+  var LogInPage = require("./pages/LoginPageObject.js");
+  var UserSettingsEditPage = require("./pages/UserSettingsEditPageObject.js");
 
   var loginUrl = "http://localhost:3000/#/login";
   var homeUrl = "http://localhost:3000/#/home";

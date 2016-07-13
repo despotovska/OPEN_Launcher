@@ -1,7 +1,7 @@
 describe("Home page", () => {
-  var LogInPage = require("../page/LoginPageObject.js");
-  var HomePage = require("../page/HomePageObject.js");
-  var UserSettingsEditPage = require("../page/UserSettingsEditPageObject.js")
+  var LogInPage = require("./pages/LoginPageObject.js");
+  var HomePage = require("./pages/HomePageObject.js");
+  var UserSettingsEditPage = require("./pages/UserSettingsEditPageObject.js")
 
   beforeEach(() => {
     UserSettingsEditPage.get("http://localhost:3000/#/login");

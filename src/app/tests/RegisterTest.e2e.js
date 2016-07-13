@@ -1,6 +1,6 @@
 describe("Register page", () => {
-  var RegisterPage = require("../page/RegisterPageObject.js");
-  var LogInPage = require("../page/LoginPageObject.js");
+  var RegisterPage = require("./pages/RegisterPageObject.js");
+  var LogInPage = require("./pages/LoginPageObject.js");
 
   var loginUrl = "http://localhost:3000/#/login";
   var usernameJosif = "Josif";

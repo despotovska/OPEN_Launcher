@@ -7,7 +7,7 @@ exports.config = {
 
 
   specs: [
-    'src/app/tests/e2e/*.js'
+    'src/app/tests/*.e2e.js'
   ],
 
   exclude: [],

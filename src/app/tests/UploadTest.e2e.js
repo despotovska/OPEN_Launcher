@@ -1,6 +1,6 @@
 describe("Upload picture page", () => {
-  var UploadPage = require("../page/UploadPageObject.js");
-  var LogInPage = require("../page/LoginPageObject.js");
+  var UploadPage = require("./pages/UploadPageObject.js");
+  var LogInPage = require("./pages/LoginPageObject.js");
 
   var successMessage = "Сликата е успешно прикачена.";
 
@@ -10,7 +10,7 @@ describe("Upload picture page", () => {
     browser.ignoreSynchronization = true;
   });
 
-  it("should not be possible to access the upload picture page when user is not logged in", () => {
+  it("should not be possible to access the upload picture pages when user is not logged in", () => {
     expect(UploadPage.isNavigateToUploadPageVisible()).toBeFalsy();
   });
 

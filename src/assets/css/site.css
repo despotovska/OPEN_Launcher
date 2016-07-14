@@ -186,3 +186,7 @@ body {
 .navbar-custom .navbar-toggle .icon-bar {
   background-color: #ffffff;
 }
+
+.bolded {
+  font-weight: bold;
+}

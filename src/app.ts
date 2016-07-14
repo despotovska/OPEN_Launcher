@@ -70,15 +70,15 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/*path', redirectTo: ['NotFound'] }
 ])
 export class App {
-  public languages: string[] = ['MK', 'EN'];
+  public languages: string[] = ['mk', 'en'];
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private translate: TranslateService) {
 
-    translate.setDefaultLang('mk');
-    translate.use('mk');
+    translate.setDefaultLang(this.languages[0]);
+    translate.use(this.languages[0]);
   }
 
   isUserLogged(): boolean {
@@ -99,6 +99,10 @@ export class App {
 
   setLanguage(language: string): void {
     this.translate.use(language);
+  }
+
+  shouldApplySelectedLanguageCss(language: string): boolean {
+    return this.translate.currentLang === language;
   }
 }
 

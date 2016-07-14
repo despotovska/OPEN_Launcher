@@ -40,5 +40,5 @@
 </div>
 
 <ul class="nav navbar-nav pull-right">
-  <li *ngFor="#lang of languages"> <a role="button" (click)="setLanguage(lang)">{{lang}}</a></li>
+  <li *ngFor="#lang of languages"> <a role="button" (click)="setLanguage(lang)" [class.bolded]="shouldApplySelectedLanguageCss(lang)">{{ lang | translate }}</a></li>
 </ul>

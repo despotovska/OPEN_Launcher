@@ -1,57 +1,58 @@
 describe("Register page", () => {
-  var RegisterPage = require("./pages/RegisterPageObject.js");
+
   var LogInPage = require("./pages/LoginPageObject.js");
+  var RegisterPage = require("./pages/RegisterPageObject.js");
 
   var loginUrl = "http://localhost:3000/#/login";
   var usernameJosif = "Josif";
   var successMessage = "Успешно внесен корисник.";
   var existingUsernameMessage = "Корисничкото име веќе постои, обидете се да се регистрирате со друго име.";
-  var selectPictureMessage = "За да креирате профил, ве молам изберете слика.";
+  var selectPictureMessage = "За да креирате профил, мора да изберете слика.";
 
   beforeEach(() => {
-    RegisterPage.get(loginUrl);
+    browser.get(loginUrl);
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
-    RegisterPage.waitforCreateBtn();
-    RegisterPage.clickCreateBtn();
+    LogInPage.waitForCreateBtn();
+    LogInPage.clickCreateBtn();
     browser.sleep(1000);
   });
 
   it("should create new profile with the default options", () => {
-    RegisterPage.createPredefinedUserName(usernameJosif);
-    browser.sleep(500);
+    RegisterPage.createUserWithDefaultSettings(usernameJosif);
+    browser.sleep(1000);
     browser.ignoreSynchronization = true;
-    expect(RegisterPage.returnMessage()).toEqual(successMessage);
+    expect(RegisterPage.returnAlertMessage()).toEqual(successMessage);
     browser.sleep(2000);
     browser.ignoreSynchronization = false;
     LogInPage.filterUsernameJosif();
-    LogInPage.deleteFilteredUser();
+    LogInPage.deleteFirstProfile();
   });
 
   it("should create new profile with cyrillic letters username", () => {
-    RegisterPage.createPredefinedUserName("Јосиф");
+    RegisterPage.createUserWithDefaultSettings("Јосиф");
     browser.sleep(500);
     browser.ignoreSynchronization = true;
-    expect(RegisterPage.returnMessage()).toEqual(successMessage);
+    expect(RegisterPage.returnAlertMessage()).toEqual(successMessage);
     browser.sleep(2000);
     browser.ignoreSynchronization = false;
     LogInPage.filterUsernameЈосиф();
-    LogInPage.deleteFilteredUser();
+    LogInPage.deleteFirstProfile();
   });
 
   it("should not be possible a profile to be created with a same name as an existing profile", () => {
-    RegisterPage.createPredefinedUserName(usernameJosif);
-    RegisterPage.waitforCreateBtn();
-    RegisterPage.clickCreateBtn();
-    RegisterPage.createPredefinedUserName(usernameJosif);
+    RegisterPage.createUserWithDefaultSettings(usernameJosif);
+    LogInPage.waitForCreateBtn();
+    LogInPage.clickCreateBtn();
+    RegisterPage.createUserWithDefaultSettings(usernameJosif);
     browser.sleep(500);
     browser.ignoreSynchronization = true;
-    expect(RegisterPage.returnMessage()).toEqual(existingUsernameMessage);
+    expect(RegisterPage.returnAlertMessage()).toEqual(existingUsernameMessage);
     browser.sleep(2000);
     browser.ignoreSynchronization = false;
-    RegisterPage.clickBack();
+    RegisterPage.goBackToLoginPage();
     LogInPage.filterUsernameJosif();
-    LogInPage.deleteFilteredUser();
+    LogInPage.deleteFirstProfile();
   });
 
   it("should display five pointer colors options when in-color background is selected", () => {
@@ -69,35 +70,35 @@ describe("Register page", () => {
   });
 
   it("should not be possible a profile to be created without selecting a profile picture", () => {
-    RegisterPage.writeName("Dani");
-    RegisterPage.clickCreateBtnSecondPage();
+    RegisterPage.writeUsername("Dani");
+    RegisterPage.clickCreateBtn();
     browser.sleep(500);
     browser.ignoreSynchronization = true;
-    expect(RegisterPage.returnMessage()).toEqual(selectPictureMessage);
+    expect(RegisterPage.returnAlertMessage()).toEqual(selectPictureMessage);
     browser.sleep(500);
     browser.ignoreSynchronization = false;
   });
 
   it("should not be possible a profile to be created without entering a username", () => {
-    RegisterPage.selectPicture();
+    RegisterPage.selectRandomPicture();
     expect(RegisterPage.isCreateBtnEnabled()).toBeFalsy();
   });
 
   it("should not be possible a profile to be created with a special character in the username", () => {
-    RegisterPage.writeName("Dani#")
-    RegisterPage.selectPicture();
+    RegisterPage.writeUsername("Dani#")
+    RegisterPage.selectRandomPicture();
     expect(RegisterPage.isCreateBtnEnabled()).toBeFalsy();
   });
 
   it("should display the back button and it should be clickable when name is populated", () => {
-    RegisterPage.writeName(usernameJosif);
-    RegisterPage.clickBack();
-    expect(RegisterPage.getCurrentURL()).toEqual(loginUrl);
+    RegisterPage.writeUsername(usernameJosif);
+    RegisterPage.goBackToLoginPage();
+    expect(browser.getCurrentUrl()).toEqual(loginUrl);
   });
 
   it("should display the back button and it should be clickable when picture is selected", () => {
-    RegisterPage.selectPicture();
-    RegisterPage.clickBack();
-    expect(RegisterPage.getCurrentURL()).toEqual(loginUrl);
+    RegisterPage.selectRandomPicture();
+    RegisterPage.goBackToLoginPage();
+    expect(browser.getCurrentUrl()).toEqual(loginUrl);
   });
 });

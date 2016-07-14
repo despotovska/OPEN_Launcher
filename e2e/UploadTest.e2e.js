@@ -1,11 +1,13 @@
 describe("Upload picture page", () => {
-  var UploadPage = require("./pages/UploadPageObject.js");
-  var LogInPage = require("./pages/LoginPageObject.js");
 
+  var LogInPage = require("./pages/LoginPageObject.js");
+  var UploadPage = require("./pages/UploadPageObject.js");
+
+  var loginUrl = "http://localhost:3000/#/login";
   var successMessage = "Сликата е успешно прикачена.";
 
   beforeEach(() => {
-    browser.get("http://localhost:3000/#/login");
+    browser.get(loginUrl);
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
   });
@@ -19,7 +21,7 @@ describe("Upload picture page", () => {
     UploadPage.uploadPicture();
     browser.sleep(500);
     browser.ignoreSynchronization = true;
-    expect(UploadPage.returnMessage()).toEqual(successMessage);
+    expect(UploadPage.returnAlertMessage()).toEqual(successMessage);
     browser.sleep(1000);
     browser.ignoreSynchronization = false;
     LogInPage.logOut();
@@ -28,7 +30,7 @@ describe("Upload picture page", () => {
   it("should display the uploaded picture", () => {
     LogInPage.logIn();
     UploadPage.preUploadPicture();
-    expect(UploadPage.isUploadPictureShown()).toBeTruthy();
+    expect(UploadPage.isUploadPictureVisible()).toBeTruthy();
     LogInPage.logOut();
   });
 

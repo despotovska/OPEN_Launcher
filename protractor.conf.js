@@ -7,7 +7,7 @@ exports.config = {
 
 
   specs: [
-    'src/app/tests/*.e2e.js'
+    'e2e/*.e2e.js'
   ],
 
   exclude: [],
@@ -37,7 +37,7 @@ exports.config = {
     browser.get('http://localhost:3000/');
     jasmine.getEnv().addReporter(
       new Jasmine2HtmlReporter({
-        savePath: 'src/app/tests/protractorReport/',
+        savePath: 'tests/protractorReport/',
         takeScreenshots: true,
         takeScreenshotsOnlyOnFailures: true
       })

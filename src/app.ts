@@ -70,6 +70,8 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/*path', redirectTo: ['NotFound'] }
 ])
 export class App {
+  public languages: string[] = ['MK', 'EN'];
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -77,9 +79,6 @@ export class App {
 
     translate.setDefaultLang('mk');
     translate.use('mk');
-    // let userLang = navigator.language.split('-')[0]; // use navigator lang if available
-    // userLang = /(mk|en)/gi.test(userLang) ? userLang : 'mk';
-    // translate.use(userLang);
   }
 
   isUserLogged(): boolean {
@@ -98,10 +97,8 @@ export class App {
     });
   }
 
-  toggleLang(): void {
-    let userLang = this.translate.currentLang;
-    userLang = userLang === 'mk' ? 'en' : 'mk';
-    this.translate.use(userLang);
+  setLanguage(language: string): void {
+    this.translate.use(language);
   }
 }
 

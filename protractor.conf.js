@@ -37,7 +37,7 @@ exports.config = {
     browser.get('http://localhost:3000/');
     jasmine.getEnv().addReporter(
       new Jasmine2HtmlReporter({
-        savePath: 'tests/protractorReport/',
+        savePath: 'protractorReport/',
         takeScreenshots: true,
         takeScreenshotsOnlyOnFailures: true
       })

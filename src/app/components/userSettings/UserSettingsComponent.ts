@@ -17,6 +17,8 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 export class UserSettingsComponent implements OnChanges {
   public availablePointerColors: PointerColor[] = new Array<PointerColor>();
   public allPointerImages: string[] = new Array<string>();
+  public backgrounds: string[] = ['IN_COLOR', 'BLACK_AND_WHITE'];
+  public devices: string[] = ['MOUSE', 'TOUCHSCREEN', 'TRACKBALL', 'JOYSTICK', 'KEY', 'KEY_AND_TRACKBALL', 'KEY_AND_JOYSTICK'];
 
   @Input() userSettings: UserSettings;
   ngOnChanges(changes) {

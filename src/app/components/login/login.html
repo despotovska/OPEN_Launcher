@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class="col-sm-2 control-label"></label>
       <div class="col-sm-10 col-md-4 input-group">
-        <input type="text" class="form-control" id="usernamefield" placeholder="Пребарај корисничко име..." [(ngModel)]="query" />
+        <input type="text" class="form-control" id="usernamefield" placeholder="{{ 'SEARCH' | translate }}" [(ngModel)]="query" />
         <span class="input-group-addon">
         <i class="glyphicon glyphicon-search"></i>
         </span>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="form-group top-buffer">
-      <label class="col-sm-2 control-label">Профили:</label>
+      <label class="col-sm-2 control-label">{{ 'USERS' | translate }}:</label>
       <div class="col-sm-10">
         <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#user of allUsers | usernameContains:query">
           <div class="row text-center">
@@ -32,10 +32,10 @@
     <div class="form-group">
       <div class="col-sm-10 col-sm-push-2">
         <div class="col-sm-4 text-left" *ngIf="selectedUser.name">
-          <a id="btn-login" class="btn btn-primary col-sm-12 center-block top-buffer" (click)="login()">Најави се</a>
+          <a id="btn-login" class="btn btn-primary col-sm-12 center-block top-buffer" (click)="login()">{{ 'LOGIN' | translate }}</a>
         </div>
         <div class="col-sm-4 text-center">
-          <a id="createUser" class="btn btn-primary col-sm-12 center-block top-buffer" [routerLink]="['/Register']">Креирај нов профил</a>
+          <a id="createUser" class="btn btn-primary col-sm-12 center-block top-buffer" [routerLink]="['/Register']">{{ 'CREATE_USER' | translate }}</a>
         </div>
       </div>
     </div>
@@ -46,21 +46,20 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Бришење</h4>
+            <h4 class="modal-title" id="myModalLabel">{{ 'DELETE_USER_TITLE' | translate }}</h4>
           </div>
           <div class="modal-body">
-            Дали сте сигурни дека сакате да го избришете профилот?
-            <div class="row text-center">
+            {{ 'DELETE_USER_QUESTION' | translate }}
+            <div class="row text-center top-buffer">
               <label class="text-overflow">{{selectedUser.name}}</label>
             </div>
             <div class="row text-center">
-              <img src="{{selectedUser.profileImg}}" class="img-circle" [class.selected]="shouldApplySelectedUserLayout(selectedUser)"
-              />
+              <img src="{{selectedUser.profileImg}}" class="img-circle gray-border" />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" id="neBtn" class="btn btn-default" data-dismiss="modal" (click)="deleteCancelled()">Не</button>
-            <button type="button" id="daBtn" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">Дa</button>
+            <button type="button" id="yesBtn" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">{{ 'YES' | translate }}</button>
+            <button type="button" id="noBtn" class="btn btn-default" data-dismiss="modal" (click)="deleteCancelled()">{{ 'NO' | translate }}</button>
           </div>
         </div>
       </div>

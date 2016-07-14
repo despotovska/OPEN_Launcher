@@ -130,7 +130,7 @@ describe('UserValidationServiceTests', () => {
   it('getInvalidUserDataValidationResponse_givenInvalidUserData_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      let expectedResponse = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+      let expectedResponse = new ValidationResponse(false, 'Не се пополнети сите полиња.');
       let result: ValidationResponse;
       // Act
 

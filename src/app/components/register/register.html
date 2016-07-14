@@ -3,15 +3,15 @@
 
     <div class="col-sm-4 col-md-3 col-lg-2 top-buffer">
       <div class="row text-center">
-        <label>Вашиот профил:</label>
+        <label>{{ 'PREVIEW_PROFILE' | translate }}:</label>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="profileBox center-block">
-            <div class="title text-center">
+            <div class="text-center" *ngIf="user.name">
               <label>{{user.name}}</label>
             </div>
-            <div><img src="{{user.profileImg}}"></div>
+            <div><img src="{{user.profileImg}}" class="img-circle gray-border"></div>
           </div>
         </div>
       </div>
@@ -20,15 +20,15 @@
     <div class="col-sm-8 col-md-9 col-lg-10">
       <form [ngFormModel]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group top-buffer">
-          <label class="col-sm-2 control-label">Корисничко име:</label>
+          <label class="col-sm-2 control-label">{{ 'ENTER_USERNAME' | translate }}:</label>
           <div class="col-sm-8 col-md-4 col-lg-2">
-            <input type="text" ngControl="name" id="username" pattern="^[\u00C0-\u1FFF\u2C00-\uD7FF\w1-9]+$" class="form-control" placeholder="Корисничко име"
+            <input type="text" ngControl="name" id="username" pattern="^[\u00C0-\u1FFF\u2C00-\uD7FF\w1-9]+$" class="form-control" placeholder="{{ 'ENTER_USERNAME_PLACEHOLDER' | translate }}"
               [(ngModel)]='user.name' />
           </div>
         </div>
 
         <div class="form-group top-buffer">
-          <label class="col-sm-2 control-label">Слика:</label>
+          <label class="col-sm-2 control-label">{{ 'PHOTO' | translate }}:</label>
           <div class="col-sm-10">
             <div class="col-sm-6 col-md-3 col-lg-2 top-buffer" *ngFor="#img of allImages">
               <img src="{{img}}" class="img-circle" (click)="onSelect(img)" [class.selected]="img === user.profileImg" />
@@ -42,10 +42,10 @@
 
         <div class="form-group top-buffer">
           <a class="btn btn-default" id="backToLogin" [routerLink]="['/Login']">
-            <span class="glyphicon glyphicon-chevron-left">&nbsp;</span>Назад
+            <span class="glyphicon glyphicon-chevron-left">&nbsp;</span>{{ 'BACK' | translate }}
           </a>
           <button type="submit" id="createNewUser" class="btn btn-primary" [disabled]="!registerForm.valid">
-            Креирај
+            {{ 'CREATE' | translate }}
           </button>
         </div>
       </form>

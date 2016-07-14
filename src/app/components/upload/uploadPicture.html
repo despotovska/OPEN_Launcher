@@ -2,16 +2,17 @@
   <div class="container">
     <div class="well form-group">
       <div class="col-xs-12 col-sm-3 col-sm-offset-0 col-md-2 col-md-offset-1">
-        <img src='{{ selectedImagePath }}' alt="" [hidden]="!selectedImagePath" class="img-circle" />
+        <img id="preview-img" src='{{ selectedImagePath }}' alt="" [hidden]="!selectedImagePath" class="img-circle" />
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4 top-buffer">
-        <input type="text" class="form-control" disabled value="{{selectedImage}}" placeholder="Одбери слика" />
-        <div class="fileUpload btn btn-primary">
+        <input id="path" type="text" class="form-control" disabled value="{{selectedImage}}" placeholder="{{ 'CHOOSE_PHOTO' | translate }}"
+        />
+        <div  class="fileUpload btn btn-primary">
           <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-          <span class="glyphicon-class">Одбери слика</span>
-          <input type="file" class="upload" accept="image/*" (change)="onChange($event)" />
+          <span class="glyphicon-class">{{ 'CHOOSE_PHOTO' | translate }}</span>
+          <input id="choose-img" type="file" class="upload" accept="image/*" (change)="onChange($event)" />
         </div>
-        <input type="button" class="btn btn-success green" value="Прикачи" (click)="uploadFile()" [disabled]="!selectedFile" />
+        <button id="upload-btn" class="btn btn-success green" (click)="uploadFile()" [disabled]="!selectedFile">{{ 'UPLOAD' | translate }}</button>
       </div>
     </div>
   </div>

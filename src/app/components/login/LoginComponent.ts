@@ -4,13 +4,16 @@ import {RouterLink, Router} from 'angular2/router';
 import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
+
 import {User} from '../../shared/models/User';
+
 import {UsersPipe} from '../../shared/pipes/UsersPipe';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
   selector: 'login',
   directives: [RouterLink],
-  pipes: [UsersPipe],
+  pipes: [UsersPipe, TranslatePipe],
   templateUrl: `./app/components/login/login.html`
 })
 export class LoginComponent implements OnInit {
@@ -36,7 +39,7 @@ export class LoginComponent implements OnInit {
   setAllUsers(): void {
     this.userService.getAllUsers()
       .subscribe(data => this.allUsers = data,
-      err => this.alertingService.addDanger('Грешка при вчитување на корисниците.'));
+      err => this.alertingService.addDanger('LOAD_USERS_ERROR_MESSAGE'));
   }
 
   deleteUser(): void {
@@ -44,14 +47,14 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         this.allUsers = data;
         this.selectedUser = new User();
-        this.alertingService.addSuccess('Профилот е успешно избришан.');
+        this.alertingService.addSuccess('DELETE_USER_SUCCESS_MESSAGE');
       }, err => {
-        this.alertingService.addDanger('Грешка при бришење на профилот.');
+        this.alertingService.addDanger('DELETE_USER_ERROR_MESSAGE');
       });
   }
 
   deleteCancelled(): void {
-    this.alertingService.addInfo('Бришењето е откажано.');
+    this.alertingService.addInfo('DELETE_USER_CANCELED_MESSAGE');
   }
 
   login(): void {
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
       if (success) {
         this.router.navigate(['/Home']);
       } else {
-        this.alertingService.addDanger('Корисникот не е валиден.');
+        this.alertingService.addDanger('INVALID_USER_MESSAGE');
       }
     });
   }

@@ -33,9 +33,9 @@ export class UploadPictureService implements IUploadPictureService {
 
   uploadCallback(data): void {
     if (data) {
-      this.alertingService.addSuccess('Сликата е успешно додадена!');
+      this.alertingService.addSuccess('UPLOAD_PHOTO_SUCCESS_MESSAGE');
     } else {
-      this.alertingService.addDanger('Грешка при додавање!');
+      this.alertingService.addDanger('UPLOAD_PHOTO_ERROR_MESSAGE');
     }
   }
 }

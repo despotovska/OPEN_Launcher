@@ -4,11 +4,14 @@ import {Router, CanActivate} from 'angular2/router';
 import {AuthService} from '../../shared/services/AuthService';
 import {UploadPictureService} from './UploadPictureService';
 
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'upload-picture',
-  templateUrl: `./app/components/upload/uploadPicture.html`
+  templateUrl: `./app/components/upload/uploadPicture.html`,
+  pipes: [TranslatePipe]
 })
 @CanActivate(
   (nextInstr: any, currInstr: any) => {

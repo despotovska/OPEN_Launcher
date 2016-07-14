@@ -14,11 +14,14 @@ import {
   PointerColor,
   BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 import {appInjector} from '../../../appInjector';
 
 @Component({
   directives: [RouterLink, UserSettingsComponent],
-  templateUrl: './app/components/userSettingsEdit/userSettingsEdit.html'
+  templateUrl: './app/components/userSettingsEdit/userSettingsEdit.html',
+  pipes: [TranslatePipe]
 })
 @CanActivate(
   (nextInstr: any, currInstr: any) => {
@@ -53,9 +56,9 @@ export class UserSettingsEditComponent {
   saveUserSettings(): void {
     this.userSettingsService.saveUserSettingsForUser(this.userName, this.userSettings)
       .subscribe(data => {
-        this.alertingService.addSuccess('Корисничките подесувања се успешно зачувани.');
+        this.alertingService.addSuccess('SAVE_USER_SETTINGS_SUCCESS_MESSAGE');
       }, err => {
-        this.alertingService.addDanger('Корисничките подесувања не се успешно зачувани.');
+        this.alertingService.addDanger('SAVE_USER_SETTINGS_ERROR_MESSAGE');
       });
   }
 }

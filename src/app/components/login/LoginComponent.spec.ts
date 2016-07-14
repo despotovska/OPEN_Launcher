@@ -52,7 +52,7 @@ describe('LoginComponentTests', () => {
 
       // Assert
       expect(instance.userService.getAllUsers).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на корисниците.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('LOAD_USERS_ERROR_MESSAGE');
     }));
 
   it('login_givenInvalidUser_shouldSetUnsuccessfulLoginAlertMessage',
@@ -70,7 +70,7 @@ describe('LoginComponentTests', () => {
       // Assert
       expect(instance.authService.login).toHaveBeenCalledWith(user.name);
       expect(instance.router.navigate).not.toHaveBeenCalledWith(['/Home']);
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Корисникот не е валиден.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('INVALID_USER_MESSAGE');
     }));
 
   it('login_givenValidUser_shouldRedirectToHome',
@@ -104,7 +104,7 @@ describe('LoginComponentTests', () => {
       expect(instance.userService.deleteUser).toHaveBeenCalledWith(user.name);
       expect(instance.allUsers.length).toEqual(1);
       expect(instance.selectedUser).not.toEqual(user);
-      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('Профилот е успешно избришан.');
+      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('DELETE_USER_SUCCESS_MESSAGE');
     }));
 
   it('deleteUser_givenUnavailableUserService_shouldThrowAlertForDanger',
@@ -120,7 +120,7 @@ describe('LoginComponentTests', () => {
 
       // Assert
       expect(instance.userService.deleteUser).toHaveBeenCalledWith(user.name);
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при бришење на профилот.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('DELETE_USER_ERROR_MESSAGE');
     }));
 
   it('deleteCancelled_givenCancelDeletingIsChosen_shouldSetInfoAlertMessage',
@@ -132,7 +132,7 @@ describe('LoginComponentTests', () => {
       instance.deleteCancelled();
 
       // Assert
-      expect(instance.alertingService.addInfo).toHaveBeenCalledWith('Бришењето е откажано.');
+      expect(instance.alertingService.addInfo).toHaveBeenCalledWith('DELETE_USER_CANCELED_MESSAGE');
     }));
 
   it('selectUser_givenValidUser_shouldSetTheSelectedUser',

@@ -6,17 +6,31 @@ import {
 import {provide} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 import {Router} from 'angular2/router';
+import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
+import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {AuthService} from './app/shared/services/AuthService';
 
 import {AuthServiceMock} from './app/shared/mocks/AuthServiceMock';
 import {RouterMock} from './app/shared/mocks/RouterMock';
+import {TRANSLATE_PROVIDERS, TranslateService} from 'ng2-translate/ng2-translate';
+
 import {App} from './app.ts';
 
 describe('appComponentTests', () => {
   beforeEachProviders(() => [
     provide(AuthService, { useClass: AuthServiceMock }),
     provide(Router, { useClass: RouterMock }),
+    BaseRequestOptions,
+    MockBackend,
+    provide(Http, {
+      useFactory: function (backend, defaultOptions) {
+        return new Http(backend, defaultOptions);
+      },
+      deps: [MockBackend, BaseRequestOptions]
+    }),
+    TRANSLATE_PROVIDERS,
+    TranslateService,
     App
   ]);
 

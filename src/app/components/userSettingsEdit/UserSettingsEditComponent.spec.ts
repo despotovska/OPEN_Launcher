@@ -42,7 +42,7 @@ describe('UserSettingsEditComponentTests', () => {
 
       // Assert
       expect(instance.userSettingsService.saveUserSettingsForUser).toHaveBeenCalled();
-      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('Корисничките подесувања се успешно зачувани.');
+      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('SAVE_USER_SETTINGS_SUCCESS_MESSAGE');
     }));
 
   it('saveUserSettings_givenUnavailableUserSettingsService_shouldThrowAlertForDanger',
@@ -57,6 +57,6 @@ describe('UserSettingsEditComponentTests', () => {
 
       // Assert
       expect(instance.userSettingsService.saveUserSettingsForUser).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Корисничките подесувања не се успешно зачувани.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('SAVE_USER_SETTINGS_ERROR_MESSAGE');
     }));
 });

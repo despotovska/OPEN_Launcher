@@ -54,6 +54,7 @@
   "SAVE_USER_SETTINGS_ERROR_MESSAGE": "Грешка при зачувување на корисничките подесувања.",
   "UPLOAD_PHOTO_SUCCESS_MESSAGE": "Сликата е успешно прикачена.",
   "UPLOAD_PHOTO_ERROR_MESSAGE": "Грешка при прикачување на сликата.",
+  "UPLOAD_PHOTO_WRONG_FORMAT_MESSAGE": "Избравте невалиден формат на слика.",
   "SELECT_PICTURE_VALIDATION_MESSAGE": "За да креирате профил, мора да изберете слика.",
   "REQUIRED_FIELDS_VALIDATION_MESSAGE": "Не се пополнети сите полиња.",
   "EXISTING_USERNAME_VALIDATION_MESSAGE": "Корисничкото име веќе постои, обидете се да се регистрирате со друго име.",

@@ -54,6 +54,7 @@
   "SAVE_USER_SETTINGS_ERROR_MESSAGE": "An error occured while saving the user settings.",
   "UPLOAD_PHOTO_SUCCESS_MESSAGE": "The photo has been successfully uploaded.",
   "UPLOAD_PHOTO_ERROR_MESSAGE": "An error occured while uploading the photo.",
+  "UPLOAD_PHOTO_WRONG_FORMAT_MESSAGE": "You have selected an invalid file.",
   "SELECT_PICTURE_VALIDATION_MESSAGE": "To create a profile, you must select a profile picture.",
   "REQUIRED_FIELDS_VALIDATION_MESSAGE": "Some required fields are left blank.",
   "EXISTING_USERNAME_VALIDATION_MESSAGE": "Username already exists, try to register with another one.",

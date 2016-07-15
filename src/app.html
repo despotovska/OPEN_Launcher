@@ -14,7 +14,7 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLogged()">
-      <li *ngFor="#lang of languages"> <a role="button" (click)="setLanguage(lang)" [class.bolded]="shouldApplySelectedLanguageCss(lang)">{{ lang | translate }}</a></li>
+      <li *ngFor="#lang of languages"> <a id="{{lang}}" role="button" (click)="setLanguage(lang)" [class.bolded]="shouldApplySelectedLanguageCss(lang)">{{ lang | translate }}</a></li>
     </ul>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

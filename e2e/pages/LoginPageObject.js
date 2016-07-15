@@ -12,6 +12,8 @@ var LogInPage = function () {
   var firstProfile = profiles.get(0);
   var usernameField = element(by.id("usernamefield"));
   var loggedUserMenu = element(by.id("loggedUser"));
+  var englishLanguage = element(by.id("en"));
+  var appName = element(by.className("navbar-brand"));
 
   this.logIn = () => {
     profiles.get(0).click();
@@ -96,6 +98,14 @@ var LogInPage = function () {
   this.waitForCreateBtn = () => {
     browser.wait(EC.visibilityOf(createBtn), 5000);
   };
+
+  this.chooseEnglishLanguage = () => {
+    englishLanguage.click();
+  }
+
+  this.getAppName = () => {
+    return appName.getAttribute("innerHTML");
+  }
 };
 
 module.exports = new LogInPage();

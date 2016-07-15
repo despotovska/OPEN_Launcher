@@ -5,6 +5,7 @@ describe("Login page", () => {
   var rootUrl = "http://localhost:3000/";
   var loginUrl = rootUrl + "#/login";
   var deletingCanceledMessage = "Бришењето е откажано.";
+  var enAppName = "OPEN";
 
   beforeEach(() => {
     browser.get(loginUrl);
@@ -15,6 +16,11 @@ describe("Login page", () => {
   it("should redirect to login when / is accessed", () => {
     browser.get(rootUrl);
     expect(browser.getCurrentUrl()).toEqual(loginUrl);
+  });
+
+  it("should change the language to English", () => {
+    LogInPage.chooseEnglishLanguage();
+    expect(LogInPage.getAppName()).toEqual(enAppName);
   });
 
   it("should not display the log in button when profile is not selected", () => {

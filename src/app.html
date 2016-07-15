@@ -13,17 +13,21 @@
       <a class="navbar-brand" [routerLink]="isUserLogged()?['/Home']:['/Login']">{{ 'APP' | translate }}</a>
     </div>
 
+    <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLogged()">
+      <li *ngFor="#lang of languages"> <a role="button" (click)="setLanguage(lang)" [class.bolded]="shouldApplySelectedLanguageCss(lang)">{{ lang | translate }}</a></li>
+    </ul>
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse" *ngIf="isUserLogged()">
       <ul class="nav navbar-nav">
         <li><a [routerLink]="['/Home']"><span class="glyphicon glyphicon-th-large"></span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['/UserSettingsEdit']" id="userSettingsEdit"><span class="glyphicon glyphicon-cog"></span> {{ 'SETTINGS' | translate }}</a></li>
         <li><a [routerLink]="['/UploadPicture']" id="navBarUpload"><span class="glyphicon glyphicon-upload"></span> {{ 'UPLOAD_PHOTO' | translate }}</a></li>
         <li class="dropdown">
           <a href="#" id="loggedUser" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ getLoggedUser() }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a [routerLink]="['/UserSettingsEdit']" id="userSettingsEdit"><span class="glyphicon glyphicon-cog"></span> {{ 'SETTINGS' | translate }}</a></li>
             <li><a id="logout" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> {{ 'LOGOUT' | translate }}</a></li>
           </ul>
         </li>
@@ -38,7 +42,3 @@
   <alerts class="fixed-top"> </alerts>
   <router-outlet></router-outlet>
 </div>
-
-<ul class="nav navbar-nav pull-right">
-  <li *ngFor="#lang of languages"> <a role="button" (click)="setLanguage(lang)" [class.bolded]="shouldApplySelectedLanguageCss(lang)">{{ lang | translate }}</a></li>
-</ul>

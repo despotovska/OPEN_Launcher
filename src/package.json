@@ -3,5 +3,19 @@
   "version": "0.0.1",
   "description": "OPEN games for children with physical disability, sensory impairment or learning difficulty.",
   "author": "OpenTheWindows",
-  "main": "main.js"
+  "main": "main.js",
+  "dependencies": {
+    "angular2": "2.0.0-beta.15",
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "core-js": "^2.1.5",
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.13.4",
+    "guid": "0.0.12",
+    "lowdb": "^0.12.5",
+    "multer": "^1.1.0",
+    "ms": "^0.7.1",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "0.6.11"
+  }
 }

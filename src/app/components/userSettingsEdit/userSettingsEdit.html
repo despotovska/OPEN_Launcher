@@ -8,10 +8,10 @@
     <div class="form-group top-buffer">
       <div class="col-sm-offset-2">
         <a class="btn btn-default" id="BackToLoginPage" [routerLink]="['/Home']">
-          <span class="glyphicon glyphicon-chevron-left">&nbsp;</span>Назад
+          <span class="glyphicon glyphicon-chevron-left">&nbsp;</span> {{ 'BACK' | translate }}
         </a>
         <button type="submit" id="saveUserSettings" class="btn btn-primary" (click)=saveUserSettings()>
-          Зачувај промени
+          {{ 'SAVE_CHANGES' | translate }}
         </button>
       </div>
     </div>

@@ -13,20 +13,16 @@ a.link {
 }
 
 .profileBox {
-  border: #ffd699 2px solid;
-  border-radius: 25px 25px 0px 0px;
   width: 132px;
-}
-
-.profileBox > .title {
-  height: 30;
-  background-color: #ebebe0;
-  border-radius: 25px 25px 0px 0px;
 }
 
 .selected {
   box-shadow: 0px 12px 22px 1px #333;
   border: solid 2px #b0a99b !important;
+}
+
+.gray-border {
+  border: solid 2px #b0a99b;
 }
 
 .text-overflow {
@@ -189,4 +185,8 @@ body {
 
 .navbar-custom .navbar-toggle .icon-bar {
   background-color: #ffffff;
+}
+
+.bolded {
+  font-weight: bold;
 }

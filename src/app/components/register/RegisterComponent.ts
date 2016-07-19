@@ -15,9 +15,12 @@ import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
 
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
   directives: [FORM_DIRECTIVES, RouterLink, UserSettingsComponent],
-  templateUrl: './app/components/register/register.html'
+  templateUrl: './app/components/register/register.html',
+  pipes: [TranslatePipe]
 })
 export class RegisterComponent {
   public user: User;
@@ -45,7 +48,7 @@ export class RegisterComponent {
     this.imagesService.getProfileImages()
       .subscribe(
       data => this.allImages = data,
-      err => this.alertingService.addDanger('Грешка при вчитување на корисничките слики.'));
+      err => this.alertingService.addDanger('LOAD_AVATARS_ERROR_MESSAGE'));
   }
 
   onSelect(img: string): void {
@@ -60,9 +63,9 @@ export class RegisterComponent {
         } else {
           this.userService.addUser(this.user)
             .subscribe(data => {
-              this.alertingService.addSuccess('Успешно внесен корисник.');
+              this.alertingService.addSuccess('ADD_USER_SUCCESS_MESSAGE');
               this.router.navigate(['/Login']);
-            }, err => this.alertingService.addDanger('Грешка при внесување на корисник.'));
+            }, err => this.alertingService.addDanger('ADD_USER_ERROR_MESSAGE'));
         }
       }
       );

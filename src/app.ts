@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-require('./assets/css/site.css');
+import './assets/css/site.css';
 
 import {provide, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
@@ -12,10 +12,17 @@ import {
   HashLocationStrategy,
   APP_BASE_HREF} from 'angular2/router';
 
+import {
+  TRANSLATE_PROVIDERS,
+  TranslateService,
+  TranslatePipe,
+  TranslateLoader,
+  TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+
 /*
  * Providers
  */
-import {HTTP_PROVIDERS} from 'angular2/http';
+import { HTTP_PROVIDERS, Http } from 'angular2/http';
 import { AUTH_PROVIDERS } from './app/shared/services/AuthService';
 
 /*
@@ -43,6 +50,12 @@ import { AuthService } from './app/shared/services/AuthService';
 @Component({
   selector: 'app',
   directives: [ROUTER_DIRECTIVES, AlertingComponent],
+  pipes: [TranslatePipe],
+  providers: [provide(TranslateLoader, {
+    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/languages/', '.json'),
+    deps: [Http]
+  }),
+    TranslateService],
   templateUrl: `./app.html`
 })
 
@@ -57,7 +70,16 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/*path', redirectTo: ['NotFound'] }
 ])
 export class App {
-  constructor(private authService: AuthService, private router: Router) { }
+  public languages: string[] = ['mk', 'en'];
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private translate: TranslateService) {
+
+    translate.setDefaultLang(this.languages[0]);
+    translate.use(this.languages[0]);
+  }
 
   isUserLogged(): boolean {
     return this.authService.isLogged();
@@ -74,12 +96,21 @@ export class App {
       }
     });
   }
+
+  setLanguage(language: string): void {
+    this.translate.use(language);
+  }
+
+  shouldApplySelectedLanguageCss(language: string): boolean {
+    return this.translate.currentLang === language;
+  }
 }
 
 bootstrap(App, [
   HTTP_PROVIDERS,
   servicesInjectables,
   AUTH_PROVIDERS,
+  TRANSLATE_PROVIDERS,
   ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, { useValue: '/' }),
   provide(LocationStrategy, { useClass: HashLocationStrategy })])

@@ -117,7 +117,7 @@ describe('UserValidationServiceTests', () => {
   it('getInvalidUserPictureValidationResponse_givenInvalidUserPicture_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      let expectedResponse = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
+      let expectedResponse = new ValidationResponse(false, 'SELECT_PICTURE_VALIDATION_MESSAGE');
       let result: ValidationResponse;
 
       // Act
@@ -130,7 +130,7 @@ describe('UserValidationServiceTests', () => {
   it('getInvalidUserDataValidationResponse_givenInvalidUserData_shouldReturnInvalidUserDataValidationResponse',
     inject([UserValidationService], (instance) => {
       // Arrange
-      let expectedResponse = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+      let expectedResponse = new ValidationResponse(false, 'REQUIRED_FIELDS_VALIDATION_MESSAGE');
       let result: ValidationResponse;
       // Act
 
@@ -165,7 +165,7 @@ describe('UserValidationServiceTests', () => {
     inject([UserValidationService, MockBackend], (instance, mockBackend) => {
       // Arrange
       let userAlreadyExists = true;
-      let responseExpected = new ValidationResponse(!userAlreadyExists, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+      let responseExpected = new ValidationResponse(!userAlreadyExists, 'EXISTING_USERNAME_VALIDATION_MESSAGE');
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
           connection.mockRespond(new Response(

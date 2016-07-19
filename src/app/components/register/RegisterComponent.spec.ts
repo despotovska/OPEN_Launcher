@@ -60,7 +60,7 @@ describe('RegisterComponentTests', () => {
 
       // Assert
       expect(instance.imagesService.getProfileImages).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на корисничките слики.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('LOAD_AVATARS_ERROR_MESSAGE');
     }));
 
   it('onSelect_givenSelectedImagePath_shouldSetProfileImg',
@@ -77,7 +77,7 @@ describe('RegisterComponentTests', () => {
       // Arrange
       instance.user = UserServiceMock.getTestUser('user');
       spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
-        let response: ValidationResponse = new ValidationResponse(true, 'Успешно внесен корисник.');
+        let response: ValidationResponse = new ValidationResponse(true, 'ADD_USER_SUCCESS_MESSAGE');
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
@@ -92,7 +92,7 @@ describe('RegisterComponentTests', () => {
       // Assert
       expect(instance.userValidationService.isValid).toHaveBeenCalled();
       expect(instance.router.navigate).toHaveBeenCalledWith(['/Login']);
-      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('Успешно внесен корисник.');
+      expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('ADD_USER_SUCCESS_MESSAGE');
     }));
 
   it('onSubmit_givenInvalidUser_shouldValidateAddUserThrowAlertForDanger',
@@ -100,7 +100,7 @@ describe('RegisterComponentTests', () => {
       // Arrange
       instance.user = UserServiceMock.getTestUser('user');
       spyOn(instance.userValidationService, 'isValid').and.callFake(() => {
-        let response: ValidationResponse = new ValidationResponse(false, 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+        let response: ValidationResponse = new ValidationResponse(false, 'EXISTING_USERNAME_VALIDATION_MESSAGE');
         return Observable.of(response);
       });
       spyOn(instance.userService, 'addUser').and.callFake((user) => {
@@ -114,7 +114,7 @@ describe('RegisterComponentTests', () => {
 
       // Assert
       expect(instance.userValidationService.isValid).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Корисничкото име веќе постои, обидете се да се регистрирате со друго име.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('EXISTING_USERNAME_VALIDATION_MESSAGE');
       expect(instance.router.navigate).not.toHaveBeenCalledWith(['/Login']);
     }));
 
@@ -134,7 +134,7 @@ describe('RegisterComponentTests', () => {
       // Assert
       expect(instance.userService.addUser).not.toHaveBeenCalledWith(user);
       expect(instance.router.navigate).not.toHaveBeenCalledWith(['/Login']);
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('За да креирате профил, ве молам изберете слика.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('SELECT_PICTURE_VALIDATION_MESSAGE');
     }));
 
   it('onSubmit_givenUserServiceIsUnavailable_shouldNotAddAndShouldThrowAlertForDanger',
@@ -155,6 +155,6 @@ describe('RegisterComponentTests', () => {
 
       // Assert
       expect(instance.userService.addUser).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при внесување на корисник.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('ADD_USER_ERROR_MESSAGE');
     }));
 });

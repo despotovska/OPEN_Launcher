@@ -44,12 +44,12 @@ export class UserValidationService implements IUserValidationService {
   }
 
   getInvalidUserPictureValidationResponse(): Observable<ValidationResponse> {
-    let response = new ValidationResponse(false, 'За да креирате профил, ве молам изберете слика.');
+    let response = new ValidationResponse(false, 'SELECT_PICTURE_VALIDATION_MESSAGE');
     return Observable.of(response);
   }
 
   getInvalidUserDataValidationResponse(): Observable<ValidationResponse> {
-    let response = new ValidationResponse(false, 'Не се сите полиња пополнети.');
+    let response = new ValidationResponse(false, 'REQUIRED_FIELDS_VALIDATION_MESSAGE');
     return Observable.of(response);
   }
 
@@ -60,7 +60,7 @@ export class UserValidationService implements IUserValidationService {
         let response = new ValidationResponse(!isExisting);
 
         if (isExisting) {
-          response.message = 'Корисничкото име веќе постои, обидете се да се регистрирате со друго име.';
+          response.message = 'EXISTING_USERNAME_VALIDATION_MESSAGE';
         }
         return response;
       });

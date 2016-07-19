@@ -7,13 +7,18 @@ import {EnumEx} from '../../shared/enums/EnumEx';
 import {UserSettings} from '../../shared/models/UserSettings';
 import {ImagesService} from '../../shared/services/ImagesService';
 
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
   selector: 'settings',
-  templateUrl: './app/components/userSettings/userSettings.html'
+  templateUrl: './app/components/userSettings/userSettings.html',
+  pipes: [TranslatePipe]
 })
 export class UserSettingsComponent implements OnChanges {
   public availablePointerColors: PointerColor[] = new Array<PointerColor>();
   public allPointerImages: string[] = new Array<string>();
+  public backgrounds: string[] = ['IN_COLOR', 'BLACK_AND_WHITE'];
+  public devices: string[] = ['MOUSE', 'TOUCHSCREEN', 'TRACKBALL', 'JOYSTICK', 'KEY', 'KEY_AND_TRACKBALL', 'KEY_AND_JOYSTICK'];
 
   @Input() userSettings: UserSettings;
   ngOnChanges(changes) {
@@ -37,7 +42,7 @@ export class UserSettingsComponent implements OnChanges {
     this.imagesService.getPointerImages()
       .subscribe(
       data => this.allPointerImages = data,
-      err => this.alertingService.addDanger('Грешка при вчитување на покажувачите.'));
+      err => this.alertingService.addDanger('LOAD_POINTERS_ERROR_MESSAGE'));
   }
 
   setBackgroundColorAndPointerColors(backgroundColor: BackgroundColor): void {
@@ -72,7 +77,7 @@ export class UserSettingsComponent implements OnChanges {
     }
   }
 
- shouldDeviceTypeBeChecked(deviceType: DeviceTypes): boolean {
+  shouldDeviceTypeBeChecked(deviceType: DeviceTypes): boolean {
     if (this.userSettings) {
       return this.userSettings.deviceType === Number(deviceType);
     }

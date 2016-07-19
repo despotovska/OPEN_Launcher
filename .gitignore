@@ -63,4 +63,4 @@ src/assets/images/pointer/*
 src/assets/images/avatars/*
 
 # Protractor #
-src/app/tests/protractorReport
+protractorReport

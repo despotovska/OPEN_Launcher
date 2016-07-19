@@ -7,13 +7,17 @@ import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
 import {LearningWithTheComputer} from '../../shared/enums/GamesEnum';
+import {CategoryModel} from './CategoryModel';
 import {GameModel} from './GameModel';
+
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'home',
-  templateUrl: `./app/components/home/home.html`
+  templateUrl: `./app/components/home/home.html`,
+  pipes: [TranslatePipe]
 })
 @CanActivate(
   (nextInstr: any, currInstr: any) => {
@@ -30,17 +34,21 @@ import {appInjector} from '../../../appInjector';
 )
 export class HomeComponent {
   public getToKnowTheComputer: GameModel = new GameModel(
-    'Причина и последица',
+    'CAUSE_AND_EFFECT',
     'cause_and_effect.png',
     'java -jar {gamesPath}cause_and_effect_1.0.jar');
 
   public learningWithTheComputer: Array<GameModel> = [
-    new GameModel('Парови', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
-    new GameModel('Кој се крие', 'computer.png', ''),
-    new GameModel('Сложувалка', 'computer.png', ''),
-    new GameModel('Јас и мојот дом', 'computer.png', ''),
-    new GameModel('Приказна', 'computer.png', '')
+    new GameModel('PAIRS', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
+    new GameModel('WHO_IS_HIDING', 'computer.png', ''),
+    new GameModel('PUZZLE', 'computer.png', ''),
+    new GameModel('ME_AND_MY_HOME', 'computer.png', ''),
+    new GameModel('STORY', 'computer.png', '')
   ];
+
+  public gamesCategories: Array<CategoryModel> = [
+    new CategoryModel('GET_TO_KNOW_THE_PC', [this.getToKnowTheComputer]),
+    new CategoryModel('LEARN_WITH_THE_PC', this.learningWithTheComputer)];
 
   public currentUserName: string;
 
@@ -56,7 +64,7 @@ export class HomeComponent {
     this.gameLauncherService.isGameStarted().subscribe(data => {
       let isGameStarted: boolean = data;
       if (isGameStarted) {
-        this.alertingService.addInfo('Моментално имате започнато игра. Затворете го прозорецот со активната игра за да започнете нова.');
+        this.alertingService.addInfo('GAME_STARTED_MESSAGE');
         return;
       }
 

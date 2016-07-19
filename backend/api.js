@@ -6,41 +6,41 @@ var helpers = require('./helpers.js');
 var childProcess = require('child_process');
 var guidGenerator = require('guid');
 var isGameStarted = false;
-var loggedUser = '';
+var loggedUser = undefined;
 var gameHandler = null;
 
-server.get('/', function (req, res) {
+server.get('/', (req, res) => {
   res.sendFile(paths.indexPath);
 });
 
-server.get('/api/GetProfileImages', function (req, res) {
+server.get('/api/GetProfileImages', (req, res) => {
   helpers.readFiles(paths.avatarsPath,
-    function (data) {
+    (data) => {
       for (var index = 0; index < data.length; index++) {
         data[index] = paths.relativeAvatarPath + data[index];
       }
       return res.send(data);
     },
-    function (error) {
+    (error) => {
       throw error;
     });
 });
 
-server.get('/api/GetPointerImages', function (req, res) {
+server.get('/api/GetPointerImages', (req, res) => {
   helpers.readFiles(paths.pointersPath,
-    function (data) {
+    (data) => {
       for (var index = 0; index < data.length; index++) {
         data[index] = paths.relativePointersPath + data[index];
       }
       return res.send(data);
     },
-    function (error) {
+    (error) => {
       throw error;
     });
 });
 
-server.post('/api/upload', function (req, res) {
-  helpers.upload(req, res, function (err) {
+server.post('/api/upload', (req, res) => {
+  helpers.upload(req, res, (err) => {
     if (err) {
       return res.end("Error uploading file.");
     }
@@ -48,7 +48,7 @@ server.post('/api/upload', function (req, res) {
   });
 });
 
-server.get('/api/getAllUsers/:name?', function (req, res) {
+server.get('/api/getAllUsers/:name?', (req, res) => {
   if (req.params.name != undefined) {
     res.send(db('users').find({ name: req.params.name }));
   } else {
@@ -56,12 +56,12 @@ server.get('/api/getAllUsers/:name?', function (req, res) {
   }
 });
 
-server.post('/api/addUser', function (req, res) {
+server.post('/api/addUser', (req, res) => {
   db('users').push(req.body)
     .then(post => res.send({ data: db('users').value() }));
 });
 
-server.get('/api/isExistingUser/:username', function (req, res) {
+server.get('/api/isExistingUser/:username', (req, res) => {
   var existingUser = db('users').find({ name: req.params.username });
   if (existingUser) {
     res.send(true);
@@ -70,12 +70,12 @@ server.get('/api/isExistingUser/:username', function (req, res) {
   }
 });
 
-server.get('/api/deleteUser/:name', function (req, res) {
+server.get('/api/deleteUser/:name', (req, res) => {
   db('users').remove({ name: req.params.name });
   res.send(db('users').value());
 });
 
-server.get('/api/getUserSettings/:username?', function (req, res) {
+server.get('/api/getUserSettings/:username?', (req, res) => {
   var username = req.params.username;
   if (username) {
     var user = db('users').find({ name: username })
@@ -91,7 +91,7 @@ server.get('/api/getUserSettings/:username?', function (req, res) {
   }
 });
 
-server.post('/api/saveUserSettings/:username?', function (req, res) {
+server.post('/api/saveUserSettings/:username?', (req, res) => {
   var user = db('users').find({ name: req.params.username });
   var userSettings = req.body;
   if (user) {
@@ -107,21 +107,21 @@ server.post('/api/saveUserSettings/:username?', function (req, res) {
   }
 });
 
-server.get('/api/login/:username', function (req, res) {
+server.get('/api/login/:username', (req, res) => {
   loggedUser = req.params.username;
   res.send(true);
 });
 
-server.get('/api/logout/', function (req, res) {
+server.get('/api/logout/', (req, res) => {
   loggedUser = undefined;
   res.send(true);
 });
 
-server.get('/api/startGame', function (req, res) {
+server.get('/api/startGame', (req, res) => {
   var startCommand = req.param('startCommand');
   startCommand = startCommand.replace('{gamesPath}', paths.gamesPath);
 
-  gameHandler = childProcess.exec(startCommand, function (error, stdout, stderr) {
+  gameHandler = childProcess.exec(startCommand, (error, stdout, stderr) => {
     this.isGameStarted = false;
     gameHandler = null;
   });
@@ -131,13 +131,13 @@ server.get('/api/startGame', function (req, res) {
   res.send({});
 });
 
-server.get('/api/isGameStarted', function (req, res) {
+server.get('/api/isGameStarted', (req, res) => {
   res.send(!!this.isGameStarted);
 });
 
-server.get('/api/terminateGameProcess', function (req, res) {
+server.get('/api/terminateGameProcess', (req, res) => {
   if (gameHandler) {
-    childProcess.exec('taskkill /PID ' + gameHandler.pid + ' /T /F', function (error, stdout, stderr) {
+    childProcess.exec('taskkill /PID ' + gameHandler.pid + ' /T /F', (error, stdout, stderr) => {
       res.status(200);
       res.send({});
     });
@@ -147,7 +147,7 @@ server.get('/api/terminateGameProcess', function (req, res) {
   }
 });
 
-server.get('/api/gameStarted/:gameName', function (req, res) {
+server.get('/api/gameStarted/:gameName', (req, res) => {
   var gameName = req.params.gameName;
   var time = new Date().toLocaleString();
   var guid = guidGenerator.create();
@@ -170,7 +170,7 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
   }
 });
 
-server.get('/api/gameUpdate', function (req, res) {
+server.get('/api/gameUpdate', (req, res) => {
   var guid = req.param('guid');
 
   var session = stats('sessions').find({ SessionID: guid });
@@ -188,7 +188,7 @@ server.get('/api/gameUpdate', function (req, res) {
   }
 });
 
-server.get('/api/gameEnded/:guid', function (req, res) {
+server.get('/api/gameEnded/:guid', (req, res) => {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
 
@@ -206,9 +206,9 @@ server.get('/api/gameEnded/:guid', function (req, res) {
   }
 });
 
-server.get('/api/getLoggedUserStatistic/', function (req, res) {
+server.get('/api/getLoggedUserStatistic/', (req, res) => {
   if (loggedUser) {
-     res.send(stats('sessions').filter({ Username: loggedUser }));
+    res.send(stats('sessions').filter({ Username: loggedUser }));
   }
   else {
     res.status(404);
@@ -218,11 +218,9 @@ server.get('/api/getLoggedUserStatistic/', function (req, res) {
 
 function getDeviceTypeForLoggedUser() {
   var user = db('users').find({ name: loggedUser });
-  if (!!user) {
-    return user.userSettings.deviceType;
-  }
+  return !!user ? user.userSettings.deviceType : '/';
 }
 
-server.listen(3000, function () {
+server.listen(3000, () => {
   console.log("Working on port 3000");
 });

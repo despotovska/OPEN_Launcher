@@ -14,7 +14,7 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
   selector: 'login',
   directives: [RouterLink],
   pipes: [UsersPipe, TranslatePipe],
-  templateUrl: `./app/components/login/login.html`
+  templateUrl: './app/components/login/login.html'
 })
 export class LoginComponent implements OnInit {
   public allUsers: User[] = new Array<User>();

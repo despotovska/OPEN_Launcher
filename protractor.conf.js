@@ -45,7 +45,5 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
   },
 
-  seleniumServerJar: "node_modules/protractor/selenium/selenium-server-standalone-2.48.2.jar",
-
   useAllAngular2AppRoots: true
 };

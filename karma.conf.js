@@ -21,8 +21,9 @@ module.exports = function (config) {
     // we are building the test environment in ./spec-bundle.ts
     files: [
       { pattern: 'spec-bundle.ts', watched: false },
-      { pattern: 'src/app.html', watched: false, included: true, served: true }
+      { pattern: 'src/app.html', watched: false, included: false, served: true }
     ],
+
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

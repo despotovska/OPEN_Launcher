@@ -66,7 +66,6 @@ What you need to run this app:
 
 Once you have those, you should install these globals with `npm install --global`:
 * `webpack` (`npm install --global webpack`)
-* `webpack-dev-server` (`npm install --global webpack-dev-server`)
 * `karma` (`npm install --global karma-cli`)
 * `protractor` (`npm install --global protractor`)
 * `typings` (`npm install --global typings`)
@@ -80,7 +79,7 @@ Once you have those, you should install these globals with `npm install --global
 * `npm start` to start the app on [localhost:3000](localhost:3000)
 
 ## Running the app
-After you have installed all dependencies you can now run the app. Run `npm start` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3000/`).
+After you have installed all dependencies you can now run the app. Run `npm start` to start the app, which will be started on `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3000/`).
 
 ## Building the exe file using [Electron](https://github.com/electron/electron)
 Electron can be used with any framework, so once Electron is set in place, we simply create the Angular 2 app as we would for the web.

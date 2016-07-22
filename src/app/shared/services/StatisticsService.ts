@@ -9,13 +9,10 @@ import {StatisticViewModel} from '../models/StatisticViewModel';
 
 export interface IStatisticsService {
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]>;
-  mapToStatisticModelViewArray(array: Statistic[]): StatisticViewModel[];
-  calculateDuration(start: string, end: string): Duration;
 }
 
 @Injectable()
 export class StatisticsService implements IStatisticsService {
-  statisticViewModelArray: StatisticViewModel[] = new Array<StatisticViewModel>();
   constructor(private http: Http, private globalService: GlobalService) { }
 
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]> {
@@ -27,9 +24,10 @@ export class StatisticsService implements IStatisticsService {
   }
 
   mapToStatisticModelViewArray(array: Statistic[]): StatisticViewModel[] {
+    let statisticViewModelArray: StatisticViewModel[] = new Array<StatisticViewModel>();
     for (let index = 0; index < array.length; index++) {
       let duration: Duration = this.calculateDuration(array[index].startTime, array[index].endTime);
-      this.statisticViewModelArray[index] = new StatisticViewModel(
+      statisticViewModelArray[index] = new StatisticViewModel(
         array[index].username,
         array[index].deviceType,
         duration,
@@ -37,21 +35,20 @@ export class StatisticsService implements IStatisticsService {
         array[index].invalidClicksCount
       );
     }
-
-    return this.statisticViewModelArray;
+    return statisticViewModelArray;
   }
 
   calculateDuration(start: string, end: string): Duration {
-    let h, m, s;
+    let hours, minutes, seconds;
     let startTime: Date = new Date(start);
     let endTime: Date = new Date(end);
     let millisec = (endTime.valueOf() - startTime.valueOf());
-    s = Math.floor(millisec / 1000);
-    m = Math.floor(s / 60);
-    s = s % 60;
-    h = Math.floor(m / 60);
-    m = m % 60;
-    let res = new Duration(h, m, s);
+    seconds = Math.floor(millisec / 1000);
+    minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    hours = Math.floor(minutes / 60);
+    minutes = minutes % 60;
+    let res = new Duration(hours, minutes, seconds);
     return res;
   }
 }

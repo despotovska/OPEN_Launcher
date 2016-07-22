@@ -113,6 +113,7 @@ describe('StatisticsServiceTests', () => {
       // Arrange
       let ms = 10000;
       let expected = '0 hours 0 min 10 sec';
+
       // Act
       let result = instance.getHoursMinSecFormat(ms);
 

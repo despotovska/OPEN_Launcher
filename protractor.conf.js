@@ -1,5 +1,4 @@
 require('ts-node/register');
-var HtmlReporter = require('protractor-html-screenshot-reporter');
 var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 
 exports.config = {

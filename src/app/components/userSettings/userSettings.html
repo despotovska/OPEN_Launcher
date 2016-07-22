@@ -1,27 +1,21 @@
 <div id="bgColor" class=" form-group top-buffer">
-  <label class="col-sm-2 control-label">Позадина:</label>
+  <label class="col-sm-2 control-label">{{ 'BACKGROUND' | translate}}:</label>
   <div class="col-sm-10">
-    <div class="radio">
+    <div class="radio" *ngFor="#bgColor of backgrounds; #i=index">
       <label class="h4">
-        <input #inColor name="bgColorOption" type="radio" value="0" [checked]="shouldBeChecked(inColor.value)" (click)="selectBackgroundColor(inColor.value)"
-        />Во боја
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #blackWhite name="bgColorOption" type="radio" value="1" [checked]="shouldBeChecked(blackWhite.value)" (click)="selectBackgroundColor(blackWhite.value)"
-        />Црно-бела
+        <input name="bgColorOption" type="radio" value="{{i}}" [checked]="shouldBeChecked(i)" (click)="selectBackgroundColor(i)"
+        /> {{ bgColor | translate}}
       </label>
     </div>
   </div>
 </div>
 
 <div id="pointer" class="form-group top-buffer">
-  <label class="col-sm-2 control-label">Покажувач:</label>
+  <label class="col-sm-2 control-label">{{ 'POINTER' | translate}}:</label>
   <div class="col-sm-10">
     <div *ngFor="#img of allPointerImages; #i=index" class="col-sm-6 col-md-3 col-lg-2 top-buffer">
-      <img id="pointer-size-{{i}}" src="{{img}}" class="img-circle" [class.selected]="shouldApplySelectedPointerSizeCss(i)" (click)="selectPointerSize(i)"
-      />
+      <img id="pointer-size-{{i}}" src="{{img}}" class="img-circle pointer-size-{{i}}" [class.selected]="shouldApplySelectedPointerSizeCss(i)"
+        (click)="selectPointerSize(i)" />
     </div>
   </div>
 
@@ -34,48 +28,12 @@
 </div>
 
 <div id="deviceType" class=" form-group top-buffer">
-  <label class="col-sm-2 control-label">Со што ќе играш:</label>
+  <label class="col-sm-2 control-label">{{ 'DEVICE' | translate }}:</label>
   <div class="col-sm-10">
-    <div class="radio">
+    <div class="radio" *ngFor="#device of devices; #i=index">
       <label class="h4">
-        <input #mouse name="deviceTypesOption" type="radio" value="0" id="device-type-0" [checked]="shouldDeviceTypeBeChecked(mouse.value)" (click)="selectDeviceType(mouse.value)"
-        />Глувче
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #touchscreen name="deviceTypesOption" type="radio" value="1" id="device-type-1" [checked]="shouldDeviceTypeBeChecked(touchscreen.value)" (click)="selectDeviceType(touchscreen.value)"
-        />Екран на допир
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #trackball name="deviceTypesOption" type="radio" value="2" id="device-type-2" [checked]="shouldDeviceTypeBeChecked(trackball.value)" (click)="selectDeviceType(trackball.value)"
-        />Тракбол
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #joystick name="deviceTypesOption" type="radio" value="3" id="device-type-3" [checked]="shouldDeviceTypeBeChecked(joystick.value)" (click)="selectDeviceType(joystick.value)"
-        />Џојстик
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #key name="deviceTypesOption" type="radio" value="4" id="device-type-4" [checked]="shouldDeviceTypeBeChecked(key.value)" (click)="selectDeviceType(key.value)"
-        />Издвоен клик
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #keyTrackball name="deviceTypesOption" type="radio" value="5" id="device-type-5" [checked]="shouldDeviceTypeBeChecked(keyTrackball.value)" (click)="selectDeviceType(keyTrackball.value)"
-        />Издвоен клик + тракбол
-      </label>
-    </div>
-    <div class="radio">
-      <label class="h4">
-        <input #keyJoystick name="deviceTypesOption" type="radio" value="6" id="device-type-6" [checked]="shouldDeviceTypeBeChecked(keyJoystick.value)" (click)="selectDeviceType(keyJoystick.value)"
-        />Издвоен клик + џојстик
+        <input name="deviceTypesOption" type="radio" value="{{i}}" id="device-type-{{i}}" [checked]="shouldDeviceTypeBeChecked(i)" (click)="selectDeviceType(i)"
+        />{{ device | translate }}
       </label>
     </div>
   </div>

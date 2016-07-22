@@ -51,7 +51,7 @@ describe('UserSettingsComponentTests', () => {
 
       // Assert
       expect(instance.imagesService.getPointerImages).toHaveBeenCalled();
-      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('Грешка при вчитување на покажувачите.');
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('LOAD_POINTERS_ERROR_MESSAGE');
     }));
 
   it('setBackgroundColorAndPointerColors_givenBlackAndWhiteBgColor_shouldSetBgColorAndLoadPointerColors',

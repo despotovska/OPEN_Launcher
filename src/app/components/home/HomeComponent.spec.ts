@@ -33,7 +33,7 @@ describe('HomeComponentTests', () => {
       GameLauncherServiceMock.gameStarted = true;
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
       spyOn(instance.alertingService, 'addInfo').and.callFake(() => { });
-      let gameName = 'Причина и последица';
+      let gameName = 'CAUSE_AND_EFFECT';
 
       // Act
       instance.loadGame(gameName);
@@ -41,7 +41,7 @@ describe('HomeComponentTests', () => {
       // Assert
       expect(instance.gameLauncherService.loadGame).not.toHaveBeenCalled();
       expect(instance.alertingService.addInfo)
-        .toHaveBeenCalledWith('Моментално имате започнато игра. Затворете го прозорецот со активната игра за да започнете нова.');
+        .toHaveBeenCalledWith('GAME_STARTED_MESSAGE');
     }));
 
   it('loadGame_givenSelectedGameIsCauseAndEffect_shouldCallLoadCauseAndEffectGame_WhenGameIsNotStarted',
@@ -49,7 +49,7 @@ describe('HomeComponentTests', () => {
       // Arrange
       GameLauncherServiceMock.gameStarted = false;
       spyOn(instance, 'loadCauseAndEffectGame').and.callFake(() => { });
-      let gameName = 'Причина и последица';
+      let gameName = 'CAUSE_AND_EFFECT';
 
       // Act
       instance.loadGame(gameName);
@@ -63,7 +63,7 @@ describe('HomeComponentTests', () => {
       // Arrange
       GameLauncherServiceMock.gameStarted = false;
       spyOn(instance, 'loadPairsGame').and.callFake(() => { });
-      let gameName = 'Парови';
+      let gameName = 'PAIRS';
 
       // Act
       instance.loadGame(gameName);

@@ -3,12 +3,15 @@ import {Component} from 'angular2/core';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {Alert} from '../../shared/models/Alert';
 
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
 @Component({
   selector: 'alerts',
+  pipes: [TranslatePipe],
   template: `
         <div *ngIf="hasAlerts()">
             <div *ngFor="#alert of getCurrentAlerts()" class="alert alert-{{alert.type}} shadow text-center">
-                <label id="messagelabel">{{ alert.message }}</label>
+                <label id="messagelabel">{{ alert.message | translate }}</label>
                 <div class="close" (click)="removeAlert(alert)">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>

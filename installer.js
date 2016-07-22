@@ -1,8 +1,8 @@
 var electronInstaller = require('electron-winstaller');
 
 resultPromise = electronInstaller.createWindowsInstaller({
-  appDirectory: '../open_built/OPEN-win32-x64/',
-  outputDirectory: '../installer/',
+  appDirectory: 'package/OPEN-win32-x64/',
+  outputDirectory: 'installer/',
   authors: "Endava",
   owners: "OpenTheWindows",
   title: "Open Launcher",

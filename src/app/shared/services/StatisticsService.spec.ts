@@ -11,12 +11,14 @@ import {StatisticsService} from './StatisticsService';
 import {GlobalService} from './GlobalService';
 import {Statistic} from '../models/Statistic';
 import {StatisticViewModel} from '../models/StatisticViewModel';
+import {Duration} from '../models/Duration';
 import {DeviceTypes} from '../enums/UserSettingsEnums';
 
 describe('StatisticsServiceTests', () => {
   function getStatisticViewModelObject(): StatisticViewModel[] {
     let result: StatisticViewModel[] = new Array<StatisticViewModel>();
-    result[0] = new StatisticViewModel('some user', DeviceTypes.Joystick, '48 hours 0 min 0 sec', 2, 3);
+    let duration = new Duration(48, 0, 0);
+    result[0] = new StatisticViewModel('some user', DeviceTypes.Joystick, duration, 2, 3);
 
     return result;
   }
@@ -64,11 +66,7 @@ describe('StatisticsServiceTests', () => {
       instance.getLoggedUserStatisticForGame().subscribe(
         (data) => {
           // Assert
-          expect(data[0].deviceType).toBe(expected[0].deviceType);
-          expect(data[0].duration).toBe(expected[0].duration);
-          expect(data[0].invalidClicksCount).toBe(expected[0].invalidClicksCount);
-          expect(data[0].iterationsPassed).toBe(expected[0].iterationsPassed);
-          expect(data[0].username).toBe(expected[0].username);
+          expect(data).toEqual(expected);
         },
         (error) => {
           fail(error);
@@ -76,19 +74,18 @@ describe('StatisticsServiceTests', () => {
       );
     }));
 
-  it('calculateDuration_givenStartAndEndTime_shouldCallGetHoursMinSecFormat',
+  it('calculateDuration_givenStartAndEndTime_shouldReturnDuration',
     inject([StatisticsService], (instance) => {
       // Arrange
       let start = '7/21/2016, 00:00:00 PM';
       let end = '7/21/2016, 00:00:50 PM';
-      let ms = 50000;
-      spyOn(instance, 'getHoursMinSecFormat').and.callFake(() => { });
+      let expected = new Duration(0, 0, 50);
 
       // Act
       let result = instance.calculateDuration(start, end);
 
       // Assert
-      expect(instance.getHoursMinSecFormat).toHaveBeenCalledWith(ms);
+      expect(result).toEqual(expected);
     }));
 
   it('mapToStatisticModelViewArray_givenStatisticArray_shouldReturnStatisticViewModelArray',
@@ -101,23 +98,6 @@ describe('StatisticsServiceTests', () => {
       let result = instance.mapToStatisticModelViewArray(stat);
 
       // Assert
-      expect(result[0].username).toBe(statvm[0].username);
-      expect(result[0].deviceType).toBe(statvm[0].deviceType);
-      expect(result[0].duration).toBe(statvm[0].duration);
-      expect(result[0].iterationsPassed).toBe(statvm[0].iterationsPassed);
-      expect(result[0].invalidClicksCount).toBe(statvm[0].invalidClicksCount);
-    }));
-
-    it('getHoursMinSecFormat_givenMilliseconds_shouldReturnHoursMinSecFormat',
-    inject([StatisticsService], (instance) => {
-      // Arrange
-      let ms = 10000;
-      let expected = '0 hours 0 min 10 sec';
-
-      // Act
-      let result = instance.getHoursMinSecFormat(ms);
-
-      // Assert
-      expect(result).toBe(expected);
+      expect(result).toEqual(statvm);
     }));
 });

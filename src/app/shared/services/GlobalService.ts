@@ -11,6 +11,7 @@ export class GlobalService {
   URL_GETPOINTER_IMAGES: string = URL + '/api/GetPointerImages/';
   URL_IS_GAMESTARTED: string = URL + '/api/isGameStarted';
   URL_LOGOUT: string = URL + '/api/logout/';
+  URL_GETSTATISTIC: string = URL + '/api/getLoggedUserStatistic/';
 
   URL_GETUSER(username: string): string {
     return URL + '/api/getAllUsers/' + username;

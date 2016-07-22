@@ -154,14 +154,14 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
   var deviceType = getDeviceTypeForLoggedUser();
   if (guid || loggedUser) {
     stats('sessions').push({
-      SessionID: guid.value,
-      Username: loggedUser,
-      GameName: gameName,
-      DeviceType: deviceType,
-      StartTime: time,
-      EndTime: '',
-      IterationsPassed: 0,
-      InvalidClicksCount: 0
+      sessionID: guid.value,
+      username: loggedUser,
+      gameName: gameName,
+      deviceType: deviceType,
+      startTime: time,
+      endTime: '',
+      iterationsPassed: 0,
+      invalidClicksCount: 0
     }).then(() => res.send(guid.value));
   }
   else {
@@ -172,14 +172,13 @@ server.get('/api/gameStarted/:gameName', function (req, res) {
 
 server.get('/api/gameUpdate', function (req, res) {
   var guid = req.param('guid');
-
-  var session = stats('sessions').find({ SessionID: guid });
+  var session = stats('sessions').find({ sessionID: guid });
   var misses = req.param('misses');
   if (session) {
     stats('sessions')
       .chain()
-      .find({ SessionID: guid })
-      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
+      .find({ sessionID: guid })
+      .assign({ iterationsPassed: session.iterationsPassed + 1, invalidClicksCount: session.invalidClicksCount + parseInt(misses) })
       .value();
     res.send(true);
   } else {
@@ -191,13 +190,12 @@ server.get('/api/gameUpdate', function (req, res) {
 server.get('/api/gameEnded/:guid', function (req, res) {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
-
-  var session = stats('sessions').find({ SessionID: guid });
+  var session = stats('sessions').find({ sessionID: guid });
   if (session) {
     stats('sessions')
       .chain()
-      .find({ SessionID: guid })
-      .assign({ EndTime: time })
+      .find({ sessionID: guid })
+      .assign({ endTime: time })
       .value();
     res.send(true);
   } else {
@@ -208,7 +206,7 @@ server.get('/api/gameEnded/:guid', function (req, res) {
 
 server.get('/api/getLoggedUserStatistic/', function (req, res) {
   if (loggedUser) {
-     res.send(stats('sessions').filter({ Username: loggedUser }));
+    res.send(stats('sessions').filter({ username: loggedUser }));
   }
   else {
     res.status(404);

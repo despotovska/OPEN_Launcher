@@ -207,7 +207,7 @@ server.get('/api/gameEnded/:guid', function (req, res) {
 server.get('/api/getLoggedUserStatistic/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   if (loggedUser) {
-     res.send(stats('sessions').filter({ Username: loggedUser, GameName: gameName }));
+    res.send(stats('sessions').filter({ Username: loggedUser, GameName: gameName }));
   }
   else {
     res.status(404);

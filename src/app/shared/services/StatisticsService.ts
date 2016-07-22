@@ -19,7 +19,7 @@ export class StatisticsService implements IStatisticsService {
   constructor(private http: Http, private globalService: GlobalService) { }
 
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]> {
-    return this.http.get(this.globalService.URL_GETSTATISTIC)
+    return this.http.get(this.globalService.URL_GETSTATISTIC(game))
       .map((res: Response) => {
         let array = <Statistic[]>res.json();
         return this.mapToStatisticModelViewArray(array);

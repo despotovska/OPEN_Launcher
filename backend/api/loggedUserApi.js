@@ -72,6 +72,7 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
 
 server.get('/api/gameUpdate', (req, res) => {
   var guid = req.param('guid');
+  var misses = req.param('misses');
 
   var session = db('sessions').find({ sessionID: guid });
   if (session) {
@@ -91,7 +92,7 @@ server.get('/api/gameEnded/:guid', (req, res) => {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
 
-  var session = stats('sessions').find({ sessionID: guid });
+  var session = db('sessions').find({ sessionID: guid });
   if (session) {
     db('sessions')
       .chain()

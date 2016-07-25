@@ -1,19 +1,19 @@
-var server = require('./server.js');
-var db = require('./db.js');
-var stats = require('./stats.js')
-var paths = require('./paths.js');
-var helpers = require('./helpers.js');
-var childProcess = require('child_process');
-var guidGenerator = require('guid');
+const server = require('./server.js');
+const db = require('./db.js');
+const paths = require('./paths.js');
+const helpers = require('./helpers.js');
+const childProcess = require('child_process');
+const guidGenerator = require('guid');
+
 var isGameStarted = false;
-var loggedUser = undefined;
-var gameHandler = null;
+var loggedUser;
+var gameHandler;
 
 server.get('/', (req, res) => {
   res.sendFile(paths.indexPath);
 });
 
-server.get('/api/GetProfileImages', (req, res) => {
+server.get('/api/getProfileImages', (req, res) => {
   helpers.readFiles(paths.avatarsPath,
     (data) => {
       for (var index = 0; index < data.length; index++) {
@@ -26,7 +26,7 @@ server.get('/api/GetProfileImages', (req, res) => {
     });
 });
 
-server.get('/api/GetPointerImages', (req, res) => {
+server.get('/api/getPointerImages', (req, res) => {
   helpers.readFiles(paths.pointersPath,
     (data) => {
       for (var index = 0; index < data.length; index++) {
@@ -42,13 +42,13 @@ server.get('/api/GetPointerImages', (req, res) => {
 server.post('/api/upload', (req, res) => {
   helpers.upload(req, res, (err) => {
     if (err) {
-      return res.end("Error uploading file.");
+      return res.end('error');
     }
-    res.end("File is uploaded");
+    res.end('uploaded');
   });
 });
 
-server.get('/api/getAllUsers/:name?', (req, res) => {
+server.get('/api/getUsers/:name?', (req, res) => {
   if (req.params.name != undefined) {
     res.send(db('users').find({ name: req.params.name }));
   } else {
@@ -58,19 +58,15 @@ server.get('/api/getAllUsers/:name?', (req, res) => {
 
 server.post('/api/addUser', (req, res) => {
   db('users').push(req.body)
-    .then(post => res.send({ data: db('users').value() }));
+    .then(() => res.send({ data: db('users').value() }));
 });
 
-server.get('/api/isExistingUser/:username', (req, res) => {
+server.get('/api/isExistingUsername/:username', (req, res) => {
   var existingUser = db('users').find({ name: req.params.username });
-  if (existingUser) {
-    res.send(true);
-  } else {
-    res.send(false);
-  }
+  res.send(!!existingUser);
 });
 
-server.get('/api/deleteUser/:name', (req, res) => {
+server.get('/api/devareUser/:name', (req, res) => {
   db('users').remove({ name: req.params.name });
   res.send(db('users').value());
 });
@@ -122,17 +118,17 @@ server.get('/api/startGame', (req, res) => {
   startCommand = startCommand.replace('{gamesPath}', paths.gamesPath);
 
   gameHandler = childProcess.exec(startCommand, (error, stdout, stderr) => {
-    this.isGameStarted = false;
-    gameHandler = null;
+    isGameStarted = false;
+    gameHandler = undefined;
   });
 
-  this.isGameStarted = true;
+  isGameStarted = true;
   res.status(200);
   res.send({});
 });
 
 server.get('/api/isGameStarted', (req, res) => {
-  res.send(!!this.isGameStarted);
+  res.send(isGameStarted);
 });
 
 server.get('/api/terminateGameProcess', (req, res) => {
@@ -153,7 +149,7 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
   var guid = guidGenerator.create();
   var deviceType = getDeviceTypeForLoggedUser();
   if (guid || loggedUser) {
-    stats('sessions').push({
+    db('sessions').push({
       SessionID: guid.value,
       Username: loggedUser,
       GameName: gameName,
@@ -163,8 +159,7 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
       IterationsPassed: 0,
       InvalidClicksCount: 0
     }).then(() => res.send(guid.value));
-  }
-  else {
+  } else {
     res.status(404);
     res.send({ error: 'Not found' });
   }
@@ -172,11 +167,11 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
 
 server.get('/api/gameUpdate', (req, res) => {
   var guid = req.param('guid');
-
-  var session = stats('sessions').find({ SessionID: guid });
   var misses = req.param('misses');
+
+  var session = db('sessions').find({ SessionID: guid });
   if (session) {
-    stats('sessions')
+    db('sessions')
       .chain()
       .find({ SessionID: guid })
       .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
@@ -192,9 +187,9 @@ server.get('/api/gameEnded/:guid', (req, res) => {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
 
-  var session = stats('sessions').find({ SessionID: guid });
+  var session = db('sessions').find({ SessionID: guid });
   if (session) {
-    stats('sessions')
+    db('sessions')
       .chain()
       .find({ SessionID: guid })
       .assign({ EndTime: time })
@@ -209,9 +204,11 @@ server.get('/api/gameEnded/:guid', (req, res) => {
 server.get('/api/getLoggedUserStatistic/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   if (loggedUser) {
-    res.send(stats('sessions').filter({ Username: loggedUser, GameName: gameName }));
-  }
-  else {
+    var validStatistics = db('sessions')
+      .filter({ Username: loggedUser, GameName: gameName })
+      .filter((item) => !!item.EndTime);
+    res.send(validStatistics);
+  } else {
     res.status(404);
     res.send({ error: 'Not found' });
   }
@@ -223,5 +220,5 @@ function getDeviceTypeForLoggedUser() {
 }
 
 server.listen(3000, () => {
-  console.log("Working on port 3000");
+  console.log('Working on port 3000');
 });

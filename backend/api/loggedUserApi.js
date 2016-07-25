@@ -53,7 +53,7 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
   var time = new Date().toLocaleString();
   var guid = guidGenerator.create();
   var deviceType = getDeviceTypeForLoggedUser();
-  if (guid || loggedUser) {
+  if (guid && loggedUser) {
     db('sessions').push({
       sessionID: guid.value,
       username: loggedUser,

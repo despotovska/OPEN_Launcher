@@ -31,8 +31,8 @@ export class UploadPictureService implements IUploadPictureService {
     this.multipartItem.upload();
   }
 
-  uploadCallback(data): void {
-    if (data) {
+  uploadCallback(result: string): void {
+    if (result === 'uploaded') {
       this.alertingService.addSuccess('UPLOAD_PHOTO_SUCCESS_MESSAGE');
     } else {
       this.alertingService.addDanger('UPLOAD_PHOTO_ERROR_MESSAGE');

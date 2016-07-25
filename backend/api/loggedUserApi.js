@@ -1,5 +1,6 @@
 const server = require('../server.js');
 const db = require('../db.js');
+const paths = require('../paths.js');
 const childProcess = require('child_process');
 const guidGenerator = require('guid');
 

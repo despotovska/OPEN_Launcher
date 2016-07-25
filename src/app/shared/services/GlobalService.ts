@@ -40,8 +40,8 @@ export class GlobalService {
     return URL + 'login/' + username;
   }
 
-  URL_GETSTATISTIC(game: string): string {
-    return URL + '/api/getLoggedUserStatistic/' + game;
+  URL_GET_STATISTICS(gameName: string): string {
+    return URL + 'getLoggedUserStatistics/' + gameName;
   }
 }
 

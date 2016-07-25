@@ -39,6 +39,10 @@ export class GlobalService {
   URL_LOGIN(username: string): string {
     return URL + '/api/login/' + username;
   }
+
+  URL_GETSTATISTIC(game: string): string {
+    return URL + '/api/getLoggedUserStatistic/' + game;
+  }
 }
 
 export let globalServiceInjectables: Array<any> = [

@@ -150,14 +150,14 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
   var deviceType = getDeviceTypeForLoggedUser();
   if (guid || loggedUser) {
     db('sessions').push({
-      SessionID: guid.value,
-      Username: loggedUser,
-      GameName: gameName,
-      DeviceType: deviceType,
-      StartTime: time,
-      EndTime: '',
-      IterationsPassed: 0,
-      InvalidClicksCount: 0
+      sessionID: guid.value,
+      username: loggedUser,
+      gameName: gameName,
+      deviceType: deviceType,
+      startTime: time,
+      endTime: '',
+      iterationsPassed: 0,
+      invalidClicksCount: 0
     }).then(() => res.send(guid.value));
   } else {
     res.status(404);
@@ -167,14 +167,13 @@ server.get('/api/gameStarted/:gameName', (req, res) => {
 
 server.get('/api/gameUpdate', (req, res) => {
   var guid = req.param('guid');
-  var misses = req.param('misses');
 
-  var session = db('sessions').find({ SessionID: guid });
+  var session = db('sessions').find({ sessionID: guid });
   if (session) {
     db('sessions')
       .chain()
-      .find({ SessionID: guid })
-      .assign({ IterationsPassed: session.IterationsPassed + 1, InvalidClicksCount: session.InvalidClicksCount + parseInt(misses) })
+      .find({ sessionID: guid })
+      .assign({ iterationsPassed: session.iterationsPassed + 1, invalidClicksCount: session.invalidClicksCount + parseInt(misses) })
       .value();
     res.send(true);
   } else {
@@ -187,12 +186,12 @@ server.get('/api/gameEnded/:guid', (req, res) => {
   var time = new Date().toLocaleString();
   var guid = req.params.guid;
 
-  var session = db('sessions').find({ SessionID: guid });
+  var session = stats('sessions').find({ sessionID: guid });
   if (session) {
     db('sessions')
       .chain()
-      .find({ SessionID: guid })
-      .assign({ EndTime: time })
+      .find({ sessionID: guid })
+      .assign({ endTime: time })
       .value();
     res.send(true);
   } else {
@@ -205,8 +204,8 @@ server.get('/api/getLoggedUserStatistic/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   if (loggedUser) {
     var validStatistics = db('sessions')
-      .filter({ Username: loggedUser, GameName: gameName })
-      .filter((item) => !!item.EndTime);
+      .filter({ username: loggedUser, gameName: gameName })
+      .filter((item) => !!item.endTime);
     res.send(validStatistics);
   } else {
     res.status(404);

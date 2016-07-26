@@ -5,7 +5,7 @@ var RegisterPage = function () {
   var backBtn = element(by.id("backToLogin"));
   var alertMessage = element(by.id("messagelabel"));
   var profilePictures = element.all(by.className("img-circle"));
-  var numberOfImages = 12;
+  var numberOfImages = 13;
   var whiteColor = element(by.id("pointer-color-0"));
   var yellowColor = element(by.id("pointer-color-1"));
   var greenColor = element(by.id("pointer-color-2"));
@@ -22,7 +22,7 @@ var RegisterPage = function () {
   var keyJoystickRadioBtn = element(by.id("device-type-6"));
 
   this.selectRandomPicture = () => {
-    var randomNo = Math.floor(Math.random() * (numberOfImages - 1));
+    var randomNo = Math.floor(Math.random() * (numberOfImages - 1) + 1);
     var selectedImage = profilePictures.get(randomNo);
     selectedImage.click();
   };

@@ -26,59 +26,45 @@ export class UserSettingsService implements IUserSettingsService {
   }
 
   getUserSettingsForElectron(username: string): Observable<string> {
-    let mapUserSettings: string = '';
-
     return this.http.get(this.globalService.URL_GET_USERSETTINGS(username))
       .map(res => {
         let userSettings: UserSettings = res.json();
-
-        (userSettings.pointerSize === PointerSize.Small) ? mapUserSettings += ' s' : mapUserSettings += ' b';
-
-        switch (userSettings.pointerColor) {
-          case PointerColor.White:
-            mapUserSettings += ' w';
-            break;
-          case PointerColor.Yellow:
-            mapUserSettings += ' y';
-            break;
-          case PointerColor.Green:
-            mapUserSettings += ' g';
-            break;
-          case PointerColor.Blue:
-            mapUserSettings += ' b';
-            break;
-          case PointerColor.Red:
-            mapUserSettings += ' r';
-            break;
-          default:
-            mapUserSettings += ' w';
-            break;
-        }
-
+        let mapUserSettings = ' ' + this.mapPointerSize(userSettings.pointerSize);
+        mapUserSettings += ' ' + this.mapPointerColor(userSettings.pointerColor);
         return mapUserSettings;
       });
   }
 
   getUserSettingsForJar(username: string): Observable<string> {
-    let mapUserSettings: string = '';
-    let userSettingsData: UserSettings;
-
-    this.getUserSettingsFor(username).subscribe(data => { userSettingsData = data; });
     return this.http.get(this.globalService.URL_GET_USERSETTINGS(username))
       .map(res => {
         let userSettings: UserSettings = res.json();
-
-        (userSettings.backgroundColor === BackgroundColor.InColor) ? mapUserSettings = ' -bw false' : mapUserSettings = ' -bw true';
-        (userSettings.pointerSize === PointerSize.Small) ? mapUserSettings += ' -ps s' : mapUserSettings += ' -ps m';
-        (userSettings.pointerColor === PointerColor.White) ? mapUserSettings += ' -pc white'
-          : (userSettings.pointerColor === PointerColor.Yellow) ? mapUserSettings += ' -pc yellow'
-            : (userSettings.pointerColor === PointerColor.Green) ? mapUserSettings += ' -pc green'
-              : (userSettings.pointerColor === PointerColor.Blue) ? mapUserSettings += ' -pc blue'
-                : (userSettings.pointerColor === PointerColor.Red) ? mapUserSettings += ' -pc red'
-                  : mapUserSettings += ' -pc white';
-
+        let mapUserSettings = ' -bw ' + (userSettings.backgroundColor === BackgroundColor.BlackAndWhite);
+        mapUserSettings += ' -ps ' + this.mapPointerSize(userSettings.pointerSize);
+        mapUserSettings += ' -pc ' + this.mapPointerColor(userSettings.pointerColor);
         return mapUserSettings;
       });
+  }
+
+  mapPointerSize(pointerSize: number): string {
+    return (pointerSize === PointerSize.Small) ? 's' : 'm';
+  }
+
+  mapPointerColor(pointerColor: number): string {
+    switch (pointerColor) {
+      case PointerColor.White:
+        return 'white';
+      case PointerColor.Yellow:
+        return 'yellow';
+      case PointerColor.Green:
+        return 'green';
+      case PointerColor.Blue:
+        return 'blue';
+      case PointerColor.Red:
+        return 'red';
+      default:
+        return 'white';
+    }
   }
 
   saveUserSettingsForUser(username: string, userSettings: UserSettings): Observable<UserSettings> {

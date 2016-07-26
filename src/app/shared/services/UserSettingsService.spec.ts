@@ -35,12 +35,12 @@ describe('UserSettingsServiceTests', () => {
     UserSettingsService
   ]);
 
-  it('should have http', inject([UserSettingsService], (userSettingsService) => {
-    expect(!!userSettingsService.http).toEqual(true);
+  it('should have http', inject([UserSettingsService], (instance) => {
+    expect(!!instance.http).toEqual(true);
   }));
 
   it('getUserSettingsFor_givenValidUsername_shouldRetrievedDataFromTheHttpResponse',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
       let userSettingsObject = getDefaultUserSettingsObject();
 
@@ -53,7 +53,7 @@ describe('UserSettingsServiceTests', () => {
         });
 
       // Act
-      userSettingsService.getUserSettingsFor('username').subscribe(
+      instance.getUserSettingsFor('username').subscribe(
         (data) => {
           // Assert
           expect(data.pointerSize).toBe(PointerSize.Small);
@@ -69,7 +69,7 @@ describe('UserSettingsServiceTests', () => {
     }));
 
   it('saveUserSettingsForUser_givenValidUsernameAndUserSettings_shouldRetrievedDataFromTheHttpResponse',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
       let userSettingsObject = getDefaultUserSettingsObject();
 
@@ -82,7 +82,7 @@ describe('UserSettingsServiceTests', () => {
         });
 
       // Act
-      userSettingsService.saveUserSettingsForUser('username', userSettingsObject).subscribe(
+      instance.saveUserSettingsForUser('username', userSettingsObject).subscribe(
         (data) => {
           // Assert
           expect(data.pointerSize).toBe(PointerSize.Small);
@@ -98,7 +98,7 @@ describe('UserSettingsServiceTests', () => {
     }));
 
   it('getUserSettingsForJar_givenInColorBgAndSmallWhitePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
       let userSettingsObject = getDefaultUserSettingsObject();
       let userSettingsForJar: string = ' -bw false -ps s -pc white';
@@ -112,64 +112,7 @@ describe('UserSettingsServiceTests', () => {
         });
 
       // Act
-      userSettingsService.getUserSettingsForJar('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForJar);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
-    }));
-
-  it('getUserSettingsForJar_givenBigWhitePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
-      // Arrange
-      let userSettingsObject = getDefaultUserSettingsObject();
-      let userSettingsForJar: string = ' -bw false -ps s -pc white';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
-
-      // Act
-      userSettingsService.getUserSettingsForJar('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForJar);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
-    }));
-
-  it('getUserSettingsForJar_givenBWBgAndBigBluePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
-      // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.Blue,
-        BackgroundColor.BlackAndWhite,
-        DeviceTypes.Mouse);
-      let userSettingsForJar: string = ' -bw true -ps m -pc blue';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
-
-      // Act
-      userSettingsService.getUserSettingsForJar('username').subscribe(
+      instance.getUserSettingsForJar('username').subscribe(
         (data) => {
           // Assert
           expect(data).toBe(userSettingsForJar);
@@ -181,10 +124,10 @@ describe('UserSettingsServiceTests', () => {
     }));
 
   it('getUserSettingsForElectron_givenSmallWhitePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
       let userSettingsObject = getDefaultUserSettingsObject();
-      let userSettingsForElectron: string = ' s w';
+      let userSettingsForElectron: string = ' s white';
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
@@ -195,7 +138,7 @@ describe('UserSettingsServiceTests', () => {
         });
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
+      instance.getUserSettingsForElectron('username').subscribe(
         (data) => {
           // Assert
           expect(data).toBe(userSettingsForElectron);
@@ -206,282 +149,87 @@ describe('UserSettingsServiceTests', () => {
       );
     }));
 
-  it('getUserSettingsForElectron_givenBigWhitePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerSize_givenSmallPointer_shouldReturnS',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.White,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' b w';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 's';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerSize(PointerSize.Small);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenSmallGreenPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerSize_givenMediumPointer_shouldReturnM',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Small,
-        PointerColor.Green,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' s g';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'm';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerSize(PointerSize.Medium);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenBigGreenPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerColor_givenWhitePointer_shouldReturnWhite',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.Green,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' b g';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'white';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerColor(PointerColor.White);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenSmallBluePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerColor_givenYellowPointer_shouldReturnYellow',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Small,
-        PointerColor.Blue,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' s b';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'yellow';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerColor(PointerColor.Yellow);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenBigBluePointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerColor_givenGreenPointer_shouldReturnGreen',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.Blue,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' b b';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'green';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerColor(PointerColor.Green);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenSmallRedPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+  it('mapPointerColor_givenBluePointer_shouldReturnBlue',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Small,
-        PointerColor.Red,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' s r';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'blue';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      let result = instance.mapPointerColor(PointerColor.Blue);
+
+      // Assert
+      expect(result).toBe(expected);
     }));
 
-  it('getUserSettingsForElectron_givenBigRedPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
+      it('mapPointerColor_givenRedPointer_shouldReturnRed',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.Red,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' b r';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
+      let expected = 'red';
 
       // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
-    }));
+      let result = instance.mapPointerColor(PointerColor.Red);
 
-  it('getUserSettingsForElectron_givenSmallYellowPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
-      // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Small,
-        PointerColor.Yellow,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' s y';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
-
-      // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
-    }));
-
-  it('getUserSettingsForElectron_givenBigYellowPointer_shouldReturnMappedUserSettings',
-    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
-      // Arrange
-      let userSettingsObject = new UserSettings(
-        PointerType.Hand,
-        PointerSize.Medium,
-        PointerColor.Yellow,
-        BackgroundColor.InColor,
-        DeviceTypes.Mouse);
-      let userSettingsForElectron: string = ' b y';
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              body: JSON.stringify(userSettingsObject)
-            })));
-        });
-
-      // Act
-      userSettingsService.getUserSettingsForElectron('username').subscribe(
-        (data) => {
-          // Assert
-          expect(data).toBe(userSettingsForElectron);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
+      // Assert
+      expect(result).toBe(expected);
     }));
 });

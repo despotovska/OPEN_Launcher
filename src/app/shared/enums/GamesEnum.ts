@@ -1,1 +1,1 @@
-export enum LearningWithTheComputer { Pairs, WhoIsHiding, Puzzle, MeAndMyHome, Story };
+export enum LearningWithTheComputer { Sets, WhoIsHiding, Puzzle, MeAndMyHome, Story };

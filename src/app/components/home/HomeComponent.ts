@@ -39,7 +39,7 @@ export class HomeComponent {
     'java -jar {gamesPath}cause_and_effect_1.0.jar');
 
   public learningWithTheComputer: Array<GameModel> = [
-    new GameModel('PAIRS', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
+    new GameModel('SETS', 'sets.png', '{gamesPath}OPEN_Sets-win32-x64/OPEN_Sets.exe'),
     new GameModel('WHO_IS_HIDING', 'computer.png', ''),
     new GameModel('PUZZLE', 'computer.png', ''),
     new GameModel('ME_AND_MY_HOME', 'computer.png', ''),
@@ -72,7 +72,7 @@ export class HomeComponent {
         case this.getToKnowTheComputer.name:
           this.loadCauseAndEffectGame();
           break;
-        case this.learningWithTheComputer[LearningWithTheComputer.Pairs].name:
+        case this.learningWithTheComputer[LearningWithTheComputer.Sets].name:
           this.loadPairsGame();
           break;
         // case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
@@ -100,7 +100,7 @@ export class HomeComponent {
   loadPairsGame() {
     this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.learningWithTheComputer[LearningWithTheComputer.Pairs].startCommand + userSettings)
+        this.gameLauncherService.loadGame(this.learningWithTheComputer[LearningWithTheComputer.Sets].startCommand + userSettings)
           .subscribe(res => { });
       });
   }

@@ -1,16 +1,16 @@
 import {Component, Injector} from 'angular2/core';
 import {Router, CanActivate} from 'angular2/router';
 
+import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
+
 import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
-import {LearningWithTheComputer} from '../../shared/enums/GamesEnum';
+import {LearningWithTheComputer, GameCategory} from '../../shared/enums/GamesEnum';
 import {CategoryModel} from './CategoryModel';
 import {GameModel} from './GameModel';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {appInjector} from '../../../appInjector';
 
@@ -33,7 +33,7 @@ import {appInjector} from '../../../appInjector';
   }
 )
 export class HomeComponent {
-  public getToKnowTheComputer: GameModel = new GameModel(
+  public causeAndEffectGame: GameModel = new GameModel(
     'CAUSE_AND_EFFECT',
     'cause_and_effect.png',
     'java -jar {gamesPath}cause_and_effect_1.0.jar');
@@ -47,7 +47,7 @@ export class HomeComponent {
   ];
 
   public gamesCategories: Array<CategoryModel> = [
-    new CategoryModel('GET_TO_KNOW_THE_PC', [this.getToKnowTheComputer]),
+    new CategoryModel('GET_TO_KNOW_THE_PC', [this.causeAndEffectGame]),
     new CategoryModel('LEARN_WITH_THE_PC', this.learningWithTheComputer)];
 
   public currentUserName: string;
@@ -56,35 +56,22 @@ export class HomeComponent {
     private alertingService: AlertingService,
     private authService: AuthService,
     private userSettingsService: UserSettingsService,
-    private gameLauncherService: GameLauncherService) {
+    private gameLauncherService: GameLauncherService,
+    private translate: TranslateService) {
     this.currentUserName = this.authService.getLoggedUser();
   }
 
-  loadGame(selectedGame) {
-    this.gameLauncherService.isGameStarted().subscribe(data => {
-      let isGameStarted: boolean = data;
+  loadGame(gameCategory: number, gameIndex: number): void {
+    this.gameLauncherService.isGameStarted().subscribe(isGameStarted => {
       if (isGameStarted) {
         this.alertingService.addInfo('GAME_STARTED_MESSAGE');
         return;
       }
 
-      switch (selectedGame) {
-        case this.getToKnowTheComputer.name:
-          this.loadCauseAndEffectGame();
-          break;
-        case this.learningWithTheComputer[LearningWithTheComputer.Sets].name:
-          this.loadPairsGame();
-          break;
-        // case this.learningWithTheComputer[LearningWithTheComputer.WhoIsHiding].name:
-        //   break;
-        // case this.learningWithTheComputer[LearningWithTheComputer.Puzzle].name:
-        //   break;
-        // case this.learningWithTheComputer[LearningWithTheComputer.MeAndMyHome].name:
-        //   break;
-        // case this.learningWithTheComputer[LearningWithTheComputer.Story].name:
-        //   break;
-        default:
-          break;
+      if (gameCategory === GameCategory.GetToKnowTheComputer) {
+        this.loadCauseAndEffectGame();
+      } else {
+        this.loadLearningWithTheComputerGame(this.learningWithTheComputer[gameIndex].startCommand);
       }
     });
   }
@@ -92,16 +79,24 @@ export class HomeComponent {
   loadCauseAndEffectGame() {
     this.userSettingsService.getUserSettingsForJar(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.getToKnowTheComputer.startCommand + userSettings)
-          .subscribe(res => { });
+        this.gameLauncherService.loadGame(this.causeAndEffectGame.startCommand + userSettings);
       });
   }
 
-  loadPairsGame() {
+  loadLearningWithTheComputerGame(startCommand: string) {
     this.userSettingsService.getUserSettingsForElectron(this.currentUserName)
       .subscribe(userSettings => {
-        this.gameLauncherService.loadGame(this.learningWithTheComputer[LearningWithTheComputer.Sets].startCommand + userSettings)
-          .subscribe(res => { });
+        // pass the logged user's settings
+        startCommand += userSettings;
+
+        // pass the current language
+        startCommand += this.getCurrentLanguage();
+
+        this.gameLauncherService.loadGame(startCommand);
       });
+  }
+
+  getCurrentLanguage(): string {
+    return ' ' + this.translate.currentLang;
   }
 }

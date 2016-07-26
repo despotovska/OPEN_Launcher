@@ -5,19 +5,19 @@ import {Observable} from 'rxjs/Rx';
 import {GlobalService} from '../../shared/services/GlobalService';
 
 export interface IGameLauncherService {
-  loadGame(startCommand): any;
-  isGameStarted();
+  loadGame(startCommand): void;
+  isGameStarted(): Observable<boolean>;
 }
 
 @Injectable()
 export class GameLauncherService implements IGameLauncherService {
   constructor(private http: Http, private globalService: GlobalService) { }
 
-  loadGame(startCommand) {
-    return this.http.get(this.globalService.URL_STARTGAME(startCommand));
+  loadGame(startCommand): void {
+    this.http.get(this.globalService.URL_STARTGAME(startCommand)).subscribe();
   }
 
-  isGameStarted() {
+  isGameStarted(): Observable<boolean> {
     return this.http.get(this.globalService.URL_IS_GAMESTARTED).map(res => {
       let isGameStarted: boolean = JSON.parse(res.json());
       return isGameStarted;

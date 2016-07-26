@@ -9,7 +9,7 @@
         <div class="panel-body">
           <div class="col-sm-4 col-md-3 col-lg-2 top-buffer" *ngFor="#game of category.games; #j=index" id="{{i}}-{{j}}">
             <figure class="btn btn-default">
-              <a class="game-tile" (click)="loadGame(game.name)">
+              <a class="game-tile" (click)="loadGame(i, j)">
                 <img src="./assets/images/games/{{game.image}}" alt="{{game.name}}">
                 <figcaption>{{game.name | translate}}</figcaption>
               </a>

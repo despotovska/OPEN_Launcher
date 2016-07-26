@@ -56,7 +56,7 @@ import { AuthService } from './app/shared/services/AuthService';
     deps: [Http]
   }),
     TranslateService],
-  templateUrl: `./app.html`
+  templateUrl: './app.html'
 })
 
 @RouteConfig([

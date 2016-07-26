@@ -16,7 +16,7 @@ import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'home',
-  templateUrl: `./app/components/home/home.html`,
+  templateUrl: './app/components/home/home.html',
   pipes: [TranslatePipe]
 })
 @CanActivate(

@@ -109,10 +109,11 @@ server.get('/api/gameEnded/:guid', (req, res) => {
 server.get('/api/getLoggedUserStatistics/:gameName', function (req, res) {
   var gameName = req.params.gameName;
   if (loggedUser) {
-    var validStatistics = db('sessions')
-      .filter({ username: loggedUser, gameName: gameName })
-      .filter((item) => !!item.endTime);
-    res.send(validStatistics);
+    // remove the sessions for the unfinished games
+    db('sessions').remove({ username: loggedUser, gameName: gameName, endTime: '' });
+
+    var statistics = db('sessions').filter({ username: loggedUser, gameName: gameName });
+    res.send(statistics);
   } else {
     res.status(404);
     res.send({ error: 'Not found' });

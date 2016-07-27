@@ -1,14 +1,32 @@
 {
   "sessions": [
     {
-      "SessionID": "337c1467-fc6c-0404-172a-71274f21254f",
-      "Username": "Aleksandra",
-      "GameName": "Sets",
-      "DeviceType": 2,
-      "StartTime": "6/22/2016, 11:27:39 AM",
-      "EndTime": "6/22/2016, 3:06:37 PM",
-      "IterationsPassed": 8,
-      "InvalidClicksCount": 16
+      "sessionID": "5b24239c-0e1b-7b66-edb5-c3b8aa75721e",
+      "username": "Aleksandra",
+      "gameName": "Sets",
+      "deviceType": 2,
+      "startTime": "7/20/2016, 5:57:38 PM",
+      "endTime": "7/20/2016, 5:57:39 PM",
+      "iterationsPassed": 0,
+      "invalidClicksCount": 0
+    },
+    {
+      "sessionID": "6bc965c3-2971-d08d-35fc-53a8f10a654f",
+      "username": "Aleksandra",
+      "gameName": "Sets",
+      "deviceType": 2,
+      "startTime": "7/19/2016, 00:00:00 PM",
+      "endTime": "7/21/2016, 00:00:00 PM",
+      "iterationsPassed": 0,
+      "invalidClicksCount": 0
+    },
+    {
+      "sessionID": "e84cbb66-a9bc-8a56-23a6-db636058b22b",
+      "gameName": "fdgdfgfd",
+      "startTime": "7/25/2016, 11:16:11 AM",
+      "endTime": "",
+      "iterationsPassed": 0,
+      "invalidClicksCount": 0
     }
   ]
 }

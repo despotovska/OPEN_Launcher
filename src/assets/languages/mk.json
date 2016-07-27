@@ -58,9 +58,17 @@
   "SELECT_PICTURE_VALIDATION_MESSAGE": "За да креирате профил, мора да изберете слика.",
   "REQUIRED_FIELDS_VALIDATION_MESSAGE": "Не се пополнети сите полиња.",
   "EXISTING_USERNAME_VALIDATION_MESSAGE": "Корисничкото име веќе постои, обидете се да се регистрирате со друго име.",
+  "GAME_STATISTICS":"Статистика за играта",
+  "CHOOSE A GAME":"Одбери игра",
+  "CAUSE AND EFFECT": "Причина и последица",
   "YES": "Да",
   "NO": "Не",
   "BACK": "Назад",
   "en": "АНГ",
-  "mk": "МК"
+  "mk": "МК",
+  "SETS": "Парови",
+  "DEVICE_TYPE": "Тип на уред",
+  "DURATION": "Времетраење",
+  "INVALID_CLICK_COUNT": "Погрешни обиди",
+  "ITERATION_PASSED": "Поминати итерации"
 }

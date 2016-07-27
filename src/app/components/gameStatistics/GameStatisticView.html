@@ -1,0 +1,28 @@
+<div class="container">
+
+    <select class="form-control" [(ngModel)]="games" (ngModelChange)="getStatistic()">
+    <option *ngFor="#game of games">{{game | translate }}</option>
+</select>
+    <table class="table tablt-striped">
+      <thead>
+        <tr>
+          <td *ngFor="#header of StatisticTable[0].headers">
+            {{header | translate}}
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="#stat of stats">
+          <td>{{stat.deviceType}}
+          </td>
+          <td>{{stat.duration.hours}}:{{stat.duration.minutes}}:{{stat.duration.seconds}}
+          </td>
+          <td>{{stat.iterationsPassed}}
+          </td>
+          <td>{{stat.invalidClicksCount}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>

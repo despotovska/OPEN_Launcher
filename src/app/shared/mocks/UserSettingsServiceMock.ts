@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs/Rx';
 
 import {UserSettings} from '../models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {IUserSettingsService} from '../services/UserSettingsService';
 
 export class UserSettingsServiceMock implements IUserSettingsService {
@@ -11,7 +11,7 @@ export class UserSettingsServiceMock implements IUserSettingsService {
       PointerSize.Small,
       PointerColor.Blue,
       BackgroundColor.InColor,
-      DeviceTypes.Mouse);
+      DeviceType.Mouse);
   }
 
   getUserSettingsFor(userName: string) {
@@ -30,5 +30,9 @@ export class UserSettingsServiceMock implements IUserSettingsService {
   getUserSettingsForElectron(username: string): Observable<string> {
     let userSettingsForElectron: string = 'b g';
     return Observable.of(userSettingsForElectron);
+  }
+
+  mapDeviceType(deviceType: DeviceType): string {
+    return 'MOUSE';
   }
 }

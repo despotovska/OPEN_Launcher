@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/Rx';
 
 import {UserSettingsComponent} from './UserSettingsComponent';
 import {UserSettingsColorsService} from './UserSettingsColorsService';
-import {PointerColor, PointerSize, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {PointerColor, PointerSize, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {Alert} from '../../shared/models/Alert';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {ImagesService} from '../../shared/services/ImagesService';
@@ -78,10 +78,10 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        let deviceType: DeviceTypes = DeviceTypes.Mouse;
+        let deviceType: DeviceType = DeviceType.Mouse;
         let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
-        instance.userSettings.deviceType = DeviceTypes.Mouse;
+        instance.userSettings.deviceType = DeviceType.Mouse;
 
         // Act
         instance.setDeviceType(deviceType);
@@ -119,10 +119,10 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        let deviceType: DeviceTypes = DeviceTypes.Touchscreen;
+        let deviceType: DeviceType = DeviceType.Touchscreen;
         let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
-        instance.userSettings.deviceType = DeviceTypes.Touchscreen;
+        instance.userSettings.deviceType = DeviceType.Touchscreen;
         spyOn(instance, 'setDeviceType').and.callThrough();
 
         // Act
@@ -230,7 +230,7 @@ describe('UserSettingsComponentTests', () => {
     injectAsync([TestComponentBuilder], (tcb) => {
       return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
         // Arrange
-        let selectedDeviceType: DeviceTypes = DeviceTypes.Mouse;
+        let selectedDeviceType: DeviceType = DeviceType.Mouse;
         let instance = fixture.componentInstance;
         instance.userSettings = new UserSettings();
         instance.userSettings.deviceType = selectedDeviceType;

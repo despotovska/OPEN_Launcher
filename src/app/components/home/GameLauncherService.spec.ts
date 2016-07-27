@@ -27,29 +27,6 @@ describe('GameLauncherServiceTests', () => {
     expect(!!instance.http).toEqual(true);
   }));
 
-  it('loadGame_givenCommand_shouldCallApiStartGame',
-    inject([GameLauncherService, MockBackend], (instance, mockBackend) => {
-      // Arrange
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-              status: 200
-            })));
-        });
-
-      // Act
-      instance.loadGame('command').subscribe(
-        (data) => {
-          // Assert
-          expect(data.status).toBe(200);
-        },
-        (error) => {
-          fail(error);
-        }
-      );
-    }));
-
   it('isGameStarted_givenResponsiveHTTP_shouldCallApiIsGameStarted',
     inject([GameLauncherService, MockBackend], (instance, mockBackend) => {
       // Arrange

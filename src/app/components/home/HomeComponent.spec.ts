@@ -8,11 +8,15 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Observable} from 'rxjs/Rx';
 
+import {TranslateService, TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
+
 import {HomeComponent} from './HomeComponent';
 import {GameLauncherService} from './GameLauncherService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
+
+import {LearningWithTheComputer, GameCategory} from '../../shared/enums/GamesEnum';
 
 import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
 import {GameLauncherServiceMock} from '../../shared/mocks/GameLauncherServiceMock';
@@ -24,6 +28,17 @@ describe('HomeComponentTests', () => {
     provide(AuthService, { useClass: AuthServiceMock }),
     provide(GameLauncherService, { useClass: GameLauncherServiceMock }),
     provide(UserSettingsService, { useClass: UserSettingsServiceMock }),
+    BaseRequestOptions,
+    MockBackend,
+    provide(Http, {
+      useFactory: function (backend, defaultOptions) {
+        return new Http(backend, defaultOptions);
+      },
+      deps: [MockBackend, BaseRequestOptions]
+    }),
+    TRANSLATE_PROVIDERS,
+    TranslateService,
+    TranslateService,
     HomeComponent
   ]);
 
@@ -33,10 +48,10 @@ describe('HomeComponentTests', () => {
       GameLauncherServiceMock.gameStarted = true;
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
       spyOn(instance.alertingService, 'addInfo').and.callFake(() => { });
-      let gameName = 'CAUSE_AND_EFFECT';
+      let gameIndex = 0;
 
       // Act
-      instance.loadGame(gameName);
+      instance.loadGame(GameCategory.GetToKnowTheComputer, gameIndex);
 
       // Assert
       expect(instance.gameLauncherService.loadGame).not.toHaveBeenCalled();
@@ -49,10 +64,10 @@ describe('HomeComponentTests', () => {
       // Arrange
       GameLauncherServiceMock.gameStarted = false;
       spyOn(instance, 'loadCauseAndEffectGame').and.callFake(() => { });
-      let gameName = 'CAUSE_AND_EFFECT';
+      let gameIndex = 0;
 
       // Act
-      instance.loadGame(gameName);
+      instance.loadGame(GameCategory.GetToKnowTheComputer, gameIndex);
 
       // Assert
       expect(instance.loadCauseAndEffectGame).toHaveBeenCalled();
@@ -62,14 +77,14 @@ describe('HomeComponentTests', () => {
     inject([HomeComponent], (instance) => {
       // Arrange
       GameLauncherServiceMock.gameStarted = false;
-      spyOn(instance, 'loadPairsGame').and.callFake(() => { });
-      let gameName = 'PAIRS';
+      spyOn(instance, 'loadLearningWithTheComputerGame').and.callFake(() => { });
+      let gameIndex = 0;
 
       // Act
-      instance.loadGame(gameName);
+      instance.loadGame(GameCategory.LearningWithTheComputer, gameIndex);
 
       // Assert
-      expect(instance.loadPairsGame).toHaveBeenCalled();
+      expect(instance.loadLearningWithTheComputerGame).toHaveBeenCalled();
     }));
 
   it('loadCauseAndEffectGame_givenAvailableGameLauncherService_shouldCallLoadGame',
@@ -90,7 +105,7 @@ describe('HomeComponentTests', () => {
       spyOn(instance.gameLauncherService, 'loadGame').and.callThrough();
 
       // Act
-      instance.loadPairsGame();
+      instance.loadLearningWithTheComputerGame();
 
       // Assert
       expect(instance.gameLauncherService.loadGame).toHaveBeenCalled();

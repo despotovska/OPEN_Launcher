@@ -16,12 +16,18 @@ A component is basically a self contained app usually in a single file or a fold
 Here's how it looks:
 ```
 OPEN_Launcher/
+ │
  ├──backend/                            * nodejs backend (`api.js` is the entry point)
  |
+ ├──e2e/                                * folder that holds e2e tests and page objects for the components
+ │
  ├──src/                                * our source files that will be compiled to javascript
- |   ├──app.ts                          * our entry file for our browser environment
+ │   │ 
+ |   ├──app.ts                          * our entry file for our browser environment - the root component
  │   │        
- |   ├──index.html                      * Index.html: where we generate our index page
+ |   ├──index.html                      * where we generate our index page
+ │   │ 
+ |   ├──main.js                         * the script the main Electron process is going to run
  │   │        
  |   ├──polyfills.ts                    * our polyfills file
  │   │        
@@ -33,21 +39,21 @@ OPEN_Launcher/
  │   │   │      ├──component.ts         * a specific component typescript
  │   │   │      └──component.spec.ts    * a simple test of the component
  │   │   │
- │   │   ├──shared/                     * folder that holds shared components
- │   │   │  ├──enums/                   * our enumerations are here
- │   │   │  ├──mocks/                   * our mocks are here
- │   │   │  ├──models/                  * our models are here
- │   │   │  ├──pipes/                   * our pipes are here
- │   │   │  ├──plugins/                 * folder for third party components (not written by us)
- │   │   │  └──services/                * folder for services used across the application
- │   │   │
- │   │   └──tests/                      * folder that holds e2e tests and page objects for the components
+ │   │   └──shared/                     * folder that holds shared components
+ │   │      ├──enums/                   * our enumerations are here
+ │   │      ├──mocks/                   * our mocks are here
+ │   │      ├──models/                  * our models are here
+ │   │      ├──pipes/                   * our pipes are here
+ │   │      ├──plugins/                 * folder for third party components (not written by us)
+ │   │      └──services/                * folder for services used across the application
+ │   │   
  │   │        
  │   └──assets/                         * static assets are served here
  │       ├──css/                        * our stylesheets are here
  │       ├──games/                      * games executables are here
  │       ├──images/                     * images are stored here
  │       ├──js/                         * only requiring jquery statement is stored here (this might be changed)
+ │       ├──translations/               * translated resources
  │       ├──robots.txt                  * for search engines to crawl your website
  │       └──db.json                     * json database where users are stored        
  │        

@@ -11,7 +11,7 @@ export interface IUserSettingsService {
   getUserSettingsForJar(username: string): Observable<string>;
   getUserSettingsForElectron(username: string): Observable<string>;
   saveUserSettingsForUser(username: string, userSettings: UserSettings): Observable<UserSettings>;
-  mapDeviceType(deviceType: number): string;
+  mapDeviceType(deviceType: DeviceType): string;
 }
 
 @Injectable()
@@ -47,11 +47,11 @@ export class UserSettingsService implements IUserSettingsService {
       });
   }
 
-  mapPointerSize(pointerSize: number): string {
+  mapPointerSize(pointerSize: PointerSize): string {
     return (pointerSize === PointerSize.Small) ? 's' : 'm';
   }
 
-  mapPointerColor(pointerColor: number): string {
+  mapPointerColor(pointerColor: PointerColor): string {
     switch (pointerColor) {
       case PointerColor.White:
         return 'white';
@@ -68,7 +68,7 @@ export class UserSettingsService implements IUserSettingsService {
     }
   }
 
-  mapDeviceType(deviceType: number): string {
+  mapDeviceType(deviceType: DeviceType): string {
     switch (deviceType) {
       case DeviceType.Mouse:
         return 'MOUSE';

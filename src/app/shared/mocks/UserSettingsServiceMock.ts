@@ -32,7 +32,7 @@ export class UserSettingsServiceMock implements IUserSettingsService {
     return Observable.of(userSettingsForElectron);
   }
 
-  mapDeviceType(deviceType: number): string {
+  mapDeviceType(deviceType: DeviceType): string {
     return 'MOUSE';
   }
 }

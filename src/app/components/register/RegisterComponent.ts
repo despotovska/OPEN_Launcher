@@ -13,7 +13,7 @@ import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
@@ -78,7 +78,7 @@ export class RegisterComponent {
     result.userSettings.pointerType = PointerType.Hand;
     result.userSettings.pointerSize = PointerSize.Small;
     result.userSettings.pointerColor = PointerColor.White;
-    result.userSettings.deviceType = DeviceTypes.Mouse;
+    result.userSettings.deviceType = DeviceType.Mouse;
     return result;
   }
 }

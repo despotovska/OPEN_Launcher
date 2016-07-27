@@ -12,13 +12,13 @@ import {GlobalService} from './GlobalService';
 import {Statistic} from '../models/Statistic';
 import {StatisticViewModel} from '../models/StatisticViewModel';
 import {Duration} from '../models/Duration';
-import {DeviceTypes} from '../enums/UserSettingsEnums';
+import {DeviceType} from '../enums/UserSettingsEnums';
 
 describe('StatisticsServiceTests', () => {
   function getStatisticViewModelObject(): StatisticViewModel[] {
     let result: StatisticViewModel[] = new Array<StatisticViewModel>();
     let duration = new Duration(48, 0, 0);
-    result[0] = new StatisticViewModel('some user', DeviceTypes.Joystick, duration, 2, 3);
+    result[0] = new StatisticViewModel('some user', DeviceType.Joystick, duration, 2, 3);
 
     return result;
   }

@@ -9,7 +9,7 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {UserSettingsService} from './UserSettingsService';
 import {GlobalService} from './GlobalService';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {UserSettings} from '../models/UserSettings';
 
 describe('UserSettingsServiceTests', () => {
@@ -19,7 +19,7 @@ describe('UserSettingsServiceTests', () => {
       PointerSize.Small,
       PointerColor.White,
       BackgroundColor.InColor,
-      DeviceTypes.Mouse);
+      DeviceType.Mouse);
   }
 
   beforeEachProviders(() => [
@@ -60,7 +60,7 @@ describe('UserSettingsServiceTests', () => {
           expect(data.pointerType).toBe(PointerType.Hand);
           expect(data.pointerColor).toBe(PointerColor.White);
           expect(data.backgroundColor).toBe(BackgroundColor.InColor);
-          expect(data.deviceType).toBe(DeviceTypes.Mouse);
+          expect(data.deviceType).toBe(DeviceType.Mouse);
         },
         (error) => {
           fail(error);
@@ -89,7 +89,7 @@ describe('UserSettingsServiceTests', () => {
           expect(data.pointerType).toBe(PointerType.Hand);
           expect(data.pointerColor).toBe(PointerColor.White);
           expect(data.backgroundColor).toBe(BackgroundColor.InColor);
-          expect(data.deviceType).toBe(DeviceTypes.Mouse);
+          expect(data.deviceType).toBe(DeviceType.Mouse);
         },
         (error) => {
           fail(error);
@@ -221,13 +221,97 @@ describe('UserSettingsServiceTests', () => {
       expect(result).toBe(expected);
     }));
 
-      it('mapPointerColor_givenRedPointer_shouldReturnRed',
+  it('mapPointerColor_givenRedPointer_shouldReturnRed',
     inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
       // Arrange
       let expected = 'red';
 
       // Act
       let result = instance.mapPointerColor(PointerColor.Red);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenMouse_shouldReturnMOUSE',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'MOUSE';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.Mouse);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenTouchscreen_shouldReturnTOUCHSCREEN',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'TOUCHSCREEN';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.Touchscreen);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenTrackball_shouldReturnTRACKBALL',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'TRACKBALL';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.Trackball);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenJoystick_shouldReturnJOYSTICK',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'JOYSTICK';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.Joystick);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenKey_shouldReturnKEY',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'KEY';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.Key);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenKeyAndTrackball_shouldReturn_KEY_AND_TRACKBALL',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'KEY_AND_TRACKBALL';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.KeyTrackball);
+
+      // Assert
+      expect(result).toBe(expected);
+    }));
+
+  it('mapDeviceType_givenKeyAndJoystick_shouldReturn_KEY_AND_JOYSTICK',
+    inject([UserSettingsService, MockBackend], (instance: UserSettingsService, mockBackend) => {
+      // Arrange
+      let expected = 'KEY_AND_JOYSTICK';
+
+      // Act
+      let result = instance.mapDeviceType(DeviceType.KeyJoystick);
 
       // Assert
       expect(result).toBe(expected);

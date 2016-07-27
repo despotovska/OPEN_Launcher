@@ -4,13 +4,14 @@ import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
 import {UserSettings} from '../models/UserSettings';
-import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../enums/UserSettingsEnums';
 
 export interface IUserSettingsService {
   getUserSettingsFor(username: string): Observable<UserSettings>;
   getUserSettingsForJar(username: string): Observable<string>;
   getUserSettingsForElectron(username: string): Observable<string>;
   saveUserSettingsForUser(username: string, userSettings: UserSettings): Observable<UserSettings>;
+  mapDeviceType(deviceType: number): string;
 }
 
 @Injectable()
@@ -64,6 +65,27 @@ export class UserSettingsService implements IUserSettingsService {
         return 'red';
       default:
         return 'white';
+    }
+  }
+
+  mapDeviceType(deviceType: number): string {
+    switch (deviceType) {
+      case DeviceType.Mouse:
+        return 'MOUSE';
+      case DeviceType.Touchscreen:
+        return 'TOUCHSCREEN';
+      case DeviceType.Trackball:
+        return 'TRACKBALL';
+      case DeviceType.Joystick:
+        return 'JOYSTICK';
+      case DeviceType.Key:
+        return 'KEY';
+      case DeviceType.KeyTrackball:
+        return 'KEY_AND_TRACKBALL';
+      case DeviceType.KeyJoystick:
+        return 'KEY_AND_JOYSTICK';
+      default:
+        return 'MOUSE';
     }
   }
 

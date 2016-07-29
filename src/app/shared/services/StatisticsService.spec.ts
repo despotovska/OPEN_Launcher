@@ -9,11 +9,12 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {StatisticsService} from './StatisticsService';
 import {GlobalService} from './GlobalService';
+import {UserSettingsService} from './UserSettingsService';
+
 import {Statistic} from '../models/Statistic';
 import {StatisticViewModel} from '../models/StatisticViewModel';
 import {Duration} from '../models/Duration';
 import {DeviceType} from '../enums/UserSettingsEnums';
-import {UserSettingsService} from './UserSettingsService';
 
 describe('StatisticsServiceTests', () => {
   function getStatisticViewModelObject(): StatisticViewModel[] {

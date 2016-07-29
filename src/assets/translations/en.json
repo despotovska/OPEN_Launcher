@@ -1,5 +1,4 @@
 {
-  "HELLO": "Hello {{value}}",
   "APP": "OPEN",
   "HOME": "Home",
   "SETTINGS": "User settings",
@@ -7,7 +6,7 @@
   "LOGOUT": "Log out",
   "GET_TO_KNOW_THE_PC": "Get to know the computer",
   "LEARN_WITH_THE_PC": "Learn with the computer",
-  "PAIRS": "Pairs",
+  "SETS": "Sets",
   "WHO_IS_HIDING": "Who is hiding",
   "PUZZLE": "Puzzle",
   "ME_AND_MY_HOME": "Me and my home",

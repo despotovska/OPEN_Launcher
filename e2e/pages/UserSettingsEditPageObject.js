@@ -19,8 +19,10 @@ var UserSettingsEditPage = function () {
   var keyRadioBtn = element(by.id("device-type-4"));
   var keyTrackballRadioBtn = element(by.id("device-type-5"));
   var keyJoystickRadioBtn = element(by.id("device-type-6"));
+  var loggedUserMenu = element(by.id("loggedUser"));
 
   this.navigateToEditUserSettingsPage = () => {
+    loggedUserMenu.click();
     userSettingsMenuItem.click();
   }
 

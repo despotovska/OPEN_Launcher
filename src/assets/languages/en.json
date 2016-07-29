@@ -40,6 +40,7 @@
   "SAVE_CHANGES": "Save changes",
   "CHOOSE_PHOTO": "Choose a photo",
   "UPLOAD": "Upload",
+  "DURATION": "{{hours}}h {{minutes}}m {{seconds}}s",
   "GAME_STARTED_MESSAGE": "A game is already started. Close the window of the active game to start a new one.",
   "LOAD_USERS_ERROR_MESSAGE": "An error occured while loading the users.",
   "DELETE_USER_SUCCESS_MESSAGE": "The profile has been successfully deleted.",
@@ -68,7 +69,7 @@
   "mk": "MK",
   "SETS": "Sets",
   "DEVICE_TYPE": "Device Type",
-  "DURATION": "Duration",
+  "DURATION1": "Duration",
   "INVALID_CLICK_COUNT": "Invalid Click Count",
   "ITERATION_PASSED": "Iteration Passed"
 }

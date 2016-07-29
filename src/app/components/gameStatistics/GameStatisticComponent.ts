@@ -6,7 +6,8 @@ import {AlertingService} from '../../shared/services/AlertingService';
 import {StatisticViewModel} from '../../shared/models/StatisticViewModel';
 import {Statistic} from '../../shared/models/Statistic';
 import {GameStatisticsModel} from '../../shared/models/GameStatisticsModel';
-import {DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {DeviceType} from '../../shared/enums/UserSettingsEnums';
+import {UserSettingsService} from '../../shared/services/UserSettingsService';
 
 @Component({
   selector: 'statistic',
@@ -16,24 +17,22 @@ import {DeviceTypes} from '../../shared/enums/UserSettingsEnums';
 export class GameStatisticComponent {
   public stats: Array<StatisticViewModel> = new Array<StatisticViewModel>();
 
-  public games = [ 'SETS','CAUSE AND EFFECT'];
+  public games = ['SETS', 'CAUSE AND EFFECT'];
 
-  public StatisticTable: Array<GameStatisticsModel> = [
-    new GameStatisticsModel('SETS',['DEVICE_TYPE', 'DURATION', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
+  public statisticTable: Array<GameStatisticsModel> = [
+    new GameStatisticsModel('SETS', ['DEVICE_TYPE', 'DURATION1', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
   ];
-   public devices: string[] = ['MOUSE', 'TOUCHSCREEN', 'TRACKBALL', 'JOYSTICK', 'KEY', 'KEY_AND_TRACKBALL', 'KEY_AND_JOYSTICK'];
-
   constructor(private alertingService: AlertingService,
     private statisticsService: StatisticsService) {
-      this.getStatistic("SETS");
+    this.getStatistic('Sets');
   }
-
   getStatistic(game: string): void {
-    this.statisticsService.getLoggedUserStatisticForGame("Sets")
+    this.statisticsService.getLoggedUserStatisticForGame(game)
       .subscribe(data => {
         this.stats = data;
         console.log(this.stats.length);
       },
       err => this.alertingService.addDanger('Грешка при вчитување на статистика.'));
   }
+
 }

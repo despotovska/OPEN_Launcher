@@ -11,5 +11,17 @@
       "profileImg": "./assets/images/avatars/devojce.png",
       "name": "Aleksandra"
     }
+  ],
+  "sessions": [
+    {
+      "sessionID": "337c1467-fc6c-0404-172a-71274f21254f",
+      "username": "Aleksandra",
+      "gameName": "Sets",
+      "deviceType": 2,
+      "startTime": "6/22/2016, 11:27:39 AM",
+      "endTime": "6/22/2016, 3:06:37 PM",
+      "iterationsPassed": 8,
+      "invalidClicksCount": 16
+    }
   ]
 }

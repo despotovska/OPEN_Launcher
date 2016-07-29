@@ -2,7 +2,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
 
 import {UserSettingsColorsService} from './UserSettingsColorsService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceTypes} from '../../shared/enums/UserSettingsEnums';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {EnumEx} from '../../shared/enums/EnumEx';
 import {UserSettings} from '../../shared/models/UserSettings';
 import {ImagesService} from '../../shared/services/ImagesService';
@@ -55,11 +55,11 @@ export class UserSettingsComponent implements OnChanges {
     this.selectPointerColor(PointerColor.White);
   }
 
-  setDeviceType(deviceType: DeviceTypes): void {
+  setDeviceType(deviceType: DeviceType): void {
     this.userSettings.deviceType = Number(deviceType);
   }
 
-  selectDeviceType(deviceType: DeviceTypes): void {
+  selectDeviceType(deviceType: DeviceType): void {
     this.setDeviceType(deviceType);
   }
 
@@ -77,7 +77,7 @@ export class UserSettingsComponent implements OnChanges {
     }
   }
 
-  shouldDeviceTypeBeChecked(deviceType: DeviceTypes): boolean {
+  shouldDeviceTypeBeChecked(deviceType: DeviceType): boolean {
     if (this.userSettings) {
       return this.userSettings.deviceType === Number(deviceType);
     }

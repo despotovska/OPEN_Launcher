@@ -12,7 +12,7 @@ describe('GlobalServiceTests', () => {
   ]);
 
   it('URL_GETUSER_givenUsername_shouldGetApiUserPath', inject([GlobalService], (instance) => {
-    expect(instance.URL_GETUSER('eljesa')).toEqual('http://localhost:3000/api/getAllUsers/eljesa');
+    expect(instance.URL_GETUSER('eljesa')).toEqual('http://localhost:3000/api/getUsers/eljesa');
   }));
 
   it('URL_DELETEUSER_givenUsername_shouldGetApiDeleteUserPath', inject([GlobalService], (instance) => {

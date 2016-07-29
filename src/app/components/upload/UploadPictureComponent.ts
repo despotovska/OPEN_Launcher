@@ -11,7 +11,7 @@ import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'upload-picture',
-  templateUrl: `./app/components/upload/uploadPicture.html`,
+  templateUrl: './app/components/upload/uploadPicture.html',
   pipes: [TranslatePipe]
 })
 @CanActivate(

@@ -53,7 +53,7 @@ import { AuthService } from './app/shared/services/AuthService';
   directives: [ROUTER_DIRECTIVES, AlertingComponent],
   pipes: [TranslatePipe],
   providers: [provide(TranslateLoader, {
-    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/languages/', '.json'),
+    useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/translations/', '.json'),
     deps: [Http]
   }),
     TranslateService],

@@ -9,6 +9,8 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {StatisticsService} from './StatisticsService';
 import {GlobalService} from './GlobalService';
+import {UserSettingsService} from './UserSettingsService';
+
 import {Statistic} from '../models/Statistic';
 import {StatisticViewModel} from '../models/StatisticViewModel';
 import {Duration} from '../models/Duration';
@@ -18,7 +20,7 @@ describe('StatisticsServiceTests', () => {
   function getStatisticViewModelObject(): StatisticViewModel[] {
     let result: StatisticViewModel[] = new Array<StatisticViewModel>();
     let duration = new Duration(48, 0, 0);
-    result[0] = new StatisticViewModel('some user', DeviceType.Joystick, duration, 2, 3);
+    result[0] = new StatisticViewModel('some user', 'JOYSTICK', duration, 2, 3);
 
     return result;
   }
@@ -40,7 +42,8 @@ describe('StatisticsServiceTests', () => {
       deps: [MockBackend, BaseRequestOptions]
     }),
     GlobalService,
-    StatisticsService
+    StatisticsService,
+    UserSettingsService
   ]);
 
   it('should have http', inject([StatisticsService], (instance) => {

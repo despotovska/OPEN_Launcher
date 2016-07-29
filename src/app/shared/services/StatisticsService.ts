@@ -6,6 +6,8 @@ import {GlobalService} from './GlobalService';
 import {Statistic} from '../models/Statistic';
 import {Duration} from '../models/Duration';
 import {StatisticViewModel} from '../models/StatisticViewModel';
+import {DeviceType} from '../../shared/enums/UserSettingsEnums';
+import {UserSettingsService} from './UserSettingsService';
 
 export interface IStatisticsService {
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]>;
@@ -13,7 +15,7 @@ export interface IStatisticsService {
 
 @Injectable()
 export class StatisticsService implements IStatisticsService {
-  constructor(private http: Http, private globalService: GlobalService) { }
+  constructor(private http: Http, private globalService: GlobalService, private userSettingsService: UserSettingsService) { }
 
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]> {
     return this.http.get(this.globalService.URL_GET_STATISTICS(game))
@@ -29,7 +31,7 @@ export class StatisticsService implements IStatisticsService {
       let duration: Duration = this.calculateDuration(array[index].startTime, array[index].endTime);
       statisticViewModelArray[index] = new StatisticViewModel(
         array[index].username,
-        array[index].deviceType,
+       this.userSettingsService.mapDeviceType(array[index].deviceType),
         duration,
         array[index].iterationsPassed,
         array[index].invalidClicksCount

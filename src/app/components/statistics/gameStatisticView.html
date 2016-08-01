@@ -12,7 +12,7 @@
     <table class="table table-striped top-buffer">
       <thead>
         <tr>
-          <th *ngFor="#header of games[0].headers" class="col-md-3 text-center">
+          <th *ngFor="#header of games[0].headers" id="{{header.toLowerCase()}}" class="col-md-3 text-center">
             {{ header | translate }}
           </th>
         </tr>

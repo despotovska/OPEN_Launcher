@@ -24,7 +24,7 @@ var UserSettingsEditPage = function () {
   this.navigateToEditUserSettingsPage = () => {
     loggedUserMenu.click();
     userSettingsMenuItem.click();
-  }
+  };
 
   this.isWhiteColorSelected = () => {
     return whiteColor.isPresent();

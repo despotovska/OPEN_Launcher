@@ -19,7 +19,7 @@ import {DeviceType} from '../enums/UserSettingsEnums';
 describe('StatisticsServiceTests', () => {
   function getStatisticViewModelObject(): StatisticViewModel[] {
     let result: StatisticViewModel[] = new Array<StatisticViewModel>();
-    let duration = new Duration(48, 0, 0);
+    let duration = new Duration('48', '0', '0');
     result[0] = new StatisticViewModel('some user', 'JOYSTICK', duration, 2, 3);
 
     return result;
@@ -82,7 +82,7 @@ describe('StatisticsServiceTests', () => {
       // Arrange
       let start = '7/21/2016, 00:00:00 PM';
       let end = '7/21/2016, 00:00:50 PM';
-      let expected = new Duration(0, 0, 50);
+      let expected = new Duration('0', '0', '50');
 
       // Act
       let result = instance.calculateDuration(start, end);

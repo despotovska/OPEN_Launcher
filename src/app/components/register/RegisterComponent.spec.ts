@@ -50,7 +50,7 @@ describe('RegisterComponentTests', () => {
       expect(instance.allImages).toEqual(allImagesLocal);
     }));
 
-  it('setAvailableImages_givenImagesServiceIsUnavailable_shouldThrowAlertForDanger',
+  it('setAvailableImages_givenImagesServiceIsUnavailable_shouldShowAlertForDanger',
     inject([RegisterComponent], (instance) => {
       // Arrange
       spyOn(instance.imagesService, 'getProfileImages').and.callFake(() => { return Observable.throw(new Error()); });
@@ -118,7 +118,7 @@ describe('RegisterComponentTests', () => {
       expect(instance.router.navigate).not.toHaveBeenCalledWith(['/Login']);
     }));
 
-  it('onSubmit_givenDefaultPicSelected_shouldNotAddAndShouldThrowAlertForDanger',
+  it('onSubmit_givenDefaultPicSelected_shouldNotAddAndshouldShowAlertForDanger',
     inject([RegisterComponent], (instance) => {
       // Arrange
       let user: User = UserServiceMock.getTestUser('user');
@@ -137,7 +137,7 @@ describe('RegisterComponentTests', () => {
       expect(instance.alertingService.addDanger).toHaveBeenCalledWith('SELECT_PICTURE_VALIDATION_MESSAGE');
     }));
 
-  it('onSubmit_givenUserServiceIsUnavailable_shouldNotAddAndShouldThrowAlertForDanger',
+  it('onSubmit_givenUserServiceIsUnavailable_shouldNotAddAndshouldShowAlertForDanger',
     inject([RegisterComponent], (instance) => {
       // Arrange
 

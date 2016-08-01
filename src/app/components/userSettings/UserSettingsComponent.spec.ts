@@ -40,7 +40,7 @@ describe('UserSettingsComponentTests', () => {
       expect(instance.imagesService.getPointerImages).toHaveBeenCalled();
     }));
 
-  it('setAvailablePointerImages_givenUnavailableImageService_shouldThrowAlertForDanger',
+  it('setAvailablePointerImages_givenUnavailableImageService_shouldShowAlertForDanger',
     inject([UserSettingsComponent], (instance) => {
       // Arrange
       spyOn(instance.imagesService, 'getPointerImages').and.callFake(() => { return Observable.throw(new Error()); });

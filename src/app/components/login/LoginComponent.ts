@@ -1,14 +1,13 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
 import {User} from '../../shared/models/User';
-
 import {UsersPipe} from '../../shared/pipes/UsersPipe';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
   selector: 'login',

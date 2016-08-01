@@ -5,6 +5,7 @@ import {
 } from 'angular2/testing';
 
 import {UsersPipe} from './UsersPipe';
+
 import {User} from '../models/User';
 
 describe('UsersPipeTests', () => {

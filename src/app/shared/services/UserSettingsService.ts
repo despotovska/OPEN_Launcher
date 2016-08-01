@@ -3,6 +3,7 @@ import {Http, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
+
 import {UserSettings} from '../models/UserSettings';
 import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../enums/UserSettingsEnums';
 

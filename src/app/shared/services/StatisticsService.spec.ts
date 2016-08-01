@@ -8,6 +8,7 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {StatisticsService} from './StatisticsService';
+
 import {GlobalService} from './GlobalService';
 import {UserSettingsService} from './UserSettingsService';
 

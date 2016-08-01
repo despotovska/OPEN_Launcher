@@ -10,7 +10,9 @@ import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Observable} from 'rxjs/Rx';
 
 import {UserValidationService} from './UserValidationService';
+
 import {GlobalService} from './GlobalService';
+
 import {User} from '../models/User';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../enums/UserSettingsEnums';
 import {ValidationResponse} from '../../shared/models/ValidationResponse';

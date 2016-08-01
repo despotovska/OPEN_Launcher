@@ -8,10 +8,12 @@ import {Observable} from 'rxjs/Rx';
 import {Router} from 'angular2/router';
 
 import {LoginComponent} from './LoginComponent';
-import {User} from '../../shared/models/User';
+
 import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../../shared/services/AlertingService';
+
+import {User} from '../../shared/models/User';
 import {Alert} from '../../shared/models/Alert';
 
 import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
@@ -62,7 +64,7 @@ describe('LoginComponentTests', () => {
       spyOn(instance.authService, 'login').and.callFake(() => { return Observable.of(false); });
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.router, 'navigate').and.callFake(() => { });
-       instance.selectedUser = user;
+      instance.selectedUser = user;
 
       // Act
       instance.login();

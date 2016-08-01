@@ -5,8 +5,7 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
-import {MockBackend, MockConnection} from 'angular2/http/testing';
-import {Observable} from 'rxjs/Rx';
+import {MockBackend} from 'angular2/http/testing';
 import {TranslateService, TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
 
 import {HomeComponent} from './HomeComponent';
@@ -31,7 +30,7 @@ describe('HomeComponentTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function (backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]

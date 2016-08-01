@@ -8,6 +8,7 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {AuthService} from './AuthService';
+
 import {GlobalService} from './GlobalService';
 
 describe('AuthServiceTests', () => {
@@ -15,7 +16,7 @@ describe('AuthServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function (backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]

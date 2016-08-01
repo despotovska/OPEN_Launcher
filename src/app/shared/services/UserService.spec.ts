@@ -8,11 +8,14 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {UserService} from './UserService';
+
 import {GlobalService} from './GlobalService';
+
 import * as UserSettingsEnums from '../enums/UserSettingsEnums';
-import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 import {UserSettings} from '../models/UserSettings';
 import {User} from '../models/User';
+
+import {UserServiceMock} from '../../shared/mocks/UserServiceMock';
 
 describe('UserServiceTests', () => {
   function getDefaultUserObject(): User[] {

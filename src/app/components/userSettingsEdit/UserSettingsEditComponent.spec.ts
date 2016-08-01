@@ -4,17 +4,16 @@ import {
   inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
-import {Router} from 'angular2/router';
 import {Observable} from 'rxjs/Rx';
 
-import {User} from '../../shared/models/User';
-import {ImagesService} from '../../shared/services/ImagesService';
-import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
-import {UserSettingsService} from '../../shared/services/UserSettingsService';
-import {UserValidationService} from '../../shared/services/UserValidationService';
-import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsEditComponent} from './UserSettingsEditComponent';
+
+import {ImagesService} from '../../shared/services/ImagesService';
+import {UserSettingsService} from '../../shared/services/UserSettingsService';
+import {AlertingService} from '../../shared/services/AlertingService';
 import {AuthService} from '../../shared/services/AuthService';
+
+import {User} from '../../shared/models/User';
 import {Alert} from '../../shared/models/Alert';
 import {UserSettings} from '../../shared/models/UserSettings';
 import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';

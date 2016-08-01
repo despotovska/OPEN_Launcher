@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 
 @Component({
-  templateUrl: './app/components/notfound/notfound.html'
+  template: `<div class="col-12-xs btn-default text-center">404</div>`
 })
 export class NotFoundComponent { }

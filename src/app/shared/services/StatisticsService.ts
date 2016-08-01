@@ -1,13 +1,14 @@
 import {Injectable, bind} from 'angular2/core';
-import {Http, Headers, Response} from 'angular2/http';
+import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from './GlobalService';
+import {UserSettingsService} from './UserSettingsService';
+
 import {Statistic} from '../models/Statistic';
 import {Duration} from '../models/Duration';
 import {StatisticViewModel} from '../models/StatisticViewModel';
 import {DeviceType} from '../../shared/enums/UserSettingsEnums';
-import {UserSettingsService} from './UserSettingsService';
 
 export interface IStatisticsService {
   getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]>;

@@ -6,16 +6,16 @@ import {
   ControlGroup,
   Validators
 } from 'angular2/common';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
-import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
+import {User} from '../../shared/models/User';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   directives: [FORM_DIRECTIVES, RouterLink, UserSettingsComponent],

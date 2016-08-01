@@ -1,5 +1,5 @@
 import {Injectable, bind} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Http} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
 import {GlobalService} from '../../shared/services/GlobalService';

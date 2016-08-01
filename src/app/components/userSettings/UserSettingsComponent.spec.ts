@@ -9,11 +9,13 @@ import {provide} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 
 import {UserSettingsComponent} from './UserSettingsComponent';
+
 import {UserSettingsColorsService} from './UserSettingsColorsService';
-import {PointerColor, PointerSize, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
-import {Alert} from '../../shared/models/Alert';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {ImagesService} from '../../shared/services/ImagesService';
+
+import {PointerColor, PointerSize, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
+import {Alert} from '../../shared/models/Alert';
 import {UserSettings} from '../../shared/models/UserSettings';
 
 import {ImagesServiceMock} from '../../shared/mocks/ImagesServiceMock';

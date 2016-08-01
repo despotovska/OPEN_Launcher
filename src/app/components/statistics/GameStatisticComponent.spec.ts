@@ -19,31 +19,31 @@ describe('GameStatisticComponentTests', () => {
     provide(StatisticsService, { useClass: StatisticsServiceMock })
   ]);
 
-  it('somename',
+  it('getStatistic_givenStatisicsServiceAvailable_shouldLoadStatistics',
     inject([GameStatisticComponent], (instance) => {
       // Arrange
       spyOn(instance.statisticsService, 'getLoggedUserStatisticForGame').and.callThrough();
-      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
 
       // Act
-      // instance.getStatisic('SETS');
+      instance.getStatistic(0);
 
       // Assert
-      expect(instance.stats[0].username).toEqual('name');
-      expect(instance.stats.length).toEqual(1);
+      expect(instance.statistics[0].username).toEqual('name');
+      expect(instance.statistics.length).toEqual(1);
     }));
 
-//   it('error',
-//     inject([GameStatisticComponent], (instance) => {
-//       // Arrange
-//       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
-//       spyOn(instance.StatisticsService, 'getLoggedUserStatisticForGame').and.callFake(() => { return Observable.throw(new Error()); });
+  it('getStatistic_givenStatisicsServicUnavailable_shouldShowAlertForDanger',
+    inject([GameStatisticComponent], (instance) => {
+      // Arrange
+      spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
+      spyOn(instance.statisticsService, 'getLoggedUserStatisticForGame').and.callFake(() => { return Observable.throw(new Error()); });
 
-//       // Act
+      // Act
+      instance.getStatistic(0);
 
-//       // Assert
-//       expect(instance.alertingService.addDanger).toHaveBeenCalledWith('STATISTIC_ERROR_MESSAGE');
+      // Assert
+      expect(instance.alertingService.addDanger).toHaveBeenCalledWith('STATISTIC_ERROR_MESSAGE');
 
 
-//     }));
-// });
+    }));
+});

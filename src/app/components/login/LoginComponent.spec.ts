@@ -43,7 +43,7 @@ describe('LoginComponentTests', () => {
       expect(instance.allUsers).toEqual(localUsers);
     }));
 
-  it('setAllUsers_givenUnavailableUserService_shouldThrowAlertForDanger',
+  it('setAllUsers_givenUnavailableUserService_shouldShowAlertForDanger',
     inject([LoginComponent], (instance) => {
       // Arrange
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
@@ -109,7 +109,7 @@ describe('LoginComponentTests', () => {
       expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('DELETE_USER_SUCCESS_MESSAGE');
     }));
 
-  it('deleteUser_givenUnavailableUserService_shouldThrowAlertForDanger',
+  it('deleteUser_givenUnavailableUserService_shouldShowAlertForDanger',
     inject([LoginComponent], (instance) => {
       // Arrange
       let user = UserServiceMock.getValidUserWithSettings('user1');

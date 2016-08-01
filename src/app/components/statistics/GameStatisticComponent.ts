@@ -31,7 +31,7 @@ import {DeviceType} from '../../shared/enums/UserSettingsEnums';
   }
 )
 export class GameStatisticComponent {
-  public stats: Array<StatisticViewModel>;
+  public statistics: Array<StatisticViewModel>;
   public games: Array<GameStatisticsModel> = [
     new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
   ];
@@ -45,10 +45,10 @@ export class GameStatisticComponent {
   getStatistic(index: number): void {
     this.statisticsService.getLoggedUserStatisticForGame(this.games[index].gameName)
       .subscribe(data => {
-        this.stats = data;
+        this.statistics = data;
       },
       err => {
-        this.stats = undefined;
+        this.statistics = undefined;
         this.alertingService.addDanger('STATISTIC_ERROR_MESSAGE');
       });
   }

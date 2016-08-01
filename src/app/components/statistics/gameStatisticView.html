@@ -9,7 +9,7 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table table-striped top-buffer" *ngIf="!!stats && stats.length > 0">
+    <table class="table table-striped top-buffer" *ngIf="!!statistics && statistics.length > 0">
       <thead>
         <tr>
           <th *ngFor="#header of games[0].headers" class="col-md-3 text-center">
@@ -18,18 +18,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="#stat of stats">
+        <tr *ngFor="#row of statistics">
           <td>
-            {{ stat.deviceType | translate }}
+            {{ row.deviceType | translate }}
           </td>
           <td>
-            {{ 'DURATION' | translate: {hours: stat.duration.hours, minutes: stat.duration.minutes, seconds: stat.duration.seconds} }}
+            {{ 'DURATION' | translate: {hours: row.duration.hours, minutes: row.duration.minutes, seconds: row.duration.seconds} }}
           </td>
           <td>
-            {{ stat.iterationsPassed }}
+            {{ row.iterationsPassed }}
           </td>
           <td>
-            {{ stat.invalidClicksCount }}
+            {{ row.invalidClicksCount }}
           </td>
         </tr>
       </tbody>

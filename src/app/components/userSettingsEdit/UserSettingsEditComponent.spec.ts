@@ -44,7 +44,7 @@ describe('UserSettingsEditComponentTests', () => {
       expect(instance.alertingService.addSuccess).toHaveBeenCalledWith('SAVE_USER_SETTINGS_SUCCESS_MESSAGE');
     }));
 
-  it('saveUserSettings_givenUnavailableUserSettingsService_shouldThrowAlertForDanger',
+  it('saveUserSettings_givenUnavailableUserSettingsService_shouldShowAlertForDanger',
     inject([UserSettingsEditComponent], (instance) => {
       // Arrange
       instance.userSettings = UserSettingsServiceMock.getUserSetting();

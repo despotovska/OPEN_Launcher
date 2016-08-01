@@ -43,7 +43,5 @@ describe('GameStatisticComponentTests', () => {
 
       // Assert
       expect(instance.alertingService.addDanger).toHaveBeenCalledWith('STATISTIC_ERROR_MESSAGE');
-
-
     }));
 });

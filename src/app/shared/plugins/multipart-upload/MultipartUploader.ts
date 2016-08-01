@@ -1,4 +1,4 @@
-import {MultipartItem} from './multipart-item';
+import {MultipartItem} from './MultipartItem';
 
 export class MultipartUploader {
   public url: string;

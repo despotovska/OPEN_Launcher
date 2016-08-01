@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="row">
+    <select #sel class="form-control game-picker left-buffer" (change)="getStatistic(sel.value)">
+    <option *ngFor="#game of games;#i=index" value="{{i}}">
+      {{ game.displayName | translate }}
+    </option>
+    </select>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped top-buffer" *ngIf="!!stats && stats.length > 0">
+      <thead>
+        <tr>
+          <th *ngFor="#header of games[0].headers" class="col-md-3 text-center">
+            {{ header | translate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="#stat of stats">
+          <td>
+            {{ stat.deviceType | translate }}
+          </td>
+          <td>
+            {{ 'DURATION' | translate: {hours: stat.duration.hours, minutes: stat.duration.minutes, seconds: stat.duration.seconds} }}
+          </td>
+          <td>
+            {{ stat.iterationsPassed }}
+          </td>
+          <td>
+            {{ stat.invalidClicksCount }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,6 +1,6 @@
 export class Duration {
   constructor(
-    public hours: number,
-    public minutes: number,
-    public seconds: number) { }
+    public hours: string,
+    public minutes: string,
+    public seconds: string) { }
 }

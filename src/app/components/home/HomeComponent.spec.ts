@@ -7,16 +7,16 @@ import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 import {Observable} from 'rxjs/Rx';
-
 import {TranslateService, TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
 
 import {HomeComponent} from './HomeComponent';
+
 import {GameLauncherService} from './GameLauncherService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 
-import {LearningWithTheComputer, GameCategory} from '../../shared/enums/GamesEnum';
+import {LearningWithTheComputer, GameCategory} from '../../shared/enums/GamesEnums';
 
 import {AuthServiceMock} from '../../shared/mocks/AuthServiceMock';
 import {GameLauncherServiceMock} from '../../shared/mocks/GameLauncherServiceMock';

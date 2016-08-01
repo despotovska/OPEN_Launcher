@@ -32,7 +32,7 @@
             <ul class="dropdown-menu">
               <li><a [routerLink]="['/UserSettingsEdit']" id="userSettingsEdit"><span class="glyphicon glyphicon-cog"></span> {{ 'SETTINGS' | translate }}</a></li>
               <li><a [routerLink]="['/Statistics']" id="gameStatistics"><span class="glyphicon glyphicon-stats"></span> {{ 'GAME_STATISTICS' | translate }}</a></li>
-              <li><a id="logout" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> {{ 'LOGOUT' | translate }}</a></li>
+              <li><a id="logout" href="#" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> {{ 'LOGOUT' | translate }}</a></li>
             </ul>
           </li>
         </ul>

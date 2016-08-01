@@ -6,7 +6,6 @@ import {appInjector} from '../../../appInjector';
 import {StatisticsService} from '../../shared/services/StatisticsService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {AuthService} from '../../shared/services/AuthService';
-import {UserSettingsService} from '../../shared/services/UserSettingsService';
 
 import {StatisticViewModel} from '../../shared/models/StatisticViewModel';
 import {GameStatisticsModel} from '../../shared/models/GameStatisticsModel';
@@ -15,7 +14,7 @@ import {DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   selector: 'statistic',
-  templateUrl: `./app/components/statistics/gameStatisticView.html`,
+  templateUrl: './app/components/statistics/gameStatisticView.html',
   pipes: [TranslatePipe]
 })
 @CanActivate(
@@ -37,7 +36,8 @@ export class GameStatisticComponent {
     new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
   ];
 
-  constructor(private alertingService: AlertingService,
+  constructor(
+    private alertingService: AlertingService,
     private statisticsService: StatisticsService) {
     this.getStatistic(0);
   }

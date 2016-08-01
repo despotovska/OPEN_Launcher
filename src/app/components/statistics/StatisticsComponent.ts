@@ -30,10 +30,11 @@ import {DeviceType} from '../../shared/enums/UserSettingsEnums';
     return isLogged;
   }
 )
-export class GameStatisticComponent {
+export class StatisticsComponent {
   public statistics: Array<StatisticViewModel>;
+  // TODO: pass the start time for display instead of iterations passed
   public games: Array<GameStatisticsModel> = [
-    new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
+    new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'START', 'INVALID_CLICK_COUNT'])
   ];
 
   constructor(

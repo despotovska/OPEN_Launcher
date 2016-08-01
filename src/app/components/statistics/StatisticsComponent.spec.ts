@@ -7,22 +7,22 @@ import {provide} from 'angular2/core';
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
-import {GameStatisticComponent} from './GameStatisticComponent';
+import {StatisticsComponent} from './StatisticsComponent';
 
 import {StatisticsService} from '../../shared/services/StatisticsService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
 import {StatisticsServiceMock} from '../../shared/mocks/StatisticsServiceMock';
 
-describe('GameStatisticComponentTests', () => {
+describe('StatisticsComponentTests', () => {
   beforeEachProviders(() => [
-    GameStatisticComponent,
+    StatisticsComponent,
     AlertingService,
     provide(StatisticsService, { useClass: StatisticsServiceMock })
   ]);
 
   it('getStatistic_givenStatisicsServiceAvailable_shouldLoadStatistics',
-    inject([GameStatisticComponent], (instance) => {
+    inject([StatisticsComponent], (instance) => {
       // Arrange
       spyOn(instance.statisticsService, 'getLoggedUserStatisticForGame').and.callThrough();
 
@@ -35,7 +35,7 @@ describe('GameStatisticComponentTests', () => {
     }));
 
   it('getStatistic_givenStatisicsServicUnavailable_shouldShowAlertForDanger',
-    inject([GameStatisticComponent], (instance) => {
+    inject([StatisticsComponent], (instance) => {
       // Arrange
       spyOn(instance.alertingService, 'addDanger').and.callFake(() => { });
       spyOn(instance.statisticsService, 'getLoggedUserStatisticForGame').and.callFake(() => { return Observable.throw(new Error()); });

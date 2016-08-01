@@ -34,7 +34,7 @@ import {RegisterComponent} from './app/components/register/RegisterComponent';
 import {LoginComponent} from './app/components/login/LoginComponent';
 import {AlertingComponent} from './app/components/alerting/AlertingComponent';
 import {UserSettingsEditComponent} from './app/components/userSettingsEdit/UserSettingsEditComponent';
-import {GameStatisticComponent} from './app/components/gameStatistics/GameStatisticComponent';
+import {GameStatisticComponent} from './app/components/statistics/GameStatisticComponent';
 import {NotFoundComponent} from './app/components/notfound/NotFoundComponent';
 
 /*
@@ -67,7 +67,7 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/register', component: RegisterComponent, name: 'Register' },
   { path: '/login', component: LoginComponent, name: 'Login' },
   { path: '/userSettingsEdit', component: UserSettingsEditComponent, name: 'UserSettingsEdit' },
-  { path: '/gameStatistics', component: GameStatisticComponent, name: 'GameStatistic'  },
+  { path: '/statistics', component: GameStatisticComponent, name: 'Statistics'  },
   { path: '/404', name: 'NotFound', component: NotFoundComponent }, ,
   { path: '/*path', redirectTo: ['NotFound'] }
 ])

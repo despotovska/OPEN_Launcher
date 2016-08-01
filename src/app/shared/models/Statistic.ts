@@ -1,4 +1,4 @@
-// Class that represents the user entity from db
+// Class that represents the statistic entity from db
 export class Statistic {
   constructor(
     public sessionID: string,

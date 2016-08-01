@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Router, CanActivate} from 'angular2/router';
-
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
+import {appInjector} from '../../../appInjector';
 
 import {AuthService} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
@@ -11,8 +11,6 @@ import {AlertingService} from '../../shared/services/AlertingService';
 import {LearningWithTheComputer, GameCategory} from '../../shared/enums/GamesEnums';
 import {CategoryModel} from './CategoryModel';
 import {GameModel} from './GameModel';
-
-import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'home',

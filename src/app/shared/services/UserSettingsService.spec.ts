@@ -8,7 +8,9 @@ import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {UserSettingsService} from './UserSettingsService';
+
 import {GlobalService} from './GlobalService';
+
 import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {UserSettings} from '../models/UserSettings';
 

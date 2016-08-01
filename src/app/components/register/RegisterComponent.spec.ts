@@ -4,18 +4,20 @@ import {
   inject
 } from 'angular2/testing';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {provide, Component} from 'angular2/core';
+import {provide} from 'angular2/core';
 import {FormBuilder} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {Observable} from 'rxjs/Rx';
 
 import {RegisterComponent} from './RegisterComponent';
-import {User} from '../../shared/models/User';
+
 import {ImagesService} from '../../shared/services/ImagesService';
 import {GlobalService} from '../../shared/services/GlobalService';
 import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../../shared/services/AlertingService';
+
+import {User} from '../../shared/models/User';
 import {Alert} from '../../shared/models/Alert';
 import {ValidationResponse} from '../../shared/models/ValidationResponse';
 

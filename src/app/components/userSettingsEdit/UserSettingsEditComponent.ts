@@ -1,5 +1,7 @@
 import {Input, Component} from 'angular2/core';
 import {Router, RouterLink, CanActivate} from 'angular2/router';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {appInjector} from '../../../appInjector';
 
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 
@@ -8,15 +10,7 @@ import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 
 import {UserSettings} from '../../shared/models/UserSettings';
-import {
-  PointerType,
-  PointerSize,
-  PointerColor,
-  BackgroundColor} from '../../shared/enums/UserSettingsEnums';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-
-import {appInjector} from '../../../appInjector';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   directives: [RouterLink, UserSettingsComponent],

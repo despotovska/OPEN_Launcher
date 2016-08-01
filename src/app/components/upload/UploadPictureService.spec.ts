@@ -6,6 +6,7 @@ import {
 import {provide} from 'angular2/core';
 
 import {UploadPictureService} from './UploadPictureService';
+
 import {GlobalService} from '../../shared/services/GlobalService';
 import {AlertingService} from '../../shared/services/AlertingService';
 

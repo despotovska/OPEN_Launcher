@@ -1,8 +1,8 @@
 import {Injectable, bind} from 'angular2/core';
 
 import {GlobalService} from '../../shared/services/GlobalService';
+
 import {PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
-import {EnumEx} from '../../shared/enums/EnumEx';
 
 export interface IUserSettingsColorsService {
   getPointerColors(backgroundColor: BackgroundColor): PointerColor[];

@@ -1,13 +1,11 @@
-import {Component, Injector} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {Router, CanActivate} from 'angular2/router';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {appInjector} from '../../../appInjector';
 
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {UploadPictureService} from './UploadPictureService';
-
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-
-import {appInjector} from '../../../appInjector';
 
 @Component({
   selector: 'upload-picture',

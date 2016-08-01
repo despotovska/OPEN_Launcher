@@ -2,15 +2,17 @@ import {
   beforeEachProviders,
   it,
   inject
-}
-from 'angular2/testing';
+} from 'angular2/testing';
 import {provide} from 'angular2/core';
+import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
-import {StatisticsService} from '../../shared/services/StatisticsService';
-import {StatisticsServiceMock} from '../../shared/mocks/StatisticsServiceMock';
-import {AlertingService} from '../../shared/services/AlertingService';
 import {GameStatisticComponent} from './GameStatisticComponent';
+
+import {StatisticsService} from '../../shared/services/StatisticsService';
+import {AlertingService} from '../../shared/services/AlertingService';
+
+import {StatisticsServiceMock} from '../../shared/mocks/StatisticsServiceMock';
 
 describe('GameStatisticComponentTests', () => {
   beforeEachProviders(() => [

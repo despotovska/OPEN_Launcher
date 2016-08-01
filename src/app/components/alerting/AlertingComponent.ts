@@ -1,9 +1,9 @@
 import {Component} from 'angular2/core';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {AlertingService} from '../../shared/services/AlertingService';
-import {Alert} from '../../shared/models/Alert';
 
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {Alert} from '../../shared/models/Alert';
 
 @Component({
   selector: 'alerts',

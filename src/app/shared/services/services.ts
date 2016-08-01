@@ -2,12 +2,12 @@ import {globalServiceInjectables} from './GlobalService';
 import {userServiceInjectables} from './UserService';
 import {userSettingsServiceInjectables} from './UserSettingsService';
 import {imagesServiceInjectables} from './ImagesService';
+import {statisticsServiceInjectables} from './StatisticsService';
 import {userValidationServiceInjectables} from './UserValidationService';
 import {uploadPictureServiceInjectables} from '../../components/upload/UploadPictureService';
 import {alertingServiceInjectables} from './AlertingService';
 import {userSettingsColorsServiceInjectables} from '../../components/userSettings/UserSettingsColorsService';
 import {gameLauncherServiceInjectables} from '../../components/home/GameLauncherService';
-import {statisticsServiceInjectables} from './StatisticsService';
 
 export * from './GlobalService';
 export * from './UserService';

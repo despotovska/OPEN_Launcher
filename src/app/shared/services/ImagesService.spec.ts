@@ -4,11 +4,11 @@ import {
   inject
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
-
 import {BaseRequestOptions, Http, Response, ResponseOptions} from 'angular2/http';
 import {MockBackend, MockConnection} from 'angular2/http/testing';
 
 import {ImagesService} from './ImagesService';
+
 import {GlobalService} from './GlobalService';
 
 describe('ImagesServiceTests', () => {
@@ -16,7 +16,7 @@ describe('ImagesServiceTests', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function (backend, defaultOptions) {
+      useFactory: (backend, defaultOptions) => {
         return new Http(backend, defaultOptions);
       },
       deps: [MockBackend, BaseRequestOptions]

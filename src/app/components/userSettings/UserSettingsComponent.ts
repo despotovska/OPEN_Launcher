@@ -1,13 +1,12 @@
 import {Component, Input, OnChanges} from 'angular2/core';
+import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 import {UserSettingsColorsService} from './UserSettingsColorsService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
-import {EnumEx} from '../../shared/enums/EnumEx';
-import {UserSettings} from '../../shared/models/UserSettings';
 import {ImagesService} from '../../shared/services/ImagesService';
 
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import {PointerType, PointerSize, PointerColor, BackgroundColor, DeviceType} from '../../shared/enums/UserSettingsEnums';
+import {UserSettings} from '../../shared/models/UserSettings';
 
 @Component({
   selector: 'settings',

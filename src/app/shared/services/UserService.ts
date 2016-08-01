@@ -2,8 +2,9 @@ import {Injectable, bind} from 'angular2/core';
 import {Http, Headers, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
-import {User} from '../models/User';
 import {GlobalService} from './GlobalService';
+
+import {User} from '../models/User';
 
 export interface IUserService {
   getAllUsers(): Observable<User[]>;

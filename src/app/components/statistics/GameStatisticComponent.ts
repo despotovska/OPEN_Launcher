@@ -1,20 +1,20 @@
 import {Component} from 'angular2/core';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {Router, CanActivate} from 'angular2/router';
+import {appInjector} from '../../../appInjector';
 
 import {StatisticsService} from '../../shared/services/StatisticsService';
 import {AlertingService} from '../../shared/services/AlertingService';
-import {StatisticViewModel} from '../../shared/models/StatisticViewModel';
-import {Statistic} from '../../shared/models/Statistic';
-import {GameStatisticsModel} from '../../shared/models/GameStatisticsModel';
-import {DeviceType} from '../../shared/enums/UserSettingsEnums';
 import {AuthService} from '../../shared/services/AuthService';
-import {UserSettingsService} from '../../shared/services/UserSettingsService';
-import {appInjector} from '../../../appInjector';
+
+import {StatisticViewModel} from '../../shared/models/StatisticViewModel';
+import {GameStatisticsModel} from '../../shared/models/GameStatisticsModel';
+import {Statistic} from '../../shared/models/Statistic';
+import {DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   selector: 'statistic',
-  templateUrl: `./app/components/gameStatistics/GameStatisticView.html`,
+  templateUrl: './app/components/statistics/gameStatisticView.html',
   pipes: [TranslatePipe]
 })
 @CanActivate(
@@ -31,24 +31,25 @@ import {appInjector} from '../../../appInjector';
   }
 )
 export class GameStatisticComponent {
-  public stats: Array<StatisticViewModel> = new Array<StatisticViewModel>();
-
-  public games = ['SETS', 'CAUSE AND EFFECT'];
-
-  public statisticTable: Array<GameStatisticsModel> = [
-    new GameStatisticsModel('SETS', ['DEVICE_TYPE', 'DURATION1', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
+  public stats: Array<StatisticViewModel>;
+  public games: Array<GameStatisticsModel> = [
+    new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'ITERATION_PASSED', 'INVALID_CLICK_COUNT'])
   ];
-  constructor(private alertingService: AlertingService,
+
+  constructor(
+    private alertingService: AlertingService,
     private statisticsService: StatisticsService) {
-    this.getStatistic('Sets');
+    this.getStatistic(0);
   }
-  getStatistic(game: string): void {
-    this.statisticsService.getLoggedUserStatisticForGame(game)
+
+  getStatistic(index: number): void {
+    this.statisticsService.getLoggedUserStatisticForGame(this.games[index].gameName)
       .subscribe(data => {
         this.stats = data;
-        console.log(this.stats.length);
       },
-      err => this.alertingService.addDanger('STATISTIC_ERROR_MESSAGE'));
+      err => {
+        this.stats = undefined;
+        this.alertingService.addDanger('STATISTIC_ERROR_MESSAGE');
+      });
   }
-
 }

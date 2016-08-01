@@ -1,4 +1,4 @@
-import {MultipartUploader} from './multipart-uploader';
+import {MultipartUploader} from './MultipartUploader';
 
 export class MultipartItem {
   public alias: string = 'file';

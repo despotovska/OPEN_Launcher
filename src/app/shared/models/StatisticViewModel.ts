@@ -1,5 +1,6 @@
 import {DeviceType} from '../enums/UserSettingsEnums';
 import {Duration} from '../models/Duration';
+
 export class StatisticViewModel {
   constructor(
     public username: string,

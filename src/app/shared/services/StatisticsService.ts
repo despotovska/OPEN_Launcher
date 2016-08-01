@@ -31,7 +31,7 @@ export class StatisticsService implements IStatisticsService {
       let duration: Duration = this.calculateDuration(array[index].startTime, array[index].endTime);
       statisticViewModelArray[index] = new StatisticViewModel(
         array[index].username,
-       this.userSettingsService.mapDeviceType(array[index].deviceType),
+        this.userSettingsService.mapDeviceType(array[index].deviceType),
         duration,
         array[index].iterationsPassed,
         array[index].invalidClicksCount
@@ -50,7 +50,7 @@ export class StatisticsService implements IStatisticsService {
     seconds = seconds % 60;
     hours = Math.floor(minutes / 60);
     minutes = minutes % 60;
-    let res = new Duration(hours, minutes, seconds);
+    let res = new Duration(hours.toString(), minutes.toString(), seconds.toString());
     return res;
   }
 }

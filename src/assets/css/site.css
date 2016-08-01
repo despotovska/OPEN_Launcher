@@ -190,3 +190,15 @@ body {
 .bolded {
   font-weight: bold;
 }
+
+.game-picker {
+  width: 250px !important;
+}
+
+.table td {
+  text-align: center;
+}
+
+.dropdown-menu li {
+  margin-top: 5px;
+}

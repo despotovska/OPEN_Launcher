@@ -1,6 +1,8 @@
 import {Injectable, provide} from 'angular2/core';
+import {Router, ComponentInstruction} from 'angular2/router';
 import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
+import {appInjector} from '../../../appInjector';
 
 import {GlobalService} from './GlobalService';
 
@@ -51,6 +53,18 @@ export class AuthService implements IAuthService {
     return !!this.loggedUser;
   }
 }
+
+export const isLoggedIn = (next: ComponentInstruction, previous: ComponentInstruction) => {
+  let injector: any = appInjector(); // get the stored reference to the injector
+  let authService: AuthService = injector.get(AuthService);
+  let router: Router = injector.get(Router);
+  let isLogged = authService.isLogged();
+
+  if (!isLogged) {
+    router.navigate(['/Login']);
+  }
+  return isLogged;
+};
 
 export let AUTH_PROVIDERS: Array<any> = [
   provide(AuthService, { useClass: AuthService })

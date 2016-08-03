@@ -54,16 +54,16 @@ var LogInPage = function () {
 
   this.clearFilterUsernameField = (filter) => {
     usernameField.clear();
-  }
+  };
 
   this.getFirstFilteredUsername = () => {
     var firstFilteredUsername = element.all(by.className("text-overflow")).get(0);
     return firstFilteredUsername.getAttribute("innerHTML");
-  }
+  };
 
   this.isLoginBtnVisible = () => {
     return loginBtn.isPresent();
-  }
+  };
 
   this.getLoggedUser = () => {
     return loggedUserMenu.getText();
@@ -101,11 +101,11 @@ var LogInPage = function () {
 
   this.chooseEnglishLanguage = () => {
     englishLanguage.click();
-  }
+  };
 
   this.getAppName = () => {
     return appName.getAttribute("innerHTML");
-  }
+  };
 };
 
 module.exports = new LogInPage();

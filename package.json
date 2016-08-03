@@ -18,7 +18,7 @@
     "build": "webpack --progress --profile --colors --display-error-details --display-cached",
     "pretest": "npm run lint",
     "prepack": "npm run build && rimraf package",
-    "pack": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=package --icon=./Icon.ico --version-string.ProductName=OPEN",
+    "pack": "electron-packager ./dist OPEN --platform=win32 --arch=x64 --overwrite --out=package --icon=./src/favicon.ico --version-string.ProductName=OPEN",
     "postpack": "cd package/OPEN-win32-x64/resources/app && npm install",
     "preinstaller": "npm run pack",
     "installer": "node installer.js",

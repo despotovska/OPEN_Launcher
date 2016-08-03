@@ -1,9 +1,8 @@
 import {Component} from 'angular2/core';
-import {Router, CanActivate} from 'angular2/router';
+import {ComponentInstruction, CanActivate} from 'angular2/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {appInjector} from '../../../appInjector';
 
-import {AuthService} from '../../shared/services/AuthService';
+import {isLoggedIn} from '../../shared/services/AuthService';
 import {AlertingService} from '../../shared/services/AlertingService';
 import {UploadPictureService} from './UploadPictureService';
 
@@ -12,19 +11,9 @@ import {UploadPictureService} from './UploadPictureService';
   templateUrl: './app/components/upload/uploadPicture.html',
   pipes: [TranslatePipe]
 })
-@CanActivate(
-  (nextInstr: any, currInstr: any) => {
-    let injector: any = appInjector();
-    let authService: AuthService = injector.get(AuthService);
-    let router: Router = injector.get(Router);
-    let isLogged = authService.isLogged();
-
-    if (!isLogged) {
-      router.navigate(['/Login']);
-    }
-    return isLogged;
-  }
-)
+@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
+  return isLoggedIn(next, previous);
+})
 export class UploadPictureComponent {
   public selectedFile: File;
   public selectedImage: string;

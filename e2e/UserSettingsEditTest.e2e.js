@@ -4,9 +4,7 @@ describe("Edit user settings page", () => {
   var LogInPage = require("./pages/LoginPageObject.js");
   var UserSettingsEditPage = require("./pages/UserSettingsEditPageObject.js");
 
-  var rootUrl = "http://localhost:3000/";
-  var loginUrl = rootUrl + "#/login";
-  var homeUrl = rootUrl + "#/home";
+  var loginUrl = "http://localhost:3000/#/login";
   var successMessage = "Корисничките подесувања се успешно зачувани.";
 
   beforeEach(() => {

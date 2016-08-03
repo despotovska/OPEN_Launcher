@@ -2,8 +2,7 @@ describe("Login page", () => {
 
   var LogInPage = require("./pages/LoginPageObject.js");
 
-  var rootUrl = "http://localhost:3000/";
-  var loginUrl = rootUrl + "#/login";
+  var loginUrl = "http://localhost:3000/#/login";
   var deletingCanceledMessage = "Бришењето е откажано.";
   var enAppName = "OPEN";
 
@@ -11,11 +10,6 @@ describe("Login page", () => {
     browser.get(loginUrl);
     browser.sleep(1000);
     browser.ignoreSynchronization = true;
-  });
-
-  it("should redirect to login when / is accessed", () => {
-    browser.get(rootUrl);
-    expect(browser.getCurrentUrl()).toEqual(loginUrl);
   });
 
   it("should change the language to English", () => {

@@ -1,0 +1,31 @@
+<table class="table table-striped top-buffer">
+  <thead>
+    <tr>
+      <th *ngFor="#header of headers" id="{{header.toLowerCase()}}" class="col-md-3 text-center">
+        {{ header | translate }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="#row of statistics">
+      <td>
+        {{ row.deviceType | translate }}
+      </td>
+      <td>
+        {{ row.startTime | date:'d'}}/{{ row.startTime | date:'MM'}}/{{ row.startTime | date:'y'}} {{ row.startTime | date:'HH:mm'
+        }}
+      </td>
+      <td>
+        {{ 'DURATION' | translate: {hours: row.duration.hours, minutes: row.duration.minutes, seconds: row.duration.seconds} }}
+      </td>
+      <td>
+        {{ row.invalidClicksCount }}
+      </td>
+    </tr>
+    <tr *ngIf="!!statistics && statistics.length === 0">
+      <td colspan="4">
+        {{ 'NO_RECORDS' | translate }}
+      </td>
+    </tr>
+  </tbody>
+</table>

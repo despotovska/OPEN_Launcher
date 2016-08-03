@@ -13,15 +13,15 @@ import {GlobalService} from './GlobalService';
 import {UserSettingsService} from './UserSettingsService';
 
 import {Statistic} from '../models/Statistic';
-import {StatisticViewModel} from '../models/StatisticViewModel';
+import {SetsStatisticViewModel} from '../models/StatisticViewModel';
 import {Duration} from '../models/Duration';
 import {DeviceType} from '../enums/UserSettingsEnums';
 
 describe('StatisticsServiceTests', () => {
-  function getStatisticViewModelObject(): StatisticViewModel[] {
-    let result: StatisticViewModel[] = new Array<StatisticViewModel>();
+  function getStatisticViewModelObject(): SetsStatisticViewModel[] {
+    let result: SetsStatisticViewModel[] = new Array<SetsStatisticViewModel>();
     let duration = new Duration('48', '0', '0');
-    result[0] = new StatisticViewModel('some user', 'JOYSTICK', duration, 2, 3);
+    result[0] = new SetsStatisticViewModel('some user', 'JOYSTICK', new Date('7/19/2016, 00:00:00 PM'), duration, 2, 3);
 
     return result;
   }
@@ -54,8 +54,9 @@ describe('StatisticsServiceTests', () => {
   it('getLoggedUserStatisticForGame_givenResponsiveHTTP_shouldRetrieveDataFromTheHttpResponse',
     inject([StatisticsService, MockBackend], (instance, mockBackend) => {
       // Arrange
+      let gameName: string = 'Sets';
       let response: Statistic[] = getStatisticObject();
-      let expected: StatisticViewModel[] = getStatisticViewModelObject();
+      let expected: SetsStatisticViewModel[] = getStatisticViewModelObject();
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
@@ -67,7 +68,7 @@ describe('StatisticsServiceTests', () => {
         });
 
       // Act
-      instance.getLoggedUserStatisticForGame().subscribe(
+      instance.getLoggedUserStatisticForGame(gameName).subscribe(
         (data) => {
           // Assert
           expect(data).toEqual(expected);
@@ -81,8 +82,8 @@ describe('StatisticsServiceTests', () => {
   it('calculateDuration_givenStartAndEndTime_shouldReturnDuration',
     inject([StatisticsService], (instance) => {
       // Arrange
-      let start = '7/21/2016, 00:00:00 PM';
-      let end = '7/21/2016, 00:00:50 PM';
+      let start: Date = new Date('7/21/2016, 00:00:00 PM');
+      let end: Date = new Date('7/21/2016, 00:00:50 PM');
       let expected = new Duration('0', '0', '50');
 
       // Act
@@ -92,14 +93,14 @@ describe('StatisticsServiceTests', () => {
       expect(result).toEqual(expected);
     }));
 
-  it('mapToStatisticModelViewArray_givenStatisticArray_shouldReturnStatisticViewModelArray',
+  it('mapToSetsModelViewArray_givenStatisticArray_shouldReturnSetsViewModelArray',
     inject([StatisticsService], (instance) => {
       // Arrange
       let stat: Statistic[] = getStatisticObject();
-      let statvm: StatisticViewModel[] = getStatisticViewModelObject();
+      let statvm: SetsStatisticViewModel[] = getStatisticViewModelObject();
 
       // Act
-      let result = instance.mapToStatisticModelViewArray(stat);
+      let result = instance.mapToSetsModelViewArray(stat);
 
       // Assert
       expect(result).toEqual(statvm);

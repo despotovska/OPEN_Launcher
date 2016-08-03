@@ -1,0 +1,15 @@
+<div class="container">
+
+  <div class="row">
+    <select #sel class="form-control game-picker left-buffer" (change)="navigateToStatisticsTable(sel.value)">
+    <option *ngFor="#game of games" value="{{game.routeName}}">
+      {{ game.displayName | translate }}
+    </option>
+    </select>
+  </div>
+
+  <div class="table-responsive">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

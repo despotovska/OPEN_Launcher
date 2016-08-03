@@ -7,44 +7,56 @@ import {UserSettingsService} from './UserSettingsService';
 
 import {Statistic} from '../models/Statistic';
 import {Duration} from '../models/Duration';
-import {StatisticViewModel} from '../models/StatisticViewModel';
+import {SetsStatisticViewModel, IStatisticViewModel} from '../models/StatisticViewModel';
 import {DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 export interface IStatisticsService {
-  getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]>;
+  getLoggedUserStatisticForGame(game: string): Observable<IStatisticViewModel[]>;
+  getStatisticsForSets(): Observable<SetsStatisticViewModel[]>;
 }
 
 @Injectable()
 export class StatisticsService implements IStatisticsService {
+  private sets: string = 'Sets';
+
   constructor(private http: Http, private globalService: GlobalService, private userSettingsService: UserSettingsService) { }
 
-  getLoggedUserStatisticForGame(game: string): Observable<StatisticViewModel[]> {
+  getLoggedUserStatisticForGame(game: string): Observable<IStatisticViewModel[]> {
     return this.http.get(this.globalService.URL_GET_STATISTICS(game))
       .map((res: Response) => {
         let array = <Statistic[]>res.json();
-        return this.mapToStatisticModelViewArray(array);
+        switch (game) {
+          case this.sets:
+            return this.mapToSetsModelViewArray(array);
+          default:
+        }
       });
   }
 
-  mapToStatisticModelViewArray(array: Statistic[]): StatisticViewModel[] {
-    let statisticViewModelArray: StatisticViewModel[] = new Array<StatisticViewModel>();
-    for (let index = 0; index < array.length; index++) {
-      let duration: Duration = this.calculateDuration(array[index].startTime, array[index].endTime);
-      statisticViewModelArray[index] = new StatisticViewModel(
-        array[index].username,
-        this.userSettingsService.mapDeviceType(array[index].deviceType),
-        duration,
-        array[index].iterationsPassed,
-        array[index].invalidClicksCount
+  getStatisticsForSets(): Observable<SetsStatisticViewModel[]> {
+    return this.getLoggedUserStatisticForGame(this.sets);
+  }
+
+  mapToSetsModelViewArray(array: Statistic[]): SetsStatisticViewModel[] {
+    let statisticViewModelArray: SetsStatisticViewModel[] = new Array<SetsStatisticViewModel>();
+    for (let i = 0; i < array.length; i++) {
+      let stat: Statistic = array[i];
+      let startTime: Date = new Date(stat.startTime);
+      let endTime: Date = new Date(stat.endTime);
+      statisticViewModelArray[i] = new SetsStatisticViewModel(
+        stat.username,
+        this.userSettingsService.mapDeviceType(stat.deviceType),
+        startTime,
+        this.calculateDuration(startTime, endTime),
+        stat.iterationsPassed,
+        stat.invalidClicksCount
       );
     }
     return statisticViewModelArray;
   }
 
-  calculateDuration(start: string, end: string): Duration {
+  calculateDuration(startTime: Date, endTime: Date): Duration {
     let hours, minutes, seconds;
-    let startTime: Date = new Date(start);
-    let endTime: Date = new Date(end);
     let millisec = (endTime.valueOf() - startTime.valueOf());
     seconds = Math.floor(millisec / 1000);
     minutes = Math.floor(seconds / 60);

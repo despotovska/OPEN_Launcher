@@ -5,7 +5,7 @@ var StatisticsPage = function () {
   var pickedGame = element(by.className("game-picker"));
   var deviceHeader = element(by.id("device_type"));
   var durationHeader = element(by.id("game_time"));
-  var iterationsHeader = element(by.id("iteration_passed"));
+  var startHeader = element(by.id("start_time"));
   var wrongTriesHeader = element(by.id("invalid_click_count"));
 
   this.getDefaultPickerOption = () => {
@@ -20,8 +20,8 @@ var StatisticsPage = function () {
     return durationHeader.isPresent();
   };
 
-  this.isIterationsHeaderVisible = () => {
-    return iterationsHeader.isPresent();
+  this.isStartHeaderVisible = () => {
+    return startHeader.isPresent();
   };
 
   this.isWrongTriesHeaderVisible = () => {

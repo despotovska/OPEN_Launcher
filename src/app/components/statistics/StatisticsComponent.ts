@@ -1,56 +1,34 @@
 import {Component} from 'angular2/core';
+import {Router, CanActivate, RouteConfig, ROUTER_DIRECTIVES, ComponentInstruction} from 'angular2/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {Router, CanActivate} from 'angular2/router';
-import {appInjector} from '../../../appInjector';
 
-import {StatisticsService} from '../../shared/services/StatisticsService';
-import {AlertingService} from '../../shared/services/AlertingService';
-import {AuthService} from '../../shared/services/AuthService';
+import {SetsStatisticsComponent} from './sets/SetsStatisticsComponent';
 
-import {StatisticViewModel} from '../../shared/models/StatisticViewModel';
+import {isLoggedIn} from '../../shared/services/AuthService';
+
 import {GameStatisticsModel} from '../../shared/models/GameStatisticsModel';
-import {Statistic} from '../../shared/models/Statistic';
-import {DeviceType} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
-  selector: 'statistic',
-  templateUrl: './app/components/statistics/gameStatisticView.html',
-  pipes: [TranslatePipe]
+  selector: 'statistics',
+  templateUrl: './app/components/statistics/statistics.html',
+  pipes: [TranslatePipe],
+  directives: [ROUTER_DIRECTIVES]
 })
-@CanActivate(
-  (nextInstr: any, currInstr: any) => {
-    let injector: any = appInjector();
-    let authService: AuthService = injector.get(AuthService);
-    let router: Router = injector.get(Router);
-    let isLogged = authService.isLogged();
-
-    if (!isLogged) {
-      router.navigate(['/Login']);
-    }
-    return isLogged;
-  }
-)
+@RouteConfig([
+  { path: '/sets', component: SetsStatisticsComponent, name: 'SetsStats', useAsDefault: true },
+  { path: '/*path', redirectTo: ['../NotFound'] }
+])
+@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
+  return isLoggedIn(next, previous);
+})
 export class StatisticsComponent {
-  public statistics: Array<StatisticViewModel>;
-  // TODO: pass the start time for display instead of iterations passed
   public games: Array<GameStatisticsModel> = [
-    new GameStatisticsModel('Sets', 'SETS', ['DEVICE_TYPE', 'GAME_TIME', 'START', 'INVALID_CLICK_COUNT'])
+    new GameStatisticsModel('SetsStats', 'SETS')
   ];
 
-  constructor(
-    private alertingService: AlertingService,
-    private statisticsService: StatisticsService) {
-    this.getStatistic(0);
-  }
+  constructor(private router: Router) { }
 
-  getStatistic(index: number): void {
-    this.statisticsService.getLoggedUserStatisticForGame(this.games[index].gameName)
-      .subscribe(data => {
-        this.statistics = data;
-      },
-      err => {
-        this.statistics = undefined;
-        this.alertingService.addDanger('STATISTIC_ERROR_MESSAGE');
-      });
+  navigateToStatisticsTable(routeName: string) {
+    this.router.navigate(['/' + routeName]);
   }
 }

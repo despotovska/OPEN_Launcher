@@ -5,6 +5,7 @@ describe("Statistics page", () => {
   var LogInPage = require("./pages/LoginPageObject.js");
 
   var loginUrl = "http://localhost:3000/#/login";
+  var setsStatisticsRoute = "SetsStats";
 
   beforeEach(() => {
     browser.get(loginUrl);
@@ -21,10 +22,10 @@ describe("Statistics page", () => {
 
   it("should display Sets headers and statistics by default", () => {
     StatisticsPage.getDefaultPickerOption().then((defaultOption) => {
-      expect(defaultOption).toBe('0');
+      expect(defaultOption).toBe(setsStatisticsRoute);
       expect(StatisticsPage.isDeviceHeaderVisible()).toBeTruthy();
       expect(StatisticsPage.isDurationHeaderVisible()).toBeTruthy();
-      expect(StatisticsPage.isIterationsHeaderVisible()).toBeTruthy();
+      expect(StatisticsPage.isStartHeaderVisible()).toBeTruthy();
       expect(StatisticsPage.isWrongTriesHeaderVisible()).toBeTruthy();
     });
   });

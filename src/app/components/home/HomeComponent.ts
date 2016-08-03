@@ -1,9 +1,8 @@
 import {Component} from 'angular2/core';
-import {Router, CanActivate} from 'angular2/router';
+import {CanActivate, ComponentInstruction} from 'angular2/router';
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
-import {appInjector} from '../../../appInjector';
 
-import {AuthService} from '../../shared/services/AuthService';
+import {AuthService, isLoggedIn} from '../../shared/services/AuthService';
 import {UserSettingsService} from '../../shared/services/UserSettingsService';
 import {GameLauncherService} from './GameLauncherService';
 import {AlertingService} from '../../shared/services/AlertingService';
@@ -17,19 +16,9 @@ import {GameModel} from './GameModel';
   templateUrl: './app/components/home/home.html',
   pipes: [TranslatePipe]
 })
-@CanActivate(
-  (nextInstr: any, currInstr: any) => {
-    let injector: any = appInjector();
-    let authService: AuthService = injector.get(AuthService);
-    let router: Router = injector.get(Router);
-    let isLogged = authService.isLogged();
-
-    if (!isLogged) {
-      router.navigate(['/Login']);
-    }
-    return isLogged;
-  }
-)
+@CanActivate((next: ComponentInstruction, previous: ComponentInstruction) => {
+  return isLoggedIn(next, previous);
+})
 export class HomeComponent {
   public causeAndEffectGame: GameModel = new GameModel(
     'CAUSE_AND_EFFECT',

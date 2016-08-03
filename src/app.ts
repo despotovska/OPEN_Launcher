@@ -59,7 +59,6 @@ import { AuthService } from './app/shared/services/AuthService';
     TranslateService],
   templateUrl: './app.html'
 })
-
 @RouteConfig([
   { path: '/', redirectTo: ['/Login'] },
   { path: '/home', component: HomeComponent, name: 'Home' },
@@ -67,8 +66,8 @@ import { AuthService } from './app/shared/services/AuthService';
   { path: '/register', component: RegisterComponent, name: 'Register' },
   { path: '/login', component: LoginComponent, name: 'Login' },
   { path: '/userSettingsEdit', component: UserSettingsEditComponent, name: 'UserSettingsEdit' },
-  { path: '/statistics', component: StatisticsComponent, name: 'Statistics' },
-  { path: '/404', name: 'NotFound', component: NotFoundComponent }, ,
+  { path: '/statistics/...', component: StatisticsComponent, name: 'Statistics' },
+  { path: '/404', name: 'NotFound', component: NotFoundComponent },
   { path: '/*path', redirectTo: ['NotFound'] }
 ])
 export class App {
